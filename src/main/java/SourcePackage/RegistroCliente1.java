@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.laboprogapp;
+package SourcePackage;
 
 /**
  *
@@ -146,7 +146,7 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        System.exit(0);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
 
