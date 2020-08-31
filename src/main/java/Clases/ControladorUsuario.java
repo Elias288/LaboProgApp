@@ -14,4 +14,10 @@ public class ControladorUsuario {
         }
         
     }
+    public void ConsultaUsuario(){
+        
+    }
+    public void ModificarUsuario(){
+        
+    }
 }
