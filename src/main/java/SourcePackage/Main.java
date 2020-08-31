@@ -26,6 +26,7 @@ public class Main extends javax.swing.JFrame {
         jMenuRegistro = new javax.swing.JMenu();
         jMenuItemRegistrarClientes = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
+        jMenuItemConsultaUsuario = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -76,6 +77,15 @@ public class Main extends javax.swing.JFrame {
         jMenuBar1.add(jMenuRegistro);
 
         jMenuConsultas.setText("Consultas");
+
+        jMenuItemConsultaUsuario.setText("Consultar Usuario");
+        jMenuItemConsultaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConsultaUsuarioActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemConsultaUsuario);
+
         jMenuBar1.add(jMenuConsultas);
 
         setJMenuBar(jMenuBar1);
@@ -88,7 +98,7 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addComponent(Escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -103,6 +113,10 @@ public class Main extends javax.swing.JFrame {
     private void jMenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItemSalirActionPerformed
+
+    private void jMenuItemConsultaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultaUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemConsultaUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,6 +159,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConsultas;
     private javax.swing.JMenu jMenuInicio;
+    private javax.swing.JMenuItem jMenuItemConsultaUsuario;
     private javax.swing.JMenuItem jMenuItemRegistrarClientes;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JMenu jMenuRegistro;
