@@ -3,6 +3,7 @@ package SourcePackage;
 import Clases.alumno;
 import Clases.docente;
 import Clases.usuario;
+import Clases.ControladorUsuario;
 
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -171,18 +172,22 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        
         java.util.Date date;
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         date = jDateChooser1.getDate();
         String dateTime = (String) sdf.format(jDateChooser1.getDate());
         
-        if(!jCheckBoxDocente.isSelected()){
+        ControladorUsuario CU = new ControladorUsuario();
+        CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected());
+        
+        /*if(!jCheckBoxDocente.isSelected()){
             usuario usu = new alumno(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date);
             JOptionPane.showMessageDialog( null, "Nombre: "+usu.getName()+"\nApellido: "+usu.getLastName()+"\nNickname: "+usu.getNN()+"\nCorreo: "+usu.getEmail()+"\nFecha de nacimiento: "+usu.getDate());
         }else{
             usuario usu = new docente(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date);
             JOptionPane.showMessageDialog( null, "Nombre: "+usu.getName()+"\nApellido: "+usu.getLastName()+"\nNickname: "+usu.getNN()+"\nCorreo: "+usu.getEmail()+"\nFecha de nacimiento: "+usu.getDate());
-        }
+        }*/
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
 
