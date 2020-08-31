@@ -4,6 +4,7 @@ import Clases.alumno;
 import Clases.docente;
 import Clases.usuario;
 import Clases.ControladorUsuario;
+import Clases.instituto;
 
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
@@ -202,7 +203,8 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         String dateTime = (String) sdf.format(jDateChooser1.getDate());
         
         ControladorUsuario CU = new ControladorUsuario();
-        CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), jTextFieldInstituto.getText());
+        instituto insti = new instituto(jTextFieldInstituto.getText());
+        CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), insti);
         
         jTextFieldName.setText("");
         jTextFieldLastName.setText("");
