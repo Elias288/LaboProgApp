@@ -6,12 +6,9 @@ import Clases.usuario;
 import Clases.ControladorUsuario;
 
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Elias
- */
 public class RegistroCliente1 extends javax.swing.JInternalFrame {
 
     /**
@@ -19,6 +16,8 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
      */
     public RegistroCliente1() {
         initComponents();
+        jTextFieldInstituto.setVisible(false);
+        jLabel7.setVisible(false);
     }
 
     /**
@@ -45,6 +44,8 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jCheckBoxDocente = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        jTextFieldInstituto = new javax.swing.JTextField();
 
         setTitle("Registrar Cliente");
         setToolTipText("");
@@ -78,6 +79,19 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         jLabel3.setText("Aplellido:");
 
         jCheckBoxDocente.setText("Docente");
+        jCheckBoxDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxDocenteActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Instituto");
+
+        jTextFieldInstituto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldInstitutoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,18 +117,23 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(20, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addComponent(jLabel1)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldInstituto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jButtonImageSelector)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCheckBoxDocente))
+                        .addComponent(jCheckBoxDocente)
+                        .addGap(8, 8, 8))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonAceptar)
@@ -154,14 +173,18 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonImageSelector)
                     .addComponent(jCheckBoxDocente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextFieldInstituto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar)
                     .addComponent(jButtonAceptar))
-                .addGap(53, 53, 53))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -179,16 +202,28 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         String dateTime = (String) sdf.format(jDateChooser1.getDate());
         
         ControladorUsuario CU = new ControladorUsuario();
-        CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected());
+        CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), jTextFieldInstituto.getText());
         
-        /*if(!jCheckBoxDocente.isSelected()){
-            usuario usu = new alumno(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date);
-            JOptionPane.showMessageDialog( null, "Nombre: "+usu.getName()+"\nApellido: "+usu.getLastName()+"\nNickname: "+usu.getNN()+"\nCorreo: "+usu.getEmail()+"\nFecha de nacimiento: "+usu.getDate());
-        }else{
-            usuario usu = new docente(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date);
-            JOptionPane.showMessageDialog( null, "Nombre: "+usu.getName()+"\nApellido: "+usu.getLastName()+"\nNickname: "+usu.getNN()+"\nCorreo: "+usu.getEmail()+"\nFecha de nacimiento: "+usu.getDate());
-        }*/
+        jTextFieldName.setText("");
+        jTextFieldLastName.setText("");
+        jTextFieldNN.setText("");
+        jTextFieldEmail.setText("");
+        jCheckBoxDocente.setSelected(false);
+        jTextFieldInstituto.setText("");
+        jTextFieldInstituto.setVisible(false);
+        jLabel7.setVisible(false);
+        jDateChooser1.setCalendar(null);
+        
     }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jTextFieldInstitutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldInstitutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldInstitutoActionPerformed
+
+    private void jCheckBoxDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDocenteActionPerformed
+        jTextFieldInstituto.setVisible(true);
+        jLabel7.setVisible(true);
+    }//GEN-LAST:event_jCheckBoxDocenteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -203,7 +238,9 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextFieldEmail;
+    private javax.swing.JTextField jTextFieldInstituto;
     private javax.swing.JTextField jTextFieldLastName;
     private javax.swing.JTextField jTextFieldNN;
     private javax.swing.JTextField jTextFieldName;
