@@ -16,16 +16,15 @@ import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 public class RegistroCliente1 extends javax.swing.JInternalFrame {
-       Collection<usuario> clf;
+    Collection<usuario> clf;
     Iterator<usuario> ilf;
-EntityManagerFactory emf = Persistence.createEntityManagerFactory("FacturasService");
-            EntityManager em = emf.createEntityManager();
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
+    EntityManager em = emf.createEntityManager();
+    
     /**
      * Creates new form RegistroCliente1
      */
     public RegistroCliente1() {
-
-
         initComponents();
         jTextFieldInstituto.setVisible(false);
         jLabel7.setVisible(false);
@@ -216,20 +215,19 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("FacturasServi
         instituto insti = new instituto(jTextFieldInstituto.getText());
         CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), insti);
         
-          em.getTransaction().begin();
-    em.persist(CU);
+        em.getTransaction().begin();
+        em.persist(CU);
 
-
-    ilf = clf.iterator();
+        ilf = clf.iterator();
     
-  if (ilf.hasNext()) {
-      while(ilf.hasNext()) {
-        em.persist(ilf.next());
-      }
-    }
+        if (ilf.hasNext()) {
+            while(ilf.hasNext()) {
+              em.persist(ilf.next());
+            }
+        }
 
-
-    em.getTransaction().commit();
+        em.getTransaction().commit();
+        
         jTextFieldName.setText("");
         jTextFieldLastName.setText("");
         jTextFieldNN.setText("");

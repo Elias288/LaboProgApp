@@ -1,12 +1,12 @@
 package Clases;
 
-import java.util.Date;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.PrimaryKeyJoinColumn;
+
 @Entity
-@Table( name= "Docente")
+@Table(name= "Docente")
 @PrimaryKeyJoinColumn(foreignKey = @ForeignKey(name = "nickname"))
 public class docente extends usuario{
     protected instituto Instituto;
