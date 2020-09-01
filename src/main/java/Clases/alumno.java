@@ -6,9 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+
 @Entity
 @Table( name= "Alumno")
-@PrimaryKeyJoinColumn(foreignKey = @ForeignKey(name = "nickname"))
+@PrimaryKeyJoinColumn(referencedColumnName="Alumno_Usuario")
 public class alumno extends usuario{
 
     public alumno( String name, String LastName, String NN, String Email, java.util.Date date){

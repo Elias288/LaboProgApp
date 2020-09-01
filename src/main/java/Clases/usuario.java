@@ -8,10 +8,22 @@ import javax.persistence.Column;
 @Entity
 @Table( name= "Docente")
 public abstract class usuario {
-    protected @Id @Column(name = "Usu nickname") String nickname;
+    @Id @Column(name = "UsuNickname") 
+    protected String nickname;
+    
+    @Column(name = "UsuName") 
     protected String nombre;
-    String apellido, correo;
-    java.util.Date  FechaNac;
+    
+    @Column(name = "UsuLastName") 
+    protected String apellido;
+    
+    @Column(name = "UsuEmail") 
+    protected String correo;
+    
+    @Column(name = "UsuDate")
+    protected java.util.Date  FechaNac;
+    
+    
     
     public usuario(String name, String LastName, String NN, String Email, java.util.Date date){
         this.FechaNac = date;
