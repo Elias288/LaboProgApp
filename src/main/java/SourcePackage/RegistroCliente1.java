@@ -213,10 +213,9 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         
         ControladorUsuario CU = new ControladorUsuario();
         instituto insti = new instituto(jTextFieldInstituto.getText());
-        CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), insti);
         
         em.getTransaction().begin();
-        em.persist(CU);
+        em.persist(CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), insti));
 
         ilf = clf.iterator();
     

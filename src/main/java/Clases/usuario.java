@@ -4,9 +4,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.Column;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-@Entity
-@Table( name= "Docente")
+@Entity( name= "Docente" )
+@Inheritance( strategy=InheritanceType.JOINED )
 public abstract class usuario {
     @Id @Column(name = "UsuNickname") 
     protected String nickname;
