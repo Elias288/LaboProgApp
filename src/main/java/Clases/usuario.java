@@ -1,7 +1,13 @@
 package Clases;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+
+@Entity
+@Table( name= "Docente")
 public abstract class usuario {
-    protected String nickname, nombre, apellido, correo;
+    protected @Id String nickname, nombre, apellido, correo;
     java.util.Date  FechaNac;
     
     public usuario(String name, String LastName, String NN, String Email, java.util.Date date){

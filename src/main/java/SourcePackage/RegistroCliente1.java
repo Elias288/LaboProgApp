@@ -7,15 +7,25 @@ import Clases.ControladorUsuario;
 import Clases.instituto;
 
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 public class RegistroCliente1 extends javax.swing.JInternalFrame {
-
+       Collection<usuario> clf;
+    Iterator<usuario> ilf;
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("FacturasService");
+            EntityManager em = emf.createEntityManager();
     /**
      * Creates new form RegistroCliente1
      */
     public RegistroCliente1() {
+
+
         initComponents();
         jTextFieldInstituto.setVisible(false);
         jLabel7.setVisible(false);
@@ -196,7 +206,7 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        
+
         java.util.Date date;
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         date = jDateChooser1.getDate();
@@ -206,6 +216,20 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         instituto insti = new instituto(jTextFieldInstituto.getText());
         CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), insti);
         
+          em.getTransaction().begin();
+    em.persist(CU);
+
+
+    ilf = clf.iterator();
+    
+  if (ilf.hasNext()) {
+      while(ilf.hasNext()) {
+        em.persist(ilf.next());
+      }
+    }
+
+
+    em.getTransaction().commit();
         jTextFieldName.setText("");
         jTextFieldLastName.setText("");
         jTextFieldNN.setText("");

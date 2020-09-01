@@ -1,11 +1,16 @@
 package SourcePackage;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class Main extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
      */
     public Main() {
+           
         initComponents();
     }
 
