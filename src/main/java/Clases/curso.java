@@ -16,12 +16,12 @@ public class curso implements Serializable{
     protected String nombre;
     protected String instituto;
     protected String descripcion, URL;
-    protected Date duracion;
+    protected int duracion;
     protected Date cantHoras;
     protected Date fecha;
     protected int Creditos;
     
-    public curso(String name, String instituto, String desc, String link, Date duracion, Date cantHoras, Date fecha, int creditos){
+    public curso(String name, String instituto, String desc, String link, int duracion, Date cantHoras, Date fecha, int creditos){
         this.Creditos = creditos;
         this.URL = URL;
         this.instituto = instituto;

@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class ControladorCurso {
     
-    public void AltaCurso(String name, String instituto, String desc, String link, Date duracion, Date cantHoras, Date fecha, int creditos){
+    public void AltaCurso(String name, String instituto, String desc, String link, int duracion, Date cantHoras, Date fecha, int creditos){
         curso cur = new curso(name, instituto, desc, link, duracion, cantHoras, fecha, creditos);
         JOptionPane.showMessageDialog( null, "Curso "+cur.getName()+"\nAgregado Correctamente");
     }

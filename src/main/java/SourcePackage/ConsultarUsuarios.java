@@ -109,7 +109,7 @@ public class ConsultarUsuarios extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void campodetextoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campodetextoKeyReleased
-    ControladorUsuario.mostrartabla(campodetexto.getText());
+        ControladorUsuario.mostrartabla(campodetexto.getText());
     }//GEN-LAST:event_campodetextoKeyReleased
 
     private void buscarbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarbotonActionPerformed
