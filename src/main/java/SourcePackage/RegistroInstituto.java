@@ -26,6 +26,7 @@ public class RegistroInstituto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldInstituto = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -97,6 +98,7 @@ public class RegistroInstituto extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextFieldInstituto;
     // End of variables declaration//GEN-END:variables

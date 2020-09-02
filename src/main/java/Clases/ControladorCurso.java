@@ -4,15 +4,14 @@ import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
-import javax.transaction.Transactional;
 
 public class ControladorCurso {
     
-    public void AltaCurso(String name, String desc, String link, Date duracion, Date cantHoras, Date fecha, int creditos){
-        curso cur = new curso(name, desc, link, duracion, cantHoras, fecha, creditos);
+    public void AltaCurso(String name, String instituto, String desc, String link, Date duracion, Date cantHoras, Date fecha, int creditos){
+        curso cur = new curso(name, instituto, desc, link, duracion, cantHoras, fecha, creditos);
+        JOptionPane.showMessageDialog( null, "Curso "+cur.getName()+"\nAgregado Correctamente");
     }
     
     public void ConsultaCurso(){

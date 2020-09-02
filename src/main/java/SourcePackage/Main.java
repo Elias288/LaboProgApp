@@ -1,9 +1,5 @@
 package SourcePackage;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 public class Main extends javax.swing.JFrame {
 
     /**
@@ -31,6 +27,7 @@ public class Main extends javax.swing.JFrame {
         jMenuRegistro = new javax.swing.JMenu();
         jMenuItemRegistrarClientes = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemConsultaUsuario = new javax.swing.JMenuItem();
 
@@ -88,6 +85,14 @@ public class Main extends javax.swing.JFrame {
         });
         jMenuRegistro.add(jMenuItem1);
 
+        jMenuItem2.setText("Registrar Curso");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuRegistro.add(jMenuItem2);
+
         jMenuBar1.add(jMenuRegistro);
 
         jMenuConsultas.setText("Consultas");
@@ -140,6 +145,12 @@ public class Main extends javax.swing.JFrame {
         RG2.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        RegistroCurso RC = new RegistroCurso();
+        Escritorio.add(RC);
+        RC.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -182,6 +193,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuConsultas;
     private javax.swing.JMenu jMenuInicio;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemConsultaUsuario;
     private javax.swing.JMenuItem jMenuItemRegistrarClientes;
     private javax.swing.JMenuItem jMenuItemSalir;
