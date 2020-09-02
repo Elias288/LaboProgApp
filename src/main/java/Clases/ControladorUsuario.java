@@ -37,8 +37,8 @@ public class ControladorUsuario {
         usuario usu;
          EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
         EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("SELECT * FROM usuario u WHERE u.nickname LIKE '"+NN+"%'");
-        query.setParameter("nikcname", NN+"%");
+        Query query = em.createQuery("SELECT xd FROM Usuario xd WHERE xd.nickname LIKE :nickname");
+        query.setParameter("nickname", NN+"%");
         List<usuario>lista = query.getResultList();
         return lista;
     }
@@ -56,7 +56,7 @@ public class ControladorUsuario {
          datosusuarios[2]=tbp.getLastName()+"";
          datosusuarios[3]=tbp.getEmail()+"";
          datosusuarios[4]=tbp.getName()+"";
-         
+         model.addRow(datosusuarios);
          
      }
      tabla.setModel(model);

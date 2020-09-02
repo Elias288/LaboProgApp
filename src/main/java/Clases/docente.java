@@ -13,4 +13,7 @@ public class docente extends usuario{
         super(name, LastName, NN, Email, date);
         this.Instituto = Instituto;
     }
+    public docente(){
+        
+    }
 }

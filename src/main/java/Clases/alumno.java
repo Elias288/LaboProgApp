@@ -11,4 +11,8 @@ public class alumno extends usuario{
         super(name, LastName, NN, Email, date);
     }
     
+    public alumno(){
+        
+    }
 }
+
