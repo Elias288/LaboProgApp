@@ -198,20 +198,15 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
-        EntityManager em = emf.createEntityManager();
-        
         java.util.Date date;
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         date = jDateChooser1.getDate();
         String dateTime = (String) sdf.format(jDateChooser1.getDate());
         
         ControladorUsuario CU = new ControladorUsuario();
-        instituto insti = new instituto(jTextFieldInstituto.getText());
+        //instituto insti = new instituto(jTextFieldInstituto.getText());
+        CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), jTextFieldInstituto.getText());
         
-        em.getTransaction().begin();
-        em.persist(CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), insti));
-
         jTextFieldName.setText("");
         jTextFieldLastName.setText("");
         jTextFieldNN.setText("");

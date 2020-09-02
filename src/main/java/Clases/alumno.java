@@ -1,16 +1,10 @@
 package Clases;
 
-import java.util.Date;
-import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.DiscriminatorValue;
 
-
-@Entity
-@Table( name= "Alumno")
-@PrimaryKeyJoinColumn(referencedColumnName="Alumno_Usuario")
+@Entity( name= "Alumno")
+@DiscriminatorValue( value = "NS" )
 public class alumno extends usuario{
 
     public alumno( String name, String LastName, String NN, String Email, java.util.Date date){

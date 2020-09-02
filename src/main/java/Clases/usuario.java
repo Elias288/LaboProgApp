@@ -1,15 +1,15 @@
 package Clases;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Entity;
-import javax.persistence.Column;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-@Entity
-@Table( name= "Usuario" )
+@Entity( name= "Usuario" )
 @Inheritance( strategy=InheritanceType.JOINED )
+@DiscriminatorColumn(name="Tipo_Usuario", discriminatorType=DiscriminatorType.STRING)
 public abstract class usuario {
     @Id 
     protected String nickname;
