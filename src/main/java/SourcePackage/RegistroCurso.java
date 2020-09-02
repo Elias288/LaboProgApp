@@ -69,6 +69,13 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jSpinnerHour.setModel(new javax.swing.SpinnerNumberModel());
 
         jLabel8.setText("Duracion");
 
@@ -159,10 +166,19 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Date hour = (Date)jSpinnerHour.getValue();
+        
+        int duracion = (int) jSpinnerDuracion.getValue();
+        int horas = (int )jSpinnerHour.getValue();
+        int credits = (int)jSpinnerCredits.getValue();
+        
         ControladorCurso CC = new ControladorCurso();
-        CC.AltaCurso(jTextFieldName.getText(),jTextFieldInstituto.getText(), jTextFieldDesc.getText(),jTextFieldURL.getText(),(int)jSpinnerDuracion.getValue(),(Date)jDateChooserDate.getDate(),(Date)jSpinnerHour.getValue(),(int)jSpinnerCredits.getValue());
+        CC.AltaCurso(jTextFieldName.getText(),jTextFieldInstituto.getText(), jTextFieldDesc.getText(),jTextFieldURL.getText(),duracion,horas,
+        jDateChooserDate.getDate(),credits);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

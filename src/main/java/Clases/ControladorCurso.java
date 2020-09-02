@@ -9,8 +9,27 @@ import javax.swing.JOptionPane;
 
 public class ControladorCurso {
     
-    public void AltaCurso(String name, String instituto, String desc, String link, int duracion, Date cantHoras, Date fecha, int creditos){
-        curso cur = new curso(name, instituto, desc, link, duracion, cantHoras, fecha, creditos);
+    public void AltaCurso(String name, String instituto, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos){
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
+        EntityManager em = emf.createEntityManager();
+        
+        curso cur = new curso();
+        
+        cur.setFecha(fecha);
+        cur.SetCreditos(creditos);
+        cur.SetURL(link);
+        cur.SetName(name);
+        cur.SetDuracion(duracion);
+        cur.SetDescripcion(desc);
+        cur.SetCantH(cantHoras);
+        cur.SetInstituto(instituto);
+        
+        em.getTransaction().begin();
+        em.persist(cur);
+        em.getTransaction().commit();
+        em.close();
+        
         JOptionPane.showMessageDialog( null, "Curso "+cur.getName()+"\nAgregado Correctamente");
     }
     
