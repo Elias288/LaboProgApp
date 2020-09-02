@@ -9,7 +9,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/edEXT?zeroDateTimeBehavior=CONVERT_TO_NULL&amp;useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="equipo1"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="GERMANGARMENDIA"/>
+      <property name="javax.persistence.jdbc.password" value="equipo1"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL55Dialect" />
     </properties>
