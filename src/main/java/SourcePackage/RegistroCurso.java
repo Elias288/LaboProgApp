@@ -1,23 +1,21 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package SourcePackage;
 
-import Clases.alumno;
-import Clases.docente;
-import Clases.usuario;
-import Clases.ControladorUsuario;
-
-import java.text.SimpleDateFormat;
-import java.util.HashSet;
-import javax.swing.JOptionPane;
-
-public class ConsultarUsuarios extends javax.swing.JInternalFrame {
+/**
+ *
+ * @author Elias
+ */
+public class RegistroCurso extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form RegistroCliente1
+     * Creates new form RegistroCurso
      */
-    public ConsultarUsuarios() {
+    public RegistroCurso() {
         initComponents();
-    //    jTextFieldInstituto.setVisible(false);
-     //   jLabel7.setVisible(false);
     }
 
     /**
@@ -29,18 +27,28 @@ public class ConsultarUsuarios extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setTitle("Consultar Usuarios");
-        setToolTipText("");
+        jLabel1 = new javax.swing.JLabel();
+
+        setResizable(true);
+        setTitle("Registrar Curso");
+
+        jLabel1.setText("Nombre Curso");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 422, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
+                .addContainerGap(243, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jLabel1)
+                .addContainerGap(235, Short.MAX_VALUE))
         );
 
         pack();
@@ -48,5 +56,6 @@ public class ConsultarUsuarios extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

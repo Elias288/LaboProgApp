@@ -11,4 +11,9 @@ public class instituto {
     public instituto(String facultad){
         this.Facultad = facultad;
     }
+    public instituto(){}
+    
+    public String getFacultad(){
+        return this.Facultad;
+    }
 }
