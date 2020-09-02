@@ -1,11 +1,11 @@
 package Clases;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,17 +14,18 @@ public class curso implements Serializable{
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     protected String nombre;
-    protected String instituto;
     protected String descripcion, URL;
     protected int duracion;
     protected int cantHoras;
     protected Date fecha;
     protected int Creditos;
     
-    public curso(String name, String instituto, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos){
+    @ManyToOne
+    protected instituto instituto;
+    
+    public curso(String name, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos){
         this.Creditos = creditos;
         this.URL = URL;
-        this.instituto = instituto;
         this.cantHoras = cantHoras;
         this.descripcion = desc;
         this.duracion = duracion;
@@ -59,7 +60,7 @@ public class curso implements Serializable{
     public void SetCreditos(int cred){
         this.Creditos= cred;
     }
-    public void SetInstituto(String ins){
+    public void SetInstituto(instituto ins){
         this.instituto=ins;
     }
     

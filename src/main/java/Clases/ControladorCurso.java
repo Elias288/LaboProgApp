@@ -16,6 +16,15 @@ public class ControladorCurso {
         
         curso cur = new curso();
         
+        TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM instituto WHERE Facultad =:names", Long.class);
+        queryId.setParameter("names", instituto);
+        long ides = queryId.getSingleResult();
+        
+        instituto ins = em.find(instituto.class, ides);
+        
+        System.out.println(ins.getFacultad());
+        System.out.println(ins.getId());
+        
         cur.setFecha(fecha);
         cur.SetCreditos(creditos);
         cur.SetURL(link);
@@ -23,7 +32,7 @@ public class ControladorCurso {
         cur.SetDuracion(duracion);
         cur.SetDescripcion(desc);
         cur.SetCantH(cantHoras);
-        cur.SetInstituto(instituto);
+        cur.SetInstituto(ins);
         
         em.getTransaction().begin();
         em.persist(cur);
