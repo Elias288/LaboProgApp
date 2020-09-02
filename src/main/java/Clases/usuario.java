@@ -7,24 +7,16 @@ import javax.persistence.Column;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-@Entity( name= "Docente" )
+@Entity
+@Table( name= "Usuario" )
 @Inheritance( strategy=InheritanceType.JOINED )
 public abstract class usuario {
-    @Id @Column(name = "UsuNickname") 
+    @Id 
     protected String nickname;
-    
-    @Column(name = "UsuName") 
     protected String nombre;
-    
-    @Column(name = "UsuLastName") 
     protected String apellido;
-    
-    @Column(name = "UsuEmail") 
     protected String correo;
-    
-    @Column(name = "UsuDate")
     protected java.util.Date  FechaNac;
-    
     
     
     public usuario(String name, String LastName, String NN, String Email, java.util.Date date){
