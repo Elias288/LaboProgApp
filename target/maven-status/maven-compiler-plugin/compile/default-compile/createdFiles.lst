@@ -1,19 +1,30 @@
 Clases\ControladorUsuario.class
 SourcePackage\Main$4.class
+<<<<<<< HEAD
 SourcePackage\RegistroCurso$1.class
 Clases\ControladorCurso.class
 Clases\docente.class
+=======
+Clases\ControladorCurso.class
+Clases\docente.class
+SourcePackage\ConsultarUsuarios$3.class
+>>>>>>> 2a6e293457b4d1c72ad28dc50c8a4df76c7c8a64
 SourcePackage\Main.class
 SourcePackage\RegistroCliente1$3.class
 Clases\curso.class
 SourcePackage\Main$1.class
+<<<<<<< HEAD
 SourcePackage\Main$6.class
 SourcePackage\RegistroInstituto$1.class
+=======
+SourcePackage\ConsultarUsuarios$2.class
+>>>>>>> 2a6e293457b4d1c72ad28dc50c8a4df76c7c8a64
 Clases\instituto.class
 SourcePackage\ConsultarUsuarios.class
 SourcePackage\Main$3.class
 SourcePackage\RegistroCliente1$1.class
 SourcePackage\RegistroCliente1$2.class
+<<<<<<< HEAD
 SourcePackage\RegistroCurso.class
 SourcePackage\RegistroInstituto.class
 Clases\alumno.class
@@ -21,4 +32,11 @@ SourcePackage\RegistroCliente1.class
 SourcePackage\Main$5.class
 SourcePackage\Main$2.class
 SourcePackage\RegistroInstituto$2.class
+=======
+Clases\alumno.class
+SourcePackage\RegistroCliente1$4.class
+SourcePackage\RegistroCliente1.class
+SourcePackage\Main$2.class
+SourcePackage\ConsultarUsuarios$1.class
+>>>>>>> 2a6e293457b4d1c72ad28dc50c8a4df76c7c8a64
 Clases\usuario.class
