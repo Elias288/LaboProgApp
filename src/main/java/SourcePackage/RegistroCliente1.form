@@ -212,6 +212,7 @@
         <Property name="text" type="java.lang.String" value="Docente"/>
       </Properties>
       <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jCheckBoxDocenteStateChanged"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxDocenteActionPerformed"/>
       </Events>
     </Component>
@@ -223,12 +224,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxInstituto">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>

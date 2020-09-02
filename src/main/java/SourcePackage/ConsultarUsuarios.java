@@ -2,9 +2,6 @@ package SourcePackage;
 
 import Clases.*;
 
-import java.text.SimpleDateFormat;
-import java.util.HashSet;
-import javax.swing.JOptionPane;
 
 public class ConsultarUsuarios extends javax.swing.JInternalFrame {
 

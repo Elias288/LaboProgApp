@@ -2,18 +2,22 @@ package Clases;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity(name= "Docente")
-@DiscriminatorValue( value="TS" )
+@DiscriminatorValue( value="Profesor" )
 public class docente extends usuario{
     
-    protected String Instituto;
+    @ManyToOne
+    protected instituto instituto;
     
-    public docente(String name, String LastName, String NN, String Email, java.util.Date date, String Instituto){
+    public docente(String name, String LastName, String NN, String Email, java.util.Date date, instituto Instituto){
         super(name, LastName, NN, Email, date);
-        this.Instituto = Instituto;
+        this.instituto = Instituto;
     }
-    public docente(){
-        
+    public docente(){}
+    
+    public void SetInstituto(instituto ins){
+        this.instituto=ins;
     }
 }

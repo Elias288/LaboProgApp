@@ -4,6 +4,7 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
@@ -33,4 +34,7 @@ public abstract class usuario {
     public String getEmail(){return this.correo;}
     public String getNN(){return this.nickname;}
     public java.util.Date getDate(){return this.FechaNac;}
+//    public String getTipo(){
+//        return @DiscriminatorValue;
+//    }
 }

@@ -6,23 +6,33 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class ControladorUsuario {
     
-    public void altaUsuario(String name, String LastName, String NN, String Email, java.util.Date date, Boolean tipo, String Instituto){
+    public void altaUsuario(String name, String LastName, String NN, String Email, java.util.Date date, Boolean tipo, String instituto){
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
         EntityManager em = emf.createEntityManager();
         
         usuario usu;
         
+        TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM instituto WHERE Facultad =:names", Long.class);
+        queryId.setParameter("names", instituto);
+        long ides = queryId.getSingleResult();
+        
+        instituto ins = em.find(instituto.class, ides);
+        
+        System.out.println(ins.getFacultad());
+        System.out.println(ins.getId());
+        
         if(!tipo){
             usu = new alumno(name, LastName, NN, Email, date);
         }else{
-            usu = new docente(name, LastName, NN, Email, date, Instituto);
+            usu = new docente(name, LastName, NN, Email, date, ins);
         }
         JOptionPane.showMessageDialog( null, "Usuario "+usu.getNN()+"\nAgregado Correctamente");
         em.getTransaction().begin();
@@ -35,7 +45,7 @@ public class ControladorUsuario {
     
     public static List<usuario> buscarusuario(String NN){
         usuario usu;
-         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
         EntityManager em = emf.createEntityManager();
         Query query = em.createQuery("SELECT xd FROM Usuario xd WHERE xd.nickname LIKE :nickname");
         query.setParameter("nickname", NN+"%");
@@ -49,13 +59,14 @@ public class ControladorUsuario {
      model= new DefaultTableModel(null,titulo);
      
      List<usuario>datos = buscarusuario(nickname);
-     String [] datosusuarios = new String [5];
+     String [] datosusuarios = new String [6];
      for (usuario tbp : datos){
          datosusuarios[0]=tbp.getNN()+"";
          datosusuarios[1]=tbp.getDate()+"";
          datosusuarios[2]=tbp.getLastName()+"";
          datosusuarios[3]=tbp.getEmail()+"";
          datosusuarios[4]=tbp.getName()+"";
+//         datosusuarios[5]=tbp.getTipoUsuario()+"";
          model.addRow(datosusuarios);
          
      }

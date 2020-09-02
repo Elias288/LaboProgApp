@@ -3,21 +3,36 @@ package SourcePackage;
 import Clases.*;
 
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class RegistroCliente1 extends javax.swing.JInternalFrame {
-    
-    
     
     ControladorUsuario CU = new ControladorUsuario();
     /**
      * Creates new form RegistroCliente1
      */
     public RegistroCliente1() {
-        
-        
         initComponents();
         jComboBoxInstituto.setVisible(false);
         jLabel7.setVisible(false);
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
+        EntityManager em = emf.createEntityManager();
+        Iterator it = em.createQuery("SELECT xd FROM instituto xd").getResultList().iterator();
+        instituto ins= null;
+
+        try{
+            while ( it.hasNext() ){
+                ins = (instituto) it.next();
+                jComboBoxInstituto.addItem(ins.getFacultad());
+            }
+        }catch (Exception e){
+            System.out.println("no hay Institutos");
+        }
+        
     }
 
     /**
@@ -79,6 +94,11 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         jLabel3.setText("Aplellido:");
 
         jCheckBoxDocente.setText("Docente");
+        jCheckBoxDocente.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckBoxDocenteStateChanged(evt);
+            }
+        });
         jCheckBoxDocente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxDocenteActionPerformed(evt);
@@ -86,8 +106,6 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setText("Instituto");
-
-        jComboBoxInstituto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,7 +218,8 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         String dateTime = (String) sdf.format(jDateChooser1.getDate());
         
         //instituto insti = new instituto(jTextFieldInstituto.getText());
-        CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), (String)jComboBoxInstituto.getItemAt(WIDTH));
+        System.out.println((String)jComboBoxInstituto.getSelectedItem());
+        CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), (String)jComboBoxInstituto.getSelectedItem());
         
         jTextFieldName.setText("");
         jTextFieldLastName.setText("");
@@ -214,9 +233,18 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jCheckBoxDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDocenteActionPerformed
-        jComboBoxInstituto.setVisible(true);
-        jLabel7.setVisible(true);
+        if(jCheckBoxDocente.isSelected()){
+            jComboBoxInstituto.setVisible(true);
+            jLabel7.setVisible(true);
+        }else{
+            jComboBoxInstituto.setVisible(false);
+            jLabel7.setVisible(false);
+        }
     }//GEN-LAST:event_jCheckBoxDocenteActionPerformed
+
+    private void jCheckBoxDocenteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxDocenteStateChanged
+        
+    }//GEN-LAST:event_jCheckBoxDocenteStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

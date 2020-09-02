@@ -4,15 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.DiscriminatorValue;
 
 @Entity( name= "Alumno")
-@DiscriminatorValue( value = "NS" )
+@DiscriminatorValue( value = "Estudiante" )
 public class alumno extends usuario{
 
     public alumno( String name, String LastName, String NN, String Email, java.util.Date date){
         super(name, LastName, NN, Email, date);
     }
     
-    public alumno(){
-        
-    }
+    public alumno(){}
 }
 
