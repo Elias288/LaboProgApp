@@ -30,6 +30,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItemSalir = new javax.swing.JMenuItem();
         jMenuRegistro = new javax.swing.JMenu();
         jMenuItemRegistrarClientes = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemConsultaUsuario = new javax.swing.JMenuItem();
 
@@ -79,6 +80,14 @@ public class Main extends javax.swing.JFrame {
         });
         jMenuRegistro.add(jMenuItemRegistrarClientes);
 
+        jMenuItem1.setText("Registrar Instituto");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenuRegistro.add(jMenuItem1);
+
         jMenuBar1.add(jMenuRegistro);
 
         jMenuConsultas.setText("Consultas");
@@ -125,6 +134,12 @@ public class Main extends javax.swing.JFrame {
         CU1.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemConsultaUsuarioActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        RegistroInstituto RG2 = new RegistroInstituto();
+        Escritorio.add(RG2);
+        RG2.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -166,6 +181,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConsultas;
     private javax.swing.JMenu jMenuInicio;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemConsultaUsuario;
     private javax.swing.JMenuItem jMenuItemRegistrarClientes;
     private javax.swing.JMenuItem jMenuItemSalir;

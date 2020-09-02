@@ -27,6 +27,7 @@ public abstract class usuario {
         this.correo = Email;
     }
     
+    public usuario(){}
     public String getName(){return this.nombre;}
     public String getLastName(){return this.apellido;}
     public String getEmail(){return this.correo;}

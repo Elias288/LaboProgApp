@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 public class RegistroCliente1 extends javax.swing.JInternalFrame {
     
+    ControladorUsuario CU = new ControladorUsuario();
     /**
      * Creates new form RegistroCliente1
      */
@@ -203,7 +204,6 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         date = jDateChooser1.getDate();
         String dateTime = (String) sdf.format(jDateChooser1.getDate());
         
-        ControladorUsuario CU = new ControladorUsuario();
         //instituto insti = new instituto(jTextFieldInstituto.getText());
         CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), jTextFieldInstituto.getText());
         
