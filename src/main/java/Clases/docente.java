@@ -20,4 +20,9 @@ public class docente extends usuario{
     public void SetInstituto(instituto ins){
         this.instituto=ins;
     }
+       public instituto getInstituto(){
+     return  this.instituto;
+        
+    }
+       
 }
