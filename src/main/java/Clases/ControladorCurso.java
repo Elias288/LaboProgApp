@@ -90,5 +90,18 @@ public class ControladorCurso {
         em.close();
     }
     
-    
+    public void altaEdicion(String nombre, Date PInicio, Date PFin, int cupos, Date fechaPublicacion){
+                EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
+        EntityManager em = emf.createEntityManager();
+        
+        try {
+            edicionCurso edCurso = new edicionCurso(nombre, PInicio, PFin, cupos,fechaPublicacion);
+            em.getTransaction().begin();
+            em.persist(edCurso);
+            em.getTransaction().commit();
+        }catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
+    }
 }
