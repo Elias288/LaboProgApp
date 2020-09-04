@@ -218,18 +218,24 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
             date = jDateChooser1.getDate();
             String dateTime = (String) sdf.format(jDateChooser1.getDate());
 
-            //instituto insti = new instituto(jTextFieldInstituto.getText());
-            System.out.println((String)jComboBoxInstituto.getSelectedItem());
-            CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), (String)jComboBoxInstituto.getSelectedItem());
+            if(jComboBoxInstituto.getSelectedItem() == null){
+                JOptionPane.showMessageDialog( null, "Necesita registrar un instituto");
+            }else{
+                //instituto insti = new instituto(jTextFieldInstituto.getText());
+                System.out.println((String)jComboBoxInstituto.getSelectedItem());
+                CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), (String)jComboBoxInstituto.getSelectedItem());
 
-            jTextFieldName.setText("");
-            jTextFieldLastName.setText("");
-            jTextFieldNN.setText("");
-            jTextFieldEmail.setText("");
-            jCheckBoxDocente.setSelected(false);
-            jComboBoxInstituto.setVisible(false);
-            jLabel7.setVisible(false);
-            jDateChooser1.setCalendar(null);
+                jTextFieldName.setText("");
+                jTextFieldLastName.setText("");
+                jTextFieldNN.setText("");
+                jTextFieldEmail.setText("");
+                jCheckBoxDocente.setSelected(false);
+                jComboBoxInstituto.setVisible(false);
+                jLabel7.setVisible(false);
+                jDateChooser1.setCalendar(null);
+            }
+            
+            
         }
         
         

@@ -80,7 +80,7 @@ public  static void listausuarios(JTable tabla,String nickname){
             EntityManager em = PersistenceManager.getInstance().createEntityManager();
             docente doc=em.find(docente.class,nickname);
            
-            System.out.println("SOY DOCENTE CAPOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+         //   System.out.println("SOY DOCENTE CAPOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             
             System.out.println(nickname);
             System.out.println(doc.getInstituto().getFacultad());
