@@ -46,7 +46,7 @@ public class ControladorUsuario {
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         List<usuario>lista;
-        
+
         if(NN.equals("")){
             Query query = em.createQuery("SELECT xd FROM Usuario xd");
 
@@ -76,18 +76,20 @@ public  static void listausuarios(JTable tabla,String nickname){
         datosusuarios[3]=tbp.getEmail()+"";
         datosusuarios[4]=tbp.getName()+"";
          
-        if(tbp instanceof docente){
-            EntityManager em = PersistenceManager.getInstance().createEntityManager();
-            docente doc=em.find(docente.class,nickname);
-           
-         //   System.out.println("SOY DOCENTE CAPOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-            
+      
+         EntityManager em = PersistenceManager.getInstance().createEntityManager();
+            docente doc=em.find(docente.class,tbp.getNN());
+           if (doc==null){
+               datosusuarios[5]="null";
+           //System.out.println("SOY DOCENTE CAPOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+           }else{
             System.out.println(nickname);
             System.out.println(doc.getInstituto().getFacultad());
             String hola;
+            
             hola=doc.getInstituto().getFacultad()+"";
             datosusuarios[5]=hola;
-        }
+    }
 //         datosusuarios[5]=tbp.getTipoUsuario()+"";
          model.addRow(datosusuarios);
          
