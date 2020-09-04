@@ -199,7 +199,7 @@ public class Main extends javax.swing.JFrame {
             public void run() {
                 new Main().setVisible(true);
             }
-        });
+        });//Comentario
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
