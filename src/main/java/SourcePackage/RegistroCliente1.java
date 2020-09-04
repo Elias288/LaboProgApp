@@ -1,6 +1,7 @@
 package SourcePackage;
 
 import Clases.*;
+import java.awt.Color;
 
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
@@ -18,6 +19,7 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         initComponents();
         jComboBoxInstituto.setVisible(false);
         jLabel7.setVisible(false);
+        jButtonAceptar.setEnabled(false);
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
         EntityManager em = emf.createEntityManager();
