@@ -1,7 +1,13 @@
 package SourcePackage;
 
 import Clases.ControladorCurso;
+import Clases.*;
 import java.util.Date;
+import java.util.Iterator;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 
 public class RegistroCurso extends javax.swing.JInternalFrame {
 
@@ -10,6 +16,21 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
      */
     public RegistroCurso() {
         initComponents();
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
+        EntityManager em = emf.createEntityManager();
+        
+        Iterator it = em.createQuery("SELECT xd FROM instituto xd").getResultList().iterator();
+        instituto ins= null;
+
+        try{
+            while ( it.hasNext() ){
+                ins = (instituto) it.next();
+                jCBinstituto.addItem(ins.getFacultad());
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "no hay institutos.");
+        }
     }
 
     /**
@@ -32,7 +53,6 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextFieldInstituto = new javax.swing.JTextField();
         jTextFieldName = new javax.swing.JTextField();
         jTextFieldDesc = new javax.swing.JTextField();
         jTextFieldURL = new javax.swing.JTextField();
@@ -43,6 +63,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         jSpinnerHour = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         jSpinnerDuracion = new javax.swing.JSpinner();
+        jCBinstituto = new javax.swing.JComboBox<>();
 
         setResizable(true);
         setTitle("Registrar Curso");
@@ -75,9 +96,13 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
             }
         });
 
-        jSpinnerHour.setModel(new javax.swing.SpinnerNumberModel());
+        jSpinnerCredits.setModel(new javax.swing.SpinnerNumberModel(0, 0, 20, 1));
 
-        jLabel8.setText("Duracion");
+        jSpinnerHour.setModel(new javax.swing.SpinnerNumberModel(0, 0, 8, 1));
+
+        jLabel8.setText("Duracion (meses)");
+
+        jSpinnerDuracion.setModel(new javax.swing.SpinnerNumberModel(0, 0, 6, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,13 +123,15 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldURL)
-                            .addComponent(jDateChooserDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldInstituto, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldName, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldDesc, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSpinnerDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldURL, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooserDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldName)
+                            .addComponent(jTextFieldDesc)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jButton1)
@@ -113,20 +140,18 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(jSpinnerHour, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                                         .addComponent(jSpinnerCredits, javax.swing.GroupLayout.Alignment.LEADING)))
-                                .addGap(0, 5, Short.MAX_VALUE)))
-                        .addGap(42, 42, 42))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSpinnerDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 5, Short.MAX_VALUE))
+                            .addComponent(jCBinstituto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(42, 42, 42))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldInstituto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                    .addComponent(jCBinstituto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -154,7 +179,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jDateChooserDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -171,7 +196,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         int credits = (int)jSpinnerCredits.getValue();
         
         ControladorCurso CC = new ControladorCurso();
-        CC.AltaCurso(jTextFieldName.getText(),jTextFieldInstituto.getText(), jTextFieldDesc.getText(),jTextFieldURL.getText(),duracion,horas,
+        CC.AltaCurso(jTextFieldName.getText(),(String)jCBinstituto.getSelectedItem(), jTextFieldDesc.getText(),jTextFieldURL.getText(),duracion,horas,
         jDateChooserDate.getDate(),credits);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -183,6 +208,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jCBinstituto;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooserDate;
     private javax.swing.JLabel jLabel1;
@@ -200,7 +226,6 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner jSpinnerDuracion;
     private javax.swing.JSpinner jSpinnerHour;
     private javax.swing.JTextField jTextFieldDesc;
-    private javax.swing.JTextField jTextFieldInstituto;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldURL;
     // End of variables declaration//GEN-END:variables

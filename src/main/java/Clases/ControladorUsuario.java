@@ -47,25 +47,52 @@ public class ControladorUsuario {
         usuario usu;
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
         EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("SELECT xd FROM Usuario xd WHERE xd.nickname LIKE :nickname");
-        query.setParameter("nickname", NN+"%");
-        List<usuario>lista = query.getResultList();
+        
+        List<usuario>lista;
+        
+        if(NN.equals("")){
+            Query query = em.createQuery("SELECT xd FROM Usuario xd");
+
+            lista = query.getResultList();
+        }
+        else{
+            Query query = em.createQuery("SELECT xd FROM Usuario xd WHERE xd.nickname LIKE :nickname");
+            query.setParameter("nickname", NN+"%");
+
+            lista = query.getResultList();
+            
+        }
         return lista;
     }
     
     public  static void listausuarios(JTable tabla,String nickname){
      DefaultTableModel model;
-     String [] titulo = {"nickname","fecha nacimiento","Apellido","correo","nombre"};
+     String [] titulo = {"Nickname","fecha nacimiento","Apellido","Correo","Nombre","Instituto"};
      model= new DefaultTableModel(null,titulo);
      
      List<usuario>datos = buscarusuario(nickname);
-     String [] datosusuarios = new String [6];
+     String [] datosusuarios = new String [7];
      for (usuario tbp : datos){
          datosusuarios[0]=tbp.getNN()+"";
          datosusuarios[1]=tbp.getDate()+"";
          datosusuarios[2]=tbp.getLastName()+"";
          datosusuarios[3]=tbp.getEmail()+"";
          datosusuarios[4]=tbp.getName()+"";
+         
+         if(tbp instanceof docente){
+              EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
+        EntityManager em = emf.createEntityManager();
+           docente doc=em.find(docente.class,nickname);
+           
+            System.out.println("SOY DOCENTE CAPOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            
+            System.out.println(nickname);
+             System.out.println(doc.getInstituto().getFacultad());
+             String hola;
+             hola=doc.getInstituto().getFacultad()+"";
+            datosusuarios[5]=hola;
+       
+         }
 //         datosusuarios[5]=tbp.getTipoUsuario()+"";
          model.addRow(datosusuarios);
          

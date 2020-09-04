@@ -1,5 +1,9 @@
 package SourcePackage;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class Main extends javax.swing.JFrame {
 
     /**
@@ -8,6 +12,9 @@ public class Main extends javax.swing.JFrame {
     public Main() {
            
         initComponents();
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
+        EntityManager em = emf.createEntityManager();
     }
 
     /**
@@ -28,6 +35,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItemRegistrarClientes = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemConsultaUsuario = new javax.swing.JMenuItem();
 
@@ -93,6 +101,14 @@ public class Main extends javax.swing.JFrame {
         });
         jMenuRegistro.add(jMenuItem2);
 
+        jMenuItem3.setText("Registrar Edición Curso");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenuRegistro.add(jMenuItem3);
+
         jMenuBar1.add(jMenuRegistro);
 
         jMenuConsultas.setText("Consultas");
@@ -151,6 +167,13 @@ public class Main extends javax.swing.JFrame {
         RC.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        RegistroEdicionCurso2 rec = new RegistroEdicionCurso2();
+        Escritorio.add(rec);
+        rec.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -183,7 +206,7 @@ public class Main extends javax.swing.JFrame {
             public void run() {
                 new Main().setVisible(true);
             }
-        });
+        });//Comentario
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -194,6 +217,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuInicio;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItemConsultaUsuario;
     private javax.swing.JMenuItem jMenuItemRegistrarClientes;
     private javax.swing.JMenuItem jMenuItemSalir;

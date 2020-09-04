@@ -3,7 +3,6 @@ SourcePackage\Main$4.class
 SourcePackage\RegistroCurso$1.class
 Clases\ControladorCurso.class
 Clases\docente.class
-SourcePackage\ConsultarUsuarios$3.class
 SourcePackage\Main.class
 SourcePackage\RegistroCliente1$3.class
 Clases\curso.class
@@ -20,6 +19,7 @@ SourcePackage\RegistroCurso.class
 SourcePackage\RegistroCurso$2.class
 SourcePackage\RegistroInstituto.class
 Clases\alumno.class
+SourcePackage\RegistroCliente1$4.class
 SourcePackage\RegistroCliente1.class
 SourcePackage\Main$5.class
 SourcePackage\Main$2.class
