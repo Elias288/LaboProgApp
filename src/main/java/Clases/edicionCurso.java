@@ -6,9 +6,12 @@
 package Clases;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -18,6 +21,8 @@ import javax.persistence.Table;
 
 @Entity (name = "edicionCurso")
 public class edicionCurso {
+
+
     @Id
     private String nombre;
     //private periodo peridoVigencia;
@@ -25,16 +30,23 @@ public class edicionCurso {
     private Date Pfin;
     private int cupo;
     private Date fechaPublicacion;
-
+    
+    @ManyToMany(mappedBy="Cursos")
+    private List<alumno> alumnos;
+    
+    @ManyToOne
+    private curso Curso;
+    
     public edicionCurso() {
     }
 
-    public edicionCurso(String nombre, Date PInicio, Date PFin, int cupo, Date fechaPublicacion) {
+    public edicionCurso(String nombre, Date PInicio, Date PFin, int cupo, Date fechaPublicacion, curso Curso) {
         this.nombre = nombre;
         this.Pfin = PFin;
         this.Pinicio = PInicio;
         this.cupo = cupo;
         this.fechaPublicacion = fechaPublicacion;
+        this.Curso=Curso;
     }
 
     /**
@@ -111,6 +123,32 @@ public class edicionCurso {
     public void setPfin(Date Pfin) {
         this.Pfin = Pfin;
     }
-    
+        /**
+     * @return the alumnos
+     */
+    public List<alumno> getAlumnos() {
+        return alumnos;
+    }
+
+    /**
+     * @param alumnos the alumnos to set
+     */
+    public void setAlumnos(List<alumno> alumnos) {
+        this.alumnos = alumnos;
+    }
+
+    /**
+     * @return the Curso
+     */
+    public curso getCurso() {
+        return Curso;
+    }
+
+    /**
+     * @param Curso the Curso to set
+     */
+    public void setCurso(curso Curso) {
+        this.Curso = Curso;
+    }
     
 }

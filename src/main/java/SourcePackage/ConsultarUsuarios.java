@@ -13,6 +13,7 @@ public class ConsultarUsuarios extends javax.swing.JInternalFrame {
         initComponents();
     //    jTextFieldInstituto.setVisible(false);
      //   jLabel7.setVisible(false);
+        
     }
 
     /**
@@ -84,7 +85,7 @@ public class ConsultarUsuarios extends javax.swing.JInternalFrame {
                     .addComponent(buscarboton))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         pack();

@@ -1,5 +1,9 @@
 package SourcePackage;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class Main extends javax.swing.JFrame {
 
     /**
@@ -8,6 +12,9 @@ public class Main extends javax.swing.JFrame {
     public Main() {
            
         initComponents();
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
+        EntityManager em = emf.createEntityManager();
     }
 
     /**

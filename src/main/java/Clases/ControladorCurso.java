@@ -90,12 +90,18 @@ public class ControladorCurso {
         em.close();
     }
     
-    public void altaEdicion(String nombre, Date PInicio, Date PFin, int cupos, Date fechaPublicacion){
-                EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
+    public void altaEdicion(String nombre, Date PInicio, Date PFin, int cupos, Date fechaPublicacion, String Curso){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
         EntityManager em = emf.createEntityManager();
         
+        TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM curso WHERE nombre =:names", Long.class);
+        queryId.setParameter("names", Curso);
+        long ides = queryId.getSingleResult();
+        
+        curso cur = em.find(curso.class, ides);
+        
         try {
-            edicionCurso edCurso = new edicionCurso(nombre, PInicio, PFin, cupos,fechaPublicacion);
+            edicionCurso edCurso = new edicionCurso(nombre, PInicio, PFin, cupos,fechaPublicacion, cur);
             em.getTransaction().begin();
             em.persist(edCurso);
             em.getTransaction().commit();

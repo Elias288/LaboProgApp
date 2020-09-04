@@ -21,6 +21,7 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
         EntityManager em = emf.createEntityManager();
+        
         Iterator it = em.createQuery("SELECT xd FROM instituto xd").getResultList().iterator();
         instituto ins= null;
 
