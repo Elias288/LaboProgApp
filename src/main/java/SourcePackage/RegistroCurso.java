@@ -3,8 +3,6 @@ package SourcePackage;
 import Clases.*;
 import java.util.Iterator;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 public class RegistroCurso extends javax.swing.JInternalFrame {

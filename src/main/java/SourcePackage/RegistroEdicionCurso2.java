@@ -54,13 +54,13 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
         jDCfechaPub = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         jDCfechaInicio = new com.toedter.calendar.JDateChooser();
-        jTFcupos = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jTFnombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jBcancelar = new javax.swing.JButton();
         jCBcurso = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jSpinnerCupos = new javax.swing.JSpinner();
 
         setTitle("Consultar Usuarios");
         setToolTipText("");
@@ -97,6 +97,8 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Curso:");
 
+        jSpinnerCupos.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,22 +115,23 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
                                 .addComponent(jBregistrar, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jBcancelar))
+                                .addGroup(layout.createSequentialGroup()
                                     .addGap(53, 53, 53)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jDCfechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jDCfechaPub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jDCfechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jBcancelar))))
+                                    .addGap(53, 53, 53)
+                                    .addComponent(jSpinnerCupos, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel3))
                             .addGap(43, 43, 43)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTFcupos, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -146,13 +149,20 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTFcupos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel7)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jSpinnerCupos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDCfechaPub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jDCfechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,15 +171,8 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBcancelar)
-                            .addComponent(jBregistrar)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel7)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                            .addComponent(jBregistrar))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,14 +189,15 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
         fechaFin = jDCfechaFin.getDate();
         //String dateTime = (String) sdf.format(jDateChooser1.getDate());
         
-        if(!jTFcupos.getText().equals("")&& !jTFnombre.getText().equals("") && jDCfechaPub.getDate()!=null && jDCfechaInicio.getDate()!=null && jDCfechaFin.getDate()!=null){
+        if((int)jSpinnerCupos.getValue()> 0 && !jTFnombre.getText().equals("") && jDCfechaPub.getDate()!=null && jDCfechaInicio.getDate()!=null && jDCfechaFin.getDate()!=null){
             ControladorCurso ca = new ControladorCurso();
-            ca.altaEdicion(jTFnombre.getText(), fechaInicio, fechaFin, Integer.parseInt(jTFcupos.getText()), fechaPub,(String)jCBcurso.getSelectedItem());
-            jTFcupos.setText("");
+            ca.altaEdicion(jTFnombre.getText(), fechaInicio, fechaFin, (int)jSpinnerCupos.getValue(), fechaPub,(String)jCBcurso.getSelectedItem());
+            jSpinnerCupos.setValue(0);
             jTFnombre.setText("");
             jDCfechaFin.setCalendar(null);
             jDCfechaInicio.setCalendar(null);
             jDCfechaPub.setCalendar(null);
+            JOptionPane.showMessageDialog(null, "Edicion: "+jTFnombre.getText()+ " agregado correctamente");
         }
         else{
             JOptionPane.showMessageDialog(null, "Debe llenar todos lo campos para registrar la Edición.");
@@ -225,7 +229,7 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTFcupos;
+    private javax.swing.JSpinner jSpinnerCupos;
     private javax.swing.JTextField jTFnombre;
     private java.awt.ScrollPane scrollPane1;
     // End of variables declaration//GEN-END:variables

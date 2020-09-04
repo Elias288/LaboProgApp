@@ -2,8 +2,6 @@ package Clases;
 
 import java.util.Date;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
@@ -11,8 +9,7 @@ public class ControladorCurso {
     
     public void AltaCurso(String name, String instituto, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos){
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         curso cur = new curso();
         
@@ -22,8 +19,8 @@ public class ControladorCurso {
         
         instituto ins = em.find(instituto.class, ides);
         
-        System.out.println(ins.getFacultad());
-        System.out.println(ins.getId());
+//        System.out.println(ins.getFacultad());
+//        System.out.println(ins.getId());
         
         cur.setFecha(fecha);
         cur.SetCreditos(creditos);
