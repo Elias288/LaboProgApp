@@ -3,12 +3,8 @@ package SourcePackage;
 import Clases.*;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.Iterator;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
@@ -62,7 +58,8 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jSpinnerCupos = new javax.swing.JSpinner();
 
-        setTitle("Consultar Usuarios");
+        setResizable(true);
+        setTitle("Registro Edicion de Curso");
         setToolTipText("");
 
         jLabel5.setText("Fecha Inicio:");
