@@ -21,8 +21,7 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
         initComponents();
     //    jTextFieldInstituto.setVisible(false);
      //   jLabel7.setVisible(false);
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         Iterator it = em.createQuery("SELECT xd FROM curso xd").getResultList().iterator();
         curso ins= null;

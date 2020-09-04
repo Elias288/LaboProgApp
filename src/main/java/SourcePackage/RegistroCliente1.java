@@ -1,13 +1,10 @@
 package SourcePackage;
 
 import Clases.*;
-import java.awt.Color;
-
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 
 public class RegistroCliente1 extends javax.swing.JInternalFrame {
     
@@ -19,10 +16,9 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
         initComponents();
         jComboBoxInstituto.setVisible(false);
         jLabel7.setVisible(false);
-        jButtonAceptar.setEnabled(false);
+//        jButtonAceptar.setEnabled(false);
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         Iterator it = em.createQuery("SELECT xd FROM instituto xd").getResultList().iterator();
         instituto ins= null;
@@ -214,24 +210,28 @@ public class RegistroCliente1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        if(jTextFieldName.getText().equals("") || jTextFieldLastName.getText().equals("") || jTextFieldNN.getText().equals("") || jTextFieldEmail.getText().equals("") || jDateChooser1.getDate() == null){
+            JOptionPane.showMessageDialog( null, "Hay campos incompletos");
+        }else{
+            java.util.Date date;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            date = jDateChooser1.getDate();
+            String dateTime = (String) sdf.format(jDateChooser1.getDate());
 
-        java.util.Date date;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        date = jDateChooser1.getDate();
-        String dateTime = (String) sdf.format(jDateChooser1.getDate());
+            //instituto insti = new instituto(jTextFieldInstituto.getText());
+            System.out.println((String)jComboBoxInstituto.getSelectedItem());
+            CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), (String)jComboBoxInstituto.getSelectedItem());
+
+            jTextFieldName.setText("");
+            jTextFieldLastName.setText("");
+            jTextFieldNN.setText("");
+            jTextFieldEmail.setText("");
+            jCheckBoxDocente.setSelected(false);
+            jComboBoxInstituto.setVisible(false);
+            jLabel7.setVisible(false);
+            jDateChooser1.setCalendar(null);
+        }
         
-        //instituto insti = new instituto(jTextFieldInstituto.getText());
-        System.out.println((String)jComboBoxInstituto.getSelectedItem());
-        CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), (String)jComboBoxInstituto.getSelectedItem());
-        
-        jTextFieldName.setText("");
-        jTextFieldLastName.setText("");
-        jTextFieldNN.setText("");
-        jTextFieldEmail.setText("");
-        jCheckBoxDocente.setSelected(false);
-        jComboBoxInstituto.setVisible(false);
-        jLabel7.setVisible(false);
-        jDateChooser1.setCalendar(null);
         
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 

@@ -48,8 +48,7 @@ public class ControladorCurso {
     
     public void AltaInstituto(String name){
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         TypedQuery<Long> query = em.createQuery(  "SELECT Count(*) FROM instituto WHERE Facultad =:names", Long.class);
         query.setParameter("names", name);
@@ -70,9 +69,11 @@ public class ControladorCurso {
                 em.getTransaction().begin();
                 em.persist(ins);
                 em.getTransaction().commit();
+                em.close();
             }catch (Exception e) {
                 e.printStackTrace();
                 em.getTransaction().rollback();
+                em.close();
             }
             JOptionPane.showMessageDialog( null, "El insituto " +name +" fue modificado correctamente");
             
@@ -85,14 +86,14 @@ public class ControladorCurso {
             em.getTransaction().begin();
             em.persist(inst);
             em.getTransaction().commit();
+            em.close();
         }
       
         em.close();
     }
     
     public void altaEdicion(String nombre, Date PInicio, Date PFin, int cupos, Date fechaPublicacion, String Curso){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM curso WHERE nombre =:names", Long.class);
         queryId.setParameter("names", Curso);

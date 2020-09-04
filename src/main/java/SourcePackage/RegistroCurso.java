@@ -1,8 +1,6 @@
 package SourcePackage;
 
-import Clases.ControladorCurso;
 import Clases.*;
-import java.util.Date;
 import java.util.Iterator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,8 +15,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
     public RegistroCurso() {
         initComponents();
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         Iterator it = em.createQuery("SELECT xd FROM instituto xd").getResultList().iterator();
         instituto ins= null;
@@ -31,6 +28,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "no hay institutos.");
         }
+        em.close();
     }
 
     /**

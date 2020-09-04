@@ -15,8 +15,7 @@ public class ControladorUsuario {
     
     public void altaUsuario(String name, String LastName, String NN, String Email, java.util.Date date, Boolean tipo, String instituto){
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         usuario usu;
         
@@ -44,9 +43,7 @@ public class ControladorUsuario {
     
     
     public static List<usuario> buscarusuario(String NN){
-        usuario usu;
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         List<usuario>lista;
         
@@ -65,45 +62,44 @@ public class ControladorUsuario {
         return lista;
     }
     
-    public  static void listausuarios(JTable tabla,String nickname){
-     DefaultTableModel model;
-     String [] titulo = {"Nickname","fecha nacimiento","Apellido","Correo","Nombre","Instituto"};
-     model= new DefaultTableModel(null,titulo);
+public  static void listausuarios(JTable tabla,String nickname){
+    DefaultTableModel model;
+    String [] titulo = {"Nickname","fecha nacimiento","Apellido","Correo","Nombre","Instituto"};
+    model= new DefaultTableModel(null,titulo);
      
-     List<usuario>datos = buscarusuario(nickname);
-     String [] datosusuarios = new String [7];
-     for (usuario tbp : datos){
-         datosusuarios[0]=tbp.getNN()+"";
-         datosusuarios[1]=tbp.getDate()+"";
-         datosusuarios[2]=tbp.getLastName()+"";
-         datosusuarios[3]=tbp.getEmail()+"";
-         datosusuarios[4]=tbp.getName()+"";
+    List<usuario>datos = buscarusuario(nickname);
+    String [] datosusuarios = new String [7];
+    for (usuario tbp : datos){
+        datosusuarios[0]=tbp.getNN()+"";
+        datosusuarios[1]=tbp.getDate()+"";
+        datosusuarios[2]=tbp.getLastName()+"";
+        datosusuarios[3]=tbp.getEmail()+"";
+        datosusuarios[4]=tbp.getName()+"";
          
-         if(tbp instanceof docente){
-              EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
-        EntityManager em = emf.createEntityManager();
-           docente doc=em.find(docente.class,nickname);
+        if(tbp instanceof docente){
+            EntityManager em = PersistenceManager.getInstance().createEntityManager();
+            docente doc=em.find(docente.class,nickname);
            
             System.out.println("SOY DOCENTE CAPOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             
             System.out.println(nickname);
-             System.out.println(doc.getInstituto().getFacultad());
-             String hola;
-             hola=doc.getInstituto().getFacultad()+"";
+            System.out.println(doc.getInstituto().getFacultad());
+            String hola;
+            hola=doc.getInstituto().getFacultad()+"";
             datosusuarios[5]=hola;
-       
-         }
+        }
 //         datosusuarios[5]=tbp.getTipoUsuario()+"";
          model.addRow(datosusuarios);
          
      }
      tabla.setModel(model);
     }
+    
     public void ModificarUsuario(){
         
     }
    
-          public static void mostrartabla(String nombres){
-    listausuarios(ConsultarUsuarios.jTable1,nombres);
+    public static void mostrartabla(String nombres){
+        listausuarios(ConsultarUsuarios.jTable1,nombres);
     }   
 }

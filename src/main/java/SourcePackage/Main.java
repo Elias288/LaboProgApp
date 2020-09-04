@@ -1,8 +1,7 @@
 package SourcePackage;
 
+import Clases.PersistenceManager;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class Main extends javax.swing.JFrame {
 
@@ -12,9 +11,8 @@ public class Main extends javax.swing.JFrame {
     public Main() {
            
         initComponents();
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaboProgApp");
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+
     }
 
     /**
@@ -150,7 +148,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSalirActionPerformed
 
     private void jMenuItemConsultaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultaUsuarioActionPerformed
-    ConsultarUsuarios CU1 = new ConsultarUsuarios();
+        ConsultarUsuarios CU1 = new ConsultarUsuarios();
         Escritorio.add(CU1);
         CU1.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemConsultaUsuarioActionPerformed
