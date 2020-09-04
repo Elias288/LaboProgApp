@@ -144,7 +144,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemRegistrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegistrarClientesActionPerformed
-        RegistroCliente1 RG1 = new RegistroCliente1();
+        RegistroUsuario1 RG1 = new RegistroUsuario1();
         Escritorio.add(RG1);
         RG1.setVisible(true);
     }//GEN-LAST:event_jMenuItemRegistrarClientesActionPerformed
