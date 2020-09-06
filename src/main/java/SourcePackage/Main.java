@@ -36,6 +36,8 @@ public class Main extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemConsultaUsuario = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItemModificar = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -121,6 +123,18 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuConsultas);
 
+        jMenu1.setText("Modificar");
+
+        jMenuItemModificar.setText("Modificar Usuario");
+        jMenuItemModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemModificarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemModificar);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,6 +192,12 @@ public class Main extends javax.swing.JFrame {
         rec.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItemModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemModificarActionPerformed
+    ModificarUsuarios CU1 = new ModificarUsuarios();
+        Escritorio.add(CU1);
+        CU1.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemModificarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -216,6 +236,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane Escritorio;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConsultas;
     private javax.swing.JMenu jMenuInicio;
@@ -223,6 +244,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItemConsultaUsuario;
+    private javax.swing.JMenuItem jMenuItemModificar;
     private javax.swing.JMenuItem jMenuItemRegistrarClientes;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JMenu jMenuRegistro;

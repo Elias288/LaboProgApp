@@ -27,8 +27,11 @@ public abstract class usuario {
         this.nickname = NN;
         this.correo = Email;
     }
-    
+
     public usuario(){}
+   public void setNN(String NN){this.nickname=NN;}
+     public void setName(String name){this.nombre=name;}
+      public void setLN(String apellido){this.apellido=apellido;}
     public String getName(){return this.nombre;}
     public String getLastName(){return this.apellido;}
     public String getEmail(){return this.correo;}

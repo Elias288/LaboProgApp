@@ -1,6 +1,7 @@
 package Clases;
 
 import SourcePackage.ConsultarUsuarios;
+import SourcePackage.ModificarUsuarios;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -104,4 +105,53 @@ public  static void listausuarios(JTable tabla,String nickname){
     public static void mostrartabla(String nombres){
         listausuarios(ConsultarUsuarios.jTable1,nombres);
     }   
+      public static void mostrartabla2(String nombres){
+        listausuarios(ModificarUsuarios.jTable1,nombres);
+    }
+      
+      public static void ModUsu(String name, String LastName, String NN, Boolean tipo, String instituto){
+        
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+   /* usuario usu=null;
+        
+      
+       // if(!tipo){
+            usu = new alumno();
+            usu.setName(name);
+            usu.setLN(LastName);*/
+           // usu.setNN(NN);
+       // }else{
+           // usu = new docente(name, LastName, NN, date, ins);
+     //   }
+    //  JOptionPane.showMessageDialog( null, "Usuario "+usu.getNN()+"\nModificado Correctamente");
+        em.getTransaction().begin();
+        
+       usuario usu2= findusu(NN);
+   
+            usu2.setName(name);
+            usu2.setLN(LastName);
+   //    System.out.println("usuario original nn: "+usu2.getNN());
+    //    System.out.println("usuario trucho NN: "+usu.getNN());
+    //    System.out.println("usuario trucho Name: "+usu.getName());
+            usu2=em.merge(usu2);
+       //      System.out.println("usuario trucho NN: "+usu.getNN());
+       //       System.out.println("usu original nombre: "+usu2.getName());
+            //   System.out.println("usuario trucho NN: "+usu.getNN());
+        em.getTransaction().commit();
+        em.close();
+        
+    }
+      
+      public static usuario findusu(String ID){
+           EntityManager em = PersistenceManager.getInstance().createEntityManager();
+         
+          try{
+              return em.find(usuario.class,ID);
+          }finally{
+              em.close();
+          }
+          
+
+} 
 }
