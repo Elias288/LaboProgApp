@@ -1,16 +1,12 @@
 package SourcePackage;
 
 import Clases.*;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import SourcePackage.RegistroUsuario1;
 import javax.swing.JOptionPane;
 
 public class RegistroInstituto extends javax.swing.JInternalFrame {
-
+    public Boolean Callusuario= false;
+    
     /**
      * Creates new form RegistroInstituto
      */
@@ -86,14 +82,28 @@ public class RegistroInstituto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if(jTextFieldInstituto.getText().isBlank() ){
-         JOptionPane.showMessageDialog( null, "HAY CAMPOS VACIOS");
-       }else{
-        ControladorCurso CC = new ControladorCurso();
-        CC.AltaInstituto(jTextFieldInstituto.getText());
-       }
+        if(jTextFieldInstituto.getText().isBlank() ){
+            JOptionPane.showMessageDialog( null, "HAY CAMPOS VACIOS");
+        }else if(Callusuario){
+            ControladorCurso CC = new ControladorCurso();
+            CC.AltaInstituto(jTextFieldInstituto.getText());
+            this.setVisible(false);
+            RegistroUsuario1.llamadaInstituto();
+        }else{
+            try{
+                ControladorCurso CC = new ControladorCurso();
+                CC.AltaInstituto(jTextFieldInstituto.getText());
+            }catch(Exception e){
+                JOptionPane.showMessageDialog( null, "Something went wrong in RegistroInstituto");
+            }
+            JOptionPane.showMessageDialog( null, jTextFieldInstituto.getText() +" agregado correctamente");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void llamadoUsuario(){
+        Callusuario = true;
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed

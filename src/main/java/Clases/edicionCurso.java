@@ -7,17 +7,10 @@ package Clases;
 
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-/**
- *
- * @author nacho
- */
 
 @Entity (name = "edicionCurso")
 public class edicionCurso {

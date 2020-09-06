@@ -78,7 +78,7 @@ public class ControladorCurso {
             instituto inst = new instituto();
             inst.setFacultad(name);
             
-            JOptionPane.showMessageDialog( null, name +" agregado correctamente");
+//            JOptionPane.showMessageDialog( null, name +" agregado correctamente");
             
             em.getTransaction().begin();
             em.persist(inst);

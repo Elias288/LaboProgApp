@@ -1,10 +1,13 @@
 package SourcePackage;
 
+import Clases.*;
 import Clases.PersistenceManager;
+import java.util.Date;
 import javax.persistence.EntityManager;
+import javax.swing.JOptionPane;
 
 public class Main extends javax.swing.JFrame {
-
+    int i=0;
     /**
      * Creates new form Main
      */
@@ -25,9 +28,11 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
+        jMenuItem4 = new javax.swing.JMenuItem();
         Escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuInicio = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItemSalir = new javax.swing.JMenuItem();
         jMenuRegistro = new javax.swing.JMenu();
         jMenuItemRegistrarClientes = new javax.swing.JMenuItem();
@@ -50,6 +55,8 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        jMenuItem4.setText("jMenuItem4");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
@@ -65,6 +72,14 @@ public class Main extends javax.swing.JFrame {
 
         jMenuInicio.setText("Inicio");
 
+        jMenuItem5.setText("Cargar Datos de Pruebas");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenuInicio.add(jMenuItem5);
+
         jMenuItemSalir.setText("Salir");
         jMenuItemSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +92,7 @@ public class Main extends javax.swing.JFrame {
 
         jMenuRegistro.setText("Registros");
 
-        jMenuItemRegistrarClientes.setText("Registrar Clientes");
+        jMenuItemRegistrarClientes.setText("Registrar Usuario");
         jMenuItemRegistrarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemRegistrarClientesActionPerformed(evt);
@@ -198,6 +213,38 @@ public class Main extends javax.swing.JFrame {
         CU1.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemModificarActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        i = i+1;
+        CargarDatos();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    public void CargarDatos(){
+        if(i==1){
+            Date fechaE = new Date(100,4,5);
+            Date fechaF = new Date(97,12,19);
+            Date fechaJ = new Date(98,8,25);
+            Date fechaG = new Date(100,3,15);
+            Date fechaA = new Date(91,8,16);
+            Date fechaN = new Date(87,4,22);
+
+            ControladorCurso CC = new ControladorCurso();
+            CC.AltaInstituto("Innova");
+            CC.AltaInstituto("ITSP");
+            CC.AltaInstituto("IFD");
+
+            ControladorUsuario CU = new ControladorUsuario();
+            System.out.println("ante de registrar");
+            CU.altaUsuario("Elias","Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
+            System.out.println("despues de registrar");
+            CU.altaUsuario("Franccesco","Giordano","Fran123","Giordano@gmail.com", fechaF, false, "pene");
+            CU.altaUsuario("Juan","Furtado","Furta3","Furtado@gmail.com", fechaJ, false, "pene");
+            CU.altaUsuario("Gonzalo","Buriano","Gonzalius","bianchi@gmail.com", fechaG, false, "pene");
+            CU.altaUsuario("Alvaro","Correa","ElProfe","Correa@gmail.com", fechaA, true, "Innova");
+            CU.altaUsuario("Nancy","Lopez","LaChina","LaChina@gmail.com", fechaN, true, "Innova");  
+        }else
+            JOptionPane.showMessageDialog( null, "Ya se cargaron los datos de prueba");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -243,6 +290,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItemConsultaUsuario;
     private javax.swing.JMenuItem jMenuItemModificar;
     private javax.swing.JMenuItem jMenuItemRegistrarClientes;

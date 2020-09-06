@@ -35,6 +35,7 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
         buscarboton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2Modifi = new javax.swing.JButton();
+        jButtonlistar = new javax.swing.JButton();
 
         setTitle("Modificar Usuarios");
         setToolTipText("");
@@ -84,6 +85,13 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonlistar.setText("Listar");
+        jButtonlistar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonlistarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,7 +101,9 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
                 .addComponent(campodetexto, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(buscarboton)
-                .addGap(104, 104, 104)
+                .addGap(9, 9, 9)
+                .addComponent(jButtonlistar)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2Modifi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -110,7 +120,8 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
                     .addComponent(jButton1)
                     .addComponent(campodetexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarboton)
-                    .addComponent(jButton2Modifi))
+                    .addComponent(jButton2Modifi)
+                    .addComponent(jButtonlistar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -125,30 +136,38 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
 
     private void buscarbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarbotonActionPerformed
         ControladorUsuario.mostrartabla2(campodetexto.getText());
+        
+//        DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
+//        String NNSelected=String.valueOf(tm.getValueAt(jTable1.getSelectedRow(),0));
+//        ControladorUsuario.mostrartabla2(NNSelected);
     }//GEN-LAST:event_buscarbotonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);        // TODO add your handling code here:
+        this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ModifiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ModifiActionPerformed
         String nombre, NN ,LN;
-       nombre=jTable1.getValueAt(0, 4).toString();
-         JOptionPane.showMessageDialog( null, "Usuario "+nombre);
-       NN=jTable1.getValueAt(0, 0).toString();
-       LN=jTable1.getValueAt(0, 2).toString();
-       ControladorUsuario.ModUsu(nombre,LN,NN,true,"");
+        nombre=jTable1.getValueAt(0, 4).toString();
+        NN=jTable1.getValueAt(0, 0).toString();
+        LN=jTable1.getValueAt(0, 2).toString();
+        JOptionPane.showMessageDialog( null, "Usuario "+NN+" modificado correctamente");
+        ControladorUsuario.ModUsu(nombre,LN,NN,true,"");
         
     }//GEN-LAST:event_jButton2ModifiActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-            DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
         String NNSelected=String.valueOf(tm.getValueAt(jTable1.getSelectedRow(),0));
         ControladorUsuario.mostrartabla2(NNSelected);
         
         
         
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButtonlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonlistarActionPerformed
+        ControladorUsuario.mostrartabla2("");
+    }//GEN-LAST:event_jButtonlistarActionPerformed
 
 
 
@@ -157,6 +176,7 @@ this.setVisible(false);        // TODO add your handling code here:
     private javax.swing.JTextField campodetexto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2Modifi;
+    private javax.swing.JButton jButtonlistar;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable jTable1;
     private java.awt.ScrollPane scrollPane1;
