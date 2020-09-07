@@ -249,10 +249,6 @@ public class Main extends javax.swing.JFrame {
             CC.AltaInstituto("Innova");
             CC.AltaInstituto("ITSP");
             CC.AltaInstituto("IFD");
-            
-            CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10, null);
-            CC.AltaCurso("Matematica","Innova","matematiqueo","math.com",1,2,fechaA,10, null);
-            CC.AltaCurso("Sebar mates","ITSP","No acemo na wacho","google.com",1,2,fechaN,10, null);
 
             ControladorUsuario CU = new ControladorUsuario();
             CU.altaUsuario("Elias","Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
@@ -260,7 +256,12 @@ public class Main extends javax.swing.JFrame {
             CU.altaUsuario("Juan","Furtado","Furta3","Furtado@gmail.com", fechaJ, false, "pene");
             CU.altaUsuario("Gonzalo","Buriano","Gonzalius","bianchi@gmail.com", fechaG, false, "pene");
             CU.altaUsuario("Alvaro","Correa","ElProfe","Correa@gmail.com", fechaA, true, "Innova");
-            CU.altaUsuario("Nancy","Lopez","LaChina","LaChina@gmail.com", fechaN, true, "Innova"); 
+            CU.altaUsuario("Nancy","Lopez","LaChina","LaChina@gmail.com", fechaN, true, "ITSP");
+            CU.altaUsuario("Fernando","Gerfaou","queCapo","queCapo@gmail.com", fechaG, true, "Innova"); 
+            
+            CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10, null, "ElProfe");
+            CC.AltaCurso("Matematica","Innova","matematiqueo","math.com",1,2,fechaA,10, null, "queCapo");
+            CC.AltaCurso("Sebar mates","ITSP","No acemo na wacho","google.com",1,2,fechaN,10, null, "LaChina");
             
             JOptionPane.showMessageDialog( null, "Los datos de prueba fuero agregados");
         }else

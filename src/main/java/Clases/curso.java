@@ -19,6 +19,9 @@ public class curso implements Serializable{
     protected List<curso> Previas;
     
     @ManyToOne
+    protected docente doc;
+    
+    @ManyToOne
     protected instituto instituto;
     
 //    public curso(String name, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos){
@@ -48,11 +51,17 @@ public class curso implements Serializable{
     public int getCantHoras(){
         return this.cantHoras;
     }
+    public docente getDocente(){
+        return this.doc;
+    }
     public List<curso> getPrevias(){
         return this.Previas;
     }
     public void SetName(String name){
         this.nombre = name;
+    }
+    public void SetDocente(docente doce){
+        this.doc = doce;
     }
     public void SetDescripcion(String desc){
         this.descripcion = desc;
