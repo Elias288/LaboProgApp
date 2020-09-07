@@ -8,6 +8,7 @@ import javax.persistence.ManyToMany;
 @Entity( name= "Alumno")
 @DiscriminatorValue( value = "Estudiante" )
 public class alumno extends usuario{
+    
     @ManyToMany
     protected List<edicionCurso> Cursos;
     

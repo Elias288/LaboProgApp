@@ -1,12 +1,7 @@
 package Clases;
 import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.util.*;
+import javax.persistence.*;
 
 @Entity
 @Table( name="Curso" )
@@ -20,18 +15,21 @@ public class curso implements Serializable{
     protected Date fecha;
     protected int Creditos;
     
+    @ManyToMany
+    protected List<curso> Previas;
+    
     @ManyToOne
     protected instituto instituto;
     
-    public curso(String name, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos){
-        this.Creditos = creditos;
-        this.URL = URL;
-        this.cantHoras = cantHoras;
-        this.descripcion = desc;
-        this.duracion = duracion;
-        this.fecha = fecha;
-        this.nombre = name;
-    }
+//    public curso(String name, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos){
+//        this.Creditos = creditos;
+//        this.URL = URL;
+//        this.cantHoras = cantHoras;
+//        this.descripcion = desc;
+//        this.duracion = duracion;
+//        this.fecha = fecha;
+//        this.nombre = name;
+//    }
     
     public curso(){}
     
@@ -49,6 +47,9 @@ public class curso implements Serializable{
     }
     public int getCantHoras(){
         return this.cantHoras;
+    }
+    public List<curso> getPrevias(){
+        return this.Previas;
     }
     public void SetName(String name){
         this.nombre = name;
@@ -73,6 +74,9 @@ public class curso implements Serializable{
     }
     public void SetInstituto(instituto ins){
         this.instituto=ins;
+    }
+    public void SetPrevias(List<curso> prev){
+        this.Previas = prev;
     }
     
 }

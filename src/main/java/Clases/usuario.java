@@ -4,7 +4,6 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 

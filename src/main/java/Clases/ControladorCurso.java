@@ -14,10 +14,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class ControladorCurso {
     
-    public void AltaCurso(String name, String instituto, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos){
+    
+    public void AltaCurso(String name, String instituto, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos, List<curso> CursoList){
         
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        
         curso cur = new curso();
         
         TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM instituto WHERE Facultad =:names", Long.class);
@@ -37,13 +37,14 @@ public class ControladorCurso {
         cur.SetDescripcion(desc);
         cur.SetCantH(cantHoras);
         cur.SetInstituto(ins);
+        if(CursoList != null){
+            cur.SetPrevias(CursoList);
+        }
         
         em.getTransaction().begin();
         em.persist(cur);
         em.getTransaction().commit();
         em.close();
-        
-        JOptionPane.showMessageDialog( null, "Curso "+cur.getName()+"\nAgregado Correctamente");
     }
     
     public void ConsultaCurso(){
@@ -51,7 +52,6 @@ public class ControladorCurso {
     }
     
     public void AltaInstituto(String name){
-        
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         TypedQuery<Long> query = em.createQuery(  "SELECT Count(*) FROM instituto WHERE Facultad =:names", Long.class);
@@ -98,7 +98,6 @@ public class ControladorCurso {
     
     public void altaEdicion(String nombre, Date PInicio, Date PFin, int cupos, Date fechaPublicacion, String Curso){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        
         TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM curso WHERE nombre =:names", Long.class);
         queryId.setParameter("names", Curso);
         long ides = queryId.getSingleResult();

@@ -3,6 +3,7 @@ package SourcePackage;
 import Clases.*;
 import Clases.PersistenceManager;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
@@ -249,17 +250,19 @@ public class Main extends javax.swing.JFrame {
             CC.AltaInstituto("ITSP");
             CC.AltaInstituto("IFD");
             
-            CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10);
+            CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10, null);
+            CC.AltaCurso("Matematica","Innova","matematiqueo","math.com",1,2,fechaA,10, null);
+            CC.AltaCurso("Sebar mates","ITSP","No acemo na wacho","google.com",1,2,fechaN,10, null);
 
             ControladorUsuario CU = new ControladorUsuario();
-            System.out.println("ante de registrar");
             CU.altaUsuario("Elias","Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
-            System.out.println("despues de registrar");
             CU.altaUsuario("Franccesco","Giordano","Fran123","Giordano@gmail.com", fechaF, false, "pene");
             CU.altaUsuario("Juan","Furtado","Furta3","Furtado@gmail.com", fechaJ, false, "pene");
             CU.altaUsuario("Gonzalo","Buriano","Gonzalius","bianchi@gmail.com", fechaG, false, "pene");
             CU.altaUsuario("Alvaro","Correa","ElProfe","Correa@gmail.com", fechaA, true, "Innova");
-            CU.altaUsuario("Nancy","Lopez","LaChina","LaChina@gmail.com", fechaN, true, "Innova");  
+            CU.altaUsuario("Nancy","Lopez","LaChina","LaChina@gmail.com", fechaN, true, "Innova"); 
+            
+            JOptionPane.showMessageDialog( null, "Los datos de prueba fuero agregados");
         }else
             JOptionPane.showMessageDialog( null, "Ya se cargaron los datos de prueba");
     }
