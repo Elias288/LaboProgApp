@@ -222,7 +222,9 @@ public class RegistroUsuario1 extends javax.swing.JInternalFrame {
     }
     
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        if(jTextFieldName.getText().isBlank() || jTextFieldLastName.getText().isBlank() || jTextFieldNN.getText().isBlank() || jTextFieldEmail.getText().isBlank() || jDateChooser1.getDate() == null){
+        if(jTextFieldName.getText().isBlank() || jTextFieldLastName.getText().isBlank() || 
+                jTextFieldNN.getText().isBlank() || jTextFieldEmail.getText().isBlank() || 
+                jDateChooser1.getDate() == null){
             JOptionPane.showMessageDialog( null, "Hay campos incompletos");
         }else{
             java.util.Date date;
