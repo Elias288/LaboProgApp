@@ -38,7 +38,18 @@ public class curso implements Serializable{
     public String getName(){
         return this.nombre;
     }
-    
+    public String getDesc(){
+        return this.descripcion;
+    }
+    public int getDuracion(){
+        return this.duracion;
+    }
+    public int getCreditos(){
+       return this.Creditos;
+    }
+    public int getCantHoras(){
+        return this.cantHoras;
+    }
     public void SetName(String name){
         this.nombre = name;
     }

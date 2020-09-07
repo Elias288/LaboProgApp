@@ -41,6 +41,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemConsultaUsuario = new javax.swing.JMenuItem();
+        jMenuItemConsultaCurso = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemModificar = new javax.swing.JMenuItem();
 
@@ -136,6 +137,14 @@ public class Main extends javax.swing.JFrame {
         });
         jMenuConsultas.add(jMenuItemConsultaUsuario);
 
+        jMenuItemConsultaCurso.setText("Consultar Curso");
+        jMenuItemConsultaCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConsultaCursoActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemConsultaCurso);
+
         jMenuBar1.add(jMenuConsultas);
 
         jMenu1.setText("Modificar");
@@ -218,6 +227,13 @@ public class Main extends javax.swing.JFrame {
         CargarDatos();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuItemConsultaCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultaCursoActionPerformed
+      ConsultarCursos CU1 = new ConsultarCursos();
+      Escritorio.add(CU1);
+      CU1.setVisible(true);        // TODO add your handling code here:    
+    // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemConsultaCursoActionPerformed
+
     public void CargarDatos(){
         if(i==1){
             Date fechaE = new Date(100,4,5);
@@ -226,11 +242,14 @@ public class Main extends javax.swing.JFrame {
             Date fechaG = new Date(100,3,15);
             Date fechaA = new Date(91,8,16);
             Date fechaN = new Date(87,4,22);
+            
 
             ControladorCurso CC = new ControladorCurso();
             CC.AltaInstituto("Innova");
             CC.AltaInstituto("ITSP");
             CC.AltaInstituto("IFD");
+            
+            CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10);
 
             ControladorUsuario CU = new ControladorUsuario();
             System.out.println("ante de registrar");
@@ -292,6 +311,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItemConsultaCurso;
     private javax.swing.JMenuItem jMenuItemConsultaUsuario;
     private javax.swing.JMenuItem jMenuItemModificar;
     private javax.swing.JMenuItem jMenuItemRegistrarClientes;

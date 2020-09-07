@@ -1,9 +1,16 @@
 package Clases;
 
+import SourcePackage.ConsultarUsuarios;
+import SourcePackage.ConsultarCursos;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ControladorCurso {
     
@@ -108,4 +115,56 @@ public class ControladorCurso {
             em.getTransaction().rollback();
         }
     }
+          
+    public static List<curso> buscarCurso(String nombreins){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        List<curso> lista;
+
+        if(nombreins.equals("")){
+            Query query = em.createQuery("SELECT xd FROM Usuario xd");
+
+            lista = query.getResultList();
+        }
+        else{
+            //SELECT * FROM curso xd, instituto ins WHERE xd.instituto_id=ins.id AND ins.facultad LIKE :nameins
+            Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.instituto ins WHERE ins.Facultad LIKE :nameins");
+            query.setParameter("nameins", nombreins+"%");
+
+            lista = query.getResultList();
+            
+        }
+        return lista;
+    }
+    
+    public  static void listaCurso(JTable tabla,String nombreInstituto){
+        DefaultTableModel model;
+        String [] titulo = {"Nombre Curso","Descripción","Duración","Creditos","Cantidad Horas"};
+        model= new DefaultTableModel(null,titulo);
+
+        List<curso>datos = buscarCurso(nombreInstituto);
+        String [] datosusuarios = new String [5];
+        for (curso tbp : datos){
+            datosusuarios[0]=tbp.getName()+"";
+            System.out.println(tbp.getName());
+            datosusuarios[1]=tbp.getDesc()+"";
+            datosusuarios[2]=tbp.getDuracion()+"";
+            datosusuarios[3]=tbp.getCreditos()+"";
+            datosusuarios[4]=tbp.getCantHoras()+"";
+
+
+            //EntityManager em = PersistenceManager.getInstance().createEntityManager();
+           // curso cur = em.find(curso.class, tbp.getName());
+           
+            model.addRow(datosusuarios);
+
+        }
+        tabla.setModel(model);
+    }
+     
+    
+    
+    public static void mostrartabla(String nombres){
+        listaCurso(ConsultarCursos.jTable1,nombres);
+    } 
 }

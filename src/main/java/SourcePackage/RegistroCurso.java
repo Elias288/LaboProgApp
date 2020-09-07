@@ -100,6 +100,12 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
 
         jSpinnerDuracion.setModel(new javax.swing.SpinnerNumberModel(0, 0, 6, 1));
 
+        jCBinstituto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBinstitutoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -199,6 +205,10 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jCBinstitutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBinstitutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBinstitutoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
