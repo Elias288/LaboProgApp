@@ -148,7 +148,6 @@ public class ControladorCurso {
         String [] datosusuarios = new String [5];
         for (curso tbp : datos){
             datosusuarios[0]=tbp.getName()+"";
-            System.out.println(tbp.getName());
             datosusuarios[1]=tbp.getDesc()+"";
             datosusuarios[2]=tbp.getDuracion()+"";
             datosusuarios[3]=tbp.getCreditos()+"";

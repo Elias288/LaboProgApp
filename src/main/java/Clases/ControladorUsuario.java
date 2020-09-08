@@ -56,17 +56,17 @@ public class ControladorUsuario {
     
     public  static void listausuarios(JTable tabla,String nickname){
         DefaultTableModel model;
-        String [] titulo = {"Nickname","fecha nacimiento","Apellido","Correo","Nombre","Instituto"};
+        String [] titulo = {"Nickname","Nombre","Apellido","fecha nacimiento","Correo","Instituto"};
         model= new DefaultTableModel(null,titulo);
 
         List<usuario>datos = buscarusuario(nickname);
         String [] datosusuarios = new String [7];
         for (usuario tbp : datos){
             datosusuarios[0]=tbp.getNN()+"";
-            datosusuarios[1]=tbp.getDate()+"";
+            datosusuarios[1]=tbp.getName()+"";
             datosusuarios[2]=tbp.getLastName()+"";
-            datosusuarios[3]=tbp.getEmail()+"";
-            datosusuarios[4]=tbp.getName()+"";
+            datosusuarios[3]=tbp.getDate()+"";
+            datosusuarios[4]=tbp.getEmail()+"";
 
 
             EntityManager em = PersistenceManager.getInstance().createEntityManager();
