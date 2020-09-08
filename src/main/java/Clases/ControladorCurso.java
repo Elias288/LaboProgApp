@@ -3,7 +3,6 @@ package Clases;
 //import SourcePackage.ConsultarUsuarios;
 import SourcePackage.ConsultarCursos;
 import SourcePackage.ConsultarEdicionCurso;
-import SourcePackage.ConsultarUsuarios;
 import java.util.*;
 import javax.persistence.*;
 import javax.swing.*;
@@ -15,7 +14,6 @@ public class ControladorCurso {
     public instituto obtenerIsntituto(String name){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
-        
         TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM instituto WHERE Facultad =:names", Long.class);
         queryId.setParameter("names", name);
         long ides = queryId.getSingleResult();
@@ -26,12 +24,6 @@ public class ControladorCurso {
     
     public docente obtenerDocente(String name){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        
-        
-//        TypedQuery<Long> queryId = em.createQuery(  "SELECT nickname FROM docente WHERE nickname =:names", Long.class);
-//        queryId.setParameter("names", name);
-//        long ides = queryId.getSingleResult();
-//        
         docente doc = em.find(docente.class, name);
         return doc;
     }
@@ -43,9 +35,6 @@ public class ControladorCurso {
         
         instituto ins = obtenerIsntituto(instituto);
         docente doc = obtenerDocente(docente);
-        
-//        System.out.println(ins.getFacultad());
-//        System.out.println(ins.getId());
         
         cur.setFecha(fecha);
         cur.SetCreditos(creditos);
@@ -66,10 +55,6 @@ public class ControladorCurso {
         em.close();
     }
     
-    public void ConsultaCurso(){
-        
-    }
-    
     public void AltaInstituto(String name){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
@@ -83,7 +68,6 @@ public class ControladorCurso {
             TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM instituto WHERE Facultad =:names", Long.class);
             queryId.setParameter("names", name);
             long ides = queryId.getSingleResult();
-//            System.out.println("id"+ides);
 
             try {
                 instituto ins = em.find(instituto.class, ides);

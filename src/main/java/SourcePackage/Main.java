@@ -1,9 +1,7 @@
 package SourcePackage;
 
 import Clases.*;
-import Clases.PersistenceManager;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
@@ -13,10 +11,9 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-           
         initComponents();
+        
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-
     }
 
     /**

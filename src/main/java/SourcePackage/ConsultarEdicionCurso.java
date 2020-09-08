@@ -2,9 +2,7 @@ package SourcePackage;
 
 import Clases.*;
 import java.util.Iterator;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.swing.JOptionPane;
+import javax.persistence.*;
 
 
 public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
@@ -150,17 +148,15 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBoxInstitutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxInstitutoActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
+        String insti= jComboBoxInstituto.getSelectedItem().toString();
+        listarcursos(insti);
     }//GEN-LAST:event_jComboBoxInstitutoActionPerformed
 
     private void jComboBoxInstitutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxInstitutoItemStateChanged
         // TODO add your handling code here:
-        String insti= jComboBoxInstituto.getSelectedItem().toString();
-        System.out.println("antes");
-        listarcursos(insti);
+//        String insti= jComboBoxInstituto.getSelectedItem().toString();
+//        System.out.println("antes");
+//        listarcursos(insti);
     }//GEN-LAST:event_jComboBoxInstitutoItemStateChanged
 
     private void jComboBoxCursosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCursosItemStateChanged
@@ -185,29 +181,33 @@ public void listarinstitutos(){
     }
 
 public void listarcursos(String elemento){
-        System.out.println("antes");
-        if(!jComboBoxCursos.getSelectedItem().toString().isEmpty()){
-         jComboBoxCursos.removeAllItems();
-         jComboBoxCursos.addItem(" ");
-        }
-        System.out.println("despues");
-        EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        
-        Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.instituto ins WHERE ins.Facultad LIKE :nameins");
-        query.setParameter("nameins", elemento);
-        
-        Iterator it = query.getResultList().iterator();
-        curso cur= null;
+    System.out.println("Cantidad "+ jComboBoxCursos.getItemCount());
+    if(jComboBoxCursos.getItemCount() > 1){
+        System.out.println("if");
 
-        try{
-            while ( it.hasNext() ){
-                cur = (curso) it.next();
-                jComboBoxCursos.addItem(cur.getName());
-            }
-        }catch (Exception e){
-            System.out.println("no hay cursos");
-        }  
+        for(int i=0;i<jComboBoxCursos.getItemCount();i++){
+            jComboBoxCursos.removeItemAt(0);
+        }
+        jComboBoxCursos.addItem(" ");
+        jComboBoxCursos.removeItemAt(0);
     }
+    EntityManager em = PersistenceManager.getInstance().createEntityManager();
+
+    Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.instituto ins WHERE ins.Facultad LIKE :nameins");
+    query.setParameter("nameins", elemento);
+
+    Iterator it = query.getResultList().iterator();
+    curso cur= null;
+
+    try{
+        while ( it.hasNext() ){
+            cur = (curso) it.next();
+            jComboBoxCursos.addItem(cur.getName());
+        }
+    }catch (Exception e){
+        System.out.println("no hay cursos");
+    }  
+}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

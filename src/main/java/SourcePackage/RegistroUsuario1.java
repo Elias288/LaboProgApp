@@ -2,7 +2,6 @@ package SourcePackage;
 
 import Clases.*;
 import static SourcePackage.Main.Escritorio;
-import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
@@ -59,7 +58,7 @@ public class RegistroUsuario1 extends javax.swing.JInternalFrame {
         jTextFieldEmail = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooserDate = new com.toedter.calendar.JDateChooser();
         jCheckBoxDocente = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
         jComboBoxInstituto = new javax.swing.JComboBox<>();
@@ -146,7 +145,7 @@ public class RegistroUsuario1 extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addGap(33, 33, 33)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jDateChooserDate, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(256, 256, 256)
                         .addComponent(jCheckBoxDocente))
@@ -194,7 +193,7 @@ public class RegistroUsuario1 extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooserDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jCheckBoxDocente)
                 .addGap(13, 13, 13)
@@ -222,16 +221,18 @@ public class RegistroUsuario1 extends javax.swing.JInternalFrame {
     }
     
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        if(jTextFieldName.getText().isBlank() || jTextFieldLastName.getText().isBlank() || 
-                jTextFieldNN.getText().isBlank() || jTextFieldEmail.getText().isBlank() || 
-                jDateChooser1.getDate() == null){
+        
+        String name = jTextFieldName.getText();
+        String lastName = jTextFieldLastName.getText();
+        String NN = jTextFieldNN.getText();
+        String Email = jTextFieldEmail.getText();
+        java.util.Date date = jDateChooserDate.getDate();
+        String Ins = (String)jComboBoxInstituto.getSelectedItem();
+        
+        if(name.isBlank() || lastName.isBlank() || NN.isBlank() || Email.isBlank() || date == null){
             JOptionPane.showMessageDialog( null, "Hay campos incompletos");
         }else{
-            java.util.Date date;
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            date = jDateChooser1.getDate();
-            String dateTime = (String) sdf.format(jDateChooser1.getDate());
-
+            
             if(jCheckBoxDocente.isSelected() && jComboBoxInstituto.getSelectedItem() == null){
                 JOptionPane.showMessageDialog( null, "Necesita registrar un instituto");
                 RegistroInstituto RG2 = new RegistroInstituto();
@@ -240,7 +241,7 @@ public class RegistroUsuario1 extends javax.swing.JInternalFrame {
                 RG2.setVisible(true);
             }else{
                 System.out.println((String)jComboBoxInstituto.getSelectedItem());
-                CU.altaUsuario(jTextFieldName.getText(), jTextFieldLastName.getText(), jTextFieldNN.getText(), jTextFieldEmail.getText(), date, jCheckBoxDocente.isSelected(), (String)jComboBoxInstituto.getSelectedItem());
+                CU.altaUsuario(name, lastName, NN, Email, date, jCheckBoxDocente.isSelected(), Ins);
                 JOptionPane.showMessageDialog( null, "Usuario "+jTextFieldNN.getText()+"\nAgregado Correctamente");
                 jTextFieldName.setText("");
                 jTextFieldLastName.setText("");
@@ -249,7 +250,7 @@ public class RegistroUsuario1 extends javax.swing.JInternalFrame {
                 jCheckBoxDocente.setSelected(false);
                 jComboBoxInstituto.setVisible(false);
                 jLabel7.setVisible(false);
-                jDateChooser1.setCalendar(null);
+                jDateChooserDate.setCalendar(null);
             }
         }        
     }//GEN-LAST:event_jButtonAceptarActionPerformed
@@ -279,7 +280,7 @@ public class RegistroUsuario1 extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JCheckBox jCheckBoxDocente;
     private static javax.swing.JComboBox<String> jComboBoxInstituto;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooserDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

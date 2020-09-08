@@ -3,10 +3,7 @@ package Clases;
 import SourcePackage.ConsultarUsuarios;
 import SourcePackage.ModificarUsuarios;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.swing.JOptionPane;
+import javax.persistence.*;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -85,10 +82,6 @@ public class ControladorUsuario {
 
         }
         tabla.setModel(model);
-    }
-    
-    public void ModificarUsuario(){
-        
     }
    
     public static void mostrartabla(String nombres){
