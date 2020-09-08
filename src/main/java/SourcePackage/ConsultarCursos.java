@@ -4,9 +4,12 @@ import Clases.*;
 import java.util.Iterator;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 
 public class ConsultarCursos extends javax.swing.JInternalFrame {
+
+    public static JTable jTableEdicionCurso;
 
     /**
      * Creates new form RegistroCliente1

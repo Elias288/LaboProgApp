@@ -3,6 +3,7 @@ package SourcePackage;
 import Clases.*;
 import java.util.Iterator;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
 
@@ -34,16 +35,17 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
 
         scrollPane1 = new java.awt.ScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableEdicionCurso = new javax.swing.JTable();
         campodetexto = new javax.swing.JTextField();
         buscarboton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jComboBoxInstituto = new javax.swing.JComboBox<>();
+        jComboBoxCursos = new javax.swing.JComboBox<>();
 
-        setTitle("Consultar Cursos");
+        setTitle("Consultar Edicion Cursos");
         setToolTipText("");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEdicionCurso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -54,7 +56,7 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableEdicionCurso);
 
         campodetexto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -88,24 +90,33 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBoxCursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxCursos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxCursosItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jComboBoxInstituto, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99)
-                .addComponent(buscarboton)
-                .addGap(18, 18, 18)
-                .addComponent(campodetexto, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(26, 26, 26))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jComboBoxInstituto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarboton)
+                        .addGap(18, 18, 18)
+                        .addComponent(campodetexto, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(26, 26, 26))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,10 +126,12 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
                         .addComponent(jButton1)
                         .addComponent(campodetexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(buscarboton))
-                    .addComponent(jComboBoxInstituto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxInstituto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,7 +146,7 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buscarbotonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.setVisible(false);        // TODO add your handling code here:
+    this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBoxInstitutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxInstitutoActionPerformed
@@ -145,8 +158,15 @@ this.setVisible(false);        // TODO add your handling code here:
 
     private void jComboBoxInstitutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxInstitutoItemStateChanged
         // TODO add your handling code here:
-        ControladorCurso.mostrartabla(jComboBoxInstituto.getSelectedItem().toString());
+        String insti= jComboBoxInstituto.getSelectedItem().toString();
+        System.out.println("antes");
+        listarcursos(insti);
     }//GEN-LAST:event_jComboBoxInstitutoItemStateChanged
+
+    private void jComboBoxCursosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCursosItemStateChanged
+        // TODO add your handling code here:
+        ControladorCurso.mostrartabla2(jComboBoxCursos.getSelectedItem().toString());
+    }//GEN-LAST:event_jComboBoxCursosItemStateChanged
 
 public void listarinstitutos(){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
@@ -164,13 +184,40 @@ public void listarinstitutos(){
         }
     }
 
+public void listarcursos(String elemento){
+        System.out.println("antes");
+        if(!jComboBoxCursos.getSelectedItem().toString().isEmpty()){
+         jComboBoxCursos.removeAllItems();
+         jComboBoxCursos.addItem(" ");
+        }
+        System.out.println("despues");
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.instituto ins WHERE ins.Facultad LIKE :nameins");
+        query.setParameter("nameins", elemento);
+        
+        Iterator it = query.getResultList().iterator();
+        curso cur= null;
+
+        try{
+            while ( it.hasNext() ){
+                cur = (curso) it.next();
+                jComboBoxCursos.addItem(cur.getName());
+            }
+        }catch (Exception e){
+            System.out.println("no hay cursos");
+        }  
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton buscarboton;
     private javax.swing.JTextField campodetexto;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBoxCursos;
     private javax.swing.JComboBox<String> jComboBoxInstituto;
     private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTable jTable1;
+    public static javax.swing.JTable jTableEdicionCurso;
     private java.awt.ScrollPane scrollPane1;
     // End of variables declaration//GEN-END:variables
 }

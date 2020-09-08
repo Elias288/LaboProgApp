@@ -2,6 +2,8 @@ package Clases;
 
 //import SourcePackage.ConsultarUsuarios;
 import SourcePackage.ConsultarCursos;
+import SourcePackage.ConsultarEdicionCurso;
+import SourcePackage.ConsultarUsuarios;
 import java.util.*;
 import javax.persistence.*;
 import javax.swing.*;
@@ -183,4 +185,53 @@ public class ControladorCurso {
     public static void mostrartabla(String nombres){
         listaCurso(ConsultarCursos.jTable1,nombres);
     } 
+    
+    public static List<edicionCurso> buscarEdicionCurso(String NN){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        List<edicionCurso>lista;
+
+        if(NN.equals("")){
+            Query query = em.createQuery("SELECT xd FROM edicionCurso xd");
+
+            lista = query.getResultList();
+        }
+        else{
+            Query query = em.createQuery("SELECT xd FROM edicionCurso xd JOIN xd.Curso ins WHERE ins.nombre LIKE :nameins");
+            query.setParameter("nameins", NN+"%");
+
+            lista = query.getResultList();
+            
+        }
+        return lista;
+    }
+    
+    public  static void listaEdicionCurso(JTable tabla,String nickname){
+        DefaultTableModel model;
+        String [] titulo = {"Nombre","Cupo","Fecha publicacion","Inicio periodo","Fin de periodo","Curso",};
+        model= new DefaultTableModel(null,titulo);
+
+        List<edicionCurso>datos = buscarEdicionCurso(nickname);
+        String [] datosusuarios = new String [6];
+        for (edicionCurso tbp : datos){
+            datosusuarios[0]=tbp.getNombre()+"";
+            datosusuarios[1]=tbp.getCupo()+"";
+            datosusuarios[2]=tbp.getFechaPublicacion()+"";
+            datosusuarios[3]=tbp.getPinicio()+"";
+            datosusuarios[4]=tbp.getPfin()+"";
+            datosusuarios[5]=tbp.getCurso()+"";
+            
+            model.addRow(datosusuarios);
+
+        }
+        tabla.setModel(model);
+    }
+    
+    public void ModificarUsuario(){
+        
+    }
+   
+    public static void mostrartabla2(String nombres){
+        listaEdicionCurso(ConsultarEdicionCurso.jTableEdicionCurso,nombres);
+    }     
 }

@@ -43,6 +43,7 @@ public class Main extends javax.swing.JFrame {
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemConsultaUsuario = new javax.swing.JMenuItem();
         jMenuItemConsultaCurso = new javax.swing.JMenuItem();
+        jMenuItemEdicionCurso = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemModificar = new javax.swing.JMenuItem();
 
@@ -146,6 +147,14 @@ public class Main extends javax.swing.JFrame {
         });
         jMenuConsultas.add(jMenuItemConsultaCurso);
 
+        jMenuItemEdicionCurso.setText("Consultar Edicion Curso");
+        jMenuItemEdicionCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEdicionCursoActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemEdicionCurso);
+
         jMenuBar1.add(jMenuConsultas);
 
         jMenu1.setText("Modificar");
@@ -235,6 +244,14 @@ public class Main extends javax.swing.JFrame {
     // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemConsultaCursoActionPerformed
 
+    private void jMenuItemEdicionCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEdicionCursoActionPerformed
+        // TODO add your handling code here:
+       ConsultarEdicionCurso CU1 = new ConsultarEdicionCurso();
+       Escritorio.add(CU1);
+       CU1.setVisible(true);   
+        
+    }//GEN-LAST:event_jMenuItemEdicionCursoActionPerformed
+
     public void CargarDatos(){
         if(i==1){
             Date fechaE = new Date(100,4,5);
@@ -249,6 +266,7 @@ public class Main extends javax.swing.JFrame {
             CC.AltaInstituto("Innova");
             CC.AltaInstituto("ITSP");
             CC.AltaInstituto("IFD");
+            
 
             ControladorUsuario CU = new ControladorUsuario();
             CU.altaUsuario("Elias","Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
@@ -262,6 +280,11 @@ public class Main extends javax.swing.JFrame {
             CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10, null, "ElProfe");
             CC.AltaCurso("Matematica","Innova","matematiqueo","math.com",1,2,fechaA,10, null, "queCapo");
             CC.AltaCurso("Sebar mates","ITSP","No acemo na wacho","google.com",1,2,fechaN,10, null, "LaChina");
+            
+            
+            CC.altaEdicion("PYE",fechaJ,fechaA,25,fechaN,"Matematica");
+            CC.altaEdicion("Programacion de aplicaciones 2020",fechaJ,fechaA,25,fechaN,"programacion");
+            CC.altaEdicion("EDA",fechaJ,fechaA,25,fechaN,"Sebar mates");
             
             JOptionPane.showMessageDialog( null, "Los datos de prueba fuero agregados");
         }else
@@ -317,6 +340,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItemConsultaCurso;
     private javax.swing.JMenuItem jMenuItemConsultaUsuario;
+    private javax.swing.JMenuItem jMenuItemEdicionCurso;
     private javax.swing.JMenuItem jMenuItemModificar;
     private javax.swing.JMenuItem jMenuItemRegistrarClientes;
     private javax.swing.JMenuItem jMenuItemSalir;
