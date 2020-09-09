@@ -1,6 +1,7 @@
 package Clases;
 
 import SourcePackage.ConsultarUsuarios;
+
 import SourcePackage.ModificarUsuarios;
 import java.util.List;
 import javax.persistence.*;
@@ -56,27 +57,31 @@ public class ControladorUsuario {
     
     public  static void listausuarios(JTable tabla,String nickname){
         DefaultTableModel model;
-        String [] titulo = {"Nickname","Nombre","Apellido","fecha nacimiento","Correo","Instituto"};
+        String [] titulo = {"Nickname","Nombre","Apellido","fecha nacimiento","Correo","Instituto","Cursos"};
         model= new DefaultTableModel(null,titulo);
-
+        curso curs=null;
         List<usuario>datos = buscarusuario(nickname);
         String [] datosusuarios = new String [7];
         for (usuario tbp : datos){
+            
             datosusuarios[0]=tbp.getNN()+"";
             datosusuarios[1]=tbp.getName()+"";
             datosusuarios[2]=tbp.getLastName()+"";
             datosusuarios[3]=tbp.getDate()+"";
             datosusuarios[4]=tbp.getEmail()+"";
-
+            
+            //datosusuarios[6]=devolerins(tbp).getedicion().getNombre();
 
             EntityManager em = PersistenceManager.getInstance().createEntityManager();
             docente doc=em.find(docente.class,tbp.getNN());
             if (doc==null){
                 datosusuarios[5]="null";
+                datosusuarios[6]=devolerins(tbp).getedicion().getNombre();
             }else{
                 String hola;
                 hola=doc.getInstituto().getFacultad()+"";
                 datosusuarios[5]=hola;
+                 datosusuarios[6]="null";
             }
             model.addRow(datosusuarios);
 
@@ -90,7 +95,18 @@ public class ControladorUsuario {
     public static void mostrartabla2(String nombres){
         listausuarios(ModificarUsuarios.jTable1,nombres);
     }
-      
+      public static String devolerins(usuario alumn){
+          String nombreal=alumn.getNN();
+         //   ControladorCurso CC = new ControladorCurso();
+          EntityManager em = PersistenceManager.getInstance().createEntityManager();
+
+        TypedQuery<Long> queryId = em.createQuery( "SELECT id FROM inscripcion xd WHERE xd.Alu =:nombreal", Long.class);
+            queryId.setParameter("nombreal", nombreal);
+            long ides = queryId.getSingleResult();
+        
+       inscripcion cur = em.find(inscripcion.class, ides);
+          return cur;
+      }
     public static void ModUsu(String name, String LastName, String NN, Boolean tipo, String instituto){
         
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
