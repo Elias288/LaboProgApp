@@ -38,10 +38,15 @@ public class Main extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItemAgregarPrograma = new javax.swing.JMenuItem();
+        jMenuItemAgregarCursoPrograma = new javax.swing.JMenuItem();
+        jMenuItemInscribirCursoPrograma = new javax.swing.JMenuItem();
+        jMenuItemRegistrarEstudiantePrograma = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemConsultaUsuario = new javax.swing.JMenuItem();
         jMenuItemConsultaCurso = new javax.swing.JMenuItem();
         jMenuItemEdicionCurso = new javax.swing.JMenuItem();
+        jMenuItemConsultarPrograma = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemModificar = new javax.swing.JMenuItem();
 
@@ -133,6 +138,38 @@ public class Main extends javax.swing.JFrame {
         });
         jMenuRegistro.add(jMenuItem6);
 
+        jMenuItemAgregarPrograma.setText("Registrar Programa Formacion");
+        jMenuItemAgregarPrograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAgregarProgramaActionPerformed(evt);
+            }
+        });
+        jMenuRegistro.add(jMenuItemAgregarPrograma);
+
+        jMenuItemAgregarCursoPrograma.setText("Registrar Curso a Programa ");
+        jMenuItemAgregarCursoPrograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAgregarCursoProgramaActionPerformed(evt);
+            }
+        });
+        jMenuRegistro.add(jMenuItemAgregarCursoPrograma);
+
+        jMenuItemInscribirCursoPrograma.setText("Registrar Inscripcion Curso programa");
+        jMenuItemInscribirCursoPrograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemInscribirCursoProgramaActionPerformed(evt);
+            }
+        });
+        jMenuRegistro.add(jMenuItemInscribirCursoPrograma);
+
+        jMenuItemRegistrarEstudiantePrograma.setText("Registrar Estudiante a Programa");
+        jMenuItemRegistrarEstudiantePrograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRegistrarEstudianteProgramaActionPerformed(evt);
+            }
+        });
+        jMenuRegistro.add(jMenuItemRegistrarEstudiantePrograma);
+
         jMenuBar1.add(jMenuRegistro);
 
         jMenuConsultas.setText("Consultas");
@@ -160,6 +197,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jMenuConsultas.add(jMenuItemEdicionCurso);
+
+        jMenuItemConsultarPrograma.setText("Consultar Programa Formacion");
+        jMenuItemConsultarPrograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConsultarProgramaActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemConsultarPrograma);
 
         jMenuBar1.add(jMenuConsultas);
 
@@ -264,6 +309,41 @@ public class Main extends javax.swing.JFrame {
         RI.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItemAgregarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgregarProgramaActionPerformed
+        // TODO add your handling code here:
+        RegistrarProgramaFormacion prog = new RegistrarProgramaFormacion(); 
+        Escritorio.add(prog);
+        prog.setVisible(true);
+    }//GEN-LAST:event_jMenuItemAgregarProgramaActionPerformed
+
+    private void jMenuItemAgregarCursoProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgregarCursoProgramaActionPerformed
+        // TODO add your handling code here:
+        AgregarCursoProgramaFormacion CurProg = new AgregarCursoProgramaFormacion(); 
+        Escritorio.add(CurProg);
+        CurProg.setVisible(true);
+    }//GEN-LAST:event_jMenuItemAgregarCursoProgramaActionPerformed
+
+    private void jMenuItemInscribirCursoProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInscribirCursoProgramaActionPerformed
+        // TODO add your handling code here:
+        AgregarCursoProgramaFormacion AgregarCur = new AgregarCursoProgramaFormacion(); 
+        Escritorio.add(AgregarCur);
+        AgregarCur.setVisible(true);
+    }//GEN-LAST:event_jMenuItemInscribirCursoProgramaActionPerformed
+
+    private void jMenuItemRegistrarEstudianteProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRegistrarEstudianteProgramaActionPerformed
+        // TODO add your handling code here:
+        InscribirEstudianteProgramaFormacion InscCurProg = new InscribirEstudianteProgramaFormacion(); 
+        Escritorio.add(InscCurProg);
+        InscCurProg.setVisible(true); 
+    }//GEN-LAST:event_jMenuItemRegistrarEstudianteProgramaActionPerformed
+
+    private void jMenuItemConsultarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultarProgramaActionPerformed
+        // TODO add your handling code here:
+        ConsultarProgramaFormacion ConsProg = new ConsultarProgramaFormacion(); 
+        Escritorio.add(ConsProg);
+        ConsProg.setVisible(true); 
+    }//GEN-LAST:event_jMenuItemConsultarProgramaActionPerformed
+
     public void CargarDatos(){
         ControladorUsuario CU = new ControladorUsuario();
         ControladorCurso CC = new ControladorCurso();
@@ -356,11 +436,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItemAgregarCursoPrograma;
+    private javax.swing.JMenuItem jMenuItemAgregarPrograma;
     private javax.swing.JMenuItem jMenuItemConsultaCurso;
     private javax.swing.JMenuItem jMenuItemConsultaUsuario;
+    private javax.swing.JMenuItem jMenuItemConsultarPrograma;
     private javax.swing.JMenuItem jMenuItemEdicionCurso;
+    private javax.swing.JMenuItem jMenuItemInscribirCursoPrograma;
     private javax.swing.JMenuItem jMenuItemModificar;
     private javax.swing.JMenuItem jMenuItemRegistrarClientes;
+    private javax.swing.JMenuItem jMenuItemRegistrarEstudiantePrograma;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JMenu jMenuRegistro;
     // End of variables declaration//GEN-END:variables
