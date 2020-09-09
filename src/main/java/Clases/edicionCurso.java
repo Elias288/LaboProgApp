@@ -30,9 +30,7 @@ public class edicionCurso {
     @ManyToOne
     private curso Curso;
     
-    public edicionCurso() {
-    }
-
+    public edicionCurso() {}
     public edicionCurso(String nombre, Date PInicio, Date PFin, int cupo, Date fechaPublicacion, curso Curso) {
         this.nombre = nombre;
         this.Pfin = PFin;
@@ -42,62 +40,18 @@ public class edicionCurso {
         this.Curso=Curso;
     }
 
-    public List<inscripcion> getInscripcion(){
-        return this.inscr;
-    }
-     public void setInscripcion(List<inscripcion> insc){this.inscr = insc;}
-  
-    public String getNombre() {
-        return nombre;
-    }
-
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
- 
-
- 
+    public List<inscripcion> getInscripcion(){return this.inscr;}
+    public void setInscripcion(List<inscripcion> insc){this.inscr = insc;}
+    public String getNombre() {return nombre;}
+    public void setNombre(String nombre) {this.nombre = nombre;}
     public int getCupo() {return cupo;}
-
- 
-    public void setCupo(int cupo) {
-        this.cupo = cupo;
-    }
-
-
+    public void setCupo(int cupo) {this.cupo = cupo;}
     public Date getFechaPublicacion() {return fechaPublicacion;}
-
-
-    public void setFechaPublicacion(Date fechaPublicacion) {
-        this.fechaPublicacion = fechaPublicacion;
-    }
-
-    public Date getPinicio() {
-        return Pinicio;
-    }
-
-
-    public void setPinicio(Date Pinicio) {
-        this.Pinicio = Pinicio;
-    }
-
-    public Date getPfin() {
-        return Pfin;
-    }
-
-    public void setPfin(Date Pfin) {
-        this.Pfin = Pfin;
-    }
-
-    public curso getCurso() {
-        return Curso;
-    }
-
- 
-    public void setCurso(curso Curso) {
-        this.Curso = Curso;
-    }
-    
+    public void setFechaPublicacion(Date fechaPublicacion) {this.fechaPublicacion = fechaPublicacion;}
+    public Date getPinicio() {return Pinicio;}
+    public void setPinicio(Date Pinicio) {this.Pinicio = Pinicio;}
+    public Date getPfin() {return Pfin;}
+    public void setPfin(Date Pfin) {this.Pfin = Pfin;}
+    public curso getCurso() {return Curso;}
+    public void setCurso(curso Curso) {this.Curso = Curso;}
 }

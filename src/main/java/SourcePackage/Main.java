@@ -287,7 +287,7 @@ public class Main extends javax.swing.JFrame {
             
             CC.altaEdicion("PYE",fechaJ,fechaA,25,fechaN,"Matematica");
             CC.altaEdicion("Programacion de aplicaciones 2020",fechaJ,fechaA,25,fechaN,"programacion");
-            CC.altaEdicion("EDA",fechaJ,fechaA,25,fechaN,"Sebar mates");
+            CC.altaEdicion("chispa",fechaJ,fechaA,25,fechaN,"Sebar mates");
             
             CU.altaUsuario("Elias","Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
             CU.altaUsuario("Franccesco","Giordano","Fran123","Giordano@gmail.com", fechaF, false, "pene");
@@ -298,6 +298,10 @@ public class Main extends javax.swing.JFrame {
             CU.altaUsuario("Fernando","Gerfaou","queCapo","queCapo@gmail.com", fechaG, true, "Innova");
             
             CC.Inscribir("Programacion de aplicaciones 2020", "Eleli", fechaN);
+            CC.Inscribir("chispa", "Eleli", fechaN);
+            CC.Inscribir("Programacion de aplicaciones 2020", "Fran123", fechaN);
+            CC.Inscribir("Programacion de aplicaciones 2020", "Furta3", fechaN);
+            CC.Inscribir("PYE", "Fran123", fechaN);
             
             JOptionPane.showMessageDialog( null, "Los datos de prueba fuero agregados");
         }else

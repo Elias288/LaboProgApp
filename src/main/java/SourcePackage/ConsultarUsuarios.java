@@ -1,6 +1,10 @@
 package SourcePackage;
 
 import Clases.*;
+import static Clases.ControladorUsuario.devolercurso;
+import static SourcePackage.Main.Escritorio;
+import java.sql.Date;
+import javax.persistence.EntityManager;
 
 
 public class ConsultarUsuarios extends javax.swing.JInternalFrame {
@@ -9,11 +13,8 @@ public class ConsultarUsuarios extends javax.swing.JInternalFrame {
      * Creates new form RegistroCliente1
      */
     public ConsultarUsuarios() {
-     //   ControladorUsuario CU= new ControladorUsuario();
         initComponents();
-    //    jTextFieldInstituto.setVisible(false);
-     //   jLabel7.setVisible(false);
-         ControladorUsuario.mostrartabla("");
+        ControladorUsuario.mostrartabla("");
     }
 
     /**
@@ -47,6 +48,11 @@ public class ConsultarUsuarios extends javax.swing.JInternalFrame {
             }
         ));
         jTable1.setShowGrid(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         campodetexto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -112,6 +118,32 @@ public class ConsultarUsuarios extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int seleccionado=jTable1.rowAtPoint(evt.getPoint());
+        String tipo, instituto="null";
+        String NN = (String)jTable1.getValueAt(seleccionado,0);
+        String nombre = (String)jTable1.getValueAt(seleccionado,1);
+        String apellido = (String)jTable1.getValueAt(seleccionado,2);
+        String fecha = (String)jTable1.getValueAt(seleccionado,3);
+        String correo = (String)jTable1.getValueAt(seleccionado,4);
+        
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        docente doc=em.find(docente.class,NN);
+        if (doc==null){
+            tipo="Alumno";
+        }else{
+            tipo="Profesor";
+            instituto = (String)jTable1.getValueAt(seleccionado,5);
+        }
+        System.out.println(NN);
+        MostrarDatosUsuario MDU = new MostrarDatosUsuario();
+        Escritorio.add(MDU);
+        MDU.setVisible(true);
+        MDU.cargarDatos(NN, nombre, apellido, fecha, correo, tipo, instituto);
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
 

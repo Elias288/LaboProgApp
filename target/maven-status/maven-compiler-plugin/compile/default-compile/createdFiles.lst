@@ -61,7 +61,9 @@ SourcePackage\Main$10.class
 SourcePackage\ConsultarCursos.class
 Clases\PersistenceManager.class
 SourcePackage\ConsultarCursos$2.class
+SourcePackage\ConsultarUsuarios$4.class
 SourcePackage\Main$5.class
+SourcePackage\MostrarDatosUsuario.class
 SourcePackage\RegistroUsuario1$5.class
 SourcePackage\ModificarUsuarios$2.class
 SourcePackage\RegistroCurso$5.class
