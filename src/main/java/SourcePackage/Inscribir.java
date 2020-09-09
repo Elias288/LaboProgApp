@@ -12,6 +12,7 @@ import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import Clases.*;
+import javax.swing.JOptionPane;
 
 public class Inscribir extends javax.swing.JInternalFrame {
 
@@ -182,6 +183,7 @@ public class Inscribir extends javax.swing.JInternalFrame {
         Date fecha = jDateChooserFecha.getDate();
 
         CC.Inscribir(edicion, alumno, fecha);
+         JOptionPane.showMessageDialog( null, alumno +" inscripto correctamente");
 
     }//GEN-LAST:event_jbtnAgregarActionPerformed
 

@@ -46,6 +46,7 @@ public class ConsultarUsuarios extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         campodetexto.addKeyListener(new java.awt.event.KeyAdapter() {
