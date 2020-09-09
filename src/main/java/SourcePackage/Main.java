@@ -359,15 +359,8 @@ public class Main extends javax.swing.JFrame {
             CC.AltaInstituto("Innova");
             CC.AltaInstituto("ITSP");
             CC.AltaInstituto("IFD");
+
             
-            CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10, null, "ElProfe");
-            CC.AltaCurso("Matematica","Innova","matematiqueo","math.com",1,2,fechaA,10, null, "queCapo");
-            CC.AltaCurso("Sebar mates","ITSP","No acemo na wacho","google.com",1,2,fechaN,10, null, "LaChina");
-            
-            
-            CC.altaEdicion("PYE",fechaJ,fechaA,25,fechaN,"Matematica");
-            CC.altaEdicion("Programacion de aplicaciones 2020",fechaJ,fechaA,25,fechaN,"programacion");
-            CC.altaEdicion("chispa",fechaJ,fechaA,25,fechaN,"Sebar mates");
             
             CU.altaUsuario("Elias","Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
             CU.altaUsuario("Franccesco","Giordano","Fran123","Giordano@gmail.com", fechaF, false, "pene");
@@ -376,6 +369,14 @@ public class Main extends javax.swing.JFrame {
             CU.altaUsuario("Alvaro","Correa","ElProfe","Correa@gmail.com", fechaA, true, "Innova");
             CU.altaUsuario("Nancy","Lopez","LaChina","LaChina@gmail.com", fechaN, true, "ITSP");
             CU.altaUsuario("Fernando","Gerfaou","queCapo","queCapo@gmail.com", fechaG, true, "Innova");
+            
+            CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10, null, "ElProfe");
+            CC.AltaCurso("Matematica","Innova","matematiqueo","math.com",1,2,fechaA,10, null, "queCapo");
+            CC.AltaCurso("Sebar mates","ITSP","No acemo na wacho","google.com",1,2,fechaN,10, null, "LaChina");
+            
+            CC.altaEdicion("PYE",fechaJ,fechaA,25,fechaN,"Matematica");
+            CC.altaEdicion("Programacion de aplicaciones 2020",fechaJ,fechaA,25,fechaN,"programacion");
+            CC.altaEdicion("chispa",fechaJ,fechaA,25,fechaN,"Sebar mates");
             
             CC.Inscribir("Programacion de aplicaciones 2020", "Eleli", fechaN);
             CC.Inscribir("chispa", "Eleli", fechaN);

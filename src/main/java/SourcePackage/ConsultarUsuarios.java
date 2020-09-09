@@ -120,28 +120,21 @@ public class ConsultarUsuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        String tipo;
         int seleccionado=jTable1.rowAtPoint(evt.getPoint());
-        String tipo, instituto="null";
         String NN = (String)jTable1.getValueAt(seleccionado,0);
         String nombre = (String)jTable1.getValueAt(seleccionado,1);
         String apellido = (String)jTable1.getValueAt(seleccionado,2);
-        String fecha = (String)jTable1.getValueAt(seleccionado,3);
-        String correo = (String)jTable1.getValueAt(seleccionado,4);
         
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        
         docente doc=em.find(docente.class,NN);
-        if (doc==null){
-            tipo="Alumno";
-        }else{
-            tipo="Profesor";
-            instituto = (String)jTable1.getValueAt(seleccionado,5);
-        }
-        System.out.println(NN);
+        if (doc==null){tipo="Alumno";}
+        else{tipo="Profesor";}
+        
         MostrarDatosUsuario MDU = new MostrarDatosUsuario();
         Escritorio.add(MDU);
         MDU.setVisible(true);
-        MDU.cargarDatos(NN, nombre, apellido, fecha, correo, tipo, instituto);
+        MDU.cargarDatos(NN, nombre, apellido,tipo);
         
     }//GEN-LAST:event_jTable1MouseClicked
 

@@ -53,13 +53,15 @@
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jSpinnerDuracion" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
-                                  <Component id="jSpinnerHour" alignment="0" pref="149" max="32767" attributes="0"/>
-                                  <Component id="jSpinnerCredits" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jDateChooserDate" alignment="0" pref="149" max="32767" attributes="0"/>
                                   <Component id="jTextFieldURL" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldDesc" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldName" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jSpinnerCredits" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jSpinnerHour" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jSpinnerDuracion" alignment="0" pref="72" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jComboBoxCurso" min="-2" pref="100" max="-2" attributes="0"/>

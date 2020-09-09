@@ -5,14 +5,18 @@
  */
 package SourcePackage;
 
+import Clases.ControladorCurso;
+import static Clases.ControladorUsuario.buscarusuario;
 import Clases.PersistenceManager;
 import Clases.curso;
 import Clases.docente;
 import Clases.edicionCurso;
 import Clases.inscripcion;
 import Clases.usuario;
+import static SourcePackage.Main.Escritorio;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -26,40 +30,53 @@ public class MostrarDatosUsuario extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    public void cargarDatos(String NN, String nombre, String LastName, String fecha, String Email, String tipo, String instituto){
+    public void cargarDatos(String NN, String nombre, String LastName, String tipo){
         jLabel8.setText(NN);
         jLabel9.setText(nombre);
         jLabel10.setText(LastName);
-        jLabel11.setText(fecha.toString());
-        jLabel12.setText(Email);
-        jLabel13.setText(tipo);
         
-        if(tipo == "Alumno"){
-            jLabel7.setText("Cursos");
-            jLabel14.setVisible(false);
-            jComboBox1.setVisible(true);
-            listarcursos(NN);
-        }else{
-            jComboBox1.setVisible(false);
-            jLabel14.setVisible(true);
-            jLabel14.setText(instituto);
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        docente doc=em.find(docente.class,NN);
+        
+        List<usuario>datos = buscarusuario(NN);
+        for (usuario tbp : datos){
+            jLabel11.setText(tbp.getDate().toString());
+            jLabel12.setText(tbp.getEmail());
+            jLabel13.setText(tipo);
+
+            if(tipo == "Alumno"){
+                jLabel7.setText("EdicionesCurso");
+                jLabel4.setVisible(false);
+                jComboBox1.setVisible(true);
+                listarcursos(NN);
+            }else{
+                jLabel7.setText("Instituto");
+                jComboBox1.setVisible(false);
+                jLabel4.setVisible(true);
+                jLabel4.setText(doc.getInstituto().getFacultad());
+            }
         }
-        
+         
     }
     
     public void listarcursos(String alumn){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
     
         Query query = em.createQuery("SELECT xd FROM inscripcion xd JOIN xd.Alu alumno WHERE alumno.nickname LIKE :nameins");
+//        Query query = em.createQuery("SELECT cur FROM curso cur JOIN cur.edicionCurso ed JOIN ed.inscripcion ins JOIN ins.Alu alumno WHERE alumno.nickname LIKE :nameins");
+//        Query query = em.createNativeQuery("SELECT cur.* FROM curso cur, edicioncurso ed, inscripcion xd WHERE xd.alumnoninscrip LIKE :nameins and xd.edicioninscrip = ed.nombre and ed.Curso_id = cur.id");
         query.setParameter("nameins", alumn);
 
         Iterator it = query.getResultList().iterator();
         inscripcion ins= null;
+//        curso cur = null;
         
         try{
             while ( it.hasNext() ){
                 ins = (inscripcion)it.next();
+//                cur = (curso) it.next();
                 jComboBox1.addItem(ins.getedicion().getNombre());
+//                jComboBox1.addItem(cur.getName());
             }
         }catch (Exception e){
             System.out.println("no hay cursos");
@@ -125,6 +142,11 @@ public class MostrarDatosUsuario extends javax.swing.JInternalFrame {
         jLabel14.setText("jLabel14");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -209,6 +231,13 @@ public class MostrarDatosUsuario extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        ConsultarEdicionCurso CEC = new ConsultarEdicionCurso();
+        Escritorio.add(CEC);
+        ControladorCurso.mostrartabla(jComboBox1.getSelectedItem().toString());
+        CEC.setVisible(true);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
