@@ -2,14 +2,19 @@ SourcePackage\Main$4.class
 SourcePackage\RegistroUsuario1$2.class
 SourcePackage\ModificarUsuarios$5.class
 Clases\ControladorCurso.class
+SourcePackage\RegistroInscripcion$1.class
+Clases\inscripcion.class
 SourcePackage\ConsultarCursos$1.class
 SourcePackage\ConsultarUsuarios$3.class
 SourcePackage\RegistroCurso$3.class
+SourcePackage\RegistroInscripcion.class
 SourcePackage\Main.class
+Clases\inscripcionId.class
 SourcePackage\Main$11.class
 SourcePackage\Main$1.class
 SourcePackage\RegistroEdicionCurso2$3.class
 SourcePackage\ModificarUsuarios$1.class
+SourcePackage\RegistroInscripcion$4.class
 SourcePackage\Main$8.class
 SourcePackage\ConsultarEdicionCurso$3.class
 SourcePackage\ModificarUsuarios.class
@@ -26,6 +31,7 @@ SourcePackage\ModificarUsuarios$4.class
 SourcePackage\Main$7.class
 Clases\periodo.class
 SourcePackage\ConsultarEdicionCurso$4.class
+SourcePackage\RegistroInscripcion$3.class
 Clases\ControladorUsuario.class
 SourcePackage\ConsultarCursos$3.class
 SourcePackage\RegistroCurso$1.class
@@ -48,6 +54,7 @@ SourcePackage\Main$3.class
 SourcePackage\ConsultarEdicionCurso.class
 SourcePackage\RegistroCurso.class
 SourcePackage\ConsultarEdicionCurso$6.class
+SourcePackage\RegistroInscripcion$2.class
 SourcePackage\RegistroCurso$2.class
 SourcePackage\Main$10.class
 SourcePackage\ConsultarCursos.class

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package SourcePackage;
-
 import Clases.PersistenceManager;
 import Clases.curso;
 import Clases.instituto;
@@ -14,12 +13,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import Clases.*;
 
-public class RegistroInscripcion extends javax.swing.JPanel {
+public class Inscribir extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form RegistroInscripcion
+     * Creates new form Inscribir
      */
-    public RegistroInscripcion() {
+    public Inscribir() {
         initComponents();
         listarinstitutos();
         listarAlumnos();
@@ -34,8 +33,6 @@ public class RegistroInscripcion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jbtnAgregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jComboBoxInstituto = new javax.swing.JComboBox<>();
         jComboBoxCursos = new javax.swing.JComboBox<>();
@@ -46,28 +43,33 @@ public class RegistroInscripcion extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBoxEdicion = new javax.swing.JComboBox<>();
+        jbtnAgregar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
-        jbtnAgregar.setText("Agregar");
-        jbtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+        setTitle("Inscribir alumno");
+
+        jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnAgregarActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
-
+        jComboBoxInstituto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBoxInstituto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxInstitutoActionPerformed(evt);
             }
         });
 
+        jComboBoxCursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBoxCursos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCursosActionPerformed(evt);
             }
         });
+
+        jComboBoxAlumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         jLabel1.setText("Instituto");
 
@@ -77,50 +79,57 @@ public class RegistroInscripcion extends javax.swing.JPanel {
 
         jLabel4.setText("Ediciones");
 
+        jComboBoxEdicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBoxEdicion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxEdicionActionPerformed(evt);
             }
         });
 
+        jbtnAgregar.setText("Agregar");
+        jbtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAgregarActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("Fecha");
         jLabel5.setToolTipText("");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                        .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxEdicion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxInstituto, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxCursos, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxAlumno, javax.swing.GroupLayout.Alignment.TRAILING, 0, 137, Short.MAX_VALUE))))
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtnAgregar)
-                .addGap(53, 53, 53)
-                .addComponent(jButton2)
-                .addGap(60, 60, 60))
+                        .addComponent(jbtnAgregar)
+                        .addGap(53, 53, 53)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4))
+                            .addGap(6, 6, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jComboBoxEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxInstituto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxAlumno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jComboBoxInstituto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -140,45 +149,48 @@ public class RegistroInscripcion extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(50, 50, 50)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnAgregar)
                     .addComponent(jButton2))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBoxInstitutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxInstitutoActionPerformed
+        // TODO add your handling code here:
+        String insti= jComboBoxInstituto.getSelectedItem().toString();
+        listarcursos(insti);
+
+    }//GEN-LAST:event_jComboBoxInstitutoActionPerformed
+
+    private void jComboBoxCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCursosActionPerformed
+        // TODO add your handling code here:
+        listarEdiciones(jComboBoxEdicion.getSelectedItem().toString());
+    }//GEN-LAST:event_jComboBoxCursosActionPerformed
+
+    private void jComboBoxEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEdicionActionPerformed
+        
+    }//GEN-LAST:event_jComboBoxEdicionActionPerformed
 
     private void jbtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAgregarActionPerformed
         ControladorCurso CC = new ControladorCurso();
         String edicion = (String)jComboBoxEdicion.getSelectedItem();
         String alumno = (String)jComboBoxAlumno.getSelectedItem();
         Date fecha = jDateChooserFecha.getDate();
-        
+
         CC.Inscribir(edicion, alumno, fecha);
-        
+
     }//GEN-LAST:event_jbtnAgregarActionPerformed
 
-    private void jComboBoxInstitutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxInstitutoActionPerformed
-        // TODO add your handling code here:
-        String insti= jComboBoxInstituto.getSelectedItem().toString();
-        listarcursos(insti);
-        
-    }//GEN-LAST:event_jComboBoxInstitutoActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBoxCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCursosActionPerformed
-        // TODO add your handling code here:
-        String curso= jComboBoxEdicion.getSelectedItem().toString();
-        listarEdiciones(curso);
-    }//GEN-LAST:event_jComboBoxCursosActionPerformed
-
-    private void jComboBoxEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEdicionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxEdicionActionPerformed
-    
     public void listarEdiciones(String curso){
-        System.out.println("Cantidad "+ jComboBoxEdicion.getItemCount());
         if(jComboBoxEdicion.getItemCount() > 1){
-            System.out.println("if");
 
             for(int i=0;i<jComboBoxEdicion.getItemCount();i++){
                 jComboBoxEdicion.removeItemAt(0);
@@ -188,21 +200,22 @@ public class RegistroInscripcion extends javax.swing.JPanel {
         }
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
 
-        Query query = em.createQuery("SELECT xd FROM edicioncurso xd WHERE  LIKE :name");// necesito curso id en este caso
-        query.setParameter("name", curso);
+        Query query = em.createQuery("SELECT xd FROM edicionCurso xd JOIN xd.Curso cur WHERE cur.nombre LIKE :nameins");
+        query.setParameter("nameins", curso+"%");
 
+        List<edicionCurso>lista = query.getResultList();
+        
         Iterator it = query.getResultList().iterator();
-        curso cur= null;
+        edicionCurso Edcur= null;
 
         try{
             while ( it.hasNext() ){
-                cur = (curso) it.next();
-                jComboBoxEdicion.addItem(cur.getName());
+                Edcur = (edicionCurso) it.next();
+                jComboBoxEdicion.addItem(Edcur.getNombre());
             }
+        }catch (Exception e){
+            System.out.println("no hay ediciones");
         }
-        catch (Exception e){
-            System.out.println("no hay cursos");
-        }  
     }
     
     public void listarAlumnos(){
@@ -216,7 +229,7 @@ public class RegistroInscripcion extends javax.swing.JPanel {
         try{
             while ( it.hasNext() ){
                 alu = (alumno) it.next();
-                jComboBoxAlumno.addItem(alu.getName());
+                jComboBoxAlumno.addItem(alu.getNN());
             }
         }
         catch (Exception e){
@@ -225,9 +238,7 @@ public class RegistroInscripcion extends javax.swing.JPanel {
     }
     
     public void listarcursos(String elemento){
-        System.out.println("Cantidad "+ jComboBoxCursos.getItemCount());
         if(jComboBoxCursos.getItemCount() > 1){
-            System.out.println("if");
 
             for(int i=0;i<jComboBoxCursos.getItemCount();i++){
                 jComboBoxCursos.removeItemAt(0);
@@ -268,6 +279,7 @@ public class RegistroInscripcion extends javax.swing.JPanel {
             System.out.println("no hay Institutos");
         }
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
@@ -275,7 +287,6 @@ public class RegistroInscripcion extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBoxCursos;
     private javax.swing.JComboBox<String> jComboBoxEdicion;
     private javax.swing.JComboBox<String> jComboBoxInstituto;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

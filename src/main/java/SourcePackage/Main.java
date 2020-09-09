@@ -37,6 +37,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemConsultaUsuario = new javax.swing.JMenuItem();
         jMenuItemConsultaCurso = new javax.swing.JMenuItem();
@@ -123,6 +124,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jMenuRegistro.add(jMenuItem3);
+
+        jMenuItem6.setText("Registrar Inscripcion");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenuRegistro.add(jMenuItem6);
 
         jMenuBar1.add(jMenuRegistro);
 
@@ -249,7 +258,16 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItemEdicionCursoActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        Inscribir RI = new Inscribir();
+        Escritorio.add(RI);
+        RI.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     public void CargarDatos(){
+        ControladorUsuario CU = new ControladorUsuario();
+        ControladorCurso CC = new ControladorCurso();
+        
         if(i==1){
             Date fechaE = new Date(100,4,5);
             Date fechaF = new Date(97,12,19);
@@ -258,21 +276,9 @@ public class Main extends javax.swing.JFrame {
             Date fechaA = new Date(91,8,16);
             Date fechaN = new Date(87,4,22);
             
-
-            ControladorCurso CC = new ControladorCurso();
             CC.AltaInstituto("Innova");
             CC.AltaInstituto("ITSP");
             CC.AltaInstituto("IFD");
-            
-
-            ControladorUsuario CU = new ControladorUsuario();
-            CU.altaUsuario("Elias","Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
-            CU.altaUsuario("Franccesco","Giordano","Fran123","Giordano@gmail.com", fechaF, false, "pene");
-            CU.altaUsuario("Juan","Furtado","Furta3","Furtado@gmail.com", fechaJ, false, "pene");
-            CU.altaUsuario("Gonzalo","Buriano","Gonzalius","bianchi@gmail.com", fechaG, false, "pene");
-            CU.altaUsuario("Alvaro","Correa","ElProfe","Correa@gmail.com", fechaA, true, "Innova");
-            CU.altaUsuario("Nancy","Lopez","LaChina","LaChina@gmail.com", fechaN, true, "ITSP");
-            CU.altaUsuario("Fernando","Gerfaou","queCapo","queCapo@gmail.com", fechaG, true, "Innova"); 
             
             CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10, null, "ElProfe");
             CC.AltaCurso("Matematica","Innova","matematiqueo","math.com",1,2,fechaA,10, null, "queCapo");
@@ -282,6 +288,16 @@ public class Main extends javax.swing.JFrame {
             CC.altaEdicion("PYE",fechaJ,fechaA,25,fechaN,"Matematica");
             CC.altaEdicion("Programacion de aplicaciones 2020",fechaJ,fechaA,25,fechaN,"programacion");
             CC.altaEdicion("EDA",fechaJ,fechaA,25,fechaN,"Sebar mates");
+            
+            CU.altaUsuario("Elias","Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
+            CU.altaUsuario("Franccesco","Giordano","Fran123","Giordano@gmail.com", fechaF, false, "pene");
+            CU.altaUsuario("Juan","Furtado","Furta3","Furtado@gmail.com", fechaJ, false, "pene");
+            CU.altaUsuario("Gonzalo","Buriano","Gonzalius","bianchi@gmail.com", fechaG, false, "pene");
+            CU.altaUsuario("Alvaro","Correa","ElProfe","Correa@gmail.com", fechaA, true, "Innova");
+            CU.altaUsuario("Nancy","Lopez","LaChina","LaChina@gmail.com", fechaN, true, "ITSP");
+            CU.altaUsuario("Fernando","Gerfaou","queCapo","queCapo@gmail.com", fechaG, true, "Innova");
+            
+//            CC.Inscribir("Programacion de aplicaciones 2020", "Eleli", fechaN);
             
             JOptionPane.showMessageDialog( null, "Los datos de prueba fuero agregados");
         }else
@@ -335,6 +351,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemConsultaCurso;
     private javax.swing.JMenuItem jMenuItemConsultaUsuario;
     private javax.swing.JMenuItem jMenuItemEdicionCurso;

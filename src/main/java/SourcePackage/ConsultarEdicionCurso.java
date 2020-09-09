@@ -94,6 +94,11 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
                 jComboBoxCursosItemStateChanged(evt);
             }
         });
+        jComboBoxCursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCursosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,7 +149,7 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buscarbotonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    this.setVisible(false);        // TODO add your handling code here:
+        this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBoxInstitutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxInstitutoActionPerformed
@@ -163,6 +168,10 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         ControladorCurso.mostrartabla2(jComboBoxCursos.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBoxCursosItemStateChanged
+
+    private void jComboBoxCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCursosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCursosActionPerformed
 
 public void listarinstitutos(){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();

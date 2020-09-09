@@ -163,8 +163,6 @@ public class ControladorCurso {
         tabla.setModel(model);
     }
      
-    
-    
     public static void mostrartabla(String nombres){
         listaCurso(ConsultarCursos.jTable1,nombres);
     } 
@@ -217,4 +215,29 @@ public class ControladorCurso {
     public static void mostrartabla2(String nombres){
         listaEdicionCurso(ConsultarEdicionCurso.jTableEdicionCurso,nombres);
     }     
+    
+    public void Inscribir(String edicion, String alumno, Date fech){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        em.getTransaction().begin();
+        edicionCurso Curs = buscarEdicion(edicion);
+        em.persist(Curs);
+        
+        alumno Alu = buscarAlumno(alumno);
+        Alu.addedicion(Curs, fech);
+        em.persist(Alu);
+        
+        em.getTransaction().commit();
+        em.close();
+    }
+    
+    public edicionCurso buscarEdicion(String nombre){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        return em.find(edicionCurso.class,nombre);
+    }
+    
+    public alumno buscarAlumno(String nombre){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        return em.find(alumno.class,nombre);
+    }
 }

@@ -1,5 +1,6 @@
 package Clases;
 
+import java.util.Date;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Id;
 import javax.persistence.Entity;
@@ -28,9 +29,11 @@ public abstract class usuario {
     }
 
     public usuario(){}
-   public void setNN(String NN){this.nickname=NN;}
-     public void setName(String name){this.nombre=name;}
-      public void setLN(String apellido){this.apellido=apellido;}
+    public void setNN(String NN){this.nickname=NN;}
+    public void setName(String name){this.nombre=name;}
+    public void setLN(String apellido){this.apellido=apellido;}
+    public void setEmail(String Email){this.correo=Email;}
+    public void setDate(Date fech){this.FechaNac=fech;}
     public String getName(){return this.nombre;}
     public String getLastName(){return this.apellido;}
     public String getEmail(){return this.correo;}

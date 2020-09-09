@@ -24,16 +24,7 @@ public class curso implements Serializable{
     @ManyToOne
     protected instituto instituto;
     
-//    public curso(String name, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos){
-//        this.Creditos = creditos;
-//        this.URL = URL;
-//        this.cantHoras = cantHoras;
-//        this.descripcion = desc;
-//        this.duracion = duracion;
-//        this.fecha = fecha;
-//        this.nombre = name;
-//    }
-    
+   
     public curso(){}
     
     public String getName(){

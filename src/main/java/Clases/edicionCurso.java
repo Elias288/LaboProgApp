@@ -5,16 +5,11 @@
  */
 package Clases;
 
-import java.util.Date;
-import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import java.util.*;
+import javax.persistence.*;
 
 @Entity (name = "edicionCurso")
 public class edicionCurso {
-
 
     @Id
     private String nombre;
@@ -24,8 +19,11 @@ public class edicionCurso {
     private int cupo;
     private Date fechaPublicacion;
     
-    @ManyToMany(mappedBy="Cursos")
-    private List<alumno> alumnos;
+    @OneToMany
+    private List<inscripcion> inscr = new ArrayList<>();
+    
+//    @ManyToMany(mappedBy="Cursos")
+//    private List<alumno> alumnos;
     
     @ManyToOne
     private curso Curso;
@@ -42,6 +40,10 @@ public class edicionCurso {
         this.Curso=Curso;
     }
 
+    public List<inscripcion> getInscripcion(){
+        return this.inscr;
+    }
+    
     /**
      * @return the nombre
      */
@@ -119,16 +121,16 @@ public class edicionCurso {
         /**
      * @return the alumnos
      */
-    public List<alumno> getAlumnos() {
-        return alumnos;
-    }
-
-    /**
-     * @param alumnos the alumnos to set
-     */
-    public void setAlumnos(List<alumno> alumnos) {
-        this.alumnos = alumnos;
-    }
+//    public List<alumno> getAlumnos() {
+//        return alumnos;
+//    }
+//
+//    /**
+//     * @param alumnos the alumnos to set
+//     */
+//    public void setAlumnos(List<alumno> alumnos) {
+//        this.alumnos = alumnos;
+//    }
 
     /**
      * @return the Curso
