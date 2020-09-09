@@ -12,8 +12,8 @@ public class alumno extends usuario{
 //    @ManyToMany
 //    protected List<edicionCurso> EdicionCursos;
     
-    @OneToMany
-    protected List<inscripcion> inscripcion = new ArrayList<>();
+    @OneToMany 
+     List<inscripcion> inscripciones ;
     
     public alumno( String name, String LastName, String NN, String Email, java.util.Date date){
         super(name, LastName, NN, Email, date);
@@ -21,17 +21,12 @@ public class alumno extends usuario{
     
     public alumno(){}
     
-    public void setInscripcion(List<inscripcion> insc){this.inscripcion = insc;}
+    public void setInscripcion(List<inscripcion> insc){this.inscripciones = insc;}
     
     public List<inscripcion> getInscripcion(){
-        return this.inscripcion;
+        return this.inscripciones;
     }
     
-    public void addedicion(edicionCurso ed, Date fech) {
-        inscripcion ins = new inscripcion(ed, this, fech);
-        inscripcion.add(ins);
-        ed.getInscripcion().add(ins);
-    }
     
 //    public void setCursos(List<edicionCurso> cursos){
 //        this.EdicionCursos=cursos;

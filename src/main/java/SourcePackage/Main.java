@@ -297,7 +297,7 @@ public class Main extends javax.swing.JFrame {
             CU.altaUsuario("Nancy","Lopez","LaChina","LaChina@gmail.com", fechaN, true, "ITSP");
             CU.altaUsuario("Fernando","Gerfaou","queCapo","queCapo@gmail.com", fechaG, true, "Innova");
             
-//            CC.Inscribir("Programacion de aplicaciones 2020", "Eleli", fechaN);
+            CC.Inscribir("Programacion de aplicaciones 2020", "Eleli", fechaN);
             
             JOptionPane.showMessageDialog( null, "Los datos de prueba fuero agregados");
         }else

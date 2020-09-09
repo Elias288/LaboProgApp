@@ -168,7 +168,7 @@ public class Inscribir extends javax.swing.JInternalFrame {
 
     private void jComboBoxCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCursosActionPerformed
         // TODO add your handling code here:
-        listarEdiciones(jComboBoxEdicion.getSelectedItem().toString());
+        listarEdiciones(jComboBoxCursos.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBoxCursosActionPerformed
 
     private void jComboBoxEdicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEdicionActionPerformed

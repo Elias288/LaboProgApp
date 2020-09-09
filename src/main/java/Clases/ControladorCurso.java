@@ -221,11 +221,13 @@ public class ControladorCurso {
         
         em.getTransaction().begin();
         edicionCurso Curs = buscarEdicion(edicion);
-        em.persist(Curs);
+      //  em.persist(Curs);
         
         alumno Alu = buscarAlumno(alumno);
-        Alu.addedicion(Curs, fech);
-        em.persist(Alu);
+inscripcion ins=new inscripcion(Curs,Alu,fech);
+
+        
+       em.persist(ins);
         
         em.getTransaction().commit();
         em.close();

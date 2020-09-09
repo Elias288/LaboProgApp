@@ -12,14 +12,13 @@ import javax.persistence.*;
 @Table( name="inscripcion" )
 public class inscripcion {
     
-    @EmbeddedId
-    private inscripcionId id;
+ @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long id;
     
-    @ManyToOne
-    @MapsId("alumnoNickname")
+    @ManyToOne@JoinColumn(name="alumnoninscrip")
     private alumno Alu;
-    @ManyToOne
-    @MapsId("edicionCursoNombre")
+    
+    @ManyToOne @JoinColumn(name="edicioninscrip")
     private edicionCurso EdicionCurso;
     
     private Date Fecha;
@@ -29,7 +28,6 @@ public class inscripcion {
      public inscripcion(edicionCurso EdicionCurso, alumno Alumno, Date fech){
         this.Alu = Alumno;
         this.EdicionCurso = EdicionCurso;
-        this.id = new inscripcionId(Alumno.getNN(),EdicionCurso.getNombre());
         this.Fecha = fech;
     }
     
@@ -40,6 +38,5 @@ public class inscripcion {
     public void setFecha(Date fecha){this.Fecha = fecha;}
     public void setAlumno(alumno al){this.Alu = al;}
     public void setEdicionCurso(edicionCurso EdC){this.EdicionCurso=EdC;}
-    public inscripcionId getId() {return id;}
-    public void setId(inscripcionId id) {this.id = id;}
+
 }
