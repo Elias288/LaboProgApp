@@ -17,7 +17,7 @@
       <property name="javax.persistence.jdbc.user" value="equipo1"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="equipo1"/>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> <!--no cambiar por nada del mundo-->
+      <property name="javax.persistence.schema-generation.database.action" value="create"/> <!--no cambiar por nada del mundo-->
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL55Dialect" />
     </properties>
   </persistence-unit>

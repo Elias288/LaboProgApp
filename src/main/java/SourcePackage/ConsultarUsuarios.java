@@ -8,13 +8,14 @@ import javax.persistence.EntityManager;
 
 
 public class ConsultarUsuarios extends javax.swing.JInternalFrame {
-
+    
+    ControladorUsuario CU = new ControladorUsuario();
     /**
      * Creates new form RegistroCliente1
      */
     public ConsultarUsuarios() {
         initComponents();
-        ControladorUsuario.mostrartabla("");
+        CU.mostrartabla("");
     }
 
     /**
@@ -112,7 +113,8 @@ public class ConsultarUsuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campodetextoKeyReleased
 
     private void buscarbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarbotonActionPerformed
-        ControladorUsuario.mostrartabla(campodetexto.getText());
+        
+        CU.mostrartabla(campodetexto.getText());
     }//GEN-LAST:event_buscarbotonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

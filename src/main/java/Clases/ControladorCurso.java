@@ -55,35 +55,53 @@ public class ControladorCurso {
         em.close();
     }
     
-    public void AltaInstituto(String name){
+    public List<instituto> buscarInstituto(String Facultad){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
-        TypedQuery<Long> query = em.createQuery(  "SELECT Count(*) FROM instituto WHERE Facultad =:names", Long.class);
-        query.setParameter("names", name);
-	long total = query.getSingleResult();
+        List<instituto>lista;
+
+        if(Facultad.equals("")){
+            Query query = em.createQuery("SELECT xd FROM instituto xd");
+            lista = query.getResultList();
+        }
+        else{
+            Query query = em.createQuery("SELECT xd FROM instituto xd WHERE xd.Facultad LIKE :nickname");
+            query.setParameter("nickname", Facultad+"%");
+
+            lista = query.getResultList();
+            
+        }
+        return lista;
+    }
+    
+    public void AltaInstituto(String name){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+
+        List<instituto>insititutos = buscarInstituto(name);
         
-        if(total == 1){
+        if(insititutos.size() == 1){
             String newName =  JOptionPane.showInputDialog("El insitutuo "+name+" ya existe \n Desea modificar el nombre del instituto?");
             
-            TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM instituto WHERE Facultad =:names", Long.class);
-            queryId.setParameter("names", name);
-            long ides = queryId.getSingleResult();
+            if(!newName.isBlank()){
+                TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM instituto WHERE Facultad =:names", Long.class);
+                queryId.setParameter("names", name);
+                long ides = queryId.getSingleResult();
 
-            try {
-                instituto ins = em.find(instituto.class, ides);
-                ins.setFacultad(newName);
-                
-                em.getTransaction().begin();
-                em.persist(ins);
-                em.getTransaction().commit();
-                em.close();
-            }catch (Exception e) {
-                e.printStackTrace();
-                em.getTransaction().rollback();
-                em.close();
+                try {
+                    instituto ins = em.find(instituto.class, ides);
+                    ins.setFacultad(newName);
+
+                    em.getTransaction().begin();
+                    em.persist(ins);
+                    em.getTransaction().commit();
+                    em.close();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                    em.getTransaction().rollback();
+                    em.close();
+                }
+                JOptionPane.showMessageDialog( null, "El insituto " +name +" fue modificado correctamente");
             }
-            JOptionPane.showMessageDialog( null, "El insituto " +name +" fue modificado correctamente");
-            
         }else{
             instituto inst = new instituto();
             inst.setFacultad(name);

@@ -5,24 +5,13 @@
  */
 package SourcePackage;
 
-import Clases.ControladorCurso;
-import static Clases.ControladorUsuario.buscarusuario;
-import Clases.PersistenceManager;
-import Clases.curso;
-import Clases.docente;
-import Clases.edicionCurso;
-import Clases.inscripcion;
-import Clases.usuario;
+import Clases.*;
 import static SourcePackage.Main.Escritorio;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import java.util.*;
+import javax.persistence.*;
 
 public class MostrarDatosUsuario extends javax.swing.JInternalFrame {
-
+    ControladorUsuario CU = new ControladorUsuario();
     /**
      * Creates new form MostrarDatosUsuario
      */
@@ -38,7 +27,7 @@ public class MostrarDatosUsuario extends javax.swing.JInternalFrame {
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         docente doc=em.find(docente.class,NN);
         
-        List<usuario>datos = buscarusuario(NN);
+        List<usuario>datos = CU.buscarusuario(NN);
         for (usuario tbp : datos){
             jLabel11.setText(tbp.getDate().toString());
             jLabel12.setText(tbp.getEmail());
@@ -46,14 +35,14 @@ public class MostrarDatosUsuario extends javax.swing.JInternalFrame {
 
             if(tipo == "Alumno"){
                 jLabel7.setText("EdicionesCurso");
-                jLabel4.setVisible(false);
+                jLabel14.setVisible(false);
                 jComboBox1.setVisible(true);
                 listarcursos(NN);
             }else{
                 jLabel7.setText("Instituto");
                 jComboBox1.setVisible(false);
-                jLabel4.setVisible(true);
-                jLabel4.setText(doc.getInstituto().getFacultad());
+                jLabel14.setVisible(true);
+                jLabel14.setText(doc.getInstituto().getFacultad());
             }
         }
          

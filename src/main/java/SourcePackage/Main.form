@@ -23,6 +23,9 @@
       </Properties>
     </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Edext"/>
+      </Properties>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenuInicio">
           <Properties>

@@ -34,7 +34,7 @@ public class ControladorUsuario {
         
     }
      
-    public static List<usuario> buscarusuario(String NN){
+    public List<usuario> buscarusuario(String NN){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         List<usuario>lista;
@@ -54,7 +54,7 @@ public class ControladorUsuario {
         return lista;
     }
     
-    public  static void listausuarios(JTable tabla,String nickname){
+    public void listausuarios(JTable tabla,String nickname){
         DefaultTableModel model;
         String [] titulo = {"Nickname","Nombre","Apellido"/*,"fecha nacimiento","Correo","Instituto"*/};
         model= new DefaultTableModel(null,titulo);
@@ -88,11 +88,11 @@ public class ControladorUsuario {
         tabla.setModel(model);
     }
    
-    public static void mostrartabla(String nombres){
+    public void mostrartabla(String nombres){
         listausuarios(ConsultarUsuarios.jTable1,nombres);
     }   
     
-    public static void mostrartabla2(String nombres){
+    public void mostrartabla2(String nombres){
         listausuarios(ModificarUsuarios.jTable1,nombres);
     }
     

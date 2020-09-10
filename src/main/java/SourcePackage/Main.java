@@ -76,6 +76,8 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 556, Short.MAX_VALUE)
         );
 
+        jMenuBar1.setToolTipText("Edext");
+
         jMenuInicio.setText("Inicio");
 
         jMenuItem5.setText("Cargar Datos de Pruebas");
@@ -284,7 +286,6 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemModificarActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        i = i+1;
         CargarDatos();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -348,6 +349,32 @@ public class Main extends javax.swing.JFrame {
         ControladorUsuario CU = new ControladorUsuario();
         ControladorCurso CC = new ControladorCurso();
         
+        List<usuario>datos = CU.buscarusuario("");
+        if(!datos.isEmpty()){
+            for (usuario tbp : datos){
+                if("Eleli".equals(tbp.getNN()) || "Fran123".equals(tbp.getNN()) ||"Furta3".equals(tbp.getNN()) || 
+                        "Gonzalius".equals(tbp.getNN()) || "ElProfe".equals(tbp.getNN()) || "LaChina".equals(tbp.getNN()) ||
+                        "queCapo".equals(tbp.getNN())){
+                    i = 2;
+                }
+            } 
+        }else{
+            i = 1;
+        }
+        
+        List<instituto>insititutos = CC.buscarInstituto("");
+        if(!insititutos.isEmpty()){
+            for (instituto tbp : insititutos){
+                if("Innova".equals(tbp.getFacultad()) || "ITSP".equals(tbp.getFacultad()) ||
+                        "IFD".equals(tbp.getFacultad()) ){
+                    i = 2;
+                }
+            } 
+        }else{
+            i = 1;
+        }
+        
+        
         if(i==1){
             Date fechaE = new Date(100,4,5);
             Date fechaF = new Date(97,12,19);
@@ -360,8 +387,6 @@ public class Main extends javax.swing.JFrame {
             CC.AltaInstituto("ITSP");
             CC.AltaInstituto("IFD");
 
-            
-            
             CU.altaUsuario("Elias","Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
             CU.altaUsuario("Franccesco","Giordano","Fran123","Giordano@gmail.com", fechaF, false, "pene");
             CU.altaUsuario("Juan","Furtado","Furta3","Furtado@gmail.com", fechaJ, false, "pene");
@@ -384,9 +409,9 @@ public class Main extends javax.swing.JFrame {
             CC.Inscribir("Programacion de aplicaciones 2020", "Furta3", fechaN);
             CC.Inscribir("PYE", "Fran123", fechaN);
             
-            JOptionPane.showMessageDialog( null, "Los datos de prueba fuero agregados");
+            JOptionPane.showMessageDialog( null, "Los datos de prueba fuero agregados correctamente");
         }else
-            JOptionPane.showMessageDialog( null, "Ya se cargaron los datos de prueba");
+            JOptionPane.showMessageDialog( null, "Error!!\nLos datos de prueba ya fueron cargados");
     }
     
     /**

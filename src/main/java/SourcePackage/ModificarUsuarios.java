@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class ModificarUsuarios extends javax.swing.JInternalFrame {
-
+    ControladorUsuario CU = new ControladorUsuario();
     /**
      * Creates new form RegistroCliente1
      */
@@ -16,7 +16,7 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
     //    jTextFieldInstituto.setVisible(false);
      //   jLabel7.setVisible(false);
     
-         ControladorUsuario.mostrartabla2("");
+         CU.mostrartabla2("");
     }
 
     /**
@@ -135,7 +135,7 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campodetextoKeyReleased
 
     private void buscarbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarbotonActionPerformed
-        ControladorUsuario.mostrartabla2(campodetexto.getText());
+        CU.mostrartabla2(campodetexto.getText());
         
 //        DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
 //        String NNSelected=String.valueOf(tm.getValueAt(jTable1.getSelectedRow(),0));
@@ -148,7 +148,7 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
 
     private void jButton2ModifiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ModifiActionPerformed
         String nombre, NN ,LN;
-        nombre=jTable1.getValueAt(0, 4).toString();
+        nombre=jTable1.getValueAt(0, 1).toString();
         NN=jTable1.getValueAt(0, 0).toString();
         LN=jTable1.getValueAt(0, 2).toString();
         JOptionPane.showMessageDialog( null, "Usuario "+NN+" modificado correctamente");
@@ -159,14 +159,14 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
         String NNSelected=String.valueOf(tm.getValueAt(jTable1.getSelectedRow(),0));
-        ControladorUsuario.mostrartabla2(NNSelected);
+        CU.mostrartabla2(NNSelected);
         
         
         
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButtonlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonlistarActionPerformed
-        ControladorUsuario.mostrartabla2("");
+        CU.mostrartabla2("");
     }//GEN-LAST:event_jButtonlistarActionPerformed
 
 
