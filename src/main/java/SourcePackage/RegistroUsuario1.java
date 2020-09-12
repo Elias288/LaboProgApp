@@ -245,9 +245,14 @@ public class RegistroUsuario1 extends javax.swing.JInternalFrame {
                 if(CU.findusu(NN)!=null){
                     JOptionPane.showMessageDialog( null, "Error!!\n El Usuario "+NN+"ya esta registrado");
                 }else{
-                    CU.altaUsuario(name, lastName, NN, Email, date, jCheckBoxDocente.isSelected(), Ins);
-                    JOptionPane.showMessageDialog( null, "Usuario "+jTextFieldNN.getText()+"\nAgregado Correctamente");
-                    limpiarPantalla();
+                    if(!CU.verFecha(date)){
+                        JOptionPane.showMessageDialog( null, "Error!!\n La fecha no es válida.");
+                    }
+                    else{
+                        CU.altaUsuario(name, lastName, NN, Email, date, jCheckBoxDocente.isSelected(), Ins);
+                        JOptionPane.showMessageDialog( null, "Usuario "+jTextFieldNN.getText()+"\nAgregado Correctamente");
+                        limpiarPantalla();
+                    }
                 }
             }
         }        

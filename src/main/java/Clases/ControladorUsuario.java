@@ -3,6 +3,7 @@ package Clases;
 import SourcePackage.ConsultarUsuarios;
 
 import SourcePackage.ModificarUsuarios;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import javax.swing.JTable;
@@ -131,4 +132,13 @@ public class ControladorUsuario {
         }
     }
     
+    public boolean verFecha(Date fecha){
+        Date now = new Date();
+        if(fecha.compareTo(now) >= 0) {
+          return false;
+        }
+        else{
+          return true;
+        }
+    }
 }
