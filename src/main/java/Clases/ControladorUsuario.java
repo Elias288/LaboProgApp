@@ -11,9 +11,8 @@ import javax.swing.table.DefaultTableModel;
 public class ControladorUsuario {
     
     public void altaUsuario(String name, String LastName, String NN, String Email, java.util.Date date, Boolean tipo, String instituto){
-        
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        
+        ControladorUsuario CU = new ControladorUsuario();
         usuario usu;
         
         if(!tipo){
@@ -26,6 +25,8 @@ public class ControladorUsuario {
             instituto ins = em.find(instituto.class, ides);
             usu = new docente(name, LastName, NN, Email, date, ins);
         }
+        
+        
 //        JOptionPane.showMessageDialog( null, "Usuario "+usu.getNN()+"\nAgregado Correctamente");
         em.getTransaction().begin();
         em.persist(usu);
@@ -88,13 +89,9 @@ public class ControladorUsuario {
         tabla.setModel(model);
     }
    
-    public void mostrartabla(String nombres){
-        listausuarios(ConsultarUsuarios.jTable1,nombres);
-    }   
+    public void mostrartabla(String nombres){listausuarios(ConsultarUsuarios.jTable1,nombres);}   
     
-    public void mostrartabla2(String nombres){
-        listausuarios(ModificarUsuarios.jTable1,nombres);
-    }
+    public void mostrartabla2(String nombres){listausuarios(ModificarUsuarios.jTable1,nombres);}
     
     public static curso devolercurso(usuario alumn){
         String nombreal=alumn.getNN();
@@ -109,7 +106,8 @@ public class ControladorUsuario {
        
         return cur;
     }
-    public static void ModUsu(String name, String LastName, String NN, Boolean tipo, String instituto){
+    
+    public void ModUsu(String name, String LastName, String NN, Boolean tipo, String instituto){
         
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         em.getTransaction().begin();
@@ -123,7 +121,7 @@ public class ControladorUsuario {
         em.close();
     }
       
-    public static usuario findusu(String ID){
+    public usuario findusu(String ID){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
          
         try{
@@ -131,5 +129,6 @@ public class ControladorUsuario {
         }finally{
             em.close();
         }
-    } 
+    }
+    
 }

@@ -240,21 +240,30 @@ public class RegistroUsuario1 extends javax.swing.JInternalFrame {
                 Escritorio.add(RG2);
                 RG2.setVisible(true);
             }else{
-                System.out.println((String)jComboBoxInstituto.getSelectedItem());
-                CU.altaUsuario(name, lastName, NN, Email, date, jCheckBoxDocente.isSelected(), Ins);
-                JOptionPane.showMessageDialog( null, "Usuario "+jTextFieldNN.getText()+"\nAgregado Correctamente");
-                jTextFieldName.setText("");
-                jTextFieldLastName.setText("");
-                jTextFieldNN.setText("");
-                jTextFieldEmail.setText("");
-                jCheckBoxDocente.setSelected(false);
-                jComboBoxInstituto.setVisible(false);
-                jLabel7.setVisible(false);
-                jDateChooserDate.setCalendar(null);
+//                System.out.println((String)jComboBoxInstituto.getSelectedItem());
+                
+                if(CU.findusu(NN)!=null){
+                    JOptionPane.showMessageDialog( null, "Error!!\n El Usuario "+NN+"ya esta registrado");
+                }else{
+                    CU.altaUsuario(name, lastName, NN, Email, date, jCheckBoxDocente.isSelected(), Ins);
+                    JOptionPane.showMessageDialog( null, "Usuario "+jTextFieldNN.getText()+"\nAgregado Correctamente");
+                    limpiarPantalla();
+                }
             }
         }        
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
+    public void limpiarPantalla(){
+        jTextFieldName.setText("");
+        jTextFieldLastName.setText("");
+        jTextFieldNN.setText("");
+        jTextFieldEmail.setText("");
+        jCheckBoxDocente.setSelected(false);
+        jComboBoxInstituto.setVisible(false);
+        jLabel7.setVisible(false);
+        jDateChooserDate.setCalendar(null);
+    }
+    
     private void jCheckBoxDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDocenteActionPerformed
         if(jCheckBoxDocente.isSelected()){
             jComboBoxInstituto.setVisible(true);

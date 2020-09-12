@@ -136,10 +136,6 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
 
     private void buscarbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarbotonActionPerformed
         CU.mostrartabla2(campodetexto.getText());
-        
-//        DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
-//        String NNSelected=String.valueOf(tm.getValueAt(jTable1.getSelectedRow(),0));
-//        ControladorUsuario.mostrartabla2(NNSelected);
     }//GEN-LAST:event_buscarbotonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -152,7 +148,7 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
         NN=jTable1.getValueAt(0, 0).toString();
         LN=jTable1.getValueAt(0, 2).toString();
         JOptionPane.showMessageDialog( null, "Usuario "+NN+" modificado correctamente");
-        ControladorUsuario.ModUsu(nombre,LN,NN,true,"");
+        CU.ModUsu(nombre,LN,NN,true,"");
         
     }//GEN-LAST:event_jButton2ModifiActionPerformed
 
@@ -160,9 +156,6 @@ public class ModificarUsuarios extends javax.swing.JInternalFrame {
         DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
         String NNSelected=String.valueOf(tm.getValueAt(jTable1.getSelectedRow(),0));
         CU.mostrartabla2(NNSelected);
-        
-        
-        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButtonlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonlistarActionPerformed
