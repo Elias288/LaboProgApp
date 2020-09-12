@@ -12,6 +12,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
     int cont = 0;
     EntityManager em = PersistenceManager.getInstance().createEntityManager();
     ControladorCurso CC = new ControladorCurso();
+    ControladorUsuario CU = new ControladorUsuario();
     
     /**
      * Creates new form RegistroCurso
@@ -309,8 +310,14 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
                 || horas==0 || fecha == null || credits==0){
             JOptionPane.showMessageDialog( null, "Hay campos incompletos");
         }else{
-            CC.AltaCurso(name, instituto, descripcion , Url, duracion,horas, fecha, credits, CurList, docente);
-            JOptionPane.showMessageDialog( null, "Curso "+jTextFieldName.getText()+"\nAgregado Correctamente");
+            if(!CU.verFecha(fecha)){
+                JOptionPane.showMessageDialog( null, "La fecha de alta no es válida.");
+            }
+            else{
+                CC.AltaCurso(name, instituto, descripcion , Url, duracion,horas, fecha, credits, CurList, docente);
+                JOptionPane.showMessageDialog( null, "Curso "+jTextFieldName.getText()+"\nAgregado Correctamente");
+            }
+            
         }
         
         

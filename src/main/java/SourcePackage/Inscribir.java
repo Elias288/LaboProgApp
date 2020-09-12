@@ -181,9 +181,21 @@ public class Inscribir extends javax.swing.JInternalFrame {
         String edicion = (String)jComboBoxEdicion.getSelectedItem();
         String alumno = (String)jComboBoxAlumno.getSelectedItem();
         Date fecha = jDateChooserFecha.getDate();
-
-        CC.Inscribir(edicion, alumno, fecha);
-         JOptionPane.showMessageDialog( null, alumno +" inscripto correctamente");
+        
+        if(edicion.equals("") || alumno.equals("") || fecha.equals("")){
+            JOptionPane.showMessageDialog(null, "Tienen que estar llenos todos los camapo.");
+        }
+        else{
+            if(fecha.compareTo(new Date()) > 0){
+                JOptionPane.showMessageDialog(null, "La fecha de inscripción no es válida.");
+            }
+            else{
+                CC.Inscribir(edicion, alumno, fecha);
+                JOptionPane.showMessageDialog( null, alumno +" inscripto correctamente");
+            }
+            
+        }
+        
 
     }//GEN-LAST:event_jbtnAgregarActionPerformed
 

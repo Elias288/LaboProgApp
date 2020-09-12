@@ -185,14 +185,14 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
         //String dateTime = (String) sdf.format(jDateChooser1.getDate());
         
         if((int)jSpinnerCupos.getValue()> 0 && !jTFnombre.getText().equals("") && jDCfechaPub.getDate()!=null && jDCfechaInicio.getDate()!=null && jDCfechaFin.getDate()!=null){
-            ControladorCurso ca = new ControladorCurso();
-            ca.altaEdicion(jTFnombre.getText(), fechaInicio, fechaFin, (int)jSpinnerCupos.getValue(), fechaPub,(String)jCBcurso.getSelectedItem());
-            jSpinnerCupos.setValue(0);
-            jTFnombre.setText("");
-            jDCfechaFin.setCalendar(null);
-            jDCfechaInicio.setCalendar(null);
-            jDCfechaPub.setCalendar(null);
-            JOptionPane.showMessageDialog(null, "Edicion: "+jTFnombre.getText()+ " agregado correctamente");
+            if(fechaInicio.compareTo(fechaFin) < 0){
+                ControladorCurso ca = new ControladorCurso();
+                ca.altaEdicion(jTFnombre.getText(), fechaInicio, fechaFin, (int)jSpinnerCupos.getValue(), fechaPub,(String)jCBcurso.getSelectedItem());
+                JOptionPane.showMessageDialog(null, "Edicion: "+jTFnombre.getText()+ " agregado correctamente");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "La fecha de inicio no puede ser menor o igual a la fecha de fin.");
+            }
         }
         else{
             JOptionPane.showMessageDialog(null, "Debe llenar todos lo campos para registrar la Edición.");
@@ -208,7 +208,13 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
     private void jCBcursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBcursoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBcursoActionPerformed
-
+    public void limpiarForm(){
+            jSpinnerCupos.setValue(0);
+            jTFnombre.setText("");
+            jDCfechaFin.setCalendar(null);
+            jDCfechaInicio.setCalendar(null);
+            jDCfechaPub.setCalendar(null);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

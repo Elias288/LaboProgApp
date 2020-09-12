@@ -10,6 +10,8 @@ import javax.swing.JTable;
 public class ConsultarCursos extends javax.swing.JInternalFrame {
 
     public static JTable jTableEdicionCurso;
+    
+    ControladorCurso CU = new ControladorCurso();
 
     /**
      * Creates new form RegistroCliente1
@@ -132,7 +134,7 @@ public class ConsultarCursos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_campodetextoKeyReleased
 
     private void buscarbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarbotonActionPerformed
-      
+      CU.mostrartabla(jComboBoxInstituto.getSelectedItem().toString());
     }//GEN-LAST:event_buscarbotonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -148,7 +150,7 @@ public class ConsultarCursos extends javax.swing.JInternalFrame {
 
     private void jComboBoxInstitutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxInstitutoItemStateChanged
         // TODO add your handling code here:
-        ControladorCurso.mostrartabla(jComboBoxInstituto.getSelectedItem().toString());
+        CU.mostrartabla(jComboBoxInstituto.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBoxInstitutoItemStateChanged
 
 public void listarinstitutos(){
