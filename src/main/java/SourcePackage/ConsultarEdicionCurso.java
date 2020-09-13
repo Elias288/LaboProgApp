@@ -81,6 +81,7 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBoxCursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBoxCursos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxCursosItemStateChanged(evt);
@@ -152,13 +153,13 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jComboBoxInstitutoItemStateChanged
 
-    private void jComboBoxCursosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCursosItemStateChanged
-        CC.mostrartabla2(jComboBoxCursos.getSelectedItem().toString());
-    }//GEN-LAST:event_jComboBoxCursosItemStateChanged
-
     private void jComboBoxCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCursosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCursosActionPerformed
+
+    private void jComboBoxCursosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCursosItemStateChanged
+        CC.mostrartabla2(jComboBoxCursos.getSelectedItem().toString());
+    }//GEN-LAST:event_jComboBoxCursosItemStateChanged
 
     public void listarinstitutos(){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
@@ -176,9 +177,8 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
         }
     }
 
-    public void listarcursos(String elemento){
+    public void listarcursos(String instituto){
         if(jComboBoxCursos.getItemCount() > 1){
-
             for(int i=0;i<jComboBoxCursos.getItemCount();i++){
                 jComboBoxCursos.removeItemAt(0);
             }
@@ -188,7 +188,7 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
 
         Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.instituto ins WHERE ins.Facultad LIKE :nameins");
-        query.setParameter("nameins", elemento);
+        query.setParameter("nameins", instituto);
 
         Iterator it = query.getResultList().iterator();
         curso cur= null;
@@ -197,9 +197,10 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
             while ( it.hasNext() ){
                 cur = (curso) it.next();
                 jComboBoxCursos.addItem(cur.getName());
+                jComboBoxCursos.repaint();
             }
         }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "no hay cursos.");;
+            System.out.println("no hay cursos");
         }  
     }
 

@@ -220,12 +220,8 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
     
     public void listarcursos(String instituto){
         if(jCBcurso.getItemCount() > 1){
-
-            for(int i=0;i<jCBcurso.getItemCount();i++){
-                jCBcurso.removeItemAt(0);
-            }
+            jCBcurso.removeAllItems();
             jCBcurso.addItem(" ");
-            jCBcurso.removeItemAt(0);
         }
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
 
@@ -239,6 +235,7 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
             while ( it.hasNext() ){
                 cur = (curso) it.next();
                 jCBcurso.addItem(cur.getName());
+                jCBcurso.repaint();
             }
         }catch (Exception e){
             System.out.println("no hay cursos");

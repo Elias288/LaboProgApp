@@ -21,7 +21,6 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
     public RegistroCurso() {
         initComponents();
         listarInstitutos();
-        listarDocente();
  
     }
 
@@ -125,6 +124,8 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         });
 
         jLabel10.setText("Docente");
+
+        jComboBoxDocente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -243,15 +244,10 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         em.close();
     }
     
-    
     public void listarcursos(String instituto){
         if(jComboBoxCursos.getItemCount() > 1){
-
-            for(int i=0;i<jComboBoxCursos.getItemCount();i++){
-                jComboBoxCursos.removeItemAt(0);
-            }
+            jComboBoxCursos.removeAllItems();
             jComboBoxCursos.addItem(" ");
-            jComboBoxCursos.removeItemAt(0);
         }
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
 
@@ -265,25 +261,35 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
             while ( it.hasNext() ){
                 cur = (curso) it.next();
                 jComboBoxCursos.addItem(cur.getName());
+                jComboBoxCursos.repaint();
             }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "no hay cursos.");
         }  
     }
     
-    public void listarDocente(){
+    public void listarDocente(String instituto){
+        int cant = jComboBoxDocente.getItemCount();
+        if(cant > 1){
+            jComboBoxDocente.removeAllItems();
+            jComboBoxDocente.addItem(" ");
+        }
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
-        Iterator it = em.createQuery("SELECT c FROM Docente c").getResultList().iterator();
+        Query query = em.createQuery("SELECT xd FROM Docente xd JOIN xd.instituto ins WHERE ins.Facultad LIKE :nameins");
+        query.setParameter("nameins", instituto);
+
+        Iterator it = query.getResultList().iterator();
         docente doc= null;
 
         try{
             while ( it.hasNext() ){
                 doc = (docente) it.next();
                 jComboBoxDocente.addItem(doc.getNN());
+                jComboBoxDocente.repaint();
             }
         }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "no hay docentes.");
+            JOptionPane.showMessageDialog(null, "Error!!!\nNo hay docentes.");
         }
     }
     
@@ -326,12 +332,8 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
             else{
                 CC.AltaCurso(name, instituto, descripcion , Url, duracion,horas, fecha, credits, CurList, docente);
                 JOptionPane.showMessageDialog( null, "Curso "+jTextFieldName.getText()+"\nAgregado Correctamente");
-            }
-            
+            }   
         }
-        
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -340,6 +342,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
 
     private void jCBinstitutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBinstitutoActionPerformed
         listarcursos(jCBinstituto.getSelectedItem().toString());
+        listarDocente(jCBinstituto.getSelectedItem().toString());
     }//GEN-LAST:event_jCBinstitutoActionPerformed
 
     private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
