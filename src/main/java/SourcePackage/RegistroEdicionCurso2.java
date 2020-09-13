@@ -5,32 +5,17 @@ import Clases.*;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
 public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
-
+    ControladorCurso CC = new ControladorCurso();
     /**
      * Creates new form RegistroCliente1
      */
     public RegistroEdicionCurso2() {
-     //   ControladorUsuario CU= new ControladorUsuario();
         initComponents();
-    //    jTextFieldInstituto.setVisible(false);
-     //   jLabel7.setVisible(false);
-        EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        
-        Iterator it = em.createQuery("SELECT xd FROM curso xd").getResultList().iterator();
-        curso ins= null;
-
-        try{
-            while ( it.hasNext() ){
-                ins = (curso) it.next();
-                jCBcurso.addItem(ins.getName());
-            }
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "no hay cursos.");
-        }
-        
+        listarinstitutos();
     }
 
     /**
@@ -57,6 +42,8 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
         jCBcurso = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jSpinnerCupos = new javax.swing.JSpinner();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setResizable(true);
         setTitle("Registro Edicion de Curso");
@@ -86,6 +73,7 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
             }
         });
 
+        jCBcurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jCBcurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBcursoActionPerformed(evt);
@@ -96,47 +84,64 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
 
         jSpinnerCupos.setModel(new javax.swing.SpinnerNumberModel(0, 0, 30, 1));
 
+        jLabel4.setText("Institutos");
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6)
-                                .addComponent(jBregistrar, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jBcancelar))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(53, 53, 53)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jDCfechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jDCfechaPub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jDCfechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(53, 53, 53)
-                                    .addComponent(jSpinnerCupos, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3))
-                            .addGap(43, 43, 43)
-                            .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel2))
-                    .addComponent(jCBcurso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jBregistrar, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jBcancelar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jDCfechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDCfechaPub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDCfechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(jSpinnerCupos, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(43, 43, 43)
+                        .addComponent(jTFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCBcurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBcurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -167,7 +172,7 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBcancelar)
                             .addComponent(jBregistrar))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -208,6 +213,54 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
     private void jCBcursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBcursoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBcursoActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        listarcursos(jComboBox1.getSelectedItem().toString());
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+    
+    public void listarcursos(String instituto){
+        if(jCBcurso.getItemCount() > 1){
+
+            for(int i=0;i<jCBcurso.getItemCount();i++){
+                jCBcurso.removeItemAt(0);
+            }
+            jCBcurso.addItem(" ");
+            jCBcurso.removeItemAt(0);
+        }
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+
+        Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.instituto ins WHERE ins.Facultad LIKE :nameins");
+        query.setParameter("nameins", instituto);
+
+        Iterator it = query.getResultList().iterator();
+        curso cur= null;
+
+        try{
+            while ( it.hasNext() ){
+                cur = (curso) it.next();
+                jCBcurso.addItem(cur.getName());
+            }
+        }catch (Exception e){
+            System.out.println("no hay cursos");
+        }  
+    }
+    
+    public void listarinstitutos(){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        Iterator it = em.createQuery("SELECT xd FROM instituto xd").getResultList().iterator();
+        instituto ins= null;
+
+        try{
+            while ( it.hasNext() ){
+                ins = (instituto) it.next();
+                jComboBox1.addItem(ins.getFacultad());
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "no hay institutos.");
+        }
+    }
+    
     public void limpiarForm(){
             jSpinnerCupos.setValue(0);
             jTFnombre.setText("");
@@ -221,12 +274,14 @@ public class RegistroEdicionCurso2 extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBcancelar;
     private javax.swing.JButton jBregistrar;
     private javax.swing.JComboBox<String> jCBcurso;
+    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDCfechaFin;
     private com.toedter.calendar.JDateChooser jDCfechaInicio;
     private com.toedter.calendar.JDateChooser jDCfechaPub;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

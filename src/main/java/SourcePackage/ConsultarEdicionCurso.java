@@ -3,25 +3,19 @@ package SourcePackage;
 import Clases.*;
 import java.util.Iterator;
 import javax.persistence.*;
+import javax.swing.JOptionPane;
 
 
 public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
-
+    ControladorCurso CC = new ControladorCurso();
     /**
      * Creates new form RegistroCliente1
      */
     public ConsultarEdicionCurso() {
-     //   ControladorUsuario CU= new ControladorUsuario();
         initComponents();
-        
         listarinstitutos();
-        
-    //    jTextFieldInstituto.setVisible(false);
-     //   jLabel7.setVisible(false);
-         //ControladorCurso.mostrartabla("");
     }
-
-      
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,7 +70,6 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBoxInstituto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBoxInstituto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxInstitutoItemStateChanged(evt);
@@ -88,7 +81,6 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBoxCursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBoxCursos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxCursosItemStateChanged(evt);
@@ -153,27 +145,22 @@ public class ConsultarEdicionCurso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBoxInstitutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxInstitutoActionPerformed
-        String insti= jComboBoxInstituto.getSelectedItem().toString();
-        listarcursos(insti);
+        listarcursos(jComboBoxInstituto.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBoxInstitutoActionPerformed
 
     private void jComboBoxInstitutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxInstitutoItemStateChanged
-        // TODO add your handling code here:
-//        String insti= jComboBoxInstituto.getSelectedItem().toString();
-//        System.out.println("antes");
-//        listarcursos(insti);
+        
     }//GEN-LAST:event_jComboBoxInstitutoItemStateChanged
 
     private void jComboBoxCursosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxCursosItemStateChanged
-        // TODO add your handling code here:
-        ControladorCurso.mostrartabla2(jComboBoxCursos.getSelectedItem().toString());
+        CC.mostrartabla2(jComboBoxCursos.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBoxCursosItemStateChanged
 
     private void jComboBoxCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCursosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCursosActionPerformed
 
-public void listarinstitutos(){
+    public void listarinstitutos(){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         Iterator it = em.createQuery("SELECT xd FROM instituto xd").getResultList().iterator();
@@ -185,38 +172,36 @@ public void listarinstitutos(){
                 jComboBoxInstituto.addItem(ins.getFacultad());
             }
         }catch (Exception e){
-            System.out.println("no hay Institutos");
+            JOptionPane.showMessageDialog(null, "no hay institutos.");
         }
     }
 
-public void listarcursos(String elemento){
-    System.out.println("Cantidad "+ jComboBoxCursos.getItemCount());
-    if(jComboBoxCursos.getItemCount() > 1){
-        System.out.println("if");
+    public void listarcursos(String elemento){
+        if(jComboBoxCursos.getItemCount() > 1){
 
-        for(int i=0;i<jComboBoxCursos.getItemCount();i++){
+            for(int i=0;i<jComboBoxCursos.getItemCount();i++){
+                jComboBoxCursos.removeItemAt(0);
+            }
+            jComboBoxCursos.addItem(" ");
             jComboBoxCursos.removeItemAt(0);
         }
-        jComboBoxCursos.addItem(" ");
-        jComboBoxCursos.removeItemAt(0);
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+
+        Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.instituto ins WHERE ins.Facultad LIKE :nameins");
+        query.setParameter("nameins", elemento);
+
+        Iterator it = query.getResultList().iterator();
+        curso cur= null;
+
+        try{
+            while ( it.hasNext() ){
+                cur = (curso) it.next();
+                jComboBoxCursos.addItem(cur.getName());
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "no hay cursos.");;
+        }  
     }
-    EntityManager em = PersistenceManager.getInstance().createEntityManager();
-
-    Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.instituto ins WHERE ins.Facultad LIKE :nameins");
-    query.setParameter("nameins", elemento);
-
-    Iterator it = query.getResultList().iterator();
-    curso cur= null;
-
-    try{
-        while ( it.hasNext() ){
-            cur = (curso) it.next();
-            jComboBoxCursos.addItem(cur.getName());
-        }
-    }catch (Exception e){
-        System.out.println("no hay cursos");
-    }  
-}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -81,7 +81,6 @@ public class ConsultarCursos extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBoxInstituto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBoxInstituto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxInstitutoItemStateChanged(evt);

@@ -9,6 +9,7 @@ SourcePackage\ModificarUsuarios.class
 Clases\edicionCurso.class
 SourcePackage\RegistroEdicionCurso2$1.class
 Clases\alumno.class
+SourcePackage\MostrarDatosUsuario$1.class
 SourcePackage\Inscribir$4.class
 SourcePackage\ModificarUsuarios$4.class
 SourcePackage\Main$15.class
@@ -44,6 +45,7 @@ SourcePackage\Inscribir$3.class
 SourcePackage\Main$17.class
 SourcePackage\RegistroEdicionCurso2$2.class
 SourcePackage\ModificarUsuarios$5.class
+SourcePackage\MostrarDatosUsuario$2.class
 Clases\ControladorCurso.class
 SourcePackage\AgregarCursoProgramaFormacion$1.class
 Clases\inscripcion.class

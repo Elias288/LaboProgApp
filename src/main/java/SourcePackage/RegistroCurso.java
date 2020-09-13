@@ -3,6 +3,7 @@ package SourcePackage;
 import Clases.*;
 import java.util.*;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 
@@ -20,7 +21,6 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
     public RegistroCurso() {
         initComponents();
         listarInstitutos();
-        listarCursos();
         listarDocente();
  
     }
@@ -57,7 +57,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         jSpinnerDuracion = new javax.swing.JSpinner();
         jCBinstituto = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jComboBoxCurso = new javax.swing.JComboBox<>();
+        jComboBoxCursos = new javax.swing.JComboBox<>();
         jButtonAgregarCurso = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jComboBoxDocente = new javax.swing.JComboBox<>();
@@ -115,7 +115,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Seleccione las Previas");
 
-        jComboBoxCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxCursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         jButtonAgregarCurso.setText("Agregar");
         jButtonAgregarCurso.addActionListener(new java.awt.event.ActionListener() {
@@ -152,12 +152,11 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
                                     .addComponent(jTextFieldURL)
                                     .addComponent(jTextFieldDesc)
                                     .addComponent(jTextFieldName)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jSpinnerCredits, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jSpinnerHour, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jSpinnerDuracion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)))
+                                    .addComponent(jSpinnerCredits)
+                                    .addComponent(jSpinnerHour)
+                                    .addComponent(jSpinnerDuracion, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jComboBoxCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jButtonAgregarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createSequentialGroup()
@@ -216,7 +215,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jComboBoxCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAgregarCurso))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -233,7 +232,6 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         
         Iterator it = em.createQuery("SELECT xd FROM instituto xd").getResultList().iterator();
         instituto ins= null;
-
         try{
             while ( it.hasNext() ){
                 ins = (instituto) it.next();
@@ -245,20 +243,32 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         em.close();
     }
     
-    public void listarCursos(){
+    
+    public void listarcursos(String instituto){
+        if(jComboBoxCursos.getItemCount() > 1){
+
+            for(int i=0;i<jComboBoxCursos.getItemCount();i++){
+                jComboBoxCursos.removeItemAt(0);
+            }
+            jComboBoxCursos.addItem(" ");
+            jComboBoxCursos.removeItemAt(0);
+        }
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        
-        Iterator it = em.createQuery("SELECT c FROM curso c").getResultList().iterator();
+
+        Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.instituto ins WHERE ins.Facultad LIKE :nameins");
+        query.setParameter("nameins", instituto);
+
+        Iterator it = query.getResultList().iterator();
         curso cur= null;
 
         try{
             while ( it.hasNext() ){
                 cur = (curso) it.next();
-                jComboBoxCurso.addItem(cur.getName());
+                jComboBoxCursos.addItem(cur.getName());
             }
         }catch (Exception e){
-            System.out.println("no hay Cursos");
-        }
+            JOptionPane.showMessageDialog(null, "no hay cursos.");
+        }  
     }
     
     public void listarDocente(){
@@ -273,12 +283,12 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
                 jComboBoxDocente.addItem(doc.getNN());
             }
         }catch (Exception e){
-            System.out.println("no hay Cursos");
+            JOptionPane.showMessageDialog(null, "no hay docentes.");
         }
     }
     
     public void cargarPrevias(){
-        String Cursoname = (String)jComboBoxCurso.getSelectedItem();
+        String Cursoname = (String)jComboBoxCursos.getSelectedItem();
         if(Cursoname.isBlank()){
             JOptionPane.showMessageDialog( null, "No hay cursos agregados");
         }else{
@@ -329,7 +339,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCBinstitutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBinstitutoActionPerformed
-        // TODO add your handling code here:
+        listarcursos(jCBinstituto.getSelectedItem().toString());
     }//GEN-LAST:event_jCBinstitutoActionPerformed
 
     private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
@@ -347,7 +357,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAgregarCurso;
     private javax.swing.JComboBox<String> jCBinstituto;
-    private javax.swing.JComboBox<String> jComboBoxCurso;
+    private javax.swing.JComboBox<String> jComboBoxCursos;
     private javax.swing.JComboBox<String> jComboBoxDocente;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooserDate;

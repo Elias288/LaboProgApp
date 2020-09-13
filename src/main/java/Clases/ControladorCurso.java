@@ -205,7 +205,7 @@ public class ControladorCurso {
         return lista;
     }
     
-    public  static void listaEdicionCurso(JTable tabla,String nickname){
+    public void listaEdicionCurso(JTable tabla,String nickname){
         DefaultTableModel model;
         String [] titulo = {"Nombre","Cupo","Fecha publicacion","Inicio periodo","Fin de periodo","Curso",};
         model= new DefaultTableModel(null,titulo);
@@ -230,7 +230,7 @@ public class ControladorCurso {
         
     }
    
-    public static void mostrartabla2(String nombres){
+    public void mostrartabla2(String nombres){
         listaEdicionCurso(ConsultarEdicionCurso.jTableEdicionCurso,nombres);
     }     
     
@@ -242,7 +242,7 @@ public class ControladorCurso {
       //  em.persist(Curs);
         
         alumno Alu = buscarAlumno(alumno);
-inscripcion ins=new inscripcion(Curs,Alu,fech);
+        inscripcion ins=new inscripcion(Curs,Alu,fech);
 
         
        em.persist(ins);
@@ -260,4 +260,5 @@ inscripcion ins=new inscripcion(Curs,Alu,fech);
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         return em.find(alumno.class,nombre);
     }
+    
 }
