@@ -62,28 +62,13 @@ public class ControladorUsuario {
         model= new DefaultTableModel(null,titulo);
         curso curs=null;
         List<usuario>datos = buscarusuario(nickname);
-        String [] datosusuarios = new String [7];
+        String [] datosusuarios = new String                   [7];
         for (usuario tbp : datos){
             
             datosusuarios[0]=tbp.getNN()+"";
             datosusuarios[1]=tbp.getName()+"";
             datosusuarios[2]=tbp.getLastName()+"";
-//            datosusuarios[3]=tbp.getDate()+"";
-//            datosusuarios[4]=tbp.getEmail()+"";
-            
-            //datosusuarios[6]=devolerins(tbp).getedicion().getNombre();
 
-//            EntityManager em = PersistenceManager.getInstance().createEntityManager();
-//            docente doc=em.find(docente.class,tbp.getNN());
-//            if (doc==null){
-//                datosusuarios[5]="null";
-////                datosusuarios[6]=devolercurso(tbp).getName();
-//            }else{
-//                String hola;
-//                hola=doc.getInstituto().getFacultad()+"";
-//                datosusuarios[5]=hola;
-////                datosusuarios[6]="null";
-//            }
             model.addRow(datosusuarios);
 
         }
