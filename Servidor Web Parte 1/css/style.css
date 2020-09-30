@@ -681,6 +681,36 @@ a {
       .podcast-entry .text {
         width: calc(100% - 300px); } }
 
+
+.podcast-entry2 {
+  -webkit-box-shadow: 0 5px 40px -10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 40px -10px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden; }
+  .podcast-entry2 .sep {
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #ccc; }
+    .podcast-entry2 .image {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 80px; }
+    @media (min-width: 20px) {
+      .podcast-entry2 .image {
+        width: 100px;
+        height: 80px; } }
+  .podcast-entry2 .text {
+    width: 90%;
+    padding: 20px; }
+    .podcast-entry2 .text a {
+      color: #3ca59d; }
+    @media (min-width: 200px) {
+      .podcast-entry2 .text {
+        width: calc(100%); } }
+
+
+
 .mejs__container {
   width: 100% !important; }
 
