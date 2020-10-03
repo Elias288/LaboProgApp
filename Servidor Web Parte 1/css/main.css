@@ -501,4 +501,34 @@ iframe {
     visibility: visible;
     opacity: 1;
   }
+
+.myButton {
+	box-shadow: 3px 4px 0px 0px #0f0f0f;
+	background:linear-gradient(to bottom, #e6e6e6 5%, #ffffff 100%);
+	background-color:#e6e6e6;
+	border-radius:5px;
+	border:1px solid #707070;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:12px 65px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
 }
+.myButton:hover {
+	background:linear-gradient(to bottom, #ffffff 5%, #e6e6e6 100%);
+	background-color:#ffffff;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+}
+
+
+        
