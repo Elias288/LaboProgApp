@@ -28,7 +28,50 @@ public class ControladorCurso {
         return doc;
     }
     
-    public void AltaCurso(String name, String instituto, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos, List<curso> CursoList, String docente){
+    public void AltaCategoria(String nombre){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+
+        List<categoria>insititutos = buscarCategorias(nombre);
+        
+        if(insititutos.size() == 1){
+            String newName =  JOptionPane.showInputDialog("La categoria "+nombre+" ya existe \n Desea modificar el nombre de la categoria?");
+            
+            if(!newName.isBlank()){
+                TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM categoria WHERE nombre =:names", Long.class);
+                queryId.setParameter("names", nombre);
+                long ides = queryId.getSingleResult();
+
+                try {
+                    categoria ins = em.find(categoria.class, ides);
+                    ins.Setnombre(newName);
+
+                    em.getTransaction().begin();
+                    em.persist(ins);
+                    em.getTransaction().commit();
+                    em.close();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                    em.getTransaction().rollback();
+                    em.close();
+                }
+                JOptionPane.showMessageDialog( null, "La Categoria " +nombre +" fue modificado correctamente");
+            }
+        }else{
+            categoria categ = new categoria();
+            categ.Setnombre(nombre);
+            
+            
+            em.getTransaction().begin();
+            em.persist(categ);
+            em.getTransaction().commit();
+            em.close();
+        }
+      
+        em.close();
+    }
+    
+    public void AltaCurso(String name, String instituto, String desc, String link, int duracion, int cantHoras, Date fecha, int creditos, List<curso> CursoList, String docente, 
+            List<categoria> cate){
         
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         curso cur = new curso();
@@ -44,6 +87,9 @@ public class ControladorCurso {
         cur.SetDescripcion(desc);
         cur.SetCantH(cantHoras);
         cur.SetInstituto(ins);
+        if(cate != null){
+            cur.SetCategoria(cate);
+        }
         if(CursoList != null){
             cur.SetPrevias(CursoList);
         }
@@ -72,6 +118,29 @@ public class ControladorCurso {
             
         }
         return lista;
+    }
+    
+    public List<categoria> buscarCategorias(String nombre){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        List<categoria>lista;
+
+        if(nombre.equals("")){
+            Query query = em.createQuery("SELECT xd FROM categoria xd");
+            lista = query.getResultList();
+        }
+        else{
+            Query query = em.createQuery("SELECT xd FROM categoria xd WHERE xd.nombre LIKE :nickname");
+            query.setParameter("nickname", nombre+"%");
+
+            lista = query.getResultList();
+            
+        }
+        return lista;
+    }
+    public categoria buscarCategoria(String nombre){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        return em.find(categoria.class,nombre);
     }
     
     public void AltaInstituto(String name){
@@ -136,7 +205,7 @@ public class ControladorCurso {
         }
     }
           
-    public static List<curso> buscarCurso(String nombreins){
+    public List<curso> buscarCurso(String nombreins){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         List<curso> lista;
@@ -157,7 +226,7 @@ public class ControladorCurso {
         return lista;
     }
     
-    public  static void listaCurso(JTable tabla,String nombreInstituto){
+    public void listaCurso(JTable tabla,String nombreInstituto){
         DefaultTableModel model;
         String [] titulo = {"Nombre Curso","Descripción","Duración","Creditos","Cantidad Horas"};
         model= new DefaultTableModel(null,titulo);
@@ -181,7 +250,7 @@ public class ControladorCurso {
         tabla.setModel(model);
     }
      
-    public static void mostrartabla(String nombres){
+    public void mostrartabla(String nombres){
         listaCurso(ConsultarCursos.jTable1,nombres);
     } 
     
@@ -254,6 +323,24 @@ public class ControladorCurso {
     public edicionCurso buscarEdicion(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         return em.find(edicionCurso.class,nombre);
+    }
+    public List<edicionCurso> buscarEdiciones(String nombre){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        List<edicionCurso>lista;
+
+        if(nombre.equals("")){
+            Query query = em.createQuery("SELECT xd FROM edicionCurso xd");
+            lista = query.getResultList();
+        }
+        else{
+            Query query = em.createQuery("SELECT xd FROM edicionCurso xd WHERE xd.nombre LIKE :nickname");
+            query.setParameter("nickname", nombre+"%");
+
+            lista = query.getResultList();
+            
+        }
+        return lista;
     }
     
     public alumno buscarAlumno(String nombre){

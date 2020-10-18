@@ -16,6 +16,9 @@ public class curso implements Serializable{
     protected int Creditos;
     
     @ManyToMany
+    protected List<categoria> cat;
+    
+    @ManyToMany
     protected List<curso> Previas;
     
     @ManyToOne
@@ -45,5 +48,6 @@ public class curso implements Serializable{
     public void SetCreditos(int cred){this.Creditos= cred;}
     public void SetInstituto(instituto ins){this.instituto=ins;}
     public void SetPrevias(List<curso> prev){this.Previas = prev;}
+    public void SetCategoria(List<categoria> cat){this.cat = cat;}
     
 }

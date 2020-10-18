@@ -223,8 +223,9 @@ public class MostrarDatosUsuario extends javax.swing.JInternalFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         ConsultarEdicionCurso CEC = new ConsultarEdicionCurso();
+        ControladorCurso CC = new ControladorCurso();
         Escritorio.add(CEC);
-        ControladorCurso.mostrartabla(jComboBox1.getSelectedItem().toString());
+        CC.mostrartabla(jComboBox1.getSelectedItem().toString());
         CEC.setVisible(true);
     }//GEN-LAST:event_jComboBox1ActionPerformed
 

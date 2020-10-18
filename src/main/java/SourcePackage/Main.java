@@ -6,7 +6,8 @@ import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 public class Main extends javax.swing.JFrame {
-    int i=0;
+    boolean usuarioB = false, institutoB = false, categoriaB = false, cursoB = false, edicionB = false;
+    
     /**
      * Creates new form Main
      */
@@ -42,6 +43,7 @@ public class Main extends javax.swing.JFrame {
         jMenuItemAgregarCursoPrograma = new javax.swing.JMenuItem();
         jMenuItemInscribirCursoPrograma = new javax.swing.JMenuItem();
         jMenuItemRegistrarEstudiantePrograma = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemConsultaUsuario = new javax.swing.JMenuItem();
         jMenuItemConsultaCurso = new javax.swing.JMenuItem();
@@ -171,6 +173,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jMenuRegistro.add(jMenuItemRegistrarEstudiantePrograma);
+
+        jMenuItem7.setText("Registrar Categoria");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenuRegistro.add(jMenuItem7);
 
         jMenuBar1.add(jMenuRegistro);
 
@@ -345,6 +355,12 @@ public class Main extends javax.swing.JFrame {
         ConsProg.setVisible(true); 
     }//GEN-LAST:event_jMenuItemConsultarProgramaActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        RegistroCategoria RC = new RegistroCategoria();
+        Escritorio.add(RC);
+        RC.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     public void CargarDatos(){
         ControladorUsuario CU = new ControladorUsuario();
         ControladorCurso CC = new ControladorCurso();
@@ -355,11 +371,11 @@ public class Main extends javax.swing.JFrame {
                 if("Eleli".equals(tbp.getNN()) || "Fran123".equals(tbp.getNN()) ||"Furta3".equals(tbp.getNN()) || 
                         "Gonzalius".equals(tbp.getNN()) || "ElProfe".equals(tbp.getNN()) || "LaChina".equals(tbp.getNN()) ||
                         "queCapo".equals(tbp.getNN())){
-                    i = 2;
+                    usuarioB = false;
                 }
             } 
         }else{
-            i = 1;
+            usuarioB = true;
         }
         
         List<instituto>insititutos = CC.buscarInstituto("");
@@ -367,26 +383,60 @@ public class Main extends javax.swing.JFrame {
             for (instituto tbp : insititutos){
                 if("Innova".equals(tbp.getFacultad()) || "ITSP".equals(tbp.getFacultad()) ||
                         "IFD".equals(tbp.getFacultad()) ){
-                    i = 2;
+                    categoriaB = false;
                 }
             } 
         }else{
-            i = 1;
+            categoriaB = true;
         }
         
+        List<categoria>cate = CC.buscarCategorias("");
+        if(!cate.isEmpty()){
+            for (categoria tbp : cate){
+                if("informatica".equals(tbp.Getnombre()) || "General".equals(tbp.Getnombre()) ){
+                    institutoB = false;
+                }
+            } 
+        }else{
+            institutoB = true;
+        }
         
-        if(i==1){
-            Date fechaE = new Date(100,4,5);
-            Date fechaF = new Date(97,12,19);
-            Date fechaJ = new Date(98,8,25);
-            Date fechaG = new Date(100,3,15);
-            Date fechaA = new Date(91,8,16);
-            Date fechaN = new Date(87,4,22);
-            
+        List<curso>cur = CC.buscarCurso("");
+        if(!cur.isEmpty()){
+//            for (curso tbp : cur){
+//                if("programacion".equals(tbp.getName()) || "Matematica".equals(tbp.getName()) || "Sebar mates".equals(tbp.getName())){
+                    cursoB = false;
+//                }
+//            } 
+        }else{
+            cursoB = true;
+        }
+        
+        List<edicionCurso>EdCur = CC.buscarEdiciones("");
+        if(!EdCur.isEmpty()){
+            for (edicionCurso tbp : EdCur){
+                if("PYE".equals(tbp.getNombre()) || "Programacion de aplicaciones 2020".equals(tbp.getNombre()) || 
+                        "chispa".equals(tbp.getNombre())){
+                     edicionB= false;
+                }
+            } 
+        }else{
+            edicionB = true;
+        }
+        
+        Date fechaE = new Date(100,4,5);
+        Date fechaF = new Date(97,12,19);
+        Date fechaJ = new Date(98,8,25);
+        Date fechaG = new Date(100,3,15);
+        Date fechaA = new Date(91,8,16);
+        Date fechaN = new Date(87,4,22);
+        
+        if(institutoB ){
             CC.AltaInstituto("Innova");
             CC.AltaInstituto("ITSP");
             CC.AltaInstituto("IFD");
-
+        }
+        if(usuarioB){
             CU.altaUsuario("Elias","Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
             CU.altaUsuario("Franccesco","Giordano","Fran123","Giordano@gmail.com", fechaF, false, "pene");
             CU.altaUsuario("Juan","Furtado","Furta3","Furtado@gmail.com", fechaJ, false, "pene");
@@ -395,23 +445,34 @@ public class Main extends javax.swing.JFrame {
             CU.altaUsuario("Nancy","Lopez","LaChina","LaChina@gmail.com", fechaN, true, "ITSP");
             CU.altaUsuario("Fernando","Gerfaou","queCapo","queCapo@gmail.com", fechaG, true, "Innova");
             
-            CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10, null, "ElProfe");
-            CC.AltaCurso("Matematica","Innova","matematiqueo","math.com",1,2,fechaA,10, null, "queCapo");
-            CC.AltaCurso("Sebar mates","ITSP","No acemo na wacho","google.com",1,2,fechaN,10, null, "LaChina");
+        }
+        if(categoriaB){
+            CC.AltaCategoria("informatica");
+            CC.AltaCategoria("General");
+        }
+        if(cursoB){            
+            CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10, null, "ElProfe", null);
+            CC.AltaCurso("Matematica","Innova","matematiqueo","math.com",1,2,fechaA,10, null, "queCapo", null);
+            CC.AltaCurso("Sebar mates","ITSP","No acemo na wacho","google.com",1,2,fechaN,10, null, "LaChina", null);
             
+        }
+        if(edicionB){
             CC.altaEdicion("PYE",fechaJ,fechaA,25,fechaN,"Matematica");
             CC.altaEdicion("Programacion de aplicaciones 2020",fechaJ,fechaA,25,fechaN,"programacion");
             CC.altaEdicion("chispa",fechaJ,fechaA,25,fechaN,"Sebar mates");
-            
+                    
             CC.Inscribir("Programacion de aplicaciones 2020", "Eleli", fechaN);
             CC.Inscribir("chispa", "Eleli", fechaN);
             CC.Inscribir("Programacion de aplicaciones 2020", "Fran123", fechaN);
             CC.Inscribir("Programacion de aplicaciones 2020", "Furta3", fechaN);
             CC.Inscribir("PYE", "Fran123", fechaN);
-            
-            JOptionPane.showMessageDialog( null, "Los datos de prueba fuero agregados correctamente");
-        }else
-            JOptionPane.showMessageDialog( null, "Error!!\nLos datos de prueba ya fueron cargados");
+        }
+        
+        if(usuarioB || institutoB || categoriaB || cursoB || edicionB){
+            JOptionPane.showMessageDialog( null, "Todos los datos de prueba ya fueron cargados");
+        }else{
+            JOptionPane.showMessageDialog( null, "Los datos de prueba fueron agregados correctamente");
+        }
     }
     
     /**
@@ -462,6 +523,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItemAgregarCursoPrograma;
     private javax.swing.JMenuItem jMenuItemAgregarPrograma;
     private javax.swing.JMenuItem jMenuItemConsultaCurso;
