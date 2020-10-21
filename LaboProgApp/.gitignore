@@ -1,0 +1,4 @@
+~*
+*.class
+*.conf.local
+/LabProgAppWA/target/
