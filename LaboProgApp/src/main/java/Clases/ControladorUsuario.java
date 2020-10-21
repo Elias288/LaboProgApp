@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class ControladorUsuario {
     
-    public void altaUsuario(String name, char[] passwd, String LastName, String NN, String Email, java.util.Date date, Boolean tipo, String instituto){
+    public void altaUsuario(String name, String passwd, String LastName, String NN, String Email, java.util.Date date, Boolean tipo, String instituto){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         ControladorUsuario CU = new ControladorUsuario();
         usuario usu;
@@ -106,7 +106,7 @@ public class ControladorUsuario {
         em.getTransaction().commit();
         em.close();
     }
-      
+    
     public usuario findusu(String ID){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
          
@@ -114,6 +114,14 @@ public class ControladorUsuario {
             return em.find(usuario.class,ID);
         }finally{
             em.close();
+        }
+    }
+    
+    public boolean findPass(usuario usu, String pass){
+        if(usu.getPass().equals(pass)){
+            return true;
+        }else{
+            return false;
         }
     }
     

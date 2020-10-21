@@ -27,28 +27,33 @@ public class VerificadorLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        ControladorUsuario cu = new ControladorUsuario();
+        ControladorUsuario CU = new ControladorUsuario();
         String user = request.getParameter("nickname");
-        String pass = request.getParameter("pass");
+        String passwd = request.getParameter("pass");
         
-        usuario usu = cu.findusu(user);
-        
+        usuario usu = CU.findusu(user);
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet VerificadorLogin El fran la come</title>");            
+            out.println("<title>VerificadorLogin</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet VerificadorLogin at " + request.getContextPath() + "</h1>");
-            out.println("<h1>User :" + user + "</h1>");
-            out.println("<h1>Passwd :" + pass + "El fran la come </h1>");
+//            out.println("<h1>User :" + user + "</h1>");
+//            out.println("<h1>Passwd :" + pass + "</h1>");
             if(usu == null)
-                out.println("El usuario no existe.");
-            else
-                out.println("El usuario existe.");
+                out.println("<h3>El usuario no existe.</h3>");
+            else{
+                out.println("<h3>El usuario existe.</h3>");
+                if(CU.findPass(usu, passwd))
+                    out.println("<h3>Contraseña correcta</h3>");
+                else
+                    out.println("<h3>Contraseña incorrecta</h3>");
+                
+            }
             out.println("</body>");
             out.println("</html>");
         }

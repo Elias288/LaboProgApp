@@ -243,7 +243,7 @@ public class RegistroUsuario1 extends javax.swing.JInternalFrame {
         String lastName = jTextFieldLastName.getText();
         String NN = jTextFieldNN.getText();
         String Email = jTextFieldEmail.getText();
-        char[] Passwd = jPasswordFieldPasswd.getPassword();
+        String Passwd = jPasswordFieldPasswd.getPassword().toString();
         java.util.Date date = jDateChooserDate.getDate();
         String Ins = (String)jComboBoxInstituto.getSelectedItem();
         

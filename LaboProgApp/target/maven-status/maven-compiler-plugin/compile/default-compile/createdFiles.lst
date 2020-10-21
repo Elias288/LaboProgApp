@@ -1,11 +1,15 @@
 SourcePackage\Main$4.class
 SourcePackage\RegistroUsuario1$2.class
 SourcePackage\ConsultarProgramaFormacion$3.class
+SourcePackage\RegistroCategoria$1.class
 SourcePackage\Main$1.class
 SourcePackage\RegistrarProgramaFormacion$1.class
+SourcePackage\RegistroCategoria.class
 SourcePackage\ModificarUsuarios$1.class
 SourcePackage\ConsultarEdicionCurso$3.class
 SourcePackage\ModificarUsuarios.class
+SourcePackage\Main$18.class
+SourcePackage\RegistroCurso$7.class
 Clases\edicionCurso.class
 SourcePackage\RegistroEdicionCurso2$1.class
 Clases\alumno.class
@@ -58,6 +62,9 @@ SourcePackage\Main.class
 SourcePackage\Main$11.class
 SourcePackage\RegistroEdicionCurso2$3.class
 SourcePackage\Main$8.class
+SourcePackage\RegistroCurso$6.class
+SourcePackage\RegistroUsuario1$6.class
+Clases\categoria.class
 SourcePackage\ConsultarUsuarios.class
 SourcePackage\ConsultarCursos$4.class
 SourcePackage\RegistroUsuario1$3.class
@@ -93,6 +100,7 @@ Clases\PersistenceManager.class
 SourcePackage\ConsultarCursos$2.class
 SourcePackage\MostrarDatosUsuario.class
 SourcePackage\Main$2.class
+SourcePackage\RegistroCategoria$2.class
 SourcePackage\ConsultarProgramaFormacion$5.class
 SourcePackage\Main$14.class
 SourcePackage\ConsultarUsuarios$1.class
