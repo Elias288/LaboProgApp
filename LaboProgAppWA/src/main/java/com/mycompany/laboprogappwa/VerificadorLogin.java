@@ -1,5 +1,7 @@
 package com.mycompany.laboprogappwa;
 
+import Clases.ControladorUsuario;
+import Clases.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,20 +22,33 @@ public class VerificadorLogin extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        ControladorUsuario cu = new ControladorUsuario();
+        String user = request.getParameter("nickname");
+        String pass = request.getParameter("pass");
+        
+        usuario usu = cu.findusu(user);
+        
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet VerificadorLogin</title>");            
+            out.println("<title>Servlet VerificadorLogin El fran la come</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet VerificadorLogin at " + request.getContextPath() + "</h1>");
-            out.println("<h1>User :" + request.getParameter("nickname") + "</h1>");
-            out.println("<h1>Passwd :" + request.getParameter("pass") + "</h1>");
+            out.println("<h1>User :" + user + "</h1>");
+            out.println("<h1>Passwd :" + pass + "El fran la come </h1>");
+            if(usu == null)
+                out.println("El usuario no existe.");
+            else
+                out.println("El usuario existe.");
             out.println("</body>");
             out.println("</html>");
         }
