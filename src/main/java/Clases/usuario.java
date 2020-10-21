@@ -17,6 +17,7 @@ public abstract class usuario {
     protected String nombre;
     protected String apellido;
     protected String correo;
+    protected String pass;
     protected java.util.Date  FechaNac;
     
     

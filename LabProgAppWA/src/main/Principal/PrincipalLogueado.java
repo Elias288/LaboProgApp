@@ -1,9 +1,14 @@
+package Principal;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
+import Clases.ControladorCurso;
+import Clases.ControladorUsuario;
+import Clases.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +16,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
 
 /**
  *
@@ -31,6 +38,14 @@ public class PrincipalLogueado extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        
+        String user = request.getParameter("nickname");
+        String pass = request.getParameter("pass");
+        
+        ControladorUsuario cu = new ControladorUsuario();
+        usuario usu = cu.findusu(user);
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -40,9 +55,20 @@ public class PrincipalLogueado extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet PrincipalLogueado at " + request.getContextPath() + "</h1>");
+            out.println("user: " +user +" pass: "+pass);
+            if(usu == null){
+                out.println("El usuario "+user+" es invalidoooooooooooooooooou :(");
+            }
+            else{
+                out.println("El usuario "+user+" no es invalido :)");
+            }
             out.println("</body>");
             out.println("</html>");
+            
+            
         }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
