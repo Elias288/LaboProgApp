@@ -430,6 +430,8 @@ public class Main extends javax.swing.JFrame {
         Date fechaG = new Date(100,3,15);
         Date fechaA = new Date(91,8,16);
         Date fechaN = new Date(87,4,22);
+        char[] contra1 = {'u','s','e','r','1','2','3'};
+        char[] contra2 = {'u','s','e','r','4','5','6'};
         
         if(institutoB ){
             CC.AltaInstituto("Innova");
@@ -437,13 +439,13 @@ public class Main extends javax.swing.JFrame {
             CC.AltaInstituto("IFD");
         }
         if(usuarioB){
-            CU.altaUsuario("Elias","Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
-            CU.altaUsuario("Franccesco","Giordano","Fran123","Giordano@gmail.com", fechaF, false, "pene");
-            CU.altaUsuario("Juan","Furtado","Furta3","Furtado@gmail.com", fechaJ, false, "pene");
-            CU.altaUsuario("Gonzalo","Buriano","Gonzalius","bianchi@gmail.com", fechaG, false, "pene");
-            CU.altaUsuario("Alvaro","Correa","ElProfe","Correa@gmail.com", fechaA, true, "Innova");
-            CU.altaUsuario("Nancy","Lopez","LaChina","LaChina@gmail.com", fechaN, true, "ITSP");
-            CU.altaUsuario("Fernando","Gerfaou","queCapo","queCapo@gmail.com", fechaG, true, "Innova");
+            CU.altaUsuario("Elias", contra1,"Bianchi","Eleli","bianchi@gmail.com", fechaE, false, "pene");
+            CU.altaUsuario("Franccesco", contra2,"Giordano","Fran123","Giordano@gmail.com", fechaF, false, "pene");
+            CU.altaUsuario("Juan", contra1,"Furtado","Furta3","Furtado@gmail.com", fechaJ, false, "pene");
+            CU.altaUsuario("Gonzalo", contra2,"Buriano","Gonzalius","bianchi@gmail.com", fechaG, false, "pene");
+            CU.altaUsuario("Alvaro", contra2,"Correa","ElProfe","Correa@gmail.com", fechaA, true, "Innova");
+            CU.altaUsuario("Nancy", contra1,"Lopez","LaChina","LaChina@gmail.com", fechaN, true, "ITSP");
+            CU.altaUsuario("Fernando", contra2,"Gerfaou","queCapo","queCapo@gmail.com", fechaG, true, "Innova");
             
         }
         if(categoriaB){

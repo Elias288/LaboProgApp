@@ -17,15 +17,16 @@ public abstract class usuario {
     protected String nombre;
     protected String apellido;
     protected String correo;
-    protected String pass;
+    protected char[] pass;
     protected java.util.Date  FechaNac;
     
     
-    public usuario(String name, String LastName, String NN, String Email, java.util.Date date){
+    public usuario(String name, char[] passwd, String LastName, String NN, String Email, java.util.Date date){
         this.FechaNac = date;
         this.apellido = LastName;
         this.nombre = name;
         this.nickname = NN;
+        this.pass = passwd;
         this.correo = Email;
     }
 
@@ -35,6 +36,7 @@ public abstract class usuario {
     public void setLN(String apellido){this.apellido=apellido;}
     public void setEmail(String Email){this.correo=Email;}
     public void setDate(Date fech){this.FechaNac=fech;}
+    public void setPass(char[] passwd){this.pass=passwd;}
     public String getName(){return this.nombre;}
     public String getLastName(){return this.apellido;}
     public String getEmail(){return this.correo;}

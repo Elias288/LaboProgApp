@@ -10,8 +10,8 @@ public class alumno extends usuario{
     @OneToMany 
      List<inscripcion> inscripciones ;
     
-    public alumno( String name, String LastName, String NN, String Email, java.util.Date date){
-        super(name, LastName, NN, Email, date);
+    public alumno( String name, char[] passwd, String LastName, String NN, String Email, java.util.Date date){
+        super(name, passwd, LastName, NN, Email, date);
     }
     
     public alumno(){}

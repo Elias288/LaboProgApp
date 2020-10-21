@@ -11,20 +11,20 @@ import javax.swing.table.DefaultTableModel;
 
 public class ControladorUsuario {
     
-    public void altaUsuario(String name, String LastName, String NN, String Email, java.util.Date date, Boolean tipo, String instituto){
+    public void altaUsuario(String name, char[] passwd, String LastName, String NN, String Email, java.util.Date date, Boolean tipo, String instituto){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         ControladorUsuario CU = new ControladorUsuario();
         usuario usu;
         
         if(!tipo){
-            usu = new alumno(name, LastName, NN, Email, date);
+            usu = new alumno(name, passwd, LastName, NN, Email, date);
         }else{
             TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM instituto WHERE Facultad =:names", Long.class);
             queryId.setParameter("names", instituto);
             long ides = queryId.getSingleResult();
 
             instituto ins = em.find(instituto.class, ides);
-            usu = new docente(name, LastName, NN, Email, date, ins);
+            usu = new docente(name, passwd, LastName, NN, Email, date, ins);
         }
         
         
