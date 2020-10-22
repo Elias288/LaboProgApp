@@ -1,3 +1,8 @@
+<%-- 
+    Document   : altaCurso
+    Created on : 22 oct. 2020, 15:43:43
+    Author     : nacho
+--%>
 <%@page import="Clases.usuario"%>
 <%@page import="Clases.ControladorUsuario"%>
 <%@page session="true"%>
@@ -93,7 +98,7 @@
                         <div class="has-children">
                             <h3 class="mb-4">Mi perfil ></h3>
                             <ul class="miperfil arrow-top" style="border: 2px solid">
-                                <li><a href="altaCurso.jsp">Menu One</a></li>
+                                <li><a href="#">Menu One</a></li>
                                 <li><a href="#">Menu Two</a></li>
                                 <li><a href="#">Menu Three</a></li>
                             </ul>
@@ -171,39 +176,63 @@
 
                 <div class="col-lg-9">
                     <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
-                            <div class="image" style="background-image: url('images/img-02.jpg');"></div>
-                            <div class="text">
-                                <h3 class="font-weight-light">
-                                    La segunda etapa consiste en que trabajen en grupo sobre el diseño e 
-                                    implementación de una experiencia didáctica de inclusion de robot Butiá 
-                                    en el aula, utilizando los conocimientos aprendidos en clase.
-                                    <a href="#" class="h10">leer mas</a>
-                                </h3>
-                            </div>
+                        <form action="altaCurso" method="POST">
+                            <table>
+                                <tr>
+                                    <td><p>Instituto:</p></td>
+                                    <td><input type="text" name="instituto"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Nombre del curso:</p></td>
+                                    <td><input type="text" name="nombre"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Descripción:</p></td>
+                                    <td><input type="text" name="descripcion"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Duración:</p></td>
+                                    <td><input type="text" name="duracion"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Horas:</p></td>
+                                    <td><input type="text" name="horas"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Créditos:</p></td>
+                                    <td><input type="text" name="creditos"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>URL:</p></td>
+                                    <td><input type="text" name="url"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Previas:</p></td>
+                                    <td><input type="text" name="previas"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Categorías:</p></td>
+                                    <td><input type="text" name="categorias"></td>
+                                </tr>
+                            </table>
+                            <p><button type="submit" name="btnSubmit">Registrar</button></p>
+                        </form> 
                     </div>
+                    
+                    <!--<div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
+                        <label for="cars">Choose a car:</label>
+                        <select name="cars" id="cars">
+                          <optgroup label="Swedish Cars">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                          </optgroup>
+                          <optgroup label="German Cars">
+                            <option value="mercedes">Mercedes</option>
+                            <option value="audi">Audi</option>
+                          </optgroup>
+                        </select>
+                    </div> ///COMBOBOX///  -->
 
-                    <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-                        <div class="image" style="background-image: url('images/img-03.jpg');"></div>
-                            <div class="text">
-                                <h3 class="font-weight-light">
-                                    <strong>Dalavuelta</strong> es un proyecto de extensión que nace en el Instituto 
-                                    de Ingeniría Macánica y Producción Industrial (IMPI) de Fing, que, si bien inicia 
-                                    su trabajo en el desarrollo de bicicletas accesibles para
-                                    <a href="#" class="h10">leer mas</a>
-                                </h3>
-                            </div>
-                    </div>
-
-                    <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-                        <div class="image" style="background-image: url('images/img-04.png');"></div>
-                        <div class="text">
-                            <h3 class="font-weight-light">
-                                <strong>Flor de Ceibo</strong> es un proyecto central de la Universidad de la República, 
-                                que tiene misión por movilizar la participación de estudiantes universitarios en 
-                                <a href="#" class="h10">leer mas</a>
-                            </h3>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
