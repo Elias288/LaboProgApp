@@ -1,3 +1,7 @@
+<%@page import="Clases.usuario"%>
+<%@page import="Clases.ControladorUsuario"%>
+<%@page session="true"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +33,10 @@
 
   </head>
 <body>
+    
+    <!--Valida sesion -->
+    <%HttpSession sesion = request.getSession();%>
+    
     <header class="site-navbar py-4" role="banner" >
         <div class="container">
             <div class="row align-items-center" style="border-bottom: 2px solid">
@@ -44,8 +52,23 @@
                         </div>
 
                         <ul class="site-menu js-clone-nav d-none d-lg-block">
-                            <li class="active"><a href="index.html">Home</a></li>
-                            <li><a href="login.jsp">Login / Register</a></li>
+                            <!--HOME-->
+                            <li class="active">
+                                <a href="index.html">Home</a>
+                            </li>
+                            
+                                <%
+                                    if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
+                                        ControladorUsuario CU = new ControladorUsuario();
+                                        usuario usu = CU.findusu(sesion.getAttribute("user").toString());
+                                        out.println("<li class='active'><a href='User.html'>" + usu.getNN() +"</a></li>");
+                                        out.println("<li class='active'></a></li>");
+                                    }else{
+                                        out.println("<li><a href='login.jsp'>Login / Register</a></li>");
+                                        //out.println("<script>location.replace('login.jsp');</script>");
+                                    }
+                                %>
+                                
                         </ul>
                     </nav>
 
@@ -61,13 +84,21 @@
     <div class="site-section">
       	<div class="container">
             <div class="row">
-                <div class="col-lg-3" style="border: 2px solid">
+                
+                <!-- PERFIL NO INICIADO -->
+                <%
+                    if(sesion.getAttribute("user")==null && sesion.getAttribute("nivel")==null){
+                        out.println("<div class='col-lg-3' style='border: 2px solid'>");
+                    }else
+                        out.println("<div class='col-lg-3' style='border: 2px solid; display: none'>");
+                %>
+                <!--<div class="col-lg-3" style="border: 2px solid; display: none" >-->
                     <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
                         <h3 class="mb-4">Institutos</h3>
                         <ul class="list-unstyled">
                             <li>
                                 <a href="#" class="d-flex align-items-center">
-                                        <div class="podcaster"><span class="d-block">INCO</span></div>
+                                    <div class="podcaster"><span class="d-block">INCO</span></div>
                                 </a>
                             </li>
                             <li>
@@ -124,6 +155,94 @@
                         </ul>
                     </div>
                 </div>
+                
+                <!-- PERFIL INICIADO-->
+                <%
+                    if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
+                        out.println("<div class='col-lg-3' style='border: 2px solid'>");
+                    }else
+                        out.println("<div class='col-lg-3' style='border: 2px solid; display: none'>");
+                %>
+                <!--<div class="col-lg-3" style="border: 2px solid">-->
+                    <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
+                        <div class="has-children">
+                            <h3 class="mb-4">Mi perfil ></h3>
+                            <ul class="miperfil arrow-top" style="border: 2px solid">
+                                <li><a href="#">Menu One</a></li>
+                                <li><a href="#">Menu Two</a></li>
+                                <li><a href="#">Menu Three</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
+                        <h3 class="mb-4">Inscripciones</h3>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#" class="d-flex align-items-center">
+                                    <div class="podcaster"><span class="d-block">Inscribirme</span></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex align-items-center">
+                                    <div class="podcaster"><span class="d-block">Ver resultados</span></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
+                        <h3 class="mb-4">Institutos</h3>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#" class="d-flex align-items-center">
+                                    <div class="podcaster"><span class="d-block">INCO</span></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex align-items-center">
+                                    <div class="podcaster"><span class="d-block">IMERL</span></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex align-items-center">
+                                    <div class="podcaster"><span class="d-block">Fisica</span></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
+                        <h3 class="mb-4">CATEGORIAS</h3>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#" class="d-flex align-items-center">
+                                    <div class="podcaster"><span class="d-block">Social</span></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex align-items-center">
+                                    <div class="podcaster"><span class="d-block">Industrial</span></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex align-items-center">
+                                    <div class="podcaster"><span class="d-block">Educativos</span></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex align-items-center">
+                                    <div class="podcaster"><span class="d-block">Interdiciplinario</span></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="featured-user  mb-5 mb-lg-0">
+                        <% out.println("<a href='login.jsp?cerrar=true'class='mb-4'>Salir <i class='glyphicon glyphicon-log-out' aria-hidden='true'></i></a>"); %>
+                        
+                    </div>
+                </div>
 
                 <div class="col-lg-9">
                     <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
@@ -165,3 +284,4 @@
         </div>
     </div>
 </body>
+
