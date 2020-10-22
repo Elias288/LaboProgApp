@@ -62,12 +62,12 @@
                                     case 1:
                                         sesion.setAttribute("user", user);
                                         sesion.setAttribute("nivel", "1");
-                                        response.sendRedirect("indexDocente.jsp");
+                                        response.sendRedirect("index.jsp");
                                         break;
                                     case 2:
                                         sesion.setAttribute("user", user);
                                         sesion.setAttribute("nivel", "2");
-                                        response.sendRedirect("indexAlumno.jsp");
+                                        response.sendRedirect("index.jsp");
                                         break;
                                     default:
                                         out.println("Usuario invalido o contraseña invalida");
