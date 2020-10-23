@@ -90,9 +90,6 @@
                     String tipo = sesion.getAttribute("nivel").toString();
                     if(tipo.equals("1"))
                         out.println("<li><a href='altaCurso.jsp'>Agregar curso</a></li>");
-                    /*else
-                        out.println("<li><a href='altaCurso.jsp'>Ver curso</a></li>");
-                    */
                 %>
                     <li><a href="#">Menu Two</a></li>
                     <li><a href="#">Menu Three</a></li>
