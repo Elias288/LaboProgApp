@@ -12,14 +12,7 @@ public class Operaciones {
         
         if(usu != null){
             if(CU.findPass(usu, passwd)){
-                
-                EntityManager em = PersistenceManager.getInstance().createEntityManager();
-                docente doc=em.find(docente.class,usu.getNN());
-                
-                if (doc!=null)
-                    tipo = 1; //el usuario es docente
-                else
-                    tipo = 2; //el usuario es alumno
+                tipo = CU.tipoUsuario(usu.getNN());
             }
         }
         

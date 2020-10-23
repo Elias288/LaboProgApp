@@ -59,12 +59,12 @@
                                 HttpSession sesion = request.getSession();
 
                                 switch(OP.loguear(user, passwd)){
-                                    case 1:
+                                    case 1: //el usuario es docente
                                         sesion.setAttribute("user", user);
                                         sesion.setAttribute("nivel", "1");
                                         response.sendRedirect("index.jsp");
                                         break;
-                                    case 2:
+                                    case 2: //el usuario es alumno
                                         sesion.setAttribute("user", user);
                                         sesion.setAttribute("nivel", "2");
                                         response.sendRedirect("index.jsp");

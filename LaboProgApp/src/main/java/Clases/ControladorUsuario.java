@@ -134,4 +134,18 @@ public class ControladorUsuario {
           return true;
         }
     }
+    
+    public int tipoUsuario(String NN){
+        int tipo=0;
+        
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        docente doc=em.find(docente.class,NN);
+
+        if (doc!=null)
+            tipo = 1; //el usuario es docente
+        else
+            tipo = 2; //el usuario es alumno
+            
+        return tipo;
+    }
 }
