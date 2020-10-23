@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 <%@page import="Clases.usuario"%>
 <%@page import="Clases.ControladorUsuario"%>
+=======
+>>>>>>> 97dca18d8722a8ca6fdd8d75f3bdb2adbe8d6aac
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%HttpSession sesion = request.getSession();%>
@@ -86,11 +89,15 @@
             <div class="has-children">
                 <h3 class="mb-4">Mi perfil ></h3>
                 <ul class="miperfil arrow-top" style="border: 2px solid">
+<<<<<<< HEAD
                 <% 
                     String tipo = sesion.getAttribute("nivel").toString();
                     if(tipo.equals("1"))
                         out.println("<li><a href='altaCurso.jsp'>Agregar curso</a></li>");
                 %>
+=======
+                    <li><a href="altaCurso.jsp">Agregar curso</a></li>
+>>>>>>> 97dca18d8722a8ca6fdd8d75f3bdb2adbe8d6aac
                     <li><a href="#">Menu Two</a></li>
                     <li><a href="#">Menu Three</a></li>
                 </ul>
