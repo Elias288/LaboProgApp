@@ -215,7 +215,11 @@
                                     <td><input type="text" name="categorias"></td>
                                 </tr>
                             </table>
-                            <p><button type="submit" name="btnSubmit">Registrar</button></p>
+                                <%
+                                        ControladorUsuario CU = new ControladorUsuario();
+                                        usuario usu = CU.findusu(sesion.getAttribute("user").toString());
+                                        out.println("<p><button type=\"submit\" name=\"btnSubmit\" value=\"" + usu.getNN() +"\">Registrar</button></p>");
+                                %>  
                         </form> 
                     </div>
                     

@@ -41,7 +41,7 @@
         <div class="container">
             <div class="row align-items-center" style="border-bottom: 2px solid">
                 <div class="col-3">
-                    <h1 class="site-logo"><a href="index.html" class="h2">ed<span class="text-primary">EXT</span> </a></h1>
+                    <h1 class="site-logo"><a href="index.jsp" class="h2">ed<span class="text-primary">EXT</span> </a></h1>
                 </div>
                 <div class="col-9">
                     <nav class="site-navigation position-relative text-right text-md-right" role="navigation">
@@ -54,7 +54,7 @@
                         <ul class="site-menu js-clone-nav d-none d-lg-block">
                             <!--HOME-->
                             <li class="active">
-                                <a href="index.html">Home</a>
+                                <a href="index.jsp">Home</a>
                             </li>
                             
                                 <%
@@ -168,7 +168,7 @@
                         <div class="has-children">
                             <h3 class="mb-4">Mi perfil ></h3>
                             <ul class="miperfil arrow-top" style="border: 2px solid">
-                                <li><a href="#">Menu One</a></li>
+                                <li><a href="altaCurso.jsp">Agregar curso</a></li>
                                 <li><a href="#">Menu Two</a></li>
                                 <li><a href="#">Menu Three</a></li>
                             </ul>

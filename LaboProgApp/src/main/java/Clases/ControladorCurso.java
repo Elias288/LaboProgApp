@@ -348,4 +348,40 @@ public class ControladorCurso {
         return em.find(alumno.class,nombre);
     }
     
+    public List<categoria> cargarCategoria (List<String> nomCategoria){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+
+        List<categoria> CatList = new ArrayList<>();
+        
+        Iterator iter = nomCategoria.iterator();
+        while(iter.hasNext()){
+            TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM categoria WHERE nombre LIKE :names", Long.class);
+            queryId.setParameter("names", iter.next());
+            long ides = queryId.getSingleResult();
+
+            categoria cat = em.find(categoria.class, ides);
+
+            CatList.add(cat);
+        }
+        em.close();
+        return CatList;
+    }
+    
+    public List<curso> cargarCurso (List<String> nomCurso){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+
+        List<curso> CurList = new ArrayList<>();
+        Iterator iter = nomCurso.iterator();
+        while(iter.hasNext()){
+            TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM curso WHERE nombre LIKE :names", Long.class);
+            queryId.setParameter("names", iter.next());
+            long ides = queryId.getSingleResult();
+
+            curso cat = em.find(curso.class, ides);
+
+            CurList.add(cat);
+        }
+        em.close();
+        return CurList;
+    }
 }

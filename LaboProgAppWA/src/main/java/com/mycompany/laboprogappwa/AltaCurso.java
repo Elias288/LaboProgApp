@@ -5,14 +5,21 @@
  */
 package com.mycompany.laboprogappwa;
 
+import java.util.*;
 import Clases.ControladorCurso;
+import Clases.PersistenceManager;
+import Clases.categoria;
+import Clases.curso;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,9 +41,14 @@ public class AltaCurso extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String instituto, nombre, descripcion, duracion, horas, creditos, url;
+        List<curso> CurList = new ArrayList<>();
+        List<categoria> CatList = new ArrayList<>();
+        List<String> listNomCurso = new ArrayList<>();
+        List<String> listNomCat = new ArrayList<>();
+        String instituto, nombre, descripcion, duracion, horas, creditos, url,docente;
         String previas[], categorias[];
         
+        docente = request.getParameter("btnSubmit");
         instituto = request.getParameter("instituto");
         nombre = request.getParameter("nombre");
         descripcion= request.getParameter("descripcion");
@@ -49,7 +61,22 @@ public class AltaCurso extends HttpServlet {
         
         ControladorCurso cc = new ControladorCurso();
         
-        //cc.AltaCurso(nombre, instituto, descripcion, url, 0, 0, int. fecha, 0, CursoList, nombre, cate);
+        Date date=java.util.Calendar.getInstance().getTime();
+        
+        for(int f = 0;f < previas.length;f++){
+            listNomCurso.add(previas[f]);
+            
+        }
+        for(int f = 0;f < categorias.length;f++){
+            listNomCat.add(categorias[f]);
+        }
+        
+        CurList = cc.cargarCurso(listNomCurso);
+        CatList = cc.cargarCategoria(listNomCat);
+        
+        //verificar si ya existe el curso
+        
+        cc.AltaCurso(nombre, instituto, descripcion, url, Integer.parseInt(duracion), Integer.parseInt(horas), date, Integer.parseInt(creditos), CurList, docente, CatList);
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -60,20 +87,26 @@ public class AltaCurso extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
-            out.println("dato 1: "+instituto);
-            out.println("dato 2: "+nombre);
-            out.println("dato 3: "+descripcion);
-            out.println("dato 4: "+duracion);
-            out.println("dato 5: "+horas);
-            out.println("dato 6: "+creditos);
-            out.println("dato 7: "+url);
-            for(int f=0;f<previas.length;f++){
-                out.println("dato 8: "+previas[f]);
+            out.println("dato 1: "+instituto+"<br>");
+            out.println("dato 2: "+nombre+"<br>");
+            out.println("dato 2.2: "+docente+"<br>");
+            out.println("dato 3: "+descripcion+"<br>");
+            out.println("dato 4: "+duracion+"<br>");
+            out.println("dato 5: "+horas+"<br>");
+            out.println("dato 6: "+creditos+"<br>");
+            out.println("dato 7: "+url+"<br>");
+            Iterator iter = CurList.iterator();
+            while(iter.hasNext()){
+                curso cur = (curso)iter.next();
+                out.println("dato 8: "+ cur.getName()+"<br>");
             }
-            for(int f=0;f<categorias.length;f++){
-                out.println("dato 9: "+categorias[f]);
+            Iterator iter2 = CatList.iterator();
+            while(iter2.hasNext()){
+                categoria cat = (categoria)iter2.next();
+                out.println("dato 9: "+ cat.Getnombre()+"<br>");
+                
             }
-            out.println("fin de los datos");
+            out.println("fin de los datos <br>");
             out.println("</body>");
             out.println("</html>");
         }
