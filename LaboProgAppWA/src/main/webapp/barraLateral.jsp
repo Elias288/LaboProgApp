@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 <%@page import="Clases.usuario"%>
 <%@page import="Clases.ControladorUsuario"%>
-=======
->>>>>>> 97dca18d8722a8ca6fdd8d75f3bdb2adbe8d6aac
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%HttpSession sesion = request.getSession();%>
@@ -84,27 +81,41 @@
         }else
             out.println("<div class='col-lg-3' style='border: 2px solid; display: none'>");
     %>
-    <!--<div class="col-lg-3" style="border: 2px solid">-->
+    
+        <!--MI PERFIL-->
         <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
             <div class="has-children">
                 <h3 class="mb-4">Mi perfil ></h3>
                 <ul class="miperfil arrow-top" style="border: 2px solid">
-<<<<<<< HEAD
-                <% 
-                    String tipo = sesion.getAttribute("nivel").toString();
-                    if(tipo.equals("1"))
-                        out.println("<li><a href='altaCurso.jsp'>Agregar curso</a></li>");
-                %>
-=======
-                    <li><a href="altaCurso.jsp">Agregar curso</a></li>
->>>>>>> 97dca18d8722a8ca6fdd8d75f3bdb2adbe8d6aac
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
+                    <li><a href='User.html'>Gestionar</a></li>
+                    <% 
+                        if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){ //si la sesion esta iniciada
+                            String tipo = sesion.getAttribute("nivel").toString();
+                            if(tipo.equals("1")){ //si el tipo es profesor
+                                out.println("<li><a href='#'>Menu one</a></li>");
+                                out.println("<li><a href='#'>Menu two</a></li>");
+                                out.println("<li><a href='#'>Menu three</a></li>");
+                                out.println("<li><a href='SelEstEdCur.jsp'>seleccionar alumno</a></li>"); //temporal
+                            }else{
+                                out.println("<li><a href='#'>Menu one</a></li>");
+                                out.println("<li><a href='#'>Menu two</a></li>");
+                                out.println("<li><a href='#'>Menu three</a></li>");
+                            }
+                        }
+                    %>
                 </ul>
             </div>
         </div>
-
-        <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
+                
+        <!--INSCRIPCIONES (ALUMNO)-->
+        <%
+            String tipo = sesion.getAttribute("nivel").toString();
+            if(tipo.equals("2")){ //si el tipo es alumno
+                out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid'>");
+            }else
+                out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid; display: none'>");
+        %>
+        
             <h3 class="mb-4">Inscripciones</h3>
             <ul class="list-unstyled">
                 <li>
@@ -115,6 +126,34 @@
                 <li>
                     <a href="#" class="d-flex align-items-center">
                         <div class="podcaster"><span class="d-block">Ver resultados</span></div>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <!--CURSOS (PROFESOR)-->
+        <%
+            if(tipo.equals("1")){ //si el tipo es profesor
+                out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid'>");
+            }else
+                out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid; display: none'>");
+        %>
+            <h3 class="mb-4">Cursos</h3>
+            <ul class="list-unstyled">
+                <li>
+                    <a href="altaCurso.jsp" class="d-flex align-items-center">
+                        <div class="podcaster"><span class="d-block">Alta Curso</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="d-flex align-items-center">
+                        <div class="podcaster"><span class="d-block">Alta Edición</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="d-flex align-items-center">
+                        <div class="podcaster"><span class="d-block">Alta Programa</span></div>
                     </a>
                 </li>
             </ul>

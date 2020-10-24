@@ -54,16 +54,14 @@
 
                         <ul class="site-menu js-clone-nav d-none d-lg-block">
                             <!--HOME-->
-                            <li class="active">
-                                <a href="index.jsp">Home</a>
-                            </li>
+                            <li class="active"><a href="index.jsp">Home</a></li>
                             
                                 <%
                                     if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
                                         ControladorUsuario CU = new ControladorUsuario();
                                         usuario usu = CU.findusu(sesion.getAttribute("user").toString());
                                         String tipo = sesion.getAttribute("nivel").toString();
-                                        out.println("<li class='active'><a href='User.html'>" + usu.getNN() + tipo+"</a></li>");
+                                        out.println("<li class='active'><a href='User.html'>" + usu.getNN() + " " + tipo+"</a></li>");
                                         out.println("<li class='active'></a></li>");
                                     }else{
                                         out.println("<li><a href='login.jsp'>Login / Register</a></li>");
