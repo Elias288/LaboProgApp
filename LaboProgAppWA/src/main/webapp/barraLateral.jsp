@@ -1,8 +1,18 @@
+<%@page import="Clases.categoria"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="com.mycompany.laboprogappwa.Operaciones"%>
+<%@page import="Clases.instituto"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
 <%@page import="Clases.usuario"%>
 <%@page import="Clases.ControladorUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%HttpSession sesion = request.getSession();%>
+<%
+    HttpSession sesion = request.getSession();
+    Operaciones OP = new Operaciones();
+%>
+
 <!-- PERFIL NO INICIADO -->
     <%
         if(sesion.getAttribute("user")==null && sesion.getAttribute("nivel")==null){
@@ -14,62 +24,37 @@
         <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
             <h3 class="mb-4">Institutos</h3>
             <ul class="list-unstyled">
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">INCO</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">IMERL</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">Fisica</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">IMPII</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">Electrica</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">DISI</span></div>
-                    </a>
-                </li>
+                
+                <!--LISAR INSTITUTOS-->
+                <%
+                    List<instituto>listaIns = OP.institutos();
+                    Iterator itIns = listaIns.iterator();
+                    instituto ins = null;
+                    while(itIns.hasNext()){
+                        ins = (instituto) itIns.next();
+                        out.println("<li><a href='#' class='d-flex align-items-center'>");
+                        out.println("<div class='podcaster'><span class='d-block'>" + ins.getFacultad() + "</span></div>");
+                        out.println("</a></li>");
+                    }
+                %>
             </ul>
         </div>
 
         <div class="featured-user  mb-5 mb-lg-0">
-            <h3 class="mb-4">CATEGORIAS</h3>
+            <h3 class="mb-4">CATEGORÍAS</h3>
             <ul class="list-unstyled">
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">Social</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">Industrial</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">Educativos</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">Interdiciplinario</span></div>
-                    </a>
-                </li>
+                
+                <%
+                    List<categoria>listaCate = OP.categoria();
+                    Iterator itCate = listaCate.iterator();
+                    categoria cat = null;
+                    while(itCate.hasNext()){
+                        cat = (categoria) itCate.next();
+                        out.println("<li><a href='#' class='d-flex align-items-center'>");
+                        out.println("<div class='podcaster'><span class='d-block'>" + cat.Getnombre() + "</span></div>");
+                        out.println("</a></li>");
+                    }
+                %>
             </ul>
         </div>
     </div>
@@ -109,9 +94,12 @@
                 
         <!--INSCRIPCIONES (ALUMNO)-->
         <%
-            String tipo = sesion.getAttribute("nivel").toString();
-            if(tipo.equals("2")){ //si el tipo es alumno
-                out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid'>");
+            if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){ //si la sesion esta iniciada
+                String tipo = sesion.getAttribute("nivel").toString();
+                if(tipo.equals("2")){ //si el tipo es alumno
+                    out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid'>");
+                }else
+                    out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid; display: none'>");
             }else
                 out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid; display: none'>");
         %>
@@ -134,8 +122,12 @@
         
         <!--CURSOS (PROFESOR)-->
         <%
-            if(tipo.equals("1")){ //si el tipo es profesor
-                out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid'>");
+            if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){ //si la sesion esta iniciada
+                String tipo = sesion.getAttribute("nivel").toString();
+                if(tipo.equals("1")){ //si el tipo es profesor
+                    out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid'>");
+                }else
+                    out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid; display: none'>");
             }else
                 out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid; display: none'>");
         %>
@@ -181,7 +173,7 @@
         </div>
 
         <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
-            <h3 class="mb-4">CATEGORIAS</h3>
+            <h3 class="mb-4">CATEGORÍAS</h3>
             <ul class="list-unstyled">
                 <li>
                     <a href="#" class="d-flex align-items-center">

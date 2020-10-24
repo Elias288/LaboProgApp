@@ -44,50 +44,7 @@
     
     <header class="site-navbar py-4" role="banner" >
         <div class="container">
-            <div class="row align-items-center" style="border-bottom: 2px solid">
-                <div class="col-3">
-                    <h1 class="site-logo"><a href="index.html" class="h2">ed<span class="text-primary">EXT</span> </a></h1>
-                </div>
-                <div class="col-9">
-                    <nav class="site-navigation position-relative text-right text-md-right" role="navigation">
-                        <div class="d-block d-lg-none ml-md-0 mr-auto" >
-                            <a href="#" class="site-menu-toggle js-menu-toggle text-black" >
-                                <span class="icon-menu h3"></span>
-                            </a>
-                        </div>
-
-                        <ul class="site-menu js-clone-nav d-none d-lg-block">
-                            <!--HOME-->
-                            <li class="active">
-                                <a href="index.html">Home</a>
-                            </li>
-                            
-                            <!--Nombre de usuario-->
-                            <li class="active">
-                                <%
-                                    if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
-                                        ControladorUsuario CU = new ControladorUsuario();
-                                        usuario usu = CU.findusu(sesion.getAttribute("user").toString());
-                                        out.println("<a href='User.html'>" + usu.getNN() +"</a>");
-                                    }else
-                                        out.println("<script>location.replace('login.jsp');</script>");
-                                %>
-                            </li>
-                            
-                            <!--Imagen de Usuario-->
-                            <li>
-                                <!--Falta implementarlo-->
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <div class="buscador" style="margin-bottom: 3rem!important; display: flex; flex-direction: row-reverse; max-width: 60%">
-                        <input type="submit" value="Buscar" style="padding: 5px 15px; margin-left: 15px; font-size: medium;">
-                        <input type="search" name="busqueda" placeholder="Cursos, Programas" style=" padding-left: 10px; flex: 1; border: 1px solid; font-size: medium;">
-                    </div>
-                </div>
-            </div>
-        </div>  
+            <jsp:include page="barraLateral.jsp" />  
     </header>
 
     <div class="site-section">
