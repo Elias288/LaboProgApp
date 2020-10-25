@@ -225,6 +225,16 @@ public class ControladorCurso {
         }
         return lista;
     }
+    public curso findCurso(String nombre){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        TypedQuery<Long> queryId = em.createQuery("SELECT id FROM curso WHERE nombre =:names", Long.class);
+        queryId.setParameter("names", nombre);
+        long ides = queryId.getSingleResult();
+        
+        curso cur = em.find(curso.class, ides);
+        return cur;
+    }
+    
     
     public void listaCurso(JTable tabla,String nombreInstituto){
         DefaultTableModel model;

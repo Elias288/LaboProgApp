@@ -1,3 +1,4 @@
+<%@page import="com.mycompany.laboprogappwa.Operaciones"%>
 <%@page import="Clases.usuario"%>
 <%@page import="Clases.ControladorUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -36,7 +37,13 @@
     <body>
         
         <!--Valida sesion -->
-        <%HttpSession sesion = request.getSession();
+        <%
+            HttpSession sesion = request.getSession();
+            Operaciones OP = new Operaciones();
+            
+            out.println(OP.CursoDeEdCur("agagr"));
+            out.println(OP.insitutoCur("programacion"));
+            
             if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
                 String tipo = sesion.getAttribute("nivel").toString();
                 if(!tipo.equals("1")) //si el tipo no es profesor
@@ -46,7 +53,7 @@
         %>
 	
         <header class="site-navbar py-4" role="banner" >
-            <jsp:include page="barraLateral.jsp" />  
+            <jsp:include page="barraSuperior.jsp" />  
         </header>
 
         <div class="site-section">
@@ -61,17 +68,14 @@
                         <!--TITULO EDICION DE CURSO-->
                         <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
                             <div class="image" style="background-image: url('images/img-04.jpg');"></div>
-                            <div class="text">
-                                <h3 class="font-weight-light">
-                                    
-                                    <font size="4" face="verdana" color="black"> Taller de robótica educativa 2019-2
-                                    <br>
-                                    <font  size ="2" face="verdana" color="black"> Instituto de Computacion</font>
-                                    <br>
-                                    <br>
-                                    <a href="#" class="h10">Ver informacion del Curso</a>
-                                    <br>
-                                </font> 
+                            <div class='text'>
+                                <h3 class='font-weight-light'>
+                                    <%
+                                        String NomEdCur = request.getParameter("EdCur");
+                                        out.println("<font size='4' face='verdana' color='black'>" + NomEdCur + "</font><br>");
+                                        //out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoDeEdCur("PYE") +"</font><br><br>");
+                                        out.println("<a href='#' class='h10'>Ver informacion del Curso</a><br>");
+                                    %>
                                 </h3>
                             </div>
                         </div>

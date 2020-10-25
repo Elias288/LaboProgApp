@@ -38,6 +38,7 @@ public class curso implements Serializable{
     public docente getDocente(){return this.doc;}
     public List<curso> getPrevias(){return this.Previas;}
     public long getId(){return this.id;}
+    public instituto getInsti(){return this.instituto;}
     public void SetName(String name){this.nombre = name;}
     public void SetDocente(docente doce){this.doc = doce;}
     public void SetDescripcion(String desc){this.descripcion = desc;}

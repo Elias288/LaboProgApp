@@ -25,12 +25,13 @@
                             if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
                                 ControladorUsuario CU = new ControladorUsuario();
                                 usuario usu = CU.findusu(sesion.getAttribute("user").toString());
-                                String tipo = sesion.getAttribute("nivel").toString();
+                                //String tipo = sesion.getAttribute("nivel").toString();
                                 out.println("<li class='active'><a href='User.html'>" + usu.getNN() + "</a></li>");
                                 out.println("<li class='active'></a></li>");
                             }else{
-                                out.println("<li><a href='login.jsp'>Login /</a></li>");
-                                out.println("<li><a href='register.jsp'>--Register</a></li>");
+                                out.println("<li><a href='login.jsp'>Login</a></li>");
+                                out.println("<li>/</li>");
+                                out.println("<li><a href='register.jsp'>Register</a></li>");
                                 //out.println("<script>location.replace('login.jsp');</script>");
                             }
                         %>

@@ -19,15 +19,9 @@ public class instituto implements Serializable{
     }
     public instituto(){}
     
-    public String getFacultad(){
-        return this.Facultad;
-    }
+    public String getFacultad(){return this.Facultad;}
     
-    public long getId(){
-        return this.id;
-    }
+    public long getId(){return this.id;}
     
-    public void setFacultad(String facu){
-        this.Facultad = facu;
-    }
+    public void setFacultad(String facu){this.Facultad = facu;}
 }

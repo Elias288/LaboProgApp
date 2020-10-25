@@ -44,7 +44,7 @@
     
     <header class="site-navbar py-4" role="banner" >
         <div class="container">
-            <jsp:include page="barraLateral.jsp" />  
+            <jsp:include page="barraSuperior.jsp" />  
     </header>
 
     <div class="site-section">

@@ -1,7 +1,6 @@
 package com.mycompany.laboprogappwa;
 import Clases.*;
 import java.util.List;
-import javax.persistence.EntityManager;
 
 public class Operaciones {
     
@@ -31,6 +30,28 @@ public class Operaciones {
         List<categoria> lista;
         lista = CC.buscarCategorias("");
         return lista;
+    }
+    
+    public String CursoDeEdCur(String nombreEdCur){
+        curso cur = null;
+        if(!nombreEdCur.isBlank() && CC.buscarEdicion(nombreEdCur)!=null){
+            edicionCurso edi = CC.buscarEdicion(nombreEdCur);
+            if(edi != null)
+            cur = edi.getCurso();
+            return cur.getName();
+        }else
+            return "no existe la edicion Curso";
+    }
+    
+    public String insitutoCur(String nombreCur){
+        curso curs = null;
+        instituto ins = null;
+        if (!nombreCur.isBlank() && CC.findCurso(nombreCur)!= null){
+            curs = CC.findCurso(nombreCur);
+            ins = curs.getInsti();
+            return ins.getFacultad();
+        }else
+            return "no existe Instituto";
     }
     
 }
