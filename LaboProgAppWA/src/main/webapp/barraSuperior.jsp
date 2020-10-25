@@ -29,7 +29,8 @@
                                 out.println("<li class='active'><a href='User.html'>" + usu.getNN() + "</a></li>");
                                 out.println("<li class='active'></a></li>");
                             }else{
-                                out.println("<li><a href='login.jsp'>Login / Register</a></li>");
+                                out.println("<li><a href='login.jsp'>Login /</a></li>");
+                                out.println("<li><a href='register.jsp'>--Register</a></li>");
                                 //out.println("<script>location.replace('login.jsp');</script>");
                             }
                         %>
