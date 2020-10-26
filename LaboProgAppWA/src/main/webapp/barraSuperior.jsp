@@ -40,8 +40,10 @@
             </nav>
 
             <div class="buscador" style="margin-bottom: 3rem!important; display: flex; flex-direction: row-reverse; max-width: 60%">
-                <input type="submit" value="Buscar" style="padding: 5px 15px; margin-left: 15px; font-size: medium;">
-                <input type="search" name="busqueda" placeholder="Cursos, Programas" style=" padding-left: 10px; flex: 1; border: 1px solid; font-size: medium;">
+                <form action="curso.jsp" method="GET">
+                    <input type="search" name="busqueda" placeholder="Cursos, Programas" style=" padding-left: 10px; flex: 1; border: 1px solid; font-size: medium;">
+                    <input type="submit" value="Buscar" style="padding: 5px 15px; margin-left: 15px; font-size: medium;">
+                </form>
             </div>
         </div>
     </div>

@@ -32,9 +32,7 @@
                     instituto ins = null;
                     while(itIns.hasNext()){
                         ins = (instituto) itIns.next();
-                        out.println("<li><a href='#' class='d-flex align-items-center'>");
-                        out.println("<div class='podcaster'><span class='d-block'>" + ins.getFacultad() + "</span></div>");
-                        out.println("</a></li>");
+                        out.println("<li><form action='consultaCursos.jsp' method='post'><button type='submit' name='instituto' value='"+ins.getFacultad()+"' class='d-flex align-items-center'><div class='podcaster'><span class='d-block'>"+ins.getFacultad()+"</span></div></button></form></li>");
                     }
                 %>
             </ul>
@@ -62,9 +60,9 @@
     <!-- PERFIL INICIADO-->
     <%
         if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
-            out.println("<div class='col-lg-3' style='border: 2px solid'>");
+            out.println("<div class='col-lg-2' style='border: 2px solid'>");
         }else
-            out.println("<div class='col-lg-3' style='border: 2px solid; display: none'>");
+            out.println("<div class='col-lg-2' style='border: 2px solid; display: none'>");
     %>
     
         <!--MI PERFIL-->
