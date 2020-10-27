@@ -113,34 +113,7 @@
 
                     <div class="col-lg-3">
                         <h3 style="color: black">Ediciones del cursos</h3>
-                
-<<<<<<< HEAD
-                <%
-                    out.println("depuracion cur id = "+cur.getId());
-                    List<edicionCurso> Listec = new ArrayList<edicionCurso>();
-                            
-                    Listec = cc.buscarEdiciones(cur.getId());
-                    
-                    /*Iterator itEC = Listec.iterator();
-                    
-                    edicionCurso ec = null;
-                    
-                    while(itEC.hasNext()){
-                        
-                        ec = (edicionCurso) itEC.next();
-                        
-                        out.println("<div class='d-block m-b-25 d-md-flex podcast-entry2 bg-white' data-aos='fade-up'>");
-                        out.println("<div class='image' style='background-image: url('images/img-02.jpg');'></div>");
-                        out.println("<div class='text'>");
-                        out.println("<h3 class='font-weight-light'>");
-                        out.println(ec.getNombre()+"<br>");
-                        out.println("</h3>");
-                        out.println("</div>");
-                        out.println("</div>");
-                    }*/
-                    
-                %>
-=======
+
                         <%
                             
                             if(request.getParameter("curso")!= null){

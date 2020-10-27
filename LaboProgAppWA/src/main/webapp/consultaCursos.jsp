@@ -62,9 +62,10 @@
                 <div class="col-lg-6">
                     <div class="d-block podcast-entry bg-white" data-aos="fade-up">
                         <% 
+                            ControladorCurso cc = new ControladorCurso();
                             if(request.getParameter("instituto") != null){
                                 String ins = request.getParameter("instituto");
-                                ControladorCurso cc = new ControladorCurso();
+                                
                                 List<curso> cursos = cc.buscarCurso(ins);
                                 Iterator itCur = cursos.iterator();
                                 curso cur = null;
@@ -78,6 +79,21 @@
                                     out.println("</div>");
                                 }
                                 
+                            }
+                            else{
+                                String cat = request.getParameter("categoria");
+                                List<curso> cursos = cc.buscarCursoCat(cat);
+                                Iterator itCur = cursos.iterator();
+                                curso cur = null;
+                                while(itCur.hasNext()){
+                                    cur = (curso) itCur.next();
+                                    /*out.println("<form action='curso.jsp' method='GET'>");
+                                    out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
+                                    out.println("</form><br>");*/
+                                    out.println("<div>");
+                                    out.println("<a href='curso.jsp?curso="+cur.getName()+"'class='mb-4' style='color: black'>"+cur.getName()+"</a><br><br>");
+                                    out.println("</div>");
+                                }
                             }
                          %>
                     </div>

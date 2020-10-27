@@ -52,7 +52,7 @@
                         categoria cat = null;
                         while(itCate.hasNext()){
                             cat = (categoria) itCate.next();
-                            out.println("<li><a href='#' class='d-flex align-items-center'>");
+                            out.println("<li><a href='consultaCursos.jsp?categoria="+cat.Getnombre()+"' class='d-flex align-items-center'>");
                             out.println("<div class='podcaster'><span class='d-block'>" + cat.Getnombre() + "</span></div>");
                             out.println("</a></li>");
                         }

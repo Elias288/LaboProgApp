@@ -233,6 +233,19 @@ public class ControladorCurso {
         return lista;
     }
     
+    public List<curso> buscarCursoCat(String categoria){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        List<curso> lista;
+        //SELECT * FROM curso xd, instituto ins WHERE xd.instituto_id=ins.id AND ins.facultad LIKE :nameins
+        Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.curso_categoria cc JOIN xd.categoria c ins WHERE c.nombre LIKE :nameins");
+        query.setParameter("nameins", categoria);
+
+        lista = query.getResultList();
+
+        return lista;
+    }
+    
     public curso findCurso(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         TypedQuery<Long> queryId = em.createQuery("SELECT id FROM curso WHERE nombre =:names", Long.class);
@@ -413,4 +426,5 @@ public class ControladorCurso {
         System.out.println("///////Lenght = "+ListEdi.size()+"//////////////");
         return ListEdi;
     }
+
 }
