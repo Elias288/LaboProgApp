@@ -32,7 +32,7 @@
                     instituto ins = null;
                     while(itIns.hasNext()){
                         ins = (instituto) itIns.next();
-                        out.println("<li><form action='consultaCursos.jsp' method='post'><button type='submit' name='instituto' value='"+ins.getFacultad()+"' class='d-flex align-items-center'><div class='podcaster'><span class='d-block'>"+ins.getFacultad()+"</span></div></button></form></li>");
+                        out.println("<li><form action='consultaCursos.jsp?instituto="+ ins.getFacultad() +"' method='post'><button type='submit' name='instituto' value='"+ins.getFacultad()+"' class='d-flex align-items-center'><div class='podcaster'><span class='d-block'>"+ins.getFacultad()+"</span></div></button></form></li>");
                     }
                 %>
             </ul>

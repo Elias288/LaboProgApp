@@ -91,24 +91,20 @@
                             <div class="text-center p-t-136"><a class="txt2" href="#"></a></div>
                         </form>
                         <script type="text/javascript" >
-        document.getElementById("btnLogin").onclick= manolo;
-                
-            
-            function manolo(){
-        var pass1 = document.getElementById("pass").value;
-              var pass2 = document.getElementById("cpass").value;
-       // var pass2 = document.querySelector('.cpass').value;
-        
-        if (pass1 != pass2) {
-            alert("Passwords Do not match");
-      
-        }
-        else {
-            alert("Passwords Match!!!");
-         //   document.getElementById("regForm").submit();
-        }
-    }
-</script>
+                            document.getElementById("btnLogin").onclick= manolo;
+                            function manolo(){
+                                var pass1 = document.getElementById("pass").value;
+                                var pass2 = document.getElementById("cpass").value;
+                                // var pass2 = document.querySelector('.cpass').value;
+
+                                if (pass1 != pass2) {
+                                    alert("Passwords Do not match");
+                                }else {
+                                    alert("Passwords Match!!!");
+                                    //   document.getElementById("regForm").submit();
+                                }
+                            }
+                        </script>
                             
                         <%
                             Operaciones OP = new Operaciones();
@@ -126,25 +122,22 @@
                                 HttpSession sesion = request.getSession();
                                 ControladorUsuario CU = new ControladorUsuario();
                                 
-                           if(!(cpass.equals(passwd))){
-                            out.println("Verificacion de contraseña invalida, reingresela.");
-                          //  out.println(cpass+" "+passwd);
-                            }else{
-                                 if(CU.findusu(NN)!=null){
-                  //usuario ya existe
-                }else{
-                    if(!CU.verFecha(date)){
-                   //fecha invalida
-                    }
-                    else{
-                        CU.altaUsuario(name, passwd, lastname, NN, email, date, false, "");
-                        //se agrego correctamente
-                       
-                    }
-                                
-                            }
-                               
-                            }
+                                if(!(cpass.equals(passwd))){
+                                    out.println("<script language='javascript'>alert('Verificacion de contraseña invalida, reingresela');</script");
+                                    //out.println("Verificacion de contraseña invalida, reingresela.");
+                                 }else{
+                                    if(CU.findusu(NN)!=null){ //usuario ya existe
+                                        out.println("<script language='javascript'>alert('Usuario ya existe');</script");
+                                        //out.println("Usuario ya existe.");
+                                    }else{
+                                        if(!CU.verFecha(date)){//fecha invalida
+                                            out.println("<script language='javascript'>alert('Fecha invalida, reingresela.');</script");
+                                            //out.println("Fecha invalida, reingresela.");
+                                        }else{
+                                            CU.altaUsuario(name, passwd, lastname, NN, email, date, false, "");//se agrego correctamente
+                                        }
+                                    }
+                                }
                             }
                             //mantiene la sesion cerrada
                             if(request.getParameter("cerrar")!=null){

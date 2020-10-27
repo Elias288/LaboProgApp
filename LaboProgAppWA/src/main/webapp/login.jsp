@@ -70,7 +70,8 @@
                                         response.sendRedirect("index.jsp");
                                         break;
                                     default:
-                                        out.println("Usuario invalido o contraseña invalida");
+                                        out.println("<script language='javascript'>alert('Usuario o contraseña invalida');</script");
+                                        //out.println("Usuario invalido o contraseña invalida");
                                 }
                             }
                             

@@ -62,16 +62,18 @@
                 <div class="col-lg-6">
                     <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
                         <% 
-                            String ins = request.getParameter("instituto");
-                            ControladorCurso cc = new ControladorCurso();
-                            List<curso> cursos = cc.buscarCurso(ins);
-                            Iterator itCur = cursos.iterator();
-                            curso cur = null;
-                            while(itCur.hasNext()){
-                                cur = (curso) itCur.next();
-                                out.println("<form action='curso.jsp' method='GET'>");
-                                out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button><br>");
-                                out.println("</form>");
+                            if(request.getParameter("instituto") != null){
+                                String ins = request.getParameter("instituto");
+                                ControladorCurso cc = new ControladorCurso();
+                                List<curso> cursos = cc.buscarCurso(ins);
+                                Iterator itCur = cursos.iterator();
+                                curso cur = null;
+                                while(itCur.hasNext()){
+                                    cur = (curso) itCur.next();
+                                    out.println("<form action='curso.jsp' method='GET'>");
+                                    out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button><br>");
+                                    out.println("</form>");
+                                }
                             }
                          %>
                     </div>
