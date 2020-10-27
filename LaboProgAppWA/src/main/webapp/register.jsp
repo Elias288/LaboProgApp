@@ -90,19 +90,24 @@
 
                             <div class="text-center p-t-136"><a class="txt2" href="#"></a></div>
                         </form>
-                      <script>
-document.querySelector('.btnLogin').onclick= function(){
-        var pass1 = document.querySelector('.pass').value;
-        var pass2 = document.querySelector('.cpass').value;
+                        <script type="text/javascript" >
+        document.getElementById("btnLogin").onclick= manolo;
+                
+            
+            function manolo(){
+        var pass1 = document.getElementById("pass").value;
+              var pass2 = document.getElementById("cpass").value;
+       // var pass2 = document.querySelector('.cpass').value;
+        
         if (pass1 != pass2) {
             alert("Passwords Do not match");
-         return false;
+      
         }
         else {
             alert("Passwords Match!!!");
          //   document.getElementById("regForm").submit();
         }
-}
+    }
 </script>
                             
                         <%
@@ -121,7 +126,10 @@ document.querySelector('.btnLogin').onclick= function(){
                                 HttpSession sesion = request.getSession();
                                 ControladorUsuario CU = new ControladorUsuario();
                                 
-                           
+                           if(!(cpass.equals(passwd))){
+                            out.println("Verificacion de contraseña invalida, reingresela.");
+                          //  out.println(cpass+" "+passwd);
+                            }else{
                                  if(CU.findusu(NN)!=null){
                   //usuario ya existe
                 }else{
@@ -136,6 +144,7 @@ document.querySelector('.btnLogin').onclick= function(){
                                 
                             }
                                
+                            }
                             }
                             //mantiene la sesion cerrada
                             if(request.getParameter("cerrar")!=null){
