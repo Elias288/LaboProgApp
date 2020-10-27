@@ -32,26 +32,28 @@ public class Operaciones {
         return lista;
     }
     
-    public String CursoDeEdCur(String nombreEdCur){
+    public curso CursoDeEdCur(String nombreEdCur){
         curso cur = null;
         if(!nombreEdCur.isBlank() && CC.buscarEdicion(nombreEdCur)!=null){
             edicionCurso edi = CC.buscarEdicion(nombreEdCur);
             if(edi != null)
-            cur = edi.getCurso();
-            return cur.getName();
-        }else
-            return "no existe la edicion Curso";
+                cur = edi.getCurso();
+        }
+        return cur;
     }
     
-    public String insitutoCur(String nombreCur){
-        curso curs = null;
-        instituto ins = null;
-        if (!nombreCur.isBlank() && CC.findCurso(nombreCur)!= null){
-            curs = CC.findCurso(nombreCur);
-            ins = curs.getInsti();
-            return ins.getFacultad();
-        }else
-            return "no existe Instituto";
+    public String insitutoCur(String nomCurso){
+        
+        if(CC.buscarInstideCurso(nomCurso)!=null)
+            return CC.buscarInstideCurso(nomCurso).getFacultad();
+        else
+            return "no existe El instituto";
     }
     
+    public curso BuscarCurso(String nombreCur){
+        return CC.findCurso(nombreCur);
+    }
+    public List<edicionCurso> BuscarEdicionCurso(){
+        return CC.buscarEdiciones("");
+    }
 }

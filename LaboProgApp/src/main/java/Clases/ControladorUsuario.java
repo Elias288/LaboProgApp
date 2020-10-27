@@ -117,6 +117,16 @@ public class ControladorUsuario {
         }
     }
     
+    public docente findDocente (String NN){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+         
+        try{
+            return em.find(docente.class,NN);
+        }finally{
+            em.close();
+        }
+    }
+    
     public boolean findPass(usuario usu, String pass){
         if(usu.getPass().equals(pass)){
             return true;

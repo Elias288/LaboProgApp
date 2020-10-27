@@ -1,3 +1,9 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="Clases.ControladorCurso"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="Clases.curso"%>
+<%@page import="Clases.curso"%>
 <%@page import="Clases.usuario"%>
 <%@page import="Clases.ControladorUsuario"%>
 <%@page session="true"%>
@@ -49,9 +55,28 @@
                 <!--CODIGO DE BARRA LATERAL-->
                 <jsp:include page="barraLateral.jsp" />
 
+                
+                <!--PANEL PRINCIPAL-->
                 <div class="col-lg-9">
+                    
+                        <%
+                            ControladorCurso cc = new ControladorCurso();
+                            List<curso> cursos = cc.buscarCurso("");
+                            Iterator itCur = cursos.iterator();
+                            curso cur = null;
+                            while(itCur.hasNext()){
+                                cur = (curso) itCur.next();
+                                out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
+                                out.println("<div class='image' style='background-image: url(images/img-02.jpg)'></div>");
+                                out.println("<div class='text'>");
+                                out.println("<h3 class='font-weight-light'><strong>"+ cur.getName() +"</strong> "+cur.getDesc() + "</h3>");
+                                out.println("<a href='curso.jsp?curso="+cur.getName()+"' class='h10'>leer mas</a>");    
+                                out.println("</div></div>");
+                            }
+                        %>
+                    
                     <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
-                            <div class="image" style="background-image: url('images/img-02.jpg');"></div>
+                            <div class="image" style="background-image: url(images/img-02.jpg);"></div>
                             <div class="text">
                                 <h3 class="font-weight-light">
                                     La segunda etapa consiste en que trabajen en grupo sobre el diseño e 
