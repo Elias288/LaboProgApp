@@ -4,6 +4,7 @@
     Author     : nacho
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="Clases.edicionCurso"%>
@@ -89,10 +90,12 @@
                 <h3 class="font-weight-light">Ediciones del cursos</h3>
                 
                 <%
+                    out.println("depuracion cur id = "+cur.getId());
+                    List<edicionCurso> Listec = new ArrayList<edicionCurso>();
+                            
+                    Listec = cc.buscarEdiciones(cur.getId());
                     
-                    List<edicionCurso> Listec = cc.buscarEdiciones(cur.getId());
-                    
-                    Iterator itEC = Listec.iterator();
+                    /*Iterator itEC = Listec.iterator();
                     
                     edicionCurso ec = null;
                     
@@ -108,7 +111,7 @@
                         out.println("</h3>");
                         out.println("</div>");
                         out.println("</div>");
-                    }
+                    }*/
                     
                 %>
                   

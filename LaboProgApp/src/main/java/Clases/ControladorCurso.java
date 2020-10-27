@@ -398,10 +398,11 @@ public class ControladorCurso {
     public List<edicionCurso> buscarEdiciones (long idCurso){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         List<edicionCurso> ListEdi = new ArrayList<>();
-        Query query = em.createQuery("SELECT xd FROM edicionCurso xd WHERE Curso_id :nickname");
-        query.setParameter("nickname", idCurso);
+        Query query = em.createQuery("SELECT xd FROM edicioncurso xd WHERE Curso_id = :idcurso", Long.class);
+        query.setParameter("idcurso", idCurso);
 
         ListEdi = query.getResultList();
+        System.out.println("///////Lenght = "+ListEdi.size()+"//////////////");
         return ListEdi;
     }
 }
