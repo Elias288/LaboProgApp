@@ -56,4 +56,8 @@ public class Operaciones {
     public List<edicionCurso> BuscarEdicionCurso(){
         return CC.buscarEdiciones("");
     }
+    public List<curso> BuscarCursCate(String cat){
+        return CC.buscarCursoCat(cat);
+    }
+    
 }

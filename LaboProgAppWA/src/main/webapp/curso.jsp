@@ -1,16 +1,7 @@
-<<<<<<< HEAD
-<%-- 
-    Document   : curso2
-    Created on : 24 oct. 2020, 13:11:44
-    Author     : nacho
---%>
-
 <%@page import="java.util.ArrayList"%>
-=======
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.net.URL"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
->>>>>>> 2a885301b0b2f6598275d35f7aa32ec8de7a5db8
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="Clases.edicionCurso"%>
@@ -54,15 +45,6 @@
         HttpSession sesion = request.getSession();
         Operaciones OP = new Operaciones();
         
-        /*
-        if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
-            String tipo = sesion.getAttribute("nivel").toString();
-            if(!tipo.equals("1")) //si el tipo no es profesor
-                out.println("<script>location.replace('index.jsp')</script>");
-        }else
-            out.println("<script>location.replace('login.jsp')</script>");
-        */
-        
     %>
     
     <!--CODIGO DE BARRA SUPERIOR-->
@@ -85,21 +67,9 @@
                             if(request.getParameter("curso")!=null){
                                 
                                 curso cur = OP.BuscarCurso(request.getParameter("curso"));
-                                /*if(nomCurso.equals("")){
-                                    nomCurso = request.getParameter("busqueda");
-                                    out.println("------------"+nomCurso);
-                                }
-                                ControladorCurso cc = new ControladorCurso();
-                                curso cur = cc.findCurso(nomCurso);*/
-                                /*
-                                out.println("hola");
-                                */
                                 out.println("<div class='text'>");
-                                //out.println("<font size='4' face='verdana' color='black'>" + cur.getName() + "</font><br>");
                                 out.println("<h3 style='color: black'>" + cur.getName() + "</h3><br>");
                                 out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(cur.getName()) +"</font><br><br>");
-                                //out.println("<h3 class='font-weight-light'>"+cur.getName()+".<br><br></h3>");
-                                //out.println(cur.getInsti().getFacultad());
                                 out.println("</div></div>");
                                 out.println("<div class='d-lg-block m-b-25 podcast-entry bg-white'>");
                                 out.println("<a style='color:cornflowerblue' href='curos.html' class='h10'>"+cur.getURL()+"<br><br></a>");
@@ -144,7 +114,6 @@
                                 }
                             }
                         %>
->>>>>>> 2a885301b0b2f6598275d35f7aa32ec8de7a5db8
                   
 
                         <h3 class="font-weight-light">Programas de formación</h3>

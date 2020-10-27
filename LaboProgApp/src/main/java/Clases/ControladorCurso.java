@@ -238,7 +238,7 @@ public class ControladorCurso {
         
         List<curso> lista;
         //SELECT * FROM curso xd, instituto ins WHERE xd.instituto_id=ins.id AND ins.facultad LIKE :nameins
-        Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.curso_categoria cc JOIN xd.categoria c ins WHERE c.nombre LIKE :nameins");
+        Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.curso_categoria cc JOIN xd.categoria c WHERE c.nombre LIKE :nameins");
         query.setParameter("nameins", categoria);
 
         lista = query.getResultList();

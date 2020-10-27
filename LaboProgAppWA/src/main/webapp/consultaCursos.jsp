@@ -1,9 +1,5 @@
-<%-- 
-    Document   : consultaCursos
-    Created on : 25 oct. 2020, 19:52:30
-    Author     : nacho
---%>
-
+<%@page import="Clases.categoria"%>
+<%@page import="com.mycompany.laboprogappwa.Operaciones"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Clases.instituto"%>
 <%@page import="java.util.List"%>
@@ -63,6 +59,8 @@
                     <div class="d-block podcast-entry bg-white" data-aos="fade-up">
                         <% 
                             ControladorCurso cc = new ControladorCurso();
+                            Operaciones OP = new Operaciones();
+                            
                             if(request.getParameter("instituto") != null){
                                 String ins = request.getParameter("instituto");
                                 
@@ -82,7 +80,7 @@
                             }
                             else{
                                 String cat = request.getParameter("categoria");
-                                List<curso> cursos = cc.buscarCursoCat(cat);
+                                List<curso> cursos = OP.BuscarCursCate(cat);
                                 Iterator itCur = cursos.iterator();
                                 curso cur = null;
                                 while(itCur.hasNext()){
@@ -94,6 +92,7 @@
                                     out.println("<a href='curso.jsp?curso="+cur.getName()+"'class='mb-4' style='color: black'>"+cur.getName()+"</a><br><br>");
                                     out.println("</div>");
                                 }
+                                
                             }
                          %>
                     </div>
