@@ -389,10 +389,12 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         
         if(name.isBlank() || instituto.isBlank() || descripcion.isBlank() || Url.isBlank() || duracion == 0 
                 || horas==0 || fecha == null || credits==0){
-            JOptionPane.showMessageDialog( null, "Hay campos incompletos");
+            JOptionPane.showMessageDialog( null, "ERROR!! Hay campos incompletos");
         }else{
-            if(!CU.verFecha(fecha)){
-                JOptionPane.showMessageDialog( null, "La fecha de alta no es válida.");
+            if(CC.findCurso(name)!=null){
+                JOptionPane.showMessageDialog( null, "ERROR!! El curso ya esta registrado");
+            }else if(!CU.verFecha(fecha)){
+                JOptionPane.showMessageDialog( null, "ERROR!! La fecha de alta no es válida.");
             }
             else{
                 CC.AltaCurso(name, instituto, descripcion , Url, duracion,horas, fecha, credits, CurList, docente, CatList);

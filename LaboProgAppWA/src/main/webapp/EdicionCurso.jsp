@@ -1,3 +1,6 @@
+<%@page import="java.net.URLDecoder"%>
+<%@page import="java.net.URLEncoder"%>
+<%@page import="Clases.curso"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
 <%@page import="Clases.usuario"%>
 <%@page import="Clases.ControladorUsuario"%>
@@ -41,8 +44,8 @@
             HttpSession sesion = request.getSession();
             Operaciones OP = new Operaciones();
             
-            out.println(OP.CursoDeEdCur("agagr"));
-            out.println(OP.insitutoCur("programacion"));
+            //out.println(OP.CursoDeEdCur("chispa"));
+            //out.println(OP.insitutoCur(OP.CursoDeEdCur("chispa")));
             
             if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
                 String tipo = sesion.getAttribute("nivel").toString();
@@ -71,15 +74,20 @@
                             <div class='text'>
                                 <h3 class='font-weight-light'>
                                     <%
-                                        String NomEdCur = request.getParameter("EdCur");
+                                        /*DECODIFICO EL NOMBRE DE LA EDICION DE CUROSO PARA PODER USARLO*/
+                                        String url = request.getParameter("EdCur");
+                                        String NomEdCur = URLDecoder.decode(url,"UTF-8");
+                                        
+                                        curso cur = OP.CursoDeEdCur(NomEdCur);
                                         out.println("<font size='4' face='verdana' color='black'>" + NomEdCur + "</font><br>");
-                                        //out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoDeEdCur("PYE") +"</font><br><br>");
+                                        out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(cur.getName()) +"</font><br><br>");
                                         out.println("<a href='#' class='h10'>Ver informacion del Curso</a><br>");
                                     %>
                                 </h3>
                             </div>
                         </div>
-
+                                
+                        <!--INFORMACION GENERAL-->
                         <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
                             <div class="text">
                                 <h3 class="font-weight-light">

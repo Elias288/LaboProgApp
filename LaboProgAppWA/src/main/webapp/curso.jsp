@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%-- 
     Document   : curso2
     Created on : 24 oct. 2020, 13:11:44
@@ -5,6 +6,11 @@
 --%>
 
 <%@page import="java.util.ArrayList"%>
+=======
+<%@page import="java.net.URLEncoder"%>
+<%@page import="java.net.URL"%>
+<%@page import="com.mycompany.laboprogappwa.Operaciones"%>
+>>>>>>> 2a885301b0b2f6598275d35f7aa32ec8de7a5db8
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="Clases.edicionCurso"%>
@@ -44,7 +50,20 @@
   </head>
 <body>
     <!--Valida sesion -->
-    <%HttpSession sesion = request.getSession();%>
+    <%
+        HttpSession sesion = request.getSession();
+        Operaciones OP = new Operaciones();
+        
+        /*
+        if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
+            String tipo = sesion.getAttribute("nivel").toString();
+            if(!tipo.equals("1")) //si el tipo no es profesor
+                out.println("<script>location.replace('index.jsp')</script>");
+        }else
+            out.println("<script>location.replace('login.jsp')</script>");
+        */
+        
+    %>
     
     <!--CODIGO DE BARRA SUPERIOR-->
     <header class="site-navbar py-4" role="banner" >
@@ -57,38 +76,45 @@
                 
                 <!--CODIGO DE BARRA LATERAL-->
                 <jsp:include page="barraLateral.jsp" />
-              <div class="col-lg-6">
-                    <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
-                      <% 
-                        String nomCurso  = "";
-                        nomCurso = request.getParameter("curso");
-                        /*if(nomCurso.equals("")){
-                            nomCurso = request.getParameter("busqueda");
-                            out.println("------------"+nomCurso);
-                        }*/
-                            
-                        
-                        ControladorCurso cc = new ControladorCurso();
-                        curso cur = cc.findCurso(nomCurso);
-                        
-                        out.println("<div class='image' style='background-image: url('images/img-02.jpg');'></div>");
-                        out.println("<div class='text'>");
-                        out.println("<h3 class='font-weight-light'>"+cur.getName()+".<br><br></h3>");
-                        out.println(cur.getInsti().getFacultad());
-                        out.println("</div>");
-                        out.println("</div>");
-                        out.println("<div class='d-lg-block m-b-25 podcast-entry bg-white'>");
-                        out.println("<a href='curos.html' class='h10'>"+cur.getURL()+"<br><br></a>");
-                        out.println("<h3 class='font-weight-light'>");
-                        out.println(cur.getDesc());
-                        out.println("</h3>");
-                        out.println("</div>");
-                      %>
+                
+                <!--PANEL PRINCIPAL-->
+                <div class="col-lg-6">
+                    <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up" style="height: 200px">
+                        <div class='image' style="background-image: url('images/img-02.jpg');"></div>
+                        <% 
+                            if(request.getParameter("curso")!=null){
+                                
+                                curso cur = OP.BuscarCurso(request.getParameter("curso"));
+                                /*if(nomCurso.equals("")){
+                                    nomCurso = request.getParameter("busqueda");
+                                    out.println("------------"+nomCurso);
+                                }
+                                ControladorCurso cc = new ControladorCurso();
+                                curso cur = cc.findCurso(nomCurso);*/
+                                /*
+                                out.println("hola");
+                                */
+                                out.println("<div class='text'>");
+                                //out.println("<font size='4' face='verdana' color='black'>" + cur.getName() + "</font><br>");
+                                out.println("<h3 style='color: black'>" + cur.getName() + "</h3><br>");
+                                out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(cur.getName()) +"</font><br><br>");
+                                //out.println("<h3 class='font-weight-light'>"+cur.getName()+".<br><br></h3>");
+                                //out.println(cur.getInsti().getFacultad());
+                                out.println("</div></div>");
+                                out.println("<div class='d-lg-block m-b-25 podcast-entry bg-white'>");
+                                out.println("<a style='color:cornflowerblue' href='curos.html' class='h10'>"+cur.getURL()+"<br><br></a>");
+                                out.println("<h3 class='font-weight-light'>");
+                                out.println(cur.getDesc());
+                                out.println("</h3>");
+                                out.println("</div>");
+                            }
+                        %>
                     </div>
 
-              <div class="col-lg-3">
-                <h3 class="font-weight-light">Ediciones del cursos</h3>
+                    <div class="col-lg-3">
+                        <h3 style="color: black">Ediciones del cursos</h3>
                 
+<<<<<<< HEAD
                 <%
                     out.println("depuracion cur id = "+cur.getId());
                     List<edicionCurso> Listec = new ArrayList<edicionCurso>();
@@ -114,19 +140,51 @@
                     }*/
                     
                 %>
+=======
+                        <%
+                            
+                            if(request.getParameter("curso")!= null){
+                                curso cur = OP.BuscarCurso(request.getParameter("curso"));
+                                //List<edicionCurso> Listec = cc.buscarEdiciones(cur.getId());
+                                List<edicionCurso> Listec = OP.BuscarEdicionCurso();
+                                Iterator itEC = Listec.iterator();
+                                
+                                edicionCurso ec = null;
+                                
+                                while(itEC.hasNext()){
+
+                                    ec = (edicionCurso) itEC.next();
+                                    
+                                    if(cur.getId() == ec.getCurso().getId()){
+                                        
+                                        /*CODIFICO EL NOMBRE DE LA EDICION DE CURSO PARA ENVIARLO POR URL*/
+                                        String url = ec.getNombre();
+                                        String encodedurl = URLEncoder.encode(url,"UTF-8"); 
+                                        
+                                        out.println("<a style='color:black' href=EdicionCurso.jsp?EdCur="+encodedurl+">");
+                                        out.println("<div class='d-block m-b-25 d-md-flex podcast-entry2 bg-white' data-aos='fade-up'>");
+                                        out.println("<div class='image' style='background-image: url('images/img-02.jpg');'></div>");
+                                        out.println("<div class='text'>");
+                                        out.println("<h3 class='font-weight-light'>"+ec.getNombre()+"<br></h3>");
+                                        out.println("</div></div></a>");
+                                    }
+                                }
+                            }
+                        %>
+>>>>>>> 2a885301b0b2f6598275d35f7aa32ec8de7a5db8
                   
 
-                  <h3 class="font-weight-light">Programas de formación</h3>
-                  <div class="d-block m-b-25 d-md-flex podcast-entry2 bg-white" data-aos="fade-up">
-                    <div class="image" style="background-image: url('images/img-04.png');"></div>
-                    <div class="text">
-                      <h3 class="font-weight-light">
-                        EFI Robotica.<br>
-                      </h3>
+                        <h3 class="font-weight-light">Programas de formación</h3>
+                        <div class="d-block m-b-25 d-md-flex podcast-entry2 bg-white" data-aos="fade-up">
+                            <div class="image" style="background-image: url('images/img-04.png');"></div>
+                            <div class="text">
+                              <h3 class="font-weight-light">
+                                EFI Robotica.<br>
+                              </h3>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-              </div>
-              </div>
+                </div>
             </div>
         </div>
     </div>

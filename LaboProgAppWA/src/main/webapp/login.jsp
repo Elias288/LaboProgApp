@@ -78,6 +78,7 @@
                             //mantiene la sesion cerrada
                             if(request.getParameter("cerrar")!=null){
                                 session.invalidate();
+                                out.println("<script>location.replace('index.jsp')</script>");
                             }
 
 

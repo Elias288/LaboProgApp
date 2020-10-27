@@ -60,7 +60,7 @@
 
                 
                 <div class="col-lg-6">
-                    <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
+                    <div class="d-block podcast-entry bg-white" data-aos="fade-up">
                         <% 
                             if(request.getParameter("instituto") != null){
                                 String ins = request.getParameter("instituto");
@@ -70,10 +70,14 @@
                                 curso cur = null;
                                 while(itCur.hasNext()){
                                     cur = (curso) itCur.next();
-                                    out.println("<form action='curso.jsp' method='GET'>");
-                                    out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button><br>");
-                                    out.println("</form>");
+                                    /*out.println("<form action='curso.jsp' method='GET'>");
+                                    out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
+                                    out.println("</form><br>");*/
+                                    out.println("<div>");
+                                    out.println("<a href='curso.jsp?curso="+cur.getName()+"'class='mb-4' style='color: black'>"+cur.getName()+"</a><br><br>");
+                                    out.println("</div>");
                                 }
+                                
                             }
                          %>
                     </div>

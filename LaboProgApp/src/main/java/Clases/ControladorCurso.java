@@ -10,18 +10,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class ControladorCurso {
     
-    
-    public instituto obtenerIsntituto(String name){
-        EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        
-        TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM instituto WHERE Facultad =:names", Long.class);
-        queryId.setParameter("names", name);
-        long ides = queryId.getSingleResult();
-        
-        instituto ins = em.find(instituto.class, ides);
-        return ins;
-    }
-    
     public docente obtenerDocente(String name){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         docente doc = em.find(docente.class, name);
@@ -120,6 +108,25 @@ public class ControladorCurso {
         return lista;
     }
     
+    public instituto findInstituto(long idInstituto){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        return em.find(instituto.class,idInstituto);
+    }
+    public instituto obtenerIsntituto(String name){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        TypedQuery<Long> queryId = em.createQuery(  "SELECT id FROM instituto WHERE Facultad =:names", Long.class);
+        queryId.setParameter("names", name);
+        long ides = queryId.getSingleResult();
+        
+        instituto ins = em.find(instituto.class, ides);
+        return ins;
+    }
+    public instituto buscarInstideCurso(String nombreCurso){
+        curso cur = findCurso(nombreCurso);
+        return cur.getInsti();
+    }
+    
     public List<categoria> buscarCategorias(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
@@ -211,7 +218,7 @@ public class ControladorCurso {
         List<curso> lista;
 
         if(nombreins.equals("")){
-            Query query = em.createQuery("SELECT xd FROM Usuario xd");
+            Query query = em.createQuery("SELECT xd FROM curso xd");
 
             lista = query.getResultList();
         }
@@ -225,6 +232,7 @@ public class ControladorCurso {
         }
         return lista;
     }
+    
     public curso findCurso(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         TypedQuery<Long> queryId = em.createQuery("SELECT id FROM curso WHERE nombre =:names", Long.class);
@@ -234,7 +242,6 @@ public class ControladorCurso {
         curso cur = em.find(curso.class, ides);
         return cur;
     }
-    
     
     public void listaCurso(JTable tabla,String nombreInstituto){
         DefaultTableModel model;
@@ -264,32 +271,32 @@ public class ControladorCurso {
         listaCurso(ConsultarCursos.jTable1,nombres);
     } 
     
-    public static List<edicionCurso> buscarEdicionCurso(String NN){
-        EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        
-        List<edicionCurso>lista;
-
-        if(NN.equals("")){
-            Query query = em.createQuery("SELECT xd FROM edicionCurso xd");
-
-            lista = query.getResultList();
-        }
-        else{
-            Query query = em.createQuery("SELECT xd FROM edicionCurso xd JOIN xd.Curso ins WHERE ins.nombre LIKE :nameins");
-            query.setParameter("nameins", NN+"%");
-
-            lista = query.getResultList();
-            
-        }
-        return lista;
-    }
+//    public static List<edicionCurso> buscarEdicionCurso(String NN){
+//        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+//        
+//        List<edicionCurso>lista;
+//
+//        if(NN.equals("")){
+//            Query query = em.createQuery("SELECT xd FROM edicionCurso xd");
+//
+//            lista = query.getResultList();
+//        }
+//        else{
+//            Query query = em.createQuery("SELECT xd FROM edicionCurso xd JOIN xd.Curso ins WHERE ins.nombre LIKE :nameins");
+//            query.setParameter("nameins", NN+"%");
+//
+//            lista = query.getResultList();
+//            
+//        }
+//        return lista;
+//    }
     
     public void listaEdicionCurso(JTable tabla,String nickname){
         DefaultTableModel model;
         String [] titulo = {"Nombre","Cupo","Fecha publicacion","Inicio periodo","Fin de periodo","Curso",};
         model= new DefaultTableModel(null,titulo);
 
-        List<edicionCurso>datos = buscarEdicionCurso(nickname);
+        List<edicionCurso>datos = buscarEdiciones(nickname);
         String [] datosusuarios = new String [6];
         for (edicionCurso tbp : datos){
             datosusuarios[0]=tbp.getNombre()+"";
@@ -334,6 +341,7 @@ public class ControladorCurso {
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         return em.find(edicionCurso.class,nombre);
     }
+    
     public List<edicionCurso> buscarEdiciones(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
