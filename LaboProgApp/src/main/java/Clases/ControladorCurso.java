@@ -492,7 +492,7 @@ public class ControladorCurso {
         query.setParameter("idcurso", idCurso);
 
         ListEdi = query.getResultList();
-        System.out.println("///////Lenght = "+ListEdi.size()+"//////////////");
+       System.out.println("///////Lenght = "+ListEdi.size()+"//////////////");
         return ListEdi;
     }
 
