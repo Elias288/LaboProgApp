@@ -92,7 +92,7 @@ public class ControladorCurso {
     public List<instituto> buscarInstituto(String Facultad){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
-        List<instituto>lista;
+        List<instituto>lista = new ArrayList<>();
 
         if(Facultad.equals("")){
             Query query = em.createQuery("SELECT xd FROM instituto xd");
@@ -233,7 +233,6 @@ public class ControladorCurso {
             query.setParameter("nameins", nombreins+"%");
 
             lista = query.getResultList();
-            
         }
         return lista;
     }
@@ -378,6 +377,70 @@ public class ControladorCurso {
             
         }
         return lista;
+    }
+    
+    public List<edicionCurso> buscarEdicionXIns(String nombreIns){//////////////////////SIN TERMINAR////////////////////////////////////
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        List<edicionCurso> lista = new ArrayList<>();
+        List<edicionCurso> listaRes = new ArrayList<>();
+
+        /*TypedQuery<Long> query = em.createQuery("SELECT id FROM instituto xd WHERE xd.Facultad LIKE :nickname",Long.class);
+        query.setParameter("nickname", nombreIns);
+        Long idIns = query.getSingleResult();
+        instituto ins = em.find(instituto.class, idIns);
+        
+        Query queryCursos = em.createQuery("SELECT xd FROM curso xd WHERE xd.instituto_id = :nickname");
+        queryCursos.setParameter("nickname", 1);
+        List<curso> listCursos = queryCursos.getResultList();
+        
+        Iterator iter = listCursos.iterator();
+        curso cur;
+        
+        List<edicionCurso>datos = buscarEdiciones("");
+        
+        while(iter.hasNext()){
+            cur = (curso)iter.next();
+            Iterator opaaaa = datos.iterator();
+            edicionCurso opa = null;
+            
+            while(opaaaa.hasNext()){
+                opa = (edicionCurso)opaaaa.next();
+                 if(opa.getCurso() == cur)
+                     lista.add(opa);
+            }
+        }*/
+
+        /*Query query = em.createQuery("SELECT xd FROM edicionCurso xd JOIN xd.curso c JOIN c.instituto ins WHERE ins.Facultad LIKE :nickname");
+        query.setParameter("nickname", nombreIns);
+        lista = query.getResultLi*/
+        
+        List<curso> cursos = new ArrayList<>();
+        cursos = buscarCurso(nombreIns);
+        
+        JOptionPane.showMessageDialog(null, cursos.size());
+        
+        lista = buscarEdiciones("");
+        
+        JOptionPane.showMessageDialog(null, lista.size());
+        
+        Iterator iteCur = cursos.iterator();
+        
+        curso cur;
+        while(iteCur.hasNext()){
+            cur = (curso)iteCur.next();
+            Iterator iteEd = lista.iterator();
+            edicionCurso ed;
+            while(iteEd.hasNext()){
+                ed = (edicionCurso)iteEd.next();
+                if(ed.getCurso().getId() == cur.getId()){
+                    JOptionPane.showMessageDialog(null,ed.getCurso().getId()+" = "+cur.getId());
+                    listaRes.add(ed);
+                }
+            }
+        }
+        
+        return listaRes;
     }
     
     public alumno buscarAlumno(String nombre){
