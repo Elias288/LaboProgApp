@@ -1,3 +1,9 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="Clases.inscripcion"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="Clases.edicionCurso"%>
+<%@page import="Clases.ControladorCurso"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="Clases.curso"%>
@@ -43,6 +49,7 @@
         <%
             HttpSession sesion = request.getSession();
             Operaciones OP = new Operaciones();
+            ControladorCurso CC = new ControladorCurso();
             
             //out.println(OP.CursoDeEdCur("chispa"));
             //out.println(OP.insitutoCur(OP.CursoDeEdCur("chispa")));
@@ -77,9 +84,10 @@
                                         /*DECODIFICO EL NOMBRE DE LA EDICION DE CUROSO PARA PODER USARLO*/
                                         String url = request.getParameter("EdCur");
                                         String NomEdCur = URLDecoder.decode(url,"UTF-8");
+                                        edicionCurso EC = CC.buscarEdicion(NomEdCur);
                                         
                                         curso cur = OP.CursoDeEdCur(NomEdCur);
-                                        out.println("<font size='4' face='verdana' color='black'>" + NomEdCur + "</font><br>");
+                                        out.println("<font size='4' face='verdana' color='black'>" + EC.getNombre() + "</font><br>");
                                         out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(cur.getName()) +"</font><br><br>");
                                         out.println("<a href='#' class='h10'>Ver informacion del Curso</a><br>");
                                     %>
@@ -91,18 +99,27 @@
                         <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
                             <div class="text">
                                 <h3 class="font-weight-light">
-                                    <font size="4" face="verdana" color="black"> 
+                                    <font size="4" face="verdana" color="black">
+                                        <%
+                                            out.println("<strong>Fecha inicio:</strong> "+EC.getPinicio()+"<br>");
+                                            out.println("<strong>Fecha Fin:</strong> "+EC.getPfin()+"<br>");
+                                            out.println("<strong>Cupo:</strong> "+EC.getCupo()+"<br>");
+                                            out.println("<strong>Fecha publicacion: </strong> "+EC.getFechaPublicacion()+"<br>");
+                                        %>
+                                        <!--
                                         <strong>Fecha inicio:</strong> 10/09/19<br>
                                         <strong>Fecha Fin:</strong> 08/11/019 <br>
                                         <strong>Cupo:</strong> 20 <br>
                                         <strong>Fecha publicacion:15/08/19</strong>  <br>
                                         <br>
                                         <strong>Inscripciones:</strong>
+                                        -->
                                     </font> 
                                 </h3>
                             </div>
                         </div>
 
+                        <!--TABLA DE ALUMNOS-->
                         <table class="table table-striped">
                             <thead>                
                                 <tr>                 
@@ -113,6 +130,28 @@
                                 </tr>               
                             </thead>
                             <tbody>
+                                <%
+                                    /*out.println(OP.listarInscripciones().size());
+                                    
+                                    out.println("Hola");*/
+                                    List<inscripcion> inscrip = OP.listarInscripciones();
+                                    
+                                    Iterator iter = inscrip.iterator();
+                                    inscripcion insc = null;
+                                    while(iter.hasNext()){
+                                        inscripcion ins = (inscripcion)iter.next();
+                                        if(ins.getedicion().getNombre().equals(NomEdCur)){
+                                            insc = (inscripcion) iter.next();
+                                            
+                                            out.println("<tr><th scope='row'>"+insc.getAlumno().getName()+"</th> ");
+                                            out.println("<td>"+insc.getFecha()+"</td>");
+                                            out.println("<td><label><input type='checkbox' id='cbox1' value='first_checkbox'></td>");
+                                            out.println("<td>Inscripto</td>");
+                                            
+                                        }
+                                    }
+                                %>
+                                <!--
                                 <tr>                 
                                     <th scope="row">Adrian Weiss</th>                 
                                     <td>18/08/19</td>
@@ -131,14 +170,15 @@
                                     <td><label><input type="checkbox" id="cbox3" value="first_checkbox" disabled="true"></td>
                                     <td id="lblRechazado" disabled="true">Rechazado</td>
                                 </tr>
+                                -->
                             </tbody>      
                         </table>
-                        <!--
+                        
                         <a href="#" style=" box-shadow: 3px 4px 0px 0px #0f0f0f;background:linear-gradient(to bottom, #e6e6e6 5%, #ffffff 100%);
                             background-color:#e6e6e6;border-radius:5px;border:1px solid #707070;display:inline-block;cursor:pointer;color:#000000;
                             font-family:Arial;font-size:17px;font-weight:bold;padding:7px 12px;text-decoration:none;text-shadow:0px 1px 0px #ffffff;
                             float:right;";>Guardar Selección</a>
-                        -->
+                        
                         
                     </div>
                 </div>

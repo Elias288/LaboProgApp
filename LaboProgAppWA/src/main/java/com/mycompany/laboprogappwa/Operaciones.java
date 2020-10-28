@@ -1,7 +1,9 @@
 package com.mycompany.laboprogappwa;
 import Clases.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 public class Operaciones {
@@ -71,6 +73,14 @@ public class Operaciones {
         
         curso cur = em.find(curso.class, ides);
         return cur;
+    }
+    public List<inscripcion> listarInscripciones(){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        List<inscripcion>lista=new ArrayList<>();
+        
+        Query query = em.createQuery("SELECT xd FROM inscripcion xd");
+        lista = query.getResultList();
+        return lista;
     }
     
 }

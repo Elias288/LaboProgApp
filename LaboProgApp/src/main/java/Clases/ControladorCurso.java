@@ -489,5 +489,41 @@ public class ControladorCurso {
        System.out.println("///////Lenght = "+ListEdi.size()+"//////////////");
         return ListEdi;
     }
+    
+    /*
+    public List<inscripcion> listarInscripciones(String nombre){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        List<inscripcion>lista=new ArrayList<>();
 
+        if(nombre.equals("")){
+            Query query = em.createQuery("SELECT xd FROM inscripcion xd");
+            lista = query.getResultList();
+        }
+        else{
+            //SELECT xd FROM inscripcion xd WHERE xd.EdicionCurso LIKE :nameins
+            
+            List<inscripcion> Insclista = new ArrayList<>();
+            Query query = em.createQuery("SELECT xd FROM inscripcion xd");
+            Insclista = query.getResultList();
+            
+            Iterator iter = Insclista.iterator();
+            while(iter.hasNext()){
+                inscripcion ins = (inscripcion)iter.next();
+                if(ins.getedicion().getNombre().equals(nombre)){
+                    lista.add(ins);
+                }
+            }
+        }
+        return lista;
+    }
+    
+    public List<inscripcion> listarInscripciones(){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        List<inscripcion>lista=new ArrayList<>();
+        
+        Query query = em.createQuery("SELECT xd FROM inscripcion xd");
+        lista = query.getResultList();
+        return lista;
+    }*/
 }
