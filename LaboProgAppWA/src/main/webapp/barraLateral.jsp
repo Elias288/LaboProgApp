@@ -84,7 +84,9 @@
                                     out.println("<li><a href='#'>Menu two</a></li>");
                                     out.println("<li><a href='#'>Menu three</a></li>");
                                     out.println("<li><a href='EdicionCurso.jsp'>seleccionar alumno</a></li>"); //temporal
+                                    out.println("<li><a href='consultarusuarios.jsp'> Listar Usuarios");
                                 }else{
+                                    out.println("<li><a href='consultarusuarios.jsp'> Listar Usuarios");
                                     out.println("<li><a href='#'>Menu one</a></li>");
                                     out.println("<li><a href='#'>Menu two</a></li>");
                                     out.println("<li><a href='#'>Menu three</a></li>");
