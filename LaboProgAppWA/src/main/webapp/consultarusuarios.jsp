@@ -1,3 +1,4 @@
+<%@page import="Clases.inscripcion"%>
 <%@page import="Clases.edicionCurso"%>
 <%@page import="Clases.ControladorUsuario"%>
 <%@page import="Clases.usuario"%>
@@ -103,6 +104,22 @@
                                     out.println("<h4> Nombre="+opa.getNombre()+" Fecha Final="+opa.getPfin()+" Fecha Inicio="+opa.getPinicio()+" Cupos="+opa.getCupo()+" Fecha publicacion"+ opa.getFechaPublicacion()+"</h4>" );
                                     out.println("</div>");
                             
+                            
+                                }
+                            }else{
+                           List<inscripcion>ins=OP.listinscrip(nickname);  
+                             Iterator insIT = ins.iterator();
+                                inscripcion inscripobj = null;
+                                while(insIT.hasNext()){
+                                
+                                    inscripobj = (inscripcion) insIT.next();
+                                    /*out.println("<form action='curso.jsp' method='GET'>");
+                                    out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
+                                    out.println("</form><br>");*/
+                                    out.println("<div>");
+                    
+                                    out.println("<h4> Curso Inscripto="+inscripobj.getedicion().getNombre()+"</h4>");
+                                    out.println("</div>");
                             
                                 }
                             }
