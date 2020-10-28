@@ -44,7 +44,7 @@ public class AltaCurso extends HttpServlet {
         List<curso> CurList = new ArrayList<>();
         List<categoria> CatList = new ArrayList<>();
         List<String> listNomCurso = new ArrayList<>();
-        List<String> listNomCat = new ArrayList<>();
+        //List<String> listNomCat = new ArrayList<>();
         String instituto, nombre, descripcion, duracion, horas, creditos, url,docente;
         String previas[], categorias[];
         
@@ -68,11 +68,12 @@ public class AltaCurso extends HttpServlet {
             
         }
         for(int f = 0;f < categorias.length;f++){
-            listNomCat.add(categorias[f]);
+            //listNomCat.add(categorias[f]);
+            CatList.add(cc.cargarCategorias(categorias[f]));
         }
         
         CurList = cc.cargarCurso(listNomCurso);
-        CatList = cc.cargarCategoria(listNomCat);
+        //CatList = cc.cargarCategoria(listNomCat);
         
         //verificar si ya existe el curso
         
