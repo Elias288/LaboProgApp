@@ -2,6 +2,7 @@ package com.mycompany.laboprogappwa;
 import Clases.*;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 public class Operaciones {
@@ -72,5 +73,24 @@ public class Operaciones {
         curso cur = em.find(curso.class, ides);
         return cur;
     }
-    
+      
+      public List<inscripcion> listinscrip (String nombrealumno){
+     EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        List<inscripcion> lista;
+
+        if(nombrealumno.equals("")){
+            Query query = em.createQuery("SELECT xd FROM curso xd");
+
+            lista = query.getResultList();
+        }
+        else{
+            //SELECT * FROM curso xd, instituto ins WHERE xd.instituto_id=ins.id AND ins.facultad LIKE :nameins
+            Query query = em.createQuery("SELECT xd FROM inscripcion xd WHERE xd.Alu LIKE :nameins");
+            query.setParameter("nameins", nombrealumno+"%");
+
+            lista = query.getResultList();
+        }
+        return lista;
+    }
 }
