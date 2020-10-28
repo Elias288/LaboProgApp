@@ -29,7 +29,6 @@ public class Main extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jMenuItem4 = new javax.swing.JMenuItem();
         Escritorio = new javax.swing.JDesktopPane();
-        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuInicio = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -68,30 +67,15 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        Escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(334, 334, 334)
-                .addComponent(jButton1)
-                .addContainerGap(506, Short.MAX_VALUE))
+            .addGap(0, 917, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscritorioLayout.createSequentialGroup()
-                .addContainerGap(324, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(200, 200, 200))
+            .addGap(0, 556, Short.MAX_VALUE)
         );
 
         jMenuBar1.setToolTipText("Edext");
@@ -377,12 +361,6 @@ public class Main extends javax.swing.JFrame {
         RC.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        ControladorCurso cc = new ControladorCurso();
-        List<edicionCurso> listEC = new ArrayList<>();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     public void CargarDatos(){
         ControladorUsuario CU = new ControladorUsuario();
         ControladorCurso CC = new ControladorCurso();
@@ -534,7 +512,6 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane Escritorio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

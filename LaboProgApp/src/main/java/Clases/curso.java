@@ -40,7 +40,7 @@ public class curso implements Serializable{
     public List<curso> getPrevias(){return this.Previas;}
     public long getId(){return this.id;}
     public instituto getInsti(){return this.instituto;}
-    public List<categoria> getCategoraias(){return this.cat;}
+    public List<categoria> getCategorias(){return this.cat;}
     public void SetName(String name){this.nombre = name;}
     public void SetDocente(docente doce){this.doc = doce;}
     public void SetDescripcion(String desc){this.descripcion = desc;}

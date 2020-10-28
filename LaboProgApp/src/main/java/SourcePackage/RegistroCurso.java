@@ -391,7 +391,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
                 || horas==0 || fecha == null || credits==0){
             JOptionPane.showMessageDialog( null, "ERROR!! Hay campos incompletos");
         }else{
-            if(CC.findCurso(name)!=null){
+            if(CC.buscarCurso(name).size() == 1){
                 JOptionPane.showMessageDialog( null, "ERROR!! El curso ya esta registrado");
             }else if(!CU.verFecha(fecha)){
                 JOptionPane.showMessageDialog( null, "ERROR!! La fecha de alta no es válida.");
