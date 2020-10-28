@@ -53,6 +53,9 @@ public class Operaciones {
     public curso BuscarCurso(String nombreCur){
         return CC.findCurso(nombreCur);
     }
+    public List<curso> BuscarCursos(String nombreCur){
+        return CC.buscarCurso(nombreCur);
+    }
     public List<edicionCurso> BuscarEdicionCurso(){
         return CC.buscarEdiciones("");
     }

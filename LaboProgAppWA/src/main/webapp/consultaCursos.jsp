@@ -78,19 +78,32 @@
                                 }
                                 
                             }
-                            else{
-                                String cat = request.getParameter("categoria");
-                                List<curso> cursos = OP.BuscarCursCate(cat);
+                            
+                            if(request.getParameter("categoria") != null){
+                                String cato =request.getParameter("categoria");
+                                List<categoria> cat = cc.buscarCategorias(cato); //categoria a buscar
+                                categoria cat1 = cat.get(0); //guardo la categoria en un objeto categoria
+                                List<curso> cursos = OP.BuscarCursos(""); //lista de cursos
                                 Iterator itCur = cursos.iterator();
-                                curso cur = null;
+                                curso cur = null; //curso
                                 while(itCur.hasNext()){
                                     cur = (curso) itCur.next();
-                                    /*out.println("<form action='curso.jsp' method='GET'>");
-                                    out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
-                                    out.println("</form><br>");*/
-                                    out.println("<div>");
-                                    out.println("<a href='curso.jsp?curso="+cur.getName()+"'class='mb-4' style='color: black'>"+cur.getName()+"</a><br><br>");
-                                    out.println("</div>");
+                                    
+                                    List<categoria> cates = cur.getCategorias();
+                                    Iterator itCates = cates.iterator();
+                                    categoria catego = null;
+                                    while(itCates.hasNext()){
+                                        catego = (categoria) itCates.next();
+                                        if(cat1.Getnombre().equals(catego.Getnombre())){
+                                            out.println("<div>");
+                                            out.println("<a href='curso.jsp?curso="+cur.getName()+"'class='mb-4' style='color: black'>"+cur.getName()+"</a><br><br>");
+                                            out.println("</div>");
+                                        }
+                                    }
+                                    //out.println("<form action='curso.jsp' method='GET'>");
+                                    //out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
+                                    //out.println("</form><br>");
+                                    
                                 }
                                 
                             }

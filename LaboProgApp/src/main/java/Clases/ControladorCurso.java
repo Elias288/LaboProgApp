@@ -147,7 +147,12 @@ public class ControladorCurso {
     }
     public categoria buscarCategoria(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        return em.find(categoria.class,nombre);
+        TypedQuery<Long> queryId = em.createQuery("SELECT id FROM categoria WHERE nombre LIKE :names", Long.class);
+        queryId.setParameter("names", nombre);
+        long ides = queryId.getSingleResult();
+        
+        categoria cate = em.find(categoria.class, ides);
+        return cate;
     }
     
     public void AltaInstituto(String name){
@@ -238,7 +243,8 @@ public class ControladorCurso {
         
         List<curso> lista;
         //SELECT * FROM curso xd, instituto ins WHERE xd.instituto_id=ins.id AND ins.facultad LIKE :nameins
-        Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.curso_categoria cc JOIN xd.categoria c WHERE c.nombre LIKE :nameins");
+        //Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.curso_categoria cc JOIN xd.categoria c WHERE c.nombre LIKE :nameins");
+        Query query = em.createQuery("SELECT xd FROM curso xd JOIN xd.categoria c WHERE c.nombre LIKE :nameins");
         query.setParameter("nameins", categoria);
 
         lista = query.getResultList();
@@ -248,7 +254,7 @@ public class ControladorCurso {
     
     public curso findCurso(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        TypedQuery<Long> queryId = em.createQuery("SELECT id FROM curso WHERE nombre =:names", Long.class);
+        TypedQuery<Long> queryId = em.createQuery("SELECT id FROM curso WHERE nombre LIKE :names", Long.class);
         queryId.setParameter("names", nombre);
         long ides = queryId.getSingleResult();
         
