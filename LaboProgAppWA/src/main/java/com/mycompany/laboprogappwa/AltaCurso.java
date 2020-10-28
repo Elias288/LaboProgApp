@@ -77,7 +77,16 @@ public class AltaCurso extends HttpServlet {
         
         //verificar si ya existe el curso
         
-        cc.AltaCurso(nombre, instituto, descripcion, url, Integer.parseInt(duracion), Integer.parseInt(horas), date, Integer.parseInt(creditos), CurList, docente, CatList);
+        //curso cur = cc.findCurso(nombre);
+        //if(cur != null){
+            cc.AltaCurso(nombre, instituto, descripcion, url, Integer.parseInt(duracion), Integer.parseInt(horas), date, Integer.parseInt(creditos), CurList, docente, CatList);
+        //}
+        /*else{
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<h1>ya existe el curso, desea reemplazarlo?</h1>");
+        }*/
+            
+  
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */

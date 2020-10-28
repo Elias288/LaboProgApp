@@ -74,6 +74,7 @@ public class Operaciones {
         curso cur = em.find(curso.class, ides);
         return cur;
     }
+<<<<<<< HEAD
     public List<inscripcion> listarInscripciones(){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         List<inscripcion>lista=new ArrayList<>();
@@ -84,3 +85,26 @@ public class Operaciones {
     }
     
 }
+=======
+      
+      public List<inscripcion> listinscrip (String nombrealumno){
+     EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        
+        List<inscripcion> lista;
+
+        if(nombrealumno.equals("")){
+            Query query = em.createQuery("SELECT xd FROM curso xd");
+
+            lista = query.getResultList();
+        }
+        else{
+            //SELECT * FROM curso xd, instituto ins WHERE xd.instituto_id=ins.id AND ins.facultad LIKE :nameins
+            Query query = em.createQuery("SELECT xd FROM inscripcion xd WHERE xd.Alu LIKE :nameins");
+            query.setParameter("nameins", nombrealumno+"%");
+
+            lista = query.getResultList();
+        }
+        return lista;
+    }
+}
+>>>>>>> 6fea0ea6ac05d0b77c424f0c546af3d8711286a1
