@@ -472,10 +472,19 @@ public class Main extends javax.swing.JFrame {
             CC.AltaCategoria("informatica");
             CC.AltaCategoria("General");
         }
+        
+        List<categoria> CatList1 = new ArrayList<>();
+        List<categoria> CatList2 = new ArrayList<>();
+        
+        CatList1.add(CC.cargarCategorias("informatica"));
+        CatList1.add(CC.cargarCategorias("General"));
+        CatList2.add(CC.cargarCategorias("General"));
+        
+        
         if(cursoB){            
-            CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10, null, "ElProfe", null);
-            CC.AltaCurso("Matematica","Innova","matematiqueo","math.com",1,2,fechaA,10, null, "queCapo", null);
-            CC.AltaCurso("Sebar mates","ITSP","No acemo na wacho","google.com",1,2,fechaN,10, null, "LaChina", null);
+            CC.AltaCurso("programacion","Innova","programo","prog.com",1,2,fechaE,10, null, "ElProfe", CatList1);
+            CC.AltaCurso("Matematica","Innova","matematiqueo","math.com",1,2,fechaA,10, null, "queCapo", CatList2);
+            CC.AltaCurso("Sebar mates","ITSP","No acemo na wacho","google.com",1,2,fechaN,10, null, "LaChina", CatList2);
             
         }
         if(edicionB){

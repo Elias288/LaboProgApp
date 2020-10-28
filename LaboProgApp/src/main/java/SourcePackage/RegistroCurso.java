@@ -358,6 +358,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
         }
     }
     
+    /*
     public void cargarCategorias(){
         String Cursoname = (String)jComboBox_Categorias.getSelectedItem();
         if(Cursoname.isBlank()){
@@ -371,7 +372,7 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
             
             CatList.add(cat);
         }
-    }
+    }*/
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
@@ -422,7 +423,8 @@ public class RegistroCurso extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonAgregarCursoActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        cargarCategorias();
+        //cargarCategorias();
+        CatList.add(CC.cargarCategorias((String)jComboBox_Categorias.getSelectedItem()));
         JOptionPane.showMessageDialog(null, "Categoria Cargada");
     }//GEN-LAST:event_jButton3ActionPerformed
 
