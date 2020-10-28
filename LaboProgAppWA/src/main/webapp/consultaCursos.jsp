@@ -72,9 +72,10 @@
                                     /*out.println("<form action='curso.jsp' method='GET'>");
                                     out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
                                     out.println("</form><br>");*/
-                                    out.println("<div>");
+                                    out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
+                                    out.println("<div class='text'>");
                                     out.println("<a href='curso.jsp?curso="+cur.getName()+"'class='mb-4' style='color: black'>"+cur.getName()+"</a><br><br>");
-                                    out.println("</div>");
+                                    out.println("</div></div>");
                                 }
                                 
                             }
@@ -95,9 +96,10 @@
                                     while(itCates.hasNext()){
                                         catego = (categoria) itCates.next();
                                         if(cat1.Getnombre().equals(catego.Getnombre())){
-                                            out.println("<div>");
+                                            out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
+                                            out.println("<div class='text'>");
                                             out.println("<a href='curso.jsp?curso="+cur.getName()+"'class='mb-4' style='color: black'>"+cur.getName()+"</a><br><br>");
-                                            out.println("</div>");
+                                            out.println("</div></div>");
                                         }
                                     }
                                     //out.println("<form action='curso.jsp' method='GET'>");

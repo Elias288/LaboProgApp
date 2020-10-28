@@ -21,9 +21,7 @@ public class Operaciones {
     }
     
     public List<instituto> institutos(){
-        List<instituto>lista;
-        lista = CC.buscarInstituto("");
-        return lista;
+        return CC.buscarInstituto("");
     }
     
     public List<categoria> categoria(){

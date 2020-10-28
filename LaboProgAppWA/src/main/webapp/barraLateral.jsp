@@ -197,31 +197,24 @@
             </ul>
         </div>
 
-        <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
-            <h3 class="mb-4">CATEGORÍAS</h3>
-            <ul class="list-unstyled">
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">Social</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">Industrial</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">Educativos</span></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <div class="podcaster"><span class="d-block">Interdiciplinario</span></div>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <!--CATEGORIAS-->    
+            <div class="featured-user  mb-5 mb-lg-0">
+                <h3 class="mb-4">CATEGORÍAS</h3>
+                <ul class="list-unstyled">
+
+                    <%
+                        listaCate = OP.categoria();
+                        itCate = listaCate.iterator();
+                        cat = null;
+                        while(itCate.hasNext()){
+                            cat = (categoria) itCate.next();
+                            out.println("<li><a href='consultaCursos.jsp?categoria="+cat.Getnombre()+"' class='d-flex align-items-center'>");
+                            out.println("<div class='podcaster'><span class='d-block'>" + cat.Getnombre() + "</span></div>");
+                            out.println("</a></li>");
+                        }
+                    %>
+                </ul>
+            </div>
 
         <div class="featured-user  mb-5 mb-lg-0">
             <% out.println("<a href='login.jsp?cerrar=true'class='mb-4'>Salir <i class='glyphicon glyphicon-log-out' aria-hidden='true'></i></a>"); %>
