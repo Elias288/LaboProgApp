@@ -1,6 +1,8 @@
 package com.mycompany.laboprogappwa;
 import Clases.*;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 public class Operaciones {
     
@@ -59,6 +61,16 @@ public class Operaciones {
     }
     public List<curso> BuscarCursCate(String cat){
         return CC.buscarCursoCat(cat);
+    }
+    
+      public curso findCurso2(String nombredoc){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        TypedQuery<Long> queryId = em.createQuery("SELECT id FROM curso WHERE doc_nickname LIKE :names", Long.class);
+        queryId.setParameter("names", nombredoc);
+        long ides = queryId.getSingleResult();
+        
+        curso cur = em.find(curso.class, ides);
+        return cur;
     }
     
 }
