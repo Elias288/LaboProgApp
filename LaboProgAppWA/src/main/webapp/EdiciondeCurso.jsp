@@ -34,7 +34,14 @@
     <body>
             
     <!--Valida sesion -->
-    <%HttpSession sesion = request.getSession();%>
+    <%HttpSession sesion = request.getSession();
+       if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
+                String tipo = sesion.getAttribute("nivel").toString();
+                if(!tipo.equals("2")) //si el tipo no es profesor
+                    out.println("<script>location.replace('index.jsp')</script>");
+            }else
+                out.println("<script>location.replace('login.jsp')</script>");
+    %>
     
     <!--CODIGO DE BARRA SUPERIOR-->
     <header class="site-navbar py-4" role="banner" >
@@ -55,6 +62,7 @@
                             <div class="text">
                                 <h3 class="font-weight-light">
                                     <% 
+                                        
                                         ControladorCurso cc = new ControladorCurso();
                                         edicionCurso ed = cc.buscarEdicion(request.getParameter("edicion"));
                                     %>

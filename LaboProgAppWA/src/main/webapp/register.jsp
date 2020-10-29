@@ -1,7 +1,11 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="Clases.instituto"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="Clases.ControladorUsuario"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,11 +88,34 @@
                                         <i class="glyphicon glyphicon-calendar" aria-hidden="true"></i>
                                 </span>
                             </div>
+                            
+                           <!--checkbox docente o no-->
+                            
+                              <div class="wrap-input100 validate-input" data-validate = "Invalid">
+                                <input class="input100" type="checkbox" name="checkboxx" id="checkboxx" onclick="myFunction2()">
+                                <span class="focus-input100"></span>
+        
+                            </div>
+                              
+                            <!--Instituto--> 
+                              <div id="text" style="display:none" class="wrap-input100 validate-input" data-validate = "Invalid">
+                           <select name="Intitutos" id="cars">   
+                                 <%
+                              Operaciones OP = new Operaciones();
+                        List<instituto>listaIns = OP.institutos();
+                        Iterator itIns = listaIns.iterator();
+                        instituto ins = null;
+                        while(itIns.hasNext()){
+                            ins = (instituto) itIns.next();
+                            out.println("<option value="+ins.getFacultad()+">"+ins.getFacultad()+"</option>");
+                           
+                        }
+                    %>
+                         </select>
+                            </div>
                             <div class="container-login100-form-btn">
                                 <button name="btnLogin" class="login100-form-btn">Registrar</button>
                             </div>
-
-                            <div class="text-center p-t-136"><a class="txt2" href="#"></a></div>
                         </form>
                         <script type="text/javascript" >
                             document.getElementById("btnLogin").onclick= manolo;
@@ -104,16 +131,30 @@
                                     //   document.getElementById("regForm").submit();
                                 }
                             }
+                            
+                            function myFunction2() {
+                            // Get the checkbox
+                            var checkBox = document.getElementById("checkboxx");
+                            // Get the output text
+                            var text = document.getElementById("text");
+
+                            // If the checkbox is checked, display the output text
+                            if (checkBox.checked == true){
+                              text.style.display = "block";
+                            } else {
+                              text.style.display = "none";
+                            }
+                          }
                         </script>
                             
                         <%
-                            Operaciones OP = new Operaciones();
+                        //    Operaciones OP = new Operaciones();
 
                             if(request.getParameter("btnLogin") != null){
 
                                 String NN = request.getParameter("nickname");
                                 String passwd = request.getParameter("pass");
-                                 String cpass = request.getParameter("cpass");
+                                String cpass = request.getParameter("cpass");
                                 String name=request.getParameter("name");
                                 String lastname=request.getParameter("lastname");
                                 String email=request.getParameter("email");
