@@ -44,7 +44,7 @@ public class AltaCurso extends HttpServlet {
         List<curso> CurList = new ArrayList<>();
         List<categoria> CatList = new ArrayList<>();
         List<String> listNomCurso = new ArrayList<>();
-        //List<String> listNomCat = new ArrayList<>();
+        List<String> listNomCat = new ArrayList<>();
         String instituto, nombre, descripcion, duracion, horas, creditos, url,docente;
         String previas[], categorias[];
         
@@ -56,8 +56,8 @@ public class AltaCurso extends HttpServlet {
         horas = request.getParameter("horas");
         creditos = request.getParameter("creditos");
         url = request.getParameter("url");
-        previas = request.getParameter("previas").split(",");
-        categorias = request.getParameter("categorias").split(",");
+        previas = request.getParameterValues("previas");//.split(",");
+        categorias = request.getParameterValues("categorias");//.split(",");
         
         ControladorCurso cc = new ControladorCurso();
         
@@ -77,14 +77,18 @@ public class AltaCurso extends HttpServlet {
         
         //verificar si ya existe el curso
         
-        //curso cur = cc.findCurso(nombre);
-        //if(cur != null){
-            cc.AltaCurso(nombre, instituto, descripcion, url, Integer.parseInt(duracion), Integer.parseInt(horas), date, Integer.parseInt(creditos), CurList, docente, CatList);
-        //}
-        /*else{
+        curso cur = cc.findCurso(nombre);
+        if(cur != null){
             try (PrintWriter out = response.getWriter()) {
                 out.println("<h1>ya existe el curso, desea reemplazarlo?</h1>");
-        }*/
+            }
+        }
+        else{
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<h1>ya existe el curso, desea reemplazarlo?</h1>");
+            }
+            cc.AltaCurso(nombre, instituto, descripcion, url, Integer.parseInt(duracion), Integer.parseInt(horas), date, Integer.parseInt(creditos), CurList, docente, CatList);
+        }
             
   
         
@@ -105,10 +109,12 @@ public class AltaCurso extends HttpServlet {
             out.println("dato 5: "+horas+"<br>");
             out.println("dato 6: "+creditos+"<br>");
             out.println("dato 7: "+url+"<br>");
+            out.println("dato 8: "+previas+"<br>");
+            out.println("dato 9: "+categorias+"<br>");
             Iterator iter = CurList.iterator();
             while(iter.hasNext()){
-                curso cur = (curso)iter.next();
-                out.println("dato 8: "+ cur.getName()+"<br>");
+                curso curs = (curso)iter.next();
+                out.println("dato 8: "+ curs.getName()+"<br>");
             }
             Iterator iter2 = CatList.iterator();
             while(iter2.hasNext()){

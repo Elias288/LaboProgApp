@@ -3,6 +3,8 @@
     Created on : 22 oct. 2020, 15:43:43
     Author     : nacho
 --%>
+<%@page import="Clases.categoria"%>
+<%@page import="Clases.instituto"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -60,15 +62,62 @@
 
                 <div class="col-lg-9">
                     <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
-                        <form action="altaCurso" method="POST">
+                        <form action="altaCurso" method="GET">
                             <table>
                                 <tr>
                                     <td><p>Instituto:</p></td>
-                                    <td><input type="text" name="instituto"></td>
+                                    <td><!--<input type="text" name="instituto">-->
+                                        <select name='instituto' id="selectOpt">
+                                            
+                                            <%
+                                                if(request.getParameter("instituto")!= null){
+                                                    out.print("<option value='"+request.getParameter("instituto")+"' name='insituto'>"+request.getParameter("instituto")+"</option>"); 
+                                                }
+                                                else{
+                                                    out.print("<option value='' name='insituto'></option>"); 
+                                                }
+                                                ControladorCurso cc = new ControladorCurso();
+                                                List<instituto> inst = cc.buscarInstituto("");
+                                                Iterator itIns = inst.iterator();
+                                                instituto ins = null;
+                                                while(itIns.hasNext()){
+                                                    ins = (instituto) itIns.next();
+                                                    out.print("<option value='"+ins.getFacultad()+"' onclick='jsFunction()' name='instituto'>"+ins.getFacultad()+"</option>");
+                                                }
+                                            %>
+                                            
+                                            <!--<option value="ITSP" onclick="jsFunction()">ITSP</option>-->
+                                        </select>
+
+                                        <!--<script>
+                                            function jsFunction(){
+                                                var myselect = document.getElementById("selectOpt");
+                                                //alert(myselect.options[myselect.selectedIndex].value);
+                                                location.replace("altaCurso.jsp?instituto="+myselect.value);
+                                            }
+                                        </script>-->
+                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td><p>Nombre del curso:</p></td>
-                                    <td><input type="text" name="nombre"></td>
+                                    <td><input type="text" name="nombre">
+                                        <!--<select id="selectCurso" name='nombre'>
+                                        <option value=""></option>
+                                        <%
+                                            /*if(request.getParameter("instituto")!= null){
+                                                String insti = request.getParameter("instituto");
+                                                List<curso> cursos = cc.buscarCurso(insti);
+                                                Iterator itCur = cursos.iterator();
+                                                curso cur = null;
+                                                while(itCur.hasNext()){
+                                                    cur = (curso) itCur.next();
+                                                    out.print("<option value='"+cur.getName()+"' onclick='jsFunction()' name='nombre'>"+cur.getName()+"</option>");
+                                                }
+                                            }*/
+                                        %>
+                                        </select>-->
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><p>Descripción:</p></td>
@@ -92,12 +141,32 @@
                                 </tr>
                                 <tr>
                                     <td><p>Previas:</p></td>
-                                    <td><input type="text" name="previas"></td>
-    
+                                    <!--<td><input type="text" name="previas"></td>-->
+                                    <td>
+                                    <%
+                                        List<curso> prev = cc.buscarCurso("");
+                                        Iterator itPrev = prev.iterator();
+                                        curso previa = null;
+                                        while(itPrev.hasNext()){
+                                            previa = (curso)itPrev.next();
+                                            out.print("<p><input type='checkbox' name='previas' value='"+previa.getName()+"'/> "+previa.getName()+"</p>");
+                                        }
+                                    %>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><p>Categorías:</p></td>
-                                    <td><input type="text" name="categorias"></td>
+                                    <td><!--<input type="text" name="categorias">-->
+                                        <%
+                                        List<categoria> cate = cc.buscarCategorias("");
+                                        Iterator itCate = cate.iterator();
+                                        categoria cat = null;
+                                        while(itCate.hasNext()){
+                                            cat = (categoria)itCate.next();
+                                            out.print("<p><input type='checkbox' name='categorias' value='"+cat.Getnombre()+"'/> "+cat.Getnombre()+"</p>");
+                                        }
+                                    %>
+                                    </td>
                                 </tr>
                             </table>
                                 <%
@@ -107,21 +176,6 @@
                                 %>  
                         </form> 
                     </div>
-                    
-                    <!--<div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
-                        <label for="cars">Choose a car:</label>
-                        <select name="cars" id="cars">
-                          <optgroup label="Swedish Cars">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                          </optgroup>
-                          <optgroup label="German Cars">
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
-                          </optgroup>
-                        </select>
-                    </div> ///COMBOBOX///  -->
-
                 </div>
             </div>
         </div>
