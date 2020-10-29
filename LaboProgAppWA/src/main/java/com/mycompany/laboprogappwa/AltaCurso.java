@@ -77,18 +77,18 @@ public class AltaCurso extends HttpServlet {
         
         //verificar si ya existe el curso
         
-        curso cur = cc.findCurso(nombre);
-        if(cur != null){
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<h1>ya existe el curso, desea reemplazarlo?</h1>");
-            }
-        }
-        else{
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<h1>ya existe el curso, desea reemplazarlo?</h1>");
-            }
+        //curso cur = cc.findCurso(nombre);
+        //if(cur != null){
+        //    try (PrintWriter out = response.getWriter()) {
+        //        out.println("<h1>ya existe el curso, desea reemplazarlo?</h1>");
+        //    }
+        //}
+        //else{
+        //    try (PrintWriter out = response.getWriter()) {
+        //        out.println("<h1>ya existe el curso, desea reemplazarlo?</h1>");
+        //    }
             cc.AltaCurso(nombre, instituto, descripcion, url, Integer.parseInt(duracion), Integer.parseInt(horas), date, Integer.parseInt(creditos), CurList, docente, CatList);
-        }
+        //}
             
   
         
