@@ -459,7 +459,7 @@ public class ControladorCurso {
             cat = em.find(categoria.class, ides);
         }
         return cat;
-    
+    }
     
     public List<curso> cargarCurso (List<String> nomCurso){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();

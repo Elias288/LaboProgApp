@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Login</title>
+        <title>REGISTER</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -117,6 +117,9 @@
                             <div class="container-login100-form-btn">
                                 <button name="btnLogin" class="login100-form-btn">Registrar</button>
                             </div>
+                                   <div class="container-login100-form-btn">
+                                <button class="login100-form-btn" onClick="window.location='/LaboProgAppWA/index.jsp'">VOLVER </button>
+                            </div>
                         </form>
                         <script type="text/javascript" >
                             document.getElementById("btnLogin").onclick= manolo;
@@ -151,7 +154,7 @@
                             
                         <%
                         //    Operaciones OP = new Operaciones();
-
+                       
                             if(request.getParameter("btnLogin") != null){
 
                                 String NN = request.getParameter("nickname");
@@ -187,6 +190,9 @@
                                         }
                                     }
                                 }
+                            }
+                             if(request.getParameter("cerrar") != null){
+                             response.sendRedirect("index.jsp");
                             }
                             //mantiene la sesion cerrada
                             if(request.getParameter("cerrar")!=null){
