@@ -142,6 +142,7 @@
                             // If the checkbox is checked, display the output text
                             if (checkBox.checked == true){
                               text.style.display = "block";
+                              
                             } else {
                               text.style.display = "none";
                             }
@@ -163,20 +164,26 @@
                                 Date date=new SimpleDateFormat("yyyy-MM-dd").parse(datefake);  
                                 HttpSession sesion = request.getSession();
                                 ControladorUsuario CU = new ControladorUsuario();
-                                
+                                String checkboxValues = request.getParameter("checkboxx");
                                 if(!(cpass.equals(passwd))){
-                                    out.println("<script language='javascript'>alert('Verificacion de contraseña invalida, reingresela');</script");
-                                    //out.println("Verificacion de contraseña invalida, reingresela.");
+                                    out.println("<script language='javascript'>alert('Verificacion de contraseña invalida, reingresela "+checkboxValues+"');</script");
+                                    out.println("Verificacion de contraseña invalida, reingresela.");
                                  }else{
                                     if(CU.findusu(NN)!=null){ //usuario ya existe
-                                        out.println("<script language='javascript'>alert('Usuario ya existe');</script");
-                                        //out.println("Usuario ya existe.");
+                                        out.println("<script language='javascript'>alert('Usuario ya existe');</script"+checkboxValues);
+                                        out.println("Usuario ya existe."+checkboxValues);
                                     }else{
                                         if(!CU.verFecha(date)){//fecha invalida
                                             out.println("<script language='javascript'>alert('Fecha invalida, reingresela.');</script");
-                                            //out.println("Fecha invalida, reingresela.");
-                                        }else{
+                                            out.println("Fecha invalida, reingresela.");
+                                        }else {
+                                            if(checkboxValues==null){
                                             CU.altaUsuario(name, passwd, lastname, NN, email, date, false, "");//se agrego correctamente
+                            }else{
+                              out.println(request.getParameter("Intitutos"));
+                             CU.altaUsuario(name, passwd, lastname, NN, email, date, true, request.getParameter("Intitutos"));//se agrego correctamente
+                            }
+                                            
                                         }
                                     }
                                 }
