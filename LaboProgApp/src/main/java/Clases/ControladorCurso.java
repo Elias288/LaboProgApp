@@ -338,7 +338,7 @@ public class ControladorCurso {
         listaEdicionCurso(ConsultarEdicionCurso.jTableEdicionCurso,nombres);
     }     
     
-    public void Inscribir(String edicion, String alumno, Date fech){
+    public void Inscribir(String edicion, String alumno, Date fech, String est){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         em.getTransaction().begin();
@@ -346,10 +346,10 @@ public class ControladorCurso {
       //  em.persist(Curs);
         
         alumno Alu = buscarAlumno(alumno);
-        inscripcion ins=new inscripcion(Curs,Alu,fech);
+        inscripcion ins=new inscripcion(Curs,Alu,fech, est);
 
         
-       em.persist(ins);
+        em.persist(ins);
         
         em.getTransaction().commit();
         em.close();
@@ -490,40 +490,5 @@ public class ControladorCurso {
         return ListEdi;
     }
     
-    /*
-    public List<inscripcion> listarInscripciones(String nombre){
-        EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        
-        List<inscripcion>lista=new ArrayList<>();
-
-        if(nombre.equals("")){
-            Query query = em.createQuery("SELECT xd FROM inscripcion xd");
-            lista = query.getResultList();
-        }
-        else{
-            //SELECT xd FROM inscripcion xd WHERE xd.EdicionCurso LIKE :nameins
-            
-            List<inscripcion> Insclista = new ArrayList<>();
-            Query query = em.createQuery("SELECT xd FROM inscripcion xd");
-            Insclista = query.getResultList();
-            
-            Iterator iter = Insclista.iterator();
-            while(iter.hasNext()){
-                inscripcion ins = (inscripcion)iter.next();
-                if(ins.getedicion().getNombre().equals(nombre)){
-                    lista.add(ins);
-                }
-            }
-        }
-        return lista;
-    }
-    
-    public List<inscripcion> listarInscripciones(){
-        EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        List<inscripcion>lista=new ArrayList<>();
-        
-        Query query = em.createQuery("SELECT xd FROM inscripcion xd");
-        lista = query.getResultList();
-        return lista;
-    }*/
+   
 }

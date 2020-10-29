@@ -119,67 +119,47 @@
                             </div>
                         </div>
 
-                        <!--TABLA DE ALUMNOS-->
-                        <table class="table table-striped">
-                            <thead>                
-                                <tr>                 
-                                    <th>Nombre</th>                 
-                                    <th>Fecha inscripción</th>                 
-                                    <th>Inscripción</th>
-                                    <th>Estado</th>                  
-                                </tr>               
-                            </thead>
-                            <tbody>
-                                <%
-                                    /*out.println(OP.listarInscripciones().size());
-                                    
-                                    out.println("Hola");*/
-                                    List<inscripcion> inscrip = OP.listarInscripciones();
-                                    
-                                    Iterator iter = inscrip.iterator();
-                                    inscripcion insc = null;
-                                    while(iter.hasNext()){
-                                        inscripcion ins = (inscripcion)iter.next();
-                                        if(ins.getedicion().getNombre().equals(NomEdCur)){
-                                            insc = (inscripcion) iter.next();
-                                            
-                                            out.println("<tr><th scope='row'>"+insc.getAlumno().getName()+"</th> ");
-                                            out.println("<td>"+insc.getFecha()+"</td>");
-                                            out.println("<td><label><input type='checkbox' id='cbox1' value='first_checkbox'></td>");
-                                            out.println("<td>Inscripto</td>");
-                                            
-                                        }
-                                    }
-                                %>
-                                <!--
-                                <tr>                 
-                                    <th scope="row">Adrian Weiss</th>                 
-                                    <td>18/08/19</td>
-                                    <td><label><input type="checkbox" id="cbox1" value="first_checkbox"></td>
-                                    <td>Inacripto</td>
-                                </tr>
-                                <tr>                 
-                                    <th scope="row">Cecilia Garrido</th>                 
-                                    <td>22/08/19</td>               
-                                    <td><label><input type="checkbox" id="cbox2" value="first_checkbox"></td>
-                                    <td>Aceptado</td>
-                                </tr>
-                                <tr>                 
-                                    <th scope="row">Rodrigo Cotelo</th>                 
-                                    <td>03/09/19</td>                 
-                                    <td><label><input type="checkbox" id="cbox3" value="first_checkbox" disabled="true"></td>
-                                    <td id="lblRechazado" disabled="true">Rechazado</td>
-                                </tr>
-                                -->
-                            </tbody>      
-                        </table>
                         
-                        <a href="#" style=" box-shadow: 3px 4px 0px 0px #0f0f0f;background:linear-gradient(to bottom, #e6e6e6 5%, #ffffff 100%);
-                            background-color:#e6e6e6;border-radius:5px;border:1px solid #707070;display:inline-block;cursor:pointer;color:#000000;
-                            font-family:Arial;font-size:17px;font-weight:bold;padding:7px 12px;text-decoration:none;text-shadow:0px 1px 0px #ffffff;
-                            float:right;";>Guardar Selección</a>
-                        
-                        
+                            <!--TABLA DE ALUMNOS-->
+                            <table class="table table-striped">
+                                <thead>                
+                                    <tr>                 
+                                        <th>Nombre</th>                 
+                                        <th>Fecha inscripción</th>                 
+                                        <th>Inscripción</th>
+                                        <th>Estado</th>                  
+                                    </tr>               
+                                </thead>
+                                <tbody>
+                                        <%
+                                            List<inscripcion> inscrip = OP.listarInscripciones();
+                                            Iterator iter = inscrip.iterator();
+
+                                            while(iter.hasNext()){
+                                                inscripcion ins = (inscripcion)iter.next();
+                                                if(ins.getedicion().getNombre().equals(NomEdCur)){
+
+                                                    out.println("<tr><th scope='row'>"+ins.getAlumno().getName()+"</th> ");
+                                                    out.println("<td>"+ins.getFecha()+"</td>");
+                                                    if(ins.getEstado().equals("Rechazada")){
+                                                        out.println("<td><label><input type='checkbox' value='first_checkbox' disabled></td>");
+                                                        out.println("<td disabled>"+ins.getEstado()+"</td>");
+                                                    }else if(ins.getEstado().equals("Aceptada")){
+                                                        out.println("<td><label><input type='checkbox' value='first_checkbox' checked></td>");
+                                                        out.println("<td>"+ins.getEstado()+"</td>");
+                                                    }else{
+                                                        out.println("<td><label><input type='checkbox' value='first_checkbox'></td>");
+                                                        out.println("<td>"+ins.getEstado()+"</td>");
+                                                    }
+                                                }
+                                            }
+                                        %>
+
+                                </tbody>      
+                            </table>
+                            <div >
+                                <button name="btnLogin" style="width: 30%" class="login100-form-btn">Guardar Selección</button>
+                            </div>
                     </div>
                 </div>
             </div>
