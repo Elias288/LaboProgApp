@@ -492,11 +492,11 @@ public class Main extends javax.swing.JFrame {
             CC.altaEdicion("Programacion de aplicaciones 2020",fechaJ,fechaA,25,fechaN,"programacion");
             CC.altaEdicion("chispa",fechaJ,fechaA,25,fechaN,"Sebar mates");
                     
-            CC.Inscribir("Programacion de aplicaciones 2020", "Eleli", fechaN);
-            CC.Inscribir("chispa", "Eleli", fechaN);
-            CC.Inscribir("Programacion de aplicaciones 2020", "Fran123", fechaN);
-            CC.Inscribir("Programacion de aplicaciones 2020", "Furta3", fechaN);
-            CC.Inscribir("PYE", "Fran123", fechaN);
+            CC.Inscribir("Programacion de aplicaciones 2020", "Eleli", fechaN, "Aceptada");
+            CC.Inscribir("chispa", "Eleli", fechaN, "Inscripto");
+            CC.Inscribir("Programacion de aplicaciones 2020", "Fran123", fechaN, "Rechazada");
+            CC.Inscribir("Programacion de aplicaciones 2020", "Furta3", fechaN, "Aceptada");
+            CC.Inscribir("PYE", "Fran123", fechaN, "Aceptada");
         }
         
         if(usuarioB || institutoB || categoriaB || cursoB || edicionB){

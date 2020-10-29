@@ -14,6 +14,7 @@ public class inscripcion {
     
  @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
+    private String estado="";
     
     @ManyToOne@JoinColumn(name="alumnoninscrip")
     private alumno Alu;
@@ -25,18 +26,21 @@ public class inscripcion {
     
     public inscripcion() {}
     
-     public inscripcion(edicionCurso EdicionCurso, alumno Alumno, Date fech){
+     public inscripcion(edicionCurso EdicionCurso, alumno Alumno, Date fech, String est){
         this.Alu = Alumno;
         this.EdicionCurso = EdicionCurso;
         this.Fecha = fech;
+        this.estado = est;
     }
     
     public Date getFecha(){return this.Fecha;}
     public alumno getAlumno(){return this.Alu;}
     public edicionCurso getedicion(){return this.EdicionCurso;}
+    public String getEstado(){return this.estado;}
     
     public void setFecha(Date fecha){this.Fecha = fecha;}
     public void setAlumno(alumno al){this.Alu = al;}
     public void setEdicionCurso(edicionCurso EdC){this.EdicionCurso=EdC;}
+    public void setEstado(String est){this.estado=est;}
 
 }
