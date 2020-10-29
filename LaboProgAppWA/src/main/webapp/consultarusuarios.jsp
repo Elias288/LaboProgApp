@@ -121,7 +121,7 @@
 
                                                         out.println("<div>");
 
-                                              out.println("<h4> Curso Inscripto="+ins.getedicion().getNombre()+"</h4>");
+                                              out.println("<h4> Curso Inscripto="+ins.getedicion().getNombre()+"</h4>"+" estado:"+ins.getEstado());
                                               out.println("</div>");
                                           }   
 

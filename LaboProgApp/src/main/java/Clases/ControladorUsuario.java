@@ -48,7 +48,7 @@ public class ControladorUsuario {
         }
         else{
             Query query = em.createQuery("SELECT xd FROM Usuario xd WHERE xd.nickname LIKE :nickname");
-            query.setParameter("nickname", NN+"%");
+            query.setParameter("nickname", NN);
 
             lista = query.getResultList();
             
