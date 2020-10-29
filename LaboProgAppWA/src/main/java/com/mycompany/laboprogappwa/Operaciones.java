@@ -74,7 +74,7 @@ public class Operaciones {
         curso cur = em.find(curso.class, ides);
         return cur;
     }
-<<<<<<< HEAD
+
     public List<inscripcion> listarInscripciones(){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         List<inscripcion>lista=new ArrayList<>();
@@ -84,8 +84,8 @@ public class Operaciones {
         return lista;
     }
     
-}
-=======
+
+
       
       public List<inscripcion> listinscrip (String nombrealumno){
      EntityManager em = PersistenceManager.getInstance().createEntityManager();
@@ -107,4 +107,4 @@ public class Operaciones {
         return lista;
     }
 }
->>>>>>> 6fea0ea6ac05d0b77c424f0c546af3d8711286a1
+

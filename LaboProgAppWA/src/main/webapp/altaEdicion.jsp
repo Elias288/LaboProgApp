@@ -1,8 +1,3 @@
-<%-- 
-    Document   : altaCurso
-    Created on : 22 oct. 2020, 15:43:43
-    Author     : nacho
---%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -60,44 +55,42 @@
 
                 <div class="col-lg-9">
                     <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
-                        <form action="altaCurso" method="POST">
+                        <form action="altaEdicion" method="GET">
                             <table>
                                 <tr>
-                                    <td><p>Instituto:</p></td>
-                                    <td><input type="text" name="instituto"></td>
+                                    <td><p>Curso:</p></td>
+                                    <td><input type="text" name="curso"></td>
                                 </tr>
                                 <tr>
-                                    <td><p>Nombre del curso:</p></td>
+                                    <td><p>Nombre edición:</p></td>
                                     <td><input type="text" name="nombre"></td>
                                 </tr>
                                 <tr>
-                                    <td><p>Descripción:</p></td>
-                                    <td><input type="text" name="descripcion"></td>
+                                    <td><p>Fecha Inicio:</p></td>
+                                    <td><input type="text" name="finicio"></td>
                                 </tr>
                                 <tr>
-                                    <td><p>Duración:</p></td>
-                                    <td><input type="text" name="duracion"></td>
+                                    <td><p>Fecha Fin:</p></td>
+                                    <td><input type="text" name="ffin"></td>
                                 </tr>
                                 <tr>
-                                    <td><p>Horas:</p></td>
-                                    <td><input type="text" name="horas"></td>
+                                    <td><p>Cupos:</p></td>
+                                    <td><input type="text" name="cupos"></td>
                                 </tr>
+                                
                                 <tr>
-                                    <td><p>Créditos:</p></td>
-                                    <td><input type="text" name="creditos"></td>
-                                </tr>
-                                <tr>
-                                    <td><p>URL:</p></td>
-                                    <td><input type="text" name="url"></td>
-                                </tr>
-                                <tr>
-                                    <td><p>Previas:</p></td>
-                                    <td><input type="text" name="previas"></td>
-    
-                                </tr>
-                                <tr>
-                                    <td><p>Categorías:</p></td>
-                                    <td><input type="text" name="categorias"></td>
+                                    <%
+                                        /*ControladorCurso cc = new ControladorCurso();
+                                        List<curso> cursos  = new ArrayList<curso>();
+                                        cursos = cc.buscarCurso("");
+                                        Iterator iterCur = cursos.iterator();
+                                        curso cur;
+                                        while(iterCur.hasNext()){
+                                            cur = (curso)iterCur.next();
+                                            out.println("<label><input type='checkbox' id='cbox1' value='first_checkbox'>"+cur.getName()+"</label><br>");
+                                            out.println("<label><input type='checkbox' id='cbox1' value='first_checkbox'> Este es mi primer checkbox</label><br>");
+                                        }*/
+                                    %>
                                 </tr>
                             </table>
                                 <%

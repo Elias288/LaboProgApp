@@ -418,11 +418,11 @@ public class ControladorCurso {
         List<curso> cursos = new ArrayList<>();
         cursos = buscarCurso(nombreIns);
         
-        JOptionPane.showMessageDialog(null, cursos.size());
+        
         
         lista = buscarEdiciones("");
         
-        JOptionPane.showMessageDialog(null, lista.size());
+
         
         Iterator iteCur = cursos.iterator();
         
@@ -434,7 +434,7 @@ public class ControladorCurso {
             while(iteEd.hasNext()){
                 ed = (edicionCurso)iteEd.next();
                 if(ed.getCurso().getId() == cur.getId()){
-                    JOptionPane.showMessageDialog(null,ed.getCurso().getId()+" = "+cur.getId());
+
                     listaRes.add(ed);
                 }
             }

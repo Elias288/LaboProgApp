@@ -84,7 +84,7 @@
                                 
                             }
                             
-                            if(request.getParameter("categoria") != null){
+                            /*if(request.getParameter("categoria") != null){
                                 String cato =request.getParameter("categoria");
                                 List<categoria> cat = cc.buscarCategorias(cato); //categoria a buscar
                                 categoria cat1 = cat.get(0); //guardo la categoria en un objeto categoria
@@ -112,7 +112,7 @@
                                     
                                 }
                                 
-                            }
+                            }*/
                          %>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                                 
                             }
                             
-                            if(request.getParameter("categoria") != null){
+                            /*if(request.getParameter("categoria") != null){
                                 String cato = request.getParameter("categoria");
                                 List<edicionCurso> ed = cc.buscarEdicionXCat(cato);
                                 Iterator itEd = ed.iterator();
@@ -154,7 +154,7 @@
                                     out.println("</div></div>");
 
                                 }
-                            }
+                            }*/
                             
                          %>
                     </div>
