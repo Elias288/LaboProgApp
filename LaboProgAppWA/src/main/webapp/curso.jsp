@@ -80,7 +80,8 @@
                             }
                         %>
                     </div>
-
+                    
+                    <!--EDICIONES DE CURSO-->
                     <div class="col-lg-3">
                         <h3 style="color: black">Ediciones del cursos</h3>
 
@@ -95,16 +96,20 @@
                                 edicionCurso ec = null;
                                 
                                 while(itEC.hasNext()){
-
-                                    ec = (edicionCurso) itEC.next();
-                                    
-                                    if(cur.getId() == ec.getCurso().getId()){
-                                        
+                                    ec = (edicionCurso) itEC.next();                                    
+                                    if(cur.getId() == ec.getCurso().getId()){                                        
                                         /*CODIFICO EL NOMBRE DE LA EDICION DE CURSO PARA ENVIARLO POR URL*/
                                         String url = ec.getNombre();
                                         String encodedurl = URLEncoder.encode(url,"UTF-8"); 
                                         
-                                        out.println("<a style='color:black' href=EdicionCurso.jsp?EdCur="+encodedurl+">");
+                                        if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
+                                            String tipo = sesion.getAttribute("nivel").toString();
+                                            if(tipo.equals("1")) //si el tipo no es profesor
+                                                out.println("<a style='color:black' href=EdicionCurso.jsp?EdCur="+encodedurl+">");
+                                            else
+                                                out.println("<a style='color:black' href=EdiciondeCurso.jsp?edicion="+encodedurl+">");
+                                        }else
+                                            out.println("<a style='color:black' href=EdiciondeCurso.jsp?edicion="+encodedurl+">");
                                         out.println("<div class='d-block m-b-25 d-md-flex podcast-entry2 bg-white' data-aos='fade-up'>");
                                         out.println("<div class='image' style='background-image: url('images/img-02.jpg');'></div>");
                                         out.println("<div class='text'>");

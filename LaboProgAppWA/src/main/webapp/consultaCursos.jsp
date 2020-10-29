@@ -57,7 +57,7 @@
 
                 
                 <div class="col-lg-4">
-                    <h1>Cursos: </h1>
+                    <!--<h1>Cursos: </h1>-->
                     <div class="d-block podcast-entry bg-white" data-aos="fade-up">
                         <% 
                             ControladorCurso cc = new ControladorCurso();
@@ -79,48 +79,15 @@
                                     out.println("<a href='curso.jsp?curso="+cur.getName()+"'class='mb-4' style='color: black'>"+cur.getName()+"</a><br><br>");
                                     out.println("</div></div>");
                                 }
-                                
-                                
-                                
                             }
-                            
-                            /*if(request.getParameter("categoria") != null){
-                                String cato =request.getParameter("categoria");
-                                List<categoria> cat = cc.buscarCategorias(cato); //categoria a buscar
-                                categoria cat1 = cat.get(0); //guardo la categoria en un objeto categoria
-                                List<curso> cursos = OP.BuscarCursos(""); //lista de cursos
-                                Iterator itCur = cursos.iterator();
-                                curso cur = null; //curso
-                                while(itCur.hasNext()){
-                                    cur = (curso) itCur.next();
-                                    
-                                    List<categoria> cates = cur.getCategorias();
-                                    Iterator itCates = cates.iterator();
-                                    categoria catego = null;
-                                    while(itCates.hasNext()){
-                                        catego = (categoria) itCates.next();
-                                        if(cat1.Getnombre().equals(catego.Getnombre())){
-                                            out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
-                                            out.println("<div class='text'>");
-                                            out.println("<a href='curso.jsp?curso="+cur.getName()+"' class='mb-4' style='color: black'>"+cur.getName()+"</a><br><br>");
-                                            out.println("</div></div>");
-                                        }
-                                    }
-                                    //out.println("<form action='curso.jsp' method='GET'>");
-                                    //out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
-                                    //out.println("</form><br>");
-                                    
-                                }
-                                
-                            }*/
                          %>
                     </div>
                 </div>
+                <!--    
                 <div class="col-lg-4">
                     <h1>Ediciones: </h1>
                     <div class="d-block podcast-entry bg-white" data-aos="fade-up">
                         <% 
-                            
                             if(request.getParameter("instituto") != null){
                                 String ins = request.getParameter("instituto");
 
@@ -129,9 +96,6 @@
                                 edicionCurso ed = null;
                                 while(itEd.hasNext()){
                                     ed = (edicionCurso) itEd.next();
-                                    /*out.println("<form action='curso.jsp' method='GET'>");
-                                    out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
-                                    out.println("</form><br>");*/
                                     out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
                                     out.println("<div class='text'>");
                                     out.println("<a href='EdiciondeCurso.jsp?edicion="+ed.getNombre()+"' class='mb-4' style='color: black'>"+ed.getNombre()+"</a><br><br>");
@@ -139,26 +103,10 @@
                                 }
                                 
                             }
-                            
-                            /*if(request.getParameter("categoria") != null){
-                                String cato = request.getParameter("categoria");
-                                List<edicionCurso> ed = cc.buscarEdicionXCat(cato);
-                                Iterator itEd = ed.iterator();
-                                edicionCurso edicion = null;
-                                while(itEd.hasNext()){
-                                    edicion = (edicionCurso) itEd.next();
-
-                                    out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
-                                    out.println("<div class='text'>");
-                                    out.println("<a href='EdiciondeCurso.jsp?edicion='"+edicion.getNombre()+"'class='mb-4' style='color: black'>"+edicion.getNombre()+"</a><br><br>");
-                                    out.println("</div></div>");
-
-                                }
-                            }*/
-                            
                          %>
                     </div>
                 </div>
+                -->
             </div>
         </div>
     </div>

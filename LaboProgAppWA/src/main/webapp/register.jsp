@@ -92,26 +92,27 @@
                            <!--checkbox docente o no-->
                             
                               <div class="wrap-input100 validate-input" data-validate = "Invalid">
+                                  <p style="text-align: center; font-family: Poppins-Medium; font-size: 15px ">Tipo Docente:</p>
                                 <input class="input100" type="checkbox" name="checkboxx" id="checkboxx" onclick="myFunction2()">
                                 <span class="focus-input100"></span>
         
                             </div>
                               
                             <!--Instituto--> 
-                              <div id="text" style="display:none" class="wrap-input100 validate-input" data-validate = "Invalid">
-                           <select name="Intitutos" id="cars">   
+                            <div id="text" style="display:none" class="wrap-input100 validate-input" data-validate = "Invalid">
+                                <select class="input100" name="Intitutos" id="cars">   
                                  <%
-                              Operaciones OP = new Operaciones();
-                        List<instituto>listaIns = OP.institutos();
-                        Iterator itIns = listaIns.iterator();
-                        instituto ins = null;
-                        while(itIns.hasNext()){
-                            ins = (instituto) itIns.next();
-                            out.println("<option value="+ins.getFacultad()+">"+ins.getFacultad()+"</option>");
-                           
-                        }
-                    %>
-                         </select>
+                                    Operaciones OP = new Operaciones();
+                                    List<instituto>listaIns = OP.institutos();
+                                    Iterator itIns = listaIns.iterator();
+                                    instituto ins = null;
+                                    while(itIns.hasNext()){
+                                        ins = (instituto) itIns.next();
+                                        out.println("<option value="+ins.getFacultad()+">"+ins.getFacultad()+"</option>");
+
+                                    }
+                                %>
+                                </select>
                             </div>
                             <div class="container-login100-form-btn">
                                 <button name="btnLogin" class="login100-form-btn">Registrar</button>
