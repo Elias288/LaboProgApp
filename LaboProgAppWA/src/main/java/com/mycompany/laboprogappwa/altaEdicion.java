@@ -36,12 +36,12 @@ public class altaEdicion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException {
+        throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
        
         
         String nombre = request.getParameter("nombre");
-        String insituto = request.getParameter("instituto");
+        String instituto = request.getParameter("instituto");
         String Finicio = request.getParameter("finicio");
         String Ffin = request.getParameter("ffin");
         String cupos = request.getParameter("cupos");
@@ -49,9 +49,13 @@ public class altaEdicion extends HttpServlet {
         
         ControladorCurso cc = new ControladorCurso();
         
-        Date FFin = new SimpleDateFormat("dd/MM/yyyy").parse(Ffin); 
-        Date FInicio = new SimpleDateFormat("dd/MM/yyyy").parse(Finicio); 
+        Date FFin = new SimpleDateFormat("yyyy-MM-dd").parse(Ffin); 
+        Date FInicio = new SimpleDateFormat("yyyy-MM-dd").parse(Finicio); 
         Date fecha = new Date();
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<h1>funca</h1>");
+//        }
         
         cc.altaEdicion(nombre, FInicio, FFin, Integer.parseInt(cupos), fecha, curso);
         

@@ -65,6 +65,11 @@
                         <form action="altaCurso" method="GET">
                             <table>
                                 <tr>
+                                    <th style="width:200px"></th>
+                                    <th style="width:200px"></th>
+                                </tr>
+                                <tr>
+
                                     <td><p>Instituto:</p></td>
                                     <td><!--<input type="text" name="instituto">-->
                                         <select name='instituto' id="selectOpt">
@@ -125,21 +130,29 @@
                                 </tr>
                                 <tr>
                                     <td><p>Duración:</p></td>
-                                    <td><input type="text" name="duracion"></td>
+                                    <td><input type="number" min="1" name="duracion"></td>
                                 </tr>
                                 <tr>
                                     <td><p>Horas:</p></td>
-                                    <td><input type="text" name="horas"></td>
+                                    <td><input type="number" min="1" name="horas"></td>
                                 </tr>
                                 <tr>
                                     <td><p>Créditos:</p></td>
-                                    <td><input type="text" name="creditos"></td>
+                                    <td><input type="number" min="1" max="20" name="creditos"></td>
                                 </tr>
                                 <tr>
                                     <td><p>URL:</p></td>
                                     <td><input type="text" name="url"></td>
                                 </tr>
+                                </table>
+                                    <hr width="75%" size="16px">
+                                <table>
                                 <tr>
+                                    <th style="width:200px"></th>
+                                    <th style="width:200px"></th>
+                                </tr>
+                                <tr>
+                                    
                                     <td><p>Previas:</p></td>
                                     <!--<td><input type="text" name="previas"></td>-->
                                     <td>
@@ -154,7 +167,15 @@
                                     %>
                                     </td>
                                 </tr>
+                                </table>
+                                    <hr width="75%" size="16px">
+                                <table>
                                 <tr>
+                                    <th style="width:200px"></th>
+                                    <th style="width:200px"></th>
+                                </tr>
+                                <tr>
+                                    
                                     <td><p>Categorías:</p></td>
                                     <td><!--<input type="text" name="categorias">-->
                                         <%
@@ -167,8 +188,10 @@
                                         }
                                     %>
                                     </td>
+                                    
                                 </tr>
                             </table>
+                                    <hr width="75%" size="16px">
                                 <%
                                         ControladorUsuario CU = new ControladorUsuario();
                                         usuario usu = CU.findusu(sesion.getAttribute("user").toString());

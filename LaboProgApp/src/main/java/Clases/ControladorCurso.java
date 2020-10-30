@@ -253,12 +253,18 @@ public class ControladorCurso {
     
     public curso findCurso(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        TypedQuery<Long> queryId = em.createQuery("SELECT id FROM curso WHERE nombre LIKE :names", Long.class);
-        queryId.setParameter("names", nombre);
-        long ides = queryId.getSingleResult();
+        try{
+            TypedQuery<Long> queryId = em.createQuery("SELECT id FROM curso WHERE nombre LIKE :names", Long.class);
+            queryId.setParameter("names", nombre);
+            long ides = queryId.getSingleResult();
+
+            curso cur = em.find(curso.class, ides);
+            return cur;
+        }
+        catch(Exception e){
+            return null;
+        }
         
-        curso cur = em.find(curso.class, ides);
-        return cur;
     }
     
     public void listaCurso(JTable tabla,String nombreInstituto){

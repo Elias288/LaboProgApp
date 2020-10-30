@@ -144,7 +144,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="d-flex align-items-center">
+                    <a href="altaEdicion.jsp" class="d-flex align-items-center">
                         <div class="podcaster"><span class="d-block">Alta Edición</span></div>
                     </a>
                 </li>

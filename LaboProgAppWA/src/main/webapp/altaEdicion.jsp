@@ -1,3 +1,4 @@
+<%@page import="Clases.instituto"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -58,8 +59,61 @@
                         <form action="altaEdicion" method="GET">
                             <table>
                                 <tr>
+                                    <th style="width:200px"></th>
+                                    <th style="width:200px"></th>
+                                </tr>
+                                <td><!--<input type="text" name="instituto">-->
+                                    <p>Insituto:</p></td>
+                                <td>
+                                    <select name='instituto' onchange="jsFunction()" id="selectOpt">
+
+                                        <%
+                                            if(request.getParameter("instituto")!= null){
+                                                out.print("<option onclick='jsFunction()' value='"+request.getParameter("instituto")+"' name='insituto'>"+request.getParameter("instituto")+"</option>"); 
+                                            }
+                                            else{
+                                                out.print("<option onclick='jsFunction()' value='' name='insituto'></option>"); 
+                                            }
+                                            ControladorCurso cc = new ControladorCurso();
+                                            List<instituto> inst = cc.buscarInstituto("");
+                                            Iterator itIns = inst.iterator();
+                                            instituto ins = null;
+                                            while(itIns.hasNext()){
+                                                ins = (instituto) itIns.next();
+                                                out.print("<option onclick='jsFunction()' value='"+ins.getFacultad()+"' name='instituto'>"+ins.getFacultad()+"</option>");
+                                            }
+                                        %>
+
+                                        <!--<option value="ITSP" onclick="jsFunction()">ITSP</option>-->
+                                    </select>
+
+                                    <script>
+                                        function jsFunction(){
+                                            var myselect = document.getElementById("selectOpt");
+                                            //alert(myselect.options[myselect.selectedIndex].value);
+                                            location.replace("altaEdicion.jsp?instituto="+myselect.value);
+                                        }
+                                    </script>
+                                </td>
+                                <tr>
                                     <td><p>Curso:</p></td>
-                                    <td><input type="text" name="curso"></td>
+                                    <td><!--<input type="text" name="curso">-->
+                                        <select id="selectCurso" name='curso'>
+                                        <option value=""></option>
+                                        <%
+                                            if(request.getParameter("instituto")!= null){
+                                                String insti = request.getParameter("instituto");
+                                                List<curso> cursos = cc.buscarCurso(insti);
+                                                Iterator itCur = cursos.iterator();
+                                                curso cur = null;
+                                                while(itCur.hasNext()){
+                                                    cur = (curso) itCur.next();
+                                                    out.print("<option value='"+cur.getName()+"' onclick='jsFunction()' name='curso'>"+cur.getName()+"</option>");
+                                                }
+                                            }
+                                        %>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><p>Nombre edición:</p></td>
@@ -67,21 +121,20 @@
                                 </tr>
                                 <tr>
                                     <td><p>Fecha Inicio:</p></td>
-                                    <td><input type="text" name="finicio"></td>
+                                    <td><input type="date" name="finicio"></td>
                                 </tr>
                                 <tr>
                                     <td><p>Fecha Fin:</p></td>
-                                    <td><input type="text" name="ffin"></td>
+                                    <td><input type="date" name="ffin"></td>
                                 </tr>
                                 <tr>
                                     <td><p>Cupos:</p></td>
-                                    <td><input type="text" name="cupos"></td>
+                                    <td><input type="number" min="1" max="50" name="cupos"></td>
                                 </tr>
                                 
                                 <tr>
                                     <%
-                                        /*ControladorCurso cc = new ControladorCurso();
-                                        List<curso> cursos  = new ArrayList<curso>();
+                                        /*List<curso> cursos  = new ArrayList<curso>();
                                         cursos = cc.buscarCurso("");
                                         Iterator iterCur = cursos.iterator();
                                         curso cur;
