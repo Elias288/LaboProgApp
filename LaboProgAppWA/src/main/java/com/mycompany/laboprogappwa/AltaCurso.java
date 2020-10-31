@@ -85,6 +85,9 @@ public class AltaCurso extends HttpServlet {
         }
         else{
             cc.AltaCurso(nombre, instituto, descripcion, url, Integer.parseInt(duracion), Integer.parseInt(horas), date, Integer.parseInt(creditos), CurList, docente, CatList);
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<script> location.replace('curso.jsp?curso="+nombre+"');</script>");
+            }
         }
             
   

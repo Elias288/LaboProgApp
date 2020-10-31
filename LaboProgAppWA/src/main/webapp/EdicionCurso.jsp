@@ -118,8 +118,8 @@
                                 </h3>
                             </div>
                         </div>
-
-                        
+                        <form action="EditInscripcion" method="GET">
+                            <%out.println("<input type='hidden' name='edicion' value='"+NomEdCur+"'>");%>                    
                             <!--TABLA DE ALUMNOS-->
                             <table class="table table-striped">
                                 <thead>                
@@ -132,34 +132,49 @@
                                 </thead>
                                 <tbody>
                                         <%
-                                            List<inscripcion> inscrip = OP.listarInscripciones();
+                                            //List<inscripcion> inscrip = OP.listarInscripciones("Elias","Programacion de aplicaciones 2020");
+                                            List<inscripcion> inscrip = OP.listarInscripciones("",NomEdCur);
                                             Iterator iter = inscrip.iterator();
 
                                             while(iter.hasNext()){
                                                 inscripcion ins = (inscripcion)iter.next();
-                                                if(ins.getedicion().getNombre().equals(NomEdCur)){
+                                                out.println("<tr><th scope='row'><p>"+ins.getAlumno().getName()+"</p></th> ");
+                                                out.println("<td><p>"+ins.getFecha()+"</p></td>");
 
-                                                    out.println("<tr><th scope='row'>"+ins.getAlumno().getName()+"</th> ");
-                                                    out.println("<td>"+ins.getFecha()+"</td>");
-                                                    if(ins.getEstado().equals("Rechazada")){
-                                                        out.println("<td><label><input type='checkbox' value='first_checkbox' disabled></td>");
-                                                        out.println("<td disabled>"+ins.getEstado()+"</td>");
-                                                    }else if(ins.getEstado().equals("Aceptada")){
-                                                        out.println("<td><label><input type='checkbox' value='first_checkbox' checked></td>");
-                                                        out.println("<td>"+ins.getEstado()+"</td>");
-                                                    }else{
-                                                        out.println("<td><label><input type='checkbox' value='first_checkbox'></td>");
-                                                        out.println("<td>"+ins.getEstado()+"</td>");
-                                                    }
+                                                if(ins.getEstado().equals("Rechazada")){
+                                                    out.println("<td><label><input type='checkbox' disabled></td>");
+                                                    out.println("<td disabled><p>"+ins.getEstado()+"</p></td></tr>");
+
+                                                }else if(ins.getEstado().equals("Aceptada")){
+                                                    out.println("<td><label><input type='checkbox' value='"+ins.getAlumno().getName()+"' name='checkbox' id='checkbox"+ins.getAlumno().getName()+"' onclick='myFunction"+ins.getAlumno().getName()+"()' checked></td>");
+                                                    out.println("<td><p id='text"+ins.getAlumno().getName()+"'>"+ins.getEstado()+"</p></td>");
+                                                    out.println("<input type='hidden' name='nombreEst' value='"+ins.getAlumno().getName()+"'>");
+                                                    out.println("</tr>");
+
+                                                }else{
+                                                    out.println("<td><label><input type='checkbox' value='"+ins.getAlumno().getName()+"' name='checkboxAceptado' id='checkbox"+ins.getAlumno().getName()+"' onclick='myFunction"+ins.getAlumno().getName()+"()'></td>");
+                                                    out.println("<td ><p id='text"+ins.getAlumno().getName()+"'>"+ins.getEstado()+"</p></td>");
+                                                    out.println("</tr>");
                                                 }
+
+                                                //SCRIPT QUE CAMBIA
+                                                    out.println("<script type='text/javascript' >");
+                                                    out.println("function myFunction"+ins.getAlumno().getName()+"() {");
+                                                    out.println("var checkBox = document.getElementById('checkbox"+ins.getAlumno().getName()+"');");
+                                                    out.println("var text = document.getElementById('text"+ins.getAlumno().getName()+"');");
+                                                    out.println("if (checkBox.checked == true){");
+                                                    out.println("text.innerHTML  = 'Aceptada';");
+                                                    out.println("} else {");
+                                                    out.println("text.innerHTML  = 'Rechazada';}");
+                                                    out.println("}</script>");
                                             }
                                         %>
-
-                                </tbody>      
+                                </tbody>
                             </table>
-                            <div >
-                                <button name="btnLogin" style="width: 30%" class="login100-form-btn">Guardar Selección</button>
-                            </div>
+                            <div>
+                                <button style="width: 30%" class="login100-form-btn">Guardar Selección</button>
+                            </div> 
+                        </form>
                     </div>
                 </div>
             </div>

@@ -34,14 +34,7 @@
     <body>
             
     <!--Valida sesion -->
-    <%HttpSession sesion = request.getSession();
-       if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
-                String tipo = sesion.getAttribute("nivel").toString();
-                if(!tipo.equals("2")) //si el tipo no es profesor
-                    out.println("<script>location.replace('index.jsp')</script>");
-            }else
-                out.println("<script>location.replace('login.jsp')</script>");
-    %>
+    <%HttpSession sesion = request.getSession();%>
     
     <!--CODIGO DE BARRA SUPERIOR-->
     <header class="site-navbar py-4" role="banner" >
@@ -82,15 +75,11 @@
                             <div class="text">
                                 <h3 class="font-weight-light">
                                     <font size="4" face="verdana" color="black"> 
-                                    <strong>Fecha inicio:</strong> <% out.print(ed.getPinicio()); %><br>
+                                        <strong>Fecha inicio:</strong> <% out.print(ed.getPinicio()); %><br>
                                         <strong>Fecha Fin:</strong> <% out.print(ed.getPfin()); %> <br>
                                         <strong>Cupo:</strong> <% out.print(ed.getCupo()); %> <br>
                                         <strong>Fecha publicacion:<% out.print(ed.getFechaPublicacion()); %></strong>
                                         <br><br>
-                                        <strong>Docentes:</strong>
-                                        <br>
-                                        > Alvaro Correa - <a href="#" class="h10">benkenobi</a> <br>
-                                        > Andres Pia - <a href="#" class="h10">watson</a> <br>
                                     </font> 
                                 </h3>
                             </div>

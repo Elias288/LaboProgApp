@@ -381,6 +381,9 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         ControladorCurso cc = new ControladorCurso();
         JOptionPane.showMessageDialog(null, cc.buscarEdicionXIns("Innova").size());
+        //inscripcion ins = cc.listarInscripciones("Franccesco","PYE").get(0);
+        
+        //cc.editIsncripcion(ins,"Rechazada");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void CargarDatos(){

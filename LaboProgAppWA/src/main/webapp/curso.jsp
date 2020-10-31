@@ -104,7 +104,7 @@
                                         
                                         if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
                                             String tipo = sesion.getAttribute("nivel").toString();
-                                            if(tipo.equals("1")) //si el tipo no es profesor
+                                            if(tipo.equals("1")) //si el tipo es profesor
                                                 out.println("<a style='color:black' href=EdicionCurso.jsp?EdCur="+encodedurl+">");
                                             else
                                                 out.println("<a style='color:black' href=EdiciondeCurso.jsp?edicion="+encodedurl+">");

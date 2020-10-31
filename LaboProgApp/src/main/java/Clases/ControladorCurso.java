@@ -496,5 +496,43 @@ public class ControladorCurso {
         return ListEdi;
     }
     
+    public List<inscripcion> listarInscripciones(String nombreAlu, String nombreEd){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        List<inscripcion>lista=new ArrayList<>();
+        List<inscripcion>lista2=new ArrayList<>();
+        Query query = em.createQuery("SELECT xd FROM inscripcion xd");
+        lista = query.getResultList();
+        
+        if(!nombreAlu.equals("") && !nombreEd.equals("")){
+            Iterator iter = lista.iterator();
+            while(iter.hasNext()){
+                inscripcion ins = (inscripcion)iter.next();
+                if(ins.getedicion().getNombre().equals(nombreEd) && ins.getAlumno().getName().equals(nombreAlu)){
+                    lista2.add(ins);
+                }
+            }
+            return lista2;
+        }else if(nombreAlu.equals("") && !nombreEd.equals("")){
+            Iterator iter = lista.iterator();
+            while(iter.hasNext()){
+                inscripcion ins = (inscripcion)iter.next();
+                if(ins.getedicion().getNombre().equals(nombreEd)){
+                    lista2.add(ins);
+                }
+            }
+            return lista2;
+        }
+        return lista;
+    }
+    
+    public void editIsncripcion(inscripcion ins, String estado){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        em.getTransaction().begin();
+   
+        ins.setEstado(estado);
+        ins=em.merge(ins);
+        em.getTransaction().commit();
+        em.close();
+    }
    
 }
