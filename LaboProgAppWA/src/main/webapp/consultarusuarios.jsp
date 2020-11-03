@@ -112,7 +112,7 @@
                                     Iterator iter2 = inscrip2.iterator();
                                     while(iter2.hasNext()){
                                         inscripcion ins = (inscripcion)iter2.next();
-                                        if(ins.getAlumno().getNN().equals(nickname)){
+                                        if(ins.getAlumno().getNN().equals(nickname) && !ins.getEstado().equals("Rechazada")){
                                             semaforo=1;
                                         }   
 
@@ -127,7 +127,7 @@
                                         out.println("<h3>Ediciones de Curso</h3>");
                                         while(iter.hasNext()){
                                             inscripcion ins = (inscripcion)iter.next();
-                                            if(ins.getAlumno().getNN().equals(nickname)){
+                                            if(ins.getAlumno().getNN().equals(nickname) && !ins.getEstado().equals("Rechazada")){
                                                 out.println("<div>");
                                                 out.println("<h4> "+ins.getedicion().getNombre()+"</h4>"+"<p> Estado: "+ins.getEstado()+"</p>");
                                                 out.println("</div>");
@@ -135,7 +135,23 @@
 
                                         }
                                     }
-                                    
+                                    if(sesion.getAttribute("user")!=null){
+                                        usuario usua = uu.findusu(sesion.getAttribute("user").toString());
+
+                                        if(usua.getNN().equals(nickname)){
+                                            List<inscripcion> inscrip = OP.listarInscripciones("","");
+                                            Iterator iter = inscrip.iterator();
+                                            while(iter.hasNext()){
+                                                inscripcion ins = (inscripcion)iter.next();
+                                                if(ins.getAlumno().getNN().equals(nickname) && ins.getEstado().equals("Rechazada")){
+                                                    out.println("<div>");
+                                                    out.println("<h4> "+ins.getedicion().getNombre()+"</h4>"+"<p> Estado: "+ins.getEstado()+"</p>");
+                                                    out.println("</div>");
+                                                }   
+
+                                            }
+                                        }
+                                    }
 
                                 }
                             }else{
