@@ -1,8 +1,3 @@
-<%-- 
-    Document   : altaCurso
-    Created on : 22 oct. 2020, 15:43:43
-    Author     : nacho
---%>
 <%@page import="Clases.categoria"%>
 <%@page import="Clases.instituto"%>
 <%@page import="java.util.Iterator"%>
@@ -47,7 +42,15 @@
 <body>
     
     <!--Valida sesion -->
-    <%HttpSession sesion = request.getSession();%>
+    <%
+        HttpSession sesion = request.getSession();
+        if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
+            String tipo = sesion.getAttribute("nivel").toString();
+            if(!tipo.equals("1")) //si el tipo no es profesor
+                out.println("<script>location.replace('index.jsp')</script>");
+            }else
+                out.println("<script>location.replace('login.jsp')</script>");
+    %>
     
     <header class="site-navbar py-4" role="banner" >
         <div class="container">
@@ -77,6 +80,9 @@
                                             <%
                                                 if(request.getParameter("instituto")!= null){
                                                     out.print("<option value='"+request.getParameter("instituto")+"' name='insituto'>"+request.getParameter("instituto")+"</option>"); 
+                                                }
+                                                if(request.getParameter("existe")!= null){
+                                                    out.println("<script language='javascript'>alert('El curso ya existe');</script");
                                                 }
                                                 else{
                                                     out.print("<option value='' name='insituto'></option>"); 

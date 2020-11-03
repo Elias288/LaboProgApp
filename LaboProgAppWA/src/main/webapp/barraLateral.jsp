@@ -42,7 +42,7 @@
             </div>
 
             <!--CATEGORIAS-->    
-            <div class="featured-user  mb-5 mb-lg-0">
+            <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
                 <h3 class="mb-4">CATEGORÍAS</h3>
                 <ul class="list-unstyled">
 
@@ -58,6 +58,20 @@
                         }
                     %>
                 </ul>
+            </div>
+                
+                
+            <div class="featured-user  mb-5 mb-lg-0">
+                <div>
+                    <ul class="list-unstyled">
+                        <%
+                        //out.println("<li><a href='consultarusuarios.jsp'> Listar Usuarios");
+                        out.println("<li><a href='consultarusuarios.jsp' class='d-flex align-items-center'>");
+                        out.println("<div class='podcaster'><span class='d-block'>Listar Usuarios</span></div>");
+                        out.println("</a></li>");
+                        %>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -83,10 +97,9 @@
                                     out.println("<li><a href='#'>Menu one</a></li>");
                                     out.println("<li><a href='#'>Menu two</a></li>");
                                     out.println("<li><a href='#'>Menu three</a></li>");
-                                    out.println("<li><a href='EdicionCurso.jsp'>seleccionar alumno</a></li>"); //temporal
-                                    out.println("<li><a href='consultarusuarios.jsp'> Listar Usuarios");
+                                    //out.println("<li><a href='consultarusuarios.jsp'> Listar Usuarios");
                                 }else{
-                                    out.println("<li><a href='consultarusuarios.jsp'> Listar Usuarios");
+                                    //out.println("<li><a href='consultarusuarios.jsp'> Listar Usuarios");
                                     out.println("<li><a href='#'>Menu one</a></li>");
                                     out.println("<li><a href='#'>Menu two</a></li>");
                                     out.println("<li><a href='#'>Menu three</a></li>");
@@ -198,7 +211,7 @@
         </div>
 
         <!--CATEGORIAS-->    
-            <div class="featured-user  mb-5 mb-lg-0">
+            <div class="featured-user  mb-5 mb-lg-0" style="border-bottom: 2px solid">
                 <h3 class="mb-4">CATEGORÍAS</h3>
                 <ul class="list-unstyled">
 
@@ -214,6 +227,18 @@
                         }
                     %>
                 </ul>
+            </div>
+            <div class="featured-user  mb-5 mb-lg-0">
+                <div>
+                    <ul class="list-unstyled">
+                        <%
+                        //out.println("<li><a href='consultarusuarios.jsp'> Listar Usuarios");
+                        out.println("<li><a href='consultarusuarios.jsp' class='d-flex align-items-center'>");
+                        out.println("<div class='podcaster'><span class='d-block'>Listar Usuarios</span></div>");
+                        out.println("</a></li>");
+                        %>
+                    </ul>
+                </div>
             </div>
 
         <div class="featured-user  mb-5 mb-lg-0">

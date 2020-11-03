@@ -59,7 +59,7 @@
                 <jsp:include page="barraLateral.jsp" />
 
                 
-                <div class="col-lg-6">
+                <div class="col-lg-9">
                     <div class="d-block podcast-entry bg-white" data-aos="fade-up">
                         <% 
                             ControladorUsuario uu = new ControladorUsuario();
@@ -78,58 +78,67 @@
                                     out.println("</form><br>");*/
                                     out.println("<div>");
                     
-                                    out.println("<h4> Nickname="+usuariox.getNN()+" Nombre="+usuariox.getName()+" Apellido="+usuariox.getLastName()+"</h4>" );
+                                    out.println("<p> <strong style='font-weight: bold'>Nickname: </strong>"+usuariox.getNN()+"</p>"); 
+                                    out.println("<p><strong style='font-weight: bold'>Nombre: </strong>"+usuariox.getName()+"</p>");
+                                    out.println("<p><strong style='font-weight: bold'>Apellido:</strong> "+usuariox.getLastName()+"</p>" );
+                                            
                                     out.println("</div>");
                             
                             
                                 }
-                                  if(uu.tipoUsuario(nickname)==1){
-                                   out.println("<h4> es docente </h4>"); 
-                                  ControladorCurso  cc= new ControladorCurso();
+                                if(uu.tipoUsuario(nickname)==1){
+                                    out.println("<h4> Es docente </h4>"); 
+                                    ControladorCurso  cc= new ControladorCurso();
                                  
                                                 
                                   
-                                 curso cu= OP.findCurso2(nickname);
-                                  List<edicionCurso>datos = cc.buscarEdiciones(cu.getName());
-                                  Iterator opaaaa = datos.iterator();
-                                  edicionCurso opa = null;
+                                    curso cu= OP.findCurso2(nickname);
+                                    List<edicionCurso>datos = cc.buscarEdiciones(cu.getName());
+                                    Iterator opaaaa = datos.iterator();
+                                    edicionCurso opa = null;
                                     while(opaaaa.hasNext()){
-                                    opa = (edicionCurso) opaaaa.next();
-                                    /*out.println("<form action='curso.jsp' method='GET'>");
-                                    out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
-                                    out.println("</form><br>");*/
-                                    
-                                    out.println("<div>");
-                    
-                                    out.println("<h4> Nombre="+opa.getNombre()+" Fecha Final="+opa.getPfin()+" Fecha Inicio="+opa.getPinicio()+" Cupos="+opa.getCupo()+" Fecha publicacion"+ opa.getFechaPublicacion()+"</h4>" );
-                                    out.println("</div>");
+                                        opa = (edicionCurso) opaaaa.next();
+                                        out.println("<div>");
+                                        out.println("<h4> Nombre="+opa.getNombre()+" Fecha Final="+opa.getPfin()+" Fecha Inicio="+opa.getPinicio()+" Cupos="+opa.getCupo()+" Fecha publicacion"+ opa.getFechaPublicacion()+"</h4>" );
+                                        out.println("</div>");
                             
                             
-                                }
+                                    }
                              
-                            }else if(uu.tipoUsuario(nickname)==2){
-                            out.println("<h4> es alumno, estas son las ediciones a las que solicito inscribirse</h4>"); 
+                                }else if(uu.tipoUsuario(nickname)==2){
+                                    
+                                    int semaforo=0;
+                                    List<inscripcion> inscrip2 = OP.listarInscripciones("","");
+                                    Iterator iter2 = inscrip2.iterator();
+                                    while(iter2.hasNext()){
+                                        inscripcion ins = (inscripcion)iter2.next();
+                                        if(ins.getAlumno().getNN().equals(nickname)){
+                                            semaforo=1;
+                                        }   
+
+                                    }
+                                    out.println("<p> Es Alumno</p>");
+                                    if(semaforo==1){
+                                        //out.println("<p>Estas son las ediciones a las que solicito inscribirse</p>"); 
                             
-                                    List<inscripcion> inscrip = OP.listarInscripciones("","");
+                                        List<inscripcion> inscrip = OP.listarInscripciones("","");
+                                        Iterator iter = inscrip.iterator();
 
-                                              Iterator iter = inscrip.iterator();
-                                             
-                                              while(iter.hasNext()){
-                                                  inscripcion ins = (inscripcion)iter.next();
-                                                  if(ins.getAlumno().getNN().equals(nickname)){
-                                                     
+                                        out.println("<h3>Ediciones de Curso</h3>");
+                                        while(iter.hasNext()){
+                                            inscripcion ins = (inscripcion)iter.next();
+                                            if(ins.getAlumno().getNN().equals(nickname)){
+                                                out.println("<div>");
+                                                out.println("<h4> "+ins.getedicion().getNombre()+"</h4>"+"<p> Estado: "+ins.getEstado()+"</p>");
+                                                out.println("</div>");
+                                            }   
 
-                                                        out.println("<div>");
+                                        }
+                                    }
+                                    
 
-                                              out.println("<h4> Curso Inscripto="+ins.getedicion().getNombre()+"</h4>"+" estado:"+ins.getEstado());
-                                              out.println("</div>");
-                                          }   
-
-                                      }
-
-                                      }
-                            }
-                            else{
+                                }
+                            }else{
                              
                                 List<usuario>usu = uu.buscarusuario("");
                                 
@@ -138,9 +147,6 @@
                                 while(itCur.hasNext()){
                                 
                                     usuariox = (usuario) itCur.next();
-                                    /*out.println("<form action='curso.jsp' method='GET'>");
-                                    out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
-                                    out.println("</form><br>");*/
                                     out.println("<div>");
                     
                                     out.println("<a href='consultarusuarios.jsp?usuario="+usuariox.getNN()+"'class='mb-4' style='color: black'>"+usuariox.getNN()+"</a><br><br>");

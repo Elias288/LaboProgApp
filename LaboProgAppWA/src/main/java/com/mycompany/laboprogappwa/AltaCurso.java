@@ -80,7 +80,8 @@ public class AltaCurso extends HttpServlet {
         curso cur = cc.findCurso(nombre);
         if(cur != null){
             try (PrintWriter out = response.getWriter()) {
-                out.println("<h1>ya existe el curso, desea reemplazarlo?</h1>");
+                //out.println("<h1>ya existe el curso, desea reemplazarlo?</h1>");
+                out.println("<script> location.replace('altaCurso.jsp?existe=si');</script>");
             }
         }
         else{
