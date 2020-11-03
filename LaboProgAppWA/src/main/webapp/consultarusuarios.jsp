@@ -110,7 +110,7 @@
                             }else if(uu.tipoUsuario(nickname)==2){
                             out.println("<h4> es alumno, estas son las ediciones a las que solicito inscribirse</h4>"); 
                             
-                                    List<inscripcion> inscrip = OP.listarInscripciones();
+                                    List<inscripcion> inscrip = OP.listarInscripciones("","");
 
                                               Iterator iter = inscrip.iterator();
                                              
