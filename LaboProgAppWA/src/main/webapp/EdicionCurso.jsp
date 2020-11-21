@@ -101,7 +101,7 @@
                                 <h3 class="font-weight-light">
                                     <font size="4" face="verdana" color="black">
                                         <%
-                                            out.println("<strong>Fecha inicio:</strong> "+EC.getPinicio()+"<br>");
+                                            out.println("<strong>Fecha inicio:</strong> "+EC.getPinicio()+"<br>"); //simpledateformat
                                             out.println("<strong>Fecha Fin:</strong> "+EC.getPfin()+"<br>");
                                             out.println("<strong>Cupo:</strong> "+EC.getCupo()+"<br>");
                                             out.println("<strong>Fecha publicacion: </strong> "+EC.getFechaPublicacion()+"<br>");
