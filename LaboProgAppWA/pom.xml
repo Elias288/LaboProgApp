@@ -20,6 +20,12 @@
             <artifactId>LaboProgApp</artifactId>
             <version>${project.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.glassfish.metro</groupId>
+            <artifactId>webservices-rt</artifactId>
+            <version>2.3</version>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -48,6 +54,24 @@
                 <version>2.3</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>src</directory>
+                            <targetPath>WEB-INF</targetPath>
+                            <includes>
+                                <include>jax-ws-catalog.xml</include>
+                                <include>wsdl/**</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <directory>src</directory>
+                            <targetPath>WEB-INF/classes/META-INF</targetPath>
+                            <includes>
+                                <include>jax-ws-catalog.xml</include>
+                                <include>wsdl/**</include>
+                            </includes>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
             <plugin>
@@ -74,6 +98,45 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_9128/webservices.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName></packageName>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <wsdlLocation>http://localhost:9128/webservices?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/webservices.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-webservices</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.xml</groupId>
+                        <artifactId>webservices-api</artifactId>
+                        <version>2.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir>
+                    <xnocompile>true</xnocompile>
+                    <verbose>true</verbose>
+                    <extension>true</extension>
+                    <catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
+                </configuration>
             </plugin>
         </plugins>
     </build>

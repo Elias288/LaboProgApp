@@ -1,5 +1,5 @@
 package SourcePackage;
-
+import servidor.webserver;
 import Clases.*;
 import java.util.*;
 import javax.persistence.EntityManager;
@@ -13,8 +13,11 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        
         this.setLocationRelativeTo(null);
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        webserver p = new webserver();
+        p.publicar();
     }
 
     /**
