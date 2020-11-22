@@ -122,6 +122,42 @@
                         <id>wsimport-generate-webservices</id>
                         <phase>generate-sources</phase>
                     </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_9128/webservices.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>WSClient</packageName>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <wsdlLocation>http://localhost:9128/webservices?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/webservices_1.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-webservices_1</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_9128/webservices.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>WSClient</packageName>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <wsdlLocation>http://localhost:9128/webservices?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/webservices_2.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-webservices_2</id>
+                        <phase>generate-sources</phase>
+                    </execution>
                 </executions>
                 <dependencies>
                     <dependency>

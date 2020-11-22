@@ -158,4 +158,21 @@ public class ControladorUsuario {
             
         return tipo;
     }
+    
+    public int loguear(String usuario, String passwd){
+        ControladorUsuario CU = new ControladorUsuario();
+        usuario usu = CU.findusu(usuario);
+        int tipo=0;
+        if(usu.getNN().equals(usuario)){
+        
+            if(usu != null){
+                if(CU.findPass(usu, passwd)){
+                    tipo = CU.tipoUsuario(usu.getNN());
+                }
+            }
+        }
+        
+        
+        return tipo;
+    }
 }
