@@ -1,6 +1,8 @@
 package servidor;
 
+import Clases.ControladorCurso;
 import Clases.ControladorUsuario;
+import Clases.edicionCurso;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -52,6 +54,11 @@ public class webserver {
         int ret = CU2.loguear(nickname, passwd);
         return ret;
     }
+    
+    @WebMethod
+    public edicionCurso buscarEdicion(String nombre){
+        ControladorCurso cu = new ControladorCurso();
+        return cu.buscarEdicion(nombre);
+    }
  
-  
 }

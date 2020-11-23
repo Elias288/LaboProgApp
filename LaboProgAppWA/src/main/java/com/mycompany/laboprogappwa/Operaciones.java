@@ -128,7 +128,25 @@ public class Operaciones {
     }
 
 
-      
-      
-}
+    // VISUALIZAR EDICIONES DE CURSOS PARA PROFESORES
+    public servidor.EdicionCurso BuscarEdicion(String nombre){
+        
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO initialize WS operation arguments here
+            java.lang.String arg0 = "PYE";
+            // TODO process result here
+            servidor.EdicionCurso result = port.buscarEdicion(arg0);
 
+            return result;
+            } 
+        
+        catch (Exception ex) {
+            // TODO handle custom exceptions here
+            return null;
+
+        }
+      
+    }
+}

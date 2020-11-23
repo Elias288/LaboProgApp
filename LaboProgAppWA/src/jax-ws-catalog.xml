@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:9128/webservices?wsdl" uri="wsdl/localhost_9128/webservices.wsdl"/>
+    <system systemId="http://localhost:9128/webservices?xsd=1" uri="wsdl/localhost_9128/webservices.xsd_1.xsd"/>
 </catalog>
