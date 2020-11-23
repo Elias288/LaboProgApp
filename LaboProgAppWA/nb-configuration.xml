@@ -17,6 +17,5 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>Tomcat</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_webservices>http://localhost:9128/webservices?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_webservices>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_webservices_5f_1>http://localhost:9128/webservices?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_webservices_5f_1>
-        <org-netbeans-modules-maven-jaxws._5f_C_5f_webservices_5f_2>http://localhost:9128/webservices?wsdl</org-netbeans-modules-maven-jaxws._5f_C_5f_webservices_5f_2>
     </properties>
 </project-shared-configuration>
