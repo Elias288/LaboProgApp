@@ -27,6 +27,18 @@
             <version>2.3</version>
         </dependency>
         <dependency>
+            <groupId>javax.jws</groupId>
+            <artifactId>javax.jws-api</artifactId>
+            <version>1.1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.ws</groupId>
+            <artifactId>jaxws-api</artifactId>
+            <version>2.3.1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
@@ -124,21 +136,21 @@
                 <artifactId>jaxws-maven-plugin</artifactId>
                 <version>2.2</version>
                 <executions>
-<execution> 
-    <goals> 
-     <goal>wsimport</goal> 
-    </goals> 
-    <configuration> 
-     <wsdlFiles> 
-      <wsdlFile>localhost_9128/webservices.wsdl</wsdlFile> 
-     </wsdlFiles> 
-     <wsdlLocation>http://localhost:9128/webservices?wsdl</wsdlLocation> 
-     <staleFile>${project.build.directory}/jaxws/stale/webservices.stale</staleFile> 
-     <target>2.2</target> 
-    </configuration> 
-    <id>wsimport-generate-WebServiceName</id> 
-    <phase>generate-sources</phase> 
-</execution>
+                    <execution> 
+                        <goals> 
+                         <goal>wsimport</goal> 
+                        </goals> 
+                        <configuration> 
+                         <wsdlFiles> 
+                          <wsdlFile>localhost_9128/webservices.wsdl</wsdlFile> 
+                         </wsdlFiles> 
+                         <wsdlLocation>http://localhost:9128/webservices?wsdl</wsdlLocation> 
+                         <staleFile>${project.build.directory}/jaxws/stale/webservices.stale</staleFile> 
+                         <target>2.2</target> 
+                        </configuration> 
+                        <id>wsimport-generate-WebServiceName</id> 
+                        <phase>generate-sources</phase> 
+                    </execution>
                     <execution>
                         <goals>
                             <goal>wsimport</goal>
@@ -157,7 +169,7 @@
                         <id>wsimport-generate-webservices</id>
                         <phase>generate-sources</phase>
                     </execution>
-                    <execution>
+                    <!--<execution>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
@@ -174,7 +186,7 @@
                         </configuration>
                         <id>wsimport-generate-webservices_1</id>
                         <phase>generate-sources</phase>
-                    </execution>
+                    </execution>-->
                 </executions>
                 <dependencies>
                     <dependency>
