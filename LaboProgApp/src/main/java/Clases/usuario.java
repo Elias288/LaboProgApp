@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
+
+@XmlAccessorType(XmlAccessType.FIELD)
 
 @Entity( name= "Usuario" )
 @Inheritance( strategy=InheritanceType.JOINED )

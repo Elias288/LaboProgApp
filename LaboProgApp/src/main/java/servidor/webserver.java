@@ -3,6 +3,8 @@ package servidor;
 import Clases.ControladorCurso;
 import Clases.ControladorUsuario;
 import Clases.edicionCurso;
+import Clases.DataCursos;
+import Clases.usuario;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -60,5 +62,18 @@ public class webserver {
         ControladorCurso cu = new ControladorCurso();
         return cu.buscarEdicion(nombre);
     }
+    
+    @WebMethod
+    public DataCursos buscarCurso(String nombre){
+        ControladorCurso cu = new ControladorCurso();
+        DataCursos cursos = new DataCursos();
+        cursos.SetCursos(cu.buscarCurso(nombre));
+        return cursos;
+    }
  
+    @WebMethod
+    public usuario findusu(String nombre){
+        ControladorUsuario CU = new ControladorUsuario();
+        return CU.findusu(nombre);
+    }
 }

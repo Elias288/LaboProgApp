@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import servidor.Curso;
 
 public class Operaciones {
     
@@ -149,4 +150,22 @@ public class Operaciones {
         }
       
     }
+    
+    /*
+    public List<Curso> BuscarCursosWS(String nombreCur){
+        servidor.DataCursos cursos = null;
+        List<Curso> cur = null;
+        
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            
+            // TODO process result here
+            cursos = port.buscarCurso(nombreCur);
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+        cur = cursos.getCursos();
+        return cur;
+    }*/
 }

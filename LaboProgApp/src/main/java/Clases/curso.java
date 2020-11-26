@@ -2,9 +2,12 @@ package Clases;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 @Entity
 @Table( name="Curso" )
+@XmlAccessorType(XmlAccessType.FIELD)
 public class curso implements Serializable{
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
