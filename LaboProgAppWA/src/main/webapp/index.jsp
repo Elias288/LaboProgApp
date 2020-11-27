@@ -1,3 +1,5 @@
+<%@page import="servidor.Curso"%>
+<%@page import="com.mycompany.laboprogappwa.Operaciones"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Clases.ControladorCurso"%>
 <%@page import="java.util.List"%>
@@ -60,17 +62,21 @@
                 <div class="col-lg-9">
                     
                         <%
-                            ControladorCurso cc = new ControladorCurso();
-                            List<curso> cursos = cc.buscarCurso("");
-                            Iterator itCur = cursos.iterator();
-                            curso cur = null;
+                            /*ControladorCurso cc = new ControladorCurso();
+                            List<curso> cursos = cc.buscarCurso("");*/
+                            
+                            Operaciones OP = new Operaciones();
+                            List<Curso> cursosWS = OP.BuscarCursosWS("");
+                            
+                            Iterator itCur = cursosWS.iterator();
+                            Curso cur = null;
                             while(itCur.hasNext()){
-                                cur = (curso) itCur.next();
+                                cur = (servidor.Curso) itCur.next();
                                 out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
                                 out.println("<div class='image' style='background-image: url(images/img-02.jpg)'></div>");
                                 out.println("<div class='text'>");
-                                out.println("<h3 class='font-weight-light'><strong>"+ cur.getName() +"</strong> "+cur.getDesc() + "</h3>");
-                                out.println("<a href='curso.jsp?curso="+cur.getName()+"' class='h10'>leer mas</a>");    
+                                out.println("<h3 class='font-weight-light'><strong>"+ cur.getNombre() +"</strong> "+cur.getDescripcion() + "</h3>");
+                                out.println("<a href='curso.jsp?curso="+cur.getNombre()+"' class='h10'>leer mas</a>");    
                                 out.println("</div></div>");
                             }
                         %>

@@ -1,22 +1,12 @@
 package Clases;
 
 import java.util.Date;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-
-@Entity( name= "Usuario" )
-@Inheritance( strategy=InheritanceType.JOINED )
-@DiscriminatorColumn(name="Tipo_Usuario", discriminatorType=DiscriminatorType.STRING)
-public abstract class usuario {
-    @Id 
+public class DataUsuario {
+    
     private String nickname;
     private String nombre;
     private String apellido;
@@ -24,8 +14,7 @@ public abstract class usuario {
     private String pass;
     private java.util.Date  FechaNac;
     
-    
-    public usuario(String name, String passwd, String LastName, String NN, String Email, java.util.Date date){
+    public DataUsuario(String name, String passwd, String LastName, String NN, String Email, java.util.Date date){
         this.FechaNac = date;
         this.apellido = LastName;
         this.nombre = name;
@@ -33,8 +22,19 @@ public abstract class usuario {
         this.pass = passwd;
         this.correo = Email;
     }
+    
+    public DataUsuario(usuario user){
+        this.FechaNac = user.getDate();
+        this.apellido = user.getLastName();
+        this.nombre = user.getName();
+        this.nickname = user.getNN();
+        this.pass = user.getPass();
+        this.correo = user.getEmail();
+    }
 
-    public usuario(){}
+    public DataUsuario(){}
+    
+    
     public void setNN(String NN){this.nickname=NN;}
     public void setName(String name){this.nombre=name;}
     public void setLN(String apellido){this.apellido=apellido;}
@@ -47,7 +47,4 @@ public abstract class usuario {
     public String getNN(){return this.nickname;}
     public java.util.Date getDate(){return this.FechaNac;}
     public String getPass(){return this.pass;}
-//    public String getTipo(){
-//        return @DiscriminatorValue;
-//    }
 }

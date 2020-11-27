@@ -3,8 +3,6 @@
 <%@page import="Clases.ControladorCurso"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="java.util.List"%>
-<%@page import="Clases.curso"%>
 <%@page import="Clases.curso"%>
 <%@page import="Clases.usuario"%>
 <%@page import="Clases.ControladorUsuario"%>

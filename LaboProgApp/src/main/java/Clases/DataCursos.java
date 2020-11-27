@@ -8,20 +8,35 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DataCursos {
     private long id;
-    protected String nombre;
-    protected String descripcion, URL;
-    protected int duracion;
-    protected int cantHoras;
-    protected Date fecha;
-    protected int Creditos;
-    protected List<categoria> cat;
-    protected List<curso> Previas;
-    protected docente doc;
-    protected instituto instituto;
+    private String nombre;
+    private String descripcion, URL;
+    private int duracion;
+    private int cantHoras;
+    private Date fecha;
+    private int Creditos;
+    private List<categoria> cat;
+    private List<curso> Previas;
+    private docente doc;
+    private instituto instituto;
     
     private List<curso> cursos = null;
     
     public DataCursos(){}
+    
+    public DataCursos(curso cur){
+        this.id = cur.getId();
+        this.Creditos = cur.getCreditos();
+        this.Previas = cur.getPrevias();
+        this.URL = cur.getURL();
+        this.cantHoras = cur.getCantHoras();
+        this.descripcion = cur.getDesc();
+        this.doc = cur.getDocente();
+        this.instituto = cur.getInsti();
+        this.fecha = cur.getFecha();
+        this.nombre = cur.getName();
+        this.cat = cur.getCategorias();
+        this.duracion = cur.getDuracion();
+    }
     
     public String getName(){return this.nombre;}
     public String getDesc(){return this.descripcion;}

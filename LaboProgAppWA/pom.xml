@@ -136,21 +136,6 @@
                 <artifactId>jaxws-maven-plugin</artifactId>
                 <version>2.2</version>
                 <executions>
-                    <execution> 
-                        <goals> 
-                         <goal>wsimport</goal> 
-                        </goals> 
-                        <configuration> 
-                         <wsdlFiles> 
-                          <wsdlFile>localhost_9128/webservices.wsdl</wsdlFile> 
-                         </wsdlFiles> 
-                         <wsdlLocation>http://localhost:9128/webservices?wsdl</wsdlLocation> 
-                         <staleFile>${project.build.directory}/jaxws/stale/webservices.stale</staleFile> 
-                         <target>2.2</target> 
-                        </configuration> 
-                        <id>wsimport-generate-WebServiceName</id> 
-                        <phase>generate-sources</phase> 
-                    </execution>
                     <execution>
                         <goals>
                             <goal>wsimport</goal>
@@ -159,7 +144,7 @@
                             <wsdlFiles>
                                 <wsdlFile>localhost_9128/webservices.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <packageName>Webserverclient</packageName>
+                            <packageName></packageName>
                             <vmArgs>
                                 <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                             </vmArgs>
@@ -169,24 +154,6 @@
                         <id>wsimport-generate-webservices</id>
                         <phase>generate-sources</phase>
                     </execution>
-                    <!--<execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>localhost_9128/webservices.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>Webserverclient</packageName>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <wsdlLocation>http://localhost:9128/webservices?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/webservices_1.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-webservices_1</id>
-                        <phase>generate-sources</phase>
-                    </execution>-->
                 </executions>
                 <dependencies>
                     <dependency>

@@ -27,19 +27,13 @@ public class Operaciones {
         try { // Call Web Service Operation
             servidor.WebserverService service = new servidor.WebserverService();
             servidor.Webserver port = service.getWebserverPort();
-            // TODO initialize WS operation arguments here
-            java.lang.String arg0 = "PYE";
             // TODO process result here
-            servidor.EdicionCurso result = port.buscarEdicion(arg0);
-
+            servidor.EdicionCurso result = port.buscarEdicion(nombre);
             return result;
-            } 
-        
-        catch (Exception ex) {
-            // TODO handle custom exceptions here
+        } catch (Exception ex) {
             return null;
-
         }
+
       
     }
     
@@ -74,19 +68,19 @@ public class Operaciones {
         return cur;
     }
     
-    public servidor.Usuario findusuWS(String nombre){
+    public servidor.DataUsuario findusuWS(String nombre){
         try { // Call Web Service Operation
             servidor.WebserverService service = new servidor.WebserverService();
             servidor.Webserver port = service.getWebserverPort();
             // TODO initialize WS operation arguments here
-            java.lang.String arg0 = nombre;
+            java.lang.String arg0 = "";
             // TODO process result here
-            servidor.Usuario result = port.findusu(arg0);
+            servidor.DataUsuario result = port.findusu(arg0);
             return result;
         } catch (Exception ex) {
             // TODO handle custom exceptions here
+            return null;
         }
-        return null;
     }
     
     public List<instituto> institutos(){

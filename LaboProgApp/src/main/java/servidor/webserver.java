@@ -4,10 +4,14 @@ import Clases.ControladorCurso;
 import Clases.ControladorUsuario;
 import Clases.edicionCurso;
 import Clases.DataCursos;
+import Clases.DataUsuario;
+import Clases.curso;
+import Clases.instituto;
 import Clases.usuario;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -64,16 +68,35 @@ public class webserver {
     }
     
     @WebMethod
+    public DataUsuario findusu(String nombre){
+        ControladorUsuario CU = new ControladorUsuario();
+        DataUsuario DU = new DataUsuario(CU.findusu(nombre));
+        return DU;
+    }
+    
+    @WebMethod
+    public instituto obtenerIsntituto(String nombre){
+        ControladorCurso cu = new ControladorCurso();
+        return cu.obtenerIsntituto(nombre);
+    }
+    
+    
+    @WebMethod
     public DataCursos buscarCurso(String nombre){
         ControladorCurso cu = new ControladorCurso();
+        List<curso> cur = cu.buscarCurso(nombre);
         DataCursos cursos = new DataCursos();
-        cursos.SetCursos(cu.buscarCurso(nombre));
+        
+        cursos.SetCursos(cur);
+        
         return cursos;
     }
- 
+    
     @WebMethod
-    public usuario findusu(String nombre){
-        ControladorUsuario CU = new ControladorUsuario();
-        return CU.findusu(nombre);
+    public curso findcurso(String nombre){
+        ControladorCurso cu = new ControladorCurso();
+        curso cur = cu.findCurso(nombre);
+        return cur;
     }
+    
 }

@@ -131,41 +131,36 @@ public class Operaciones {
 
     // VISUALIZAR EDICIONES DE CURSOS PARA PROFESORES
     public servidor.EdicionCurso BuscarEdicion(String nombre){
-        
+        servidor.EdicionCurso result = new servidor.EdicionCurso();
         try { // Call Web Service Operation
             servidor.WebserverService service = new servidor.WebserverService();
             servidor.Webserver port = service.getWebserverPort();
-            // TODO initialize WS operation arguments here
-            java.lang.String arg0 = "PYE";
             // TODO process result here
-            servidor.EdicionCurso result = port.buscarEdicion(arg0);
-
+            result = port.buscarEdicion(nombre);
             return result;
             } 
-        
         catch (Exception ex) {
-            // TODO handle custom exceptions here
             return null;
 
         }
       
     }
     
-    /*
+    
     public List<Curso> BuscarCursosWS(String nombreCur){
-        servidor.DataCursos cursos = null;
         List<Curso> cur = null;
-        
         try { // Call Web Service Operation
             servidor.WebserverService service = new servidor.WebserverService();
             servidor.Webserver port = service.getWebserverPort();
-            
             // TODO process result here
-            cursos = port.buscarCurso(nombreCur);
+            servidor.DataCursos result = port.buscarCurso(nombreCur);
+            
+            cur = result.getCursos();
+            
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
-        cur = cursos.getCursos();
+        
         return cur;
-    }*/
+    }
 }

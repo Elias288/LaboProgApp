@@ -4,10 +4,22 @@
 <xsd:import namespace="http://servidor/" schemaLocation="http://localhost:9128/webservices?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="obtenerApellido">
-<part name="arg0" type="xsd:int"/>
+<message name="buscarCurso">
+<part name="arg0" type="xsd:string"/>
 </message>
-<message name="obtenerApellidoResponse">
+<message name="buscarCursoResponse">
+<part name="return" type="tns:dataCursos"/>
+</message>
+<message name="findusu">
+<part name="arg0" type="xsd:string"/>
+</message>
+<message name="findusuResponse">
+<part name="return" type="tns:dataUsuario"/>
+</message>
+<message name="obtenerConvocados">
+<part name="arg0" type="xsd:string"/>
+</message>
+<message name="obtenerConvocadosResponse">
 <part name="return" type="xsd:int"/>
 </message>
 <message name="buscarEdicion">
@@ -16,10 +28,16 @@
 <message name="buscarEdicionResponse">
 <part name="return" type="tns:edicionCurso"/>
 </message>
-<message name="obtenerConvocados">
+<message name="findcurso">
 <part name="arg0" type="xsd:string"/>
 </message>
-<message name="obtenerConvocadosResponse">
+<message name="findcursoResponse">
+<part name="return" type="tns:curso"/>
+</message>
+<message name="obtenerApellido">
+<part name="arg0" type="xsd:int"/>
+</message>
+<message name="obtenerApellidoResponse">
 <part name="return" type="xsd:int"/>
 </message>
 <message name="logear">
@@ -29,27 +47,67 @@
 <message name="logearResponse">
 <part name="return" type="xsd:int"/>
 </message>
+<message name="obtenerIsntituto">
+<part name="arg0" type="xsd:string"/>
+</message>
+<message name="obtenerIsntitutoResponse">
+<part name="return" type="tns:instituto"/>
+</message>
 <portType name="webserver">
-<operation name="obtenerApellido">
-<input wsam:Action="http://servidor/webserver/obtenerApellidoRequest" message="tns:obtenerApellido"/>
-<output wsam:Action="http://servidor/webserver/obtenerApellidoResponse" message="tns:obtenerApellidoResponse"/>
+<operation name="buscarCurso">
+<input wsam:Action="http://servidor/webserver/buscarCursoRequest" message="tns:buscarCurso"/>
+<output wsam:Action="http://servidor/webserver/buscarCursoResponse" message="tns:buscarCursoResponse"/>
 </operation>
-<operation name="buscarEdicion">
-<input wsam:Action="http://servidor/webserver/buscarEdicionRequest" message="tns:buscarEdicion"/>
-<output wsam:Action="http://servidor/webserver/buscarEdicionResponse" message="tns:buscarEdicionResponse"/>
+<operation name="findusu">
+<input wsam:Action="http://servidor/webserver/findusuRequest" message="tns:findusu"/>
+<output wsam:Action="http://servidor/webserver/findusuResponse" message="tns:findusuResponse"/>
 </operation>
 <operation name="obtenerConvocados">
 <input wsam:Action="http://servidor/webserver/obtenerConvocadosRequest" message="tns:obtenerConvocados"/>
 <output wsam:Action="http://servidor/webserver/obtenerConvocadosResponse" message="tns:obtenerConvocadosResponse"/>
 </operation>
+<operation name="buscarEdicion">
+<input wsam:Action="http://servidor/webserver/buscarEdicionRequest" message="tns:buscarEdicion"/>
+<output wsam:Action="http://servidor/webserver/buscarEdicionResponse" message="tns:buscarEdicionResponse"/>
+</operation>
+<operation name="findcurso">
+<input wsam:Action="http://servidor/webserver/findcursoRequest" message="tns:findcurso"/>
+<output wsam:Action="http://servidor/webserver/findcursoResponse" message="tns:findcursoResponse"/>
+</operation>
+<operation name="obtenerApellido">
+<input wsam:Action="http://servidor/webserver/obtenerApellidoRequest" message="tns:obtenerApellido"/>
+<output wsam:Action="http://servidor/webserver/obtenerApellidoResponse" message="tns:obtenerApellidoResponse"/>
+</operation>
 <operation name="logear" parameterOrder="arg0 arg1">
 <input wsam:Action="http://servidor/webserver/logearRequest" message="tns:logear"/>
 <output wsam:Action="http://servidor/webserver/logearResponse" message="tns:logearResponse"/>
 </operation>
+<operation name="obtenerIsntituto">
+<input wsam:Action="http://servidor/webserver/obtenerIsntitutoRequest" message="tns:obtenerIsntituto"/>
+<output wsam:Action="http://servidor/webserver/obtenerIsntitutoResponse" message="tns:obtenerIsntitutoResponse"/>
+</operation>
 </portType>
 <binding name="webserverPortBinding" type="tns:webserver">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
-<operation name="obtenerApellido">
+<operation name="buscarCurso">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://servidor/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"/>
+</output>
+</operation>
+<operation name="findusu">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://servidor/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"/>
+</output>
+</operation>
+<operation name="obtenerConvocados">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal" namespace="http://servidor/"/>
@@ -67,7 +125,16 @@
 <soap:body use="literal" namespace="http://servidor/"/>
 </output>
 </operation>
-<operation name="obtenerConvocados">
+<operation name="findcurso">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://servidor/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"/>
+</output>
+</operation>
+<operation name="obtenerApellido">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal" namespace="http://servidor/"/>
@@ -77,6 +144,15 @@
 </output>
 </operation>
 <operation name="logear">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://servidor/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"/>
+</output>
+</operation>
+<operation name="obtenerIsntituto">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal" namespace="http://servidor/"/>

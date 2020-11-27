@@ -29,7 +29,7 @@
                                 usuario usu = CU.findusu(sesion.getAttribute("user").toString());*/
                                 
                                 Operaciones OP = new Operaciones();
-                                servidor.Usuario usuWS = OP.findusuWS(sesion.getAttribute("user").toString());
+                                servidor.DataUsuario usuWS = OP.findusuWS(sesion.getAttribute("user").toString());
                                 
                                 //String tipo = sesion.getAttribute("nivel").toString();
                                 out.println("<li class='active'><a href='User.html'>" + usuWS.getNickname() + "</a></li>");

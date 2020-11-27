@@ -11,24 +11,24 @@ import javax.xml.bind.annotation.XmlAccessorType;
 public class curso implements Serializable{
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-    protected String nombre;
-    protected String descripcion, URL;
-    protected int duracion;
-    protected int cantHoras;
-    protected Date fecha;
-    protected int Creditos;
+    private String nombre;
+    private String descripcion, URL;
+    private int duracion;
+    private int cantHoras;
+    private Date fecha;
+    private int Creditos;
     
     @ManyToMany
-    protected List<categoria> cat;
+    private List<categoria> cat;
     
     @ManyToMany
-    protected List<curso> Previas;
+    private List<curso> Previas;
     
     @ManyToOne
-    protected docente doc;
+    private docente doc;
     
     @ManyToOne
-    protected instituto instituto;
+    private instituto instituto;
     
    
     public curso(){}
@@ -44,6 +44,8 @@ public class curso implements Serializable{
     public long getId(){return this.id;}
     public instituto getInsti(){return this.instituto;}
     public List<categoria> getCategorias(){return this.cat;}
+    public Date getFecha(){return this.fecha;}
+    
     public void SetName(String name){this.nombre = name;}
     public void SetDocente(docente doce){this.doc = doce;}
     public void SetDescripcion(String desc){this.descripcion = desc;}
