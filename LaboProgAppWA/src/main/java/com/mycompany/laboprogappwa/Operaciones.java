@@ -30,10 +30,7 @@ public class Operaciones {
         
         return tipo;
     }
-    public List<instituto> institutos(){
-        return CC.buscarInstituto("");
-    }
-    
+
     public List<categoria> categoria(){
         List<categoria> lista;
         lista = CC.buscarCategorias("");
@@ -272,4 +269,68 @@ public class Operaciones {
         }
 
     }
+   
+public List<servidor.Instituto> institutosWS(){
+    List<servidor.Instituto> inslista=null;
+    
+try { 
+    servidor.WebserverService service = new servidor.WebserverService();
+    servidor.Webserver port = service.getWebserverPort();
+    // TODO process result here
+    servidor.DataInstituto result = port.institutos();
+    System.out.println("Result = "+result);
+         inslista=result.getInstitutos();
+         return inslista;
+} catch (Exception ex) {
+return null;
+}
+
+    }
+     
+public List<servidor.Usuario> buscarusuarioWS(String NN){
+    List<servidor.Usuario> usulist=null;
+    
+try { 
+    servidor.WebserverService service = new servidor.WebserverService();
+    servidor.Webserver port = service.getWebserverPort();
+    // TODO process result here
+    servidor.DataUsuario result = port.buscarusuario(NN);
+    System.out.println("Result = "+result);
+         usulist=result.getUsuarios();
+         return usulist;
+} catch (Exception ex) {
+return null;
+}
+
+    }
+public  int tipousuarioWS(String NN){
+try { // Call Web Service Operation
+    servidor.WebserverService service = new servidor.WebserverService();
+    servidor.Webserver port = service.getWebserverPort();
+    // TODO initialize WS operation arguments here
+    java.lang.String arg0 = "";
+    // TODO process result here
+    int result = port.typeusu(NN);
+    return result;
+
+} catch (Exception ex) {
+    // TODO handle custom exceptions here
+}
+     return 0;   
+}
+
+public servidor.Usuario findusupostaWS (String NN){
+    
+    
+    try { 
+        servidor.WebserverService service = new servidor.WebserverService();
+        servidor.Webserver port = service.getWebserverPort();
+ 
+        servidor.Usuario result = port.findusuconcreto(NN);
+        return result;
+    } catch (Exception ex) {
+     
+    }
+return null;
+}
 }

@@ -2,6 +2,18 @@
 
 <xs:complexType name="dataUsuario">
 <xs:sequence>
+<xs:element name="usuarios" type="tns:usuario" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="nickname" type="xs:string" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="correo" type="xs:string" minOccurs="0"/>
+<xs:element name="pass" type="xs:string" minOccurs="0"/>
+<xs:element name="FechaNac" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="usuario" abstract="true">
+<xs:sequence>
 <xs:element name="nickname" type="xs:string" minOccurs="0"/>
 <xs:element name="nombre" type="xs:string" minOccurs="0"/>
 <xs:element name="apellido" type="xs:string" minOccurs="0"/>
@@ -45,17 +57,6 @@
 </xs:complexContent>
 </xs:complexType>
 
-<xs:complexType name="usuario" abstract="true">
-<xs:sequence>
-<xs:element name="nickname" type="xs:string" minOccurs="0"/>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="apellido" type="xs:string" minOccurs="0"/>
-<xs:element name="correo" type="xs:string" minOccurs="0"/>
-<xs:element name="pass" type="xs:string" minOccurs="0"/>
-<xs:element name="FechaNac" type="xs:dateTime" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="instituto">
 <xs:sequence>
 <xs:element name="id" type="xs:long"/>
@@ -78,6 +79,14 @@
 <xs:element name="doc" type="tns:docente" minOccurs="0"/>
 <xs:element name="instituto" type="tns:instituto" minOccurs="0"/>
 <xs:element name="cursos" type="tns:curso" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataInstituto">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="Facultad" type="xs:string" minOccurs="0"/>
+<xs:element name="institutos" type="tns:instituto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -131,14 +140,6 @@
 <xs:element name="id" type="xs:long"/>
 <xs:element name="nombre" type="xs:string" minOccurs="0"/>
 <xs:element name="categorias" type="tns:categoria" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataInstituto">
-<xs:sequence>
-<xs:element name="id" type="xs:long"/>
-<xs:element name="Facultad" type="xs:string" minOccurs="0"/>
-<xs:element name="institutos" type="tns:instituto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

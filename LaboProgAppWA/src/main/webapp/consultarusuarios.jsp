@@ -1,7 +1,7 @@
 <%@page import="Clases.inscripcion"%>
 <%@page import="Clases.edicionCurso"%>
 <%@page import="Clases.ControladorUsuario"%>
-<%@page import="Clases.usuario"%>
+<%//@page import="Clases.usuario"%> 
 <%@page import="Clases.categoria"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
 <%@page import="java.util.Iterator"%>
@@ -44,7 +44,11 @@
 <body>
     
     <!--Valida sesion -->
-    <%HttpSession sesion = request.getSession();%>
+  
+    <%
+        HttpSession sesion = request.getSession();
+    %>
+    
     
     <!--CODIGO DE BARRA SUPERIOR-->
     <header class="site-navbar py-4" role="banner" >
@@ -62,31 +66,30 @@
                 <div class="col-lg-9">
                     <div class="d-block podcast-entry bg-white" data-aos="fade-up">
                         <% 
-                            ControladorUsuario uu = new ControladorUsuario();
-                            Operaciones OP = new Operaciones();
-                            
+             Operaciones OP = new Operaciones();
+                           
                             if(request.getParameter("usuario") != null){
                                 String nickname = request.getParameter("usuario");
-                                 List<usuario>usu = uu.buscarusuario(nickname);
+                                 List<servidor.Usuario>usu = OP.buscarusuarioWS(nickname);
                                 
                                 Iterator itCur = usu.iterator();
-                                usuario usuariox = null;
+                                servidor.Usuario usuariox = null;
                                 while(itCur.hasNext()){
-                                    usuariox = (usuario) itCur.next();
+                                    usuariox = (servidor.Usuario) itCur.next();
                                     /*out.println("<form action='curso.jsp' method='GET'>");
                                     out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
                                     out.println("</form><br>");*/
                                     out.println("<div>");
                     
-                                    out.println("<p> <strong style='font-weight: bold'>Nickname: </strong>"+usuariox.getNN()+"</p>"); 
-                                    out.println("<p><strong style='font-weight: bold'>Nombre: </strong>"+usuariox.getName()+"</p>");
-                                    out.println("<p><strong style='font-weight: bold'>Apellido:</strong> "+usuariox.getLastName()+"</p>" );
+                                    out.println("<p> <strong style='font-weight: bold'>Nickname: </strong>"+usuariox.getNickname()+"</p>"); 
+                                    out.println("<p><strong style='font-weight: bold'>Nombre: </strong>"+usuariox.getNombre()+"</p>");
+                                    out.println("<p><strong style='font-weight: bold'>Apellido:</strong> "+usuariox.getApellido()+"</p>" );
                                             
                                     out.println("</div>");
                             
                             
                                 }
-                                if(uu.tipoUsuario(nickname)==1){
+                                if(OP.tipousuarioWS(nickname)==1){
                                     out.println("<h4> Es docente </h4>"); 
                                     ControladorCurso  cc= new ControladorCurso();
                                  
@@ -105,7 +108,7 @@
                             
                                     }
                              
-                                }else if(uu.tipoUsuario(nickname)==2){
+                                }else if(OP.tipousuarioWS(nickname)==2){
                                     
                                     int semaforo=0;
                                     List<inscripcion> inscrip2 = OP.listarInscripciones("","");
@@ -136,9 +139,9 @@
                                         }
                                     }
                                     if(sesion.getAttribute("user")!=null){
-                                        usuario usua = uu.findusu(sesion.getAttribute("user").toString());
+                                        servidor.Usuario usua = OP.findusupostaWS(sesion.getAttribute("user").toString());
 
-                                        if(usua.getNN().equals(nickname)){
+                                        if(usua.getNickname().equals(nickname)){
                                             List<inscripcion> inscrip = OP.listarInscripciones("","");
                                             Iterator iter = inscrip.iterator();
                                             while(iter.hasNext()){
@@ -156,16 +159,16 @@
                                 }
                             }else{
                              
-                                List<usuario>usu = uu.buscarusuario("");
+                                List<servidor.Usuario>usu = OP.buscarusuarioWS("");
                                 
                                 Iterator itCur = usu.iterator();
-                                usuario usuariox = null;
+                                servidor.Usuario usuariox = null;
                                 while(itCur.hasNext()){
                                 
-                                    usuariox = (usuario) itCur.next();
+                                    usuariox = (servidor.Usuario) itCur.next();
                                     out.println("<div>");
                     
-                                    out.println("<a href='consultarusuarios.jsp?usuario="+usuariox.getNN()+"'class='mb-4' style='color: black'>"+usuariox.getNN()+"</a><br><br>");
+                                    out.println("<a href='consultarusuarios.jsp?usuario="+usuariox.getNickname()+"'class='mb-4' style='color: black'>"+usuariox.getNickname()+"</a><br><br>");
                                     out.println("</div>");
                             
                                 }

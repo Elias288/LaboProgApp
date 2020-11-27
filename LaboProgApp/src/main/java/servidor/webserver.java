@@ -138,4 +138,33 @@ public class webserver {
         Dcat.SetCategorias(cat);
         return Dcat;
     }
+    
+         @WebMethod
+        public DataInstituto institutos(){
+            List<instituto> ins = CC.buscarInstituto("");
+            DataInstituto ins2 =  new DataInstituto();
+            ins2.SetFacultad(ins);
+            return ins2;
 }
+        @WebMethod
+        public DataUsuario buscarusuario(String NN){
+            
+            List<usuario> usulist = CU.buscarusuario(NN);
+            DataUsuario usu2 =  new DataUsuario();
+            usu2.setUsuarios(usulist);
+            return usu2;
+        
+}
+        @WebMethod
+        public int typeusu(String NN){
+       
+  
+        return CU.tipoUsuario(NN);
+        }
+        
+          @WebMethod
+       public usuario findusuconcreto(String NN){
+        return  CU.findusu(NN);
+ }
+          
+ }

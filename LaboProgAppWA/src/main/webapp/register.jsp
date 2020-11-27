@@ -103,11 +103,11 @@
                                 <select class="input100" name="Intitutos" id="cars">   
                                  <%
                                     Operaciones OP = new Operaciones();
-                                    List<instituto>listaIns = OP.institutos();
+                                    List<servidor.Instituto>listaIns = OP.institutosWS();
                                     Iterator itIns = listaIns.iterator();
-                                    instituto ins = null;
+                                   servidor.Instituto ins = null;
                                     while(itIns.hasNext()){
-                                        ins = (instituto) itIns.next();
+                                        ins = (servidor.Instituto) itIns.next();
                                         out.println("<option value="+ins.getFacultad()+">"+ins.getFacultad()+"</option>");
 
                                     }
