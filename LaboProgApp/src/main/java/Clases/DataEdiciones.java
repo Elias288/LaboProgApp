@@ -1,39 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Clases;
 
-import java.util.*;
-import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+import java.util.Date;
+import java.util.List;
 
-@XmlAccessorType(XmlAccessType.FIELD)
-
-@Entity (name = "edicionCurso")
-public class edicionCurso {
-
-    @Id
+public class DataEdiciones {
     private String nombre;
-    //private periodo peridoVigencia;
     private Date Pinicio;
     private Date Pfin;
     private int cupo;
     private Date fechaPublicacion;
-    
-    @OneToMany
-     List<inscripcion> inscr;
-    
-//    @ManyToMany(mappedBy="Cursos")
-//    private List<alumno> alumnos;
-    
-    @ManyToOne
+    List<inscripcion> inscr;
     private curso Curso;
     
-    public edicionCurso() {}
-    public edicionCurso(String nombre, Date PInicio, Date PFin, int cupo, Date fechaPublicacion, curso Curso) {
+    private List<edicionCurso> ediciones = null;
+    
+    public DataEdiciones() {}
+    
+    public DataEdiciones(edicionCurso ed){
+        this.nombre = ed.getNombre();
+        this.Pinicio = ed.getPinicio();
+        this.Pfin = ed.getPfin();
+        this.cupo = ed.getCupo();
+        this.fechaPublicacion = ed.getFechaPublicacion();
+        this.inscr = ed.getInscripcion();
+        this.Curso = ed.getCurso();
+    }
+    
+    public DataEdiciones(String nombre, Date PInicio, Date PFin, int cupo, Date fechaPublicacion, curso Curso) {
         this.nombre = nombre;
         this.Pfin = PFin;
         this.Pinicio = PInicio;
@@ -56,4 +49,7 @@ public class edicionCurso {
     public void setPfin(Date Pfin) {this.Pfin = Pfin;}
     public curso getCurso() {return Curso;}
     public void setCurso(curso Curso) {this.Curso = Curso;}
+    
+    public void setEdiciones(List<edicionCurso> ed){this.ediciones = ed;}
+    public List<edicionCurso> getEdiciones(){return this.ediciones;}
 }

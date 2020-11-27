@@ -1,13 +1,13 @@
+<%//@page import="Clases.curso"%>
+<%//@page import="Clases.ControladorCurso"%>
+<%//@page import="Clases.curso"%>
+<%//@page import="Clases.usuario"%>
+<%//@page import="Clases.ControladorUsuario"%>
 <%@page import="servidor.Curso"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="Clases.ControladorCurso"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
-<%@page import="Clases.curso"%>
-<%@page import="Clases.curso"%>
-<%@page import="Clases.usuario"%>
-<%@page import="Clases.ControladorUsuario"%>
 <%@page session="true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

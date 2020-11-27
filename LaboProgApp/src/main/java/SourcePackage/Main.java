@@ -375,7 +375,10 @@ public class Main extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         ControladorCurso cc = new ControladorCurso();
-        JOptionPane.showMessageDialog(null, cc.buscarEdicionXIns("Innova").size());
+        //JOptionPane.showMessageDialog(null, cc.buscarEdicionXIns("Innova").size());
+        //JOptionPane.showMessageDialog(null, cc.buscarCategorias("").get(0).Getnombre());
+        JOptionPane.showMessageDialog(null, cc.findCurso("programacion").getName());
+        JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public void CargarDatos(){

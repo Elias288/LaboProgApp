@@ -38,6 +38,7 @@ SourcePackage\ModificarUsuarios$3.class
 SourcePackage\RegistrarProgramaFormacion.class
 SourcePackage\ConsultarEdicionCurso.class
 SourcePackage\ConsultarProgramaFormacion$2.class
+Clases\DataCategoria.class
 SourcePackage\Main$10.class
 SourcePackage\ConsultarUsuarios$4.class
 SourcePackage\Main$5.class
@@ -59,6 +60,7 @@ SourcePackage\ConsultarUsuarios$3.class
 SourcePackage\RegistroCurso$3.class
 SourcePackage\ConsultarEdicionCurso$7.class
 SourcePackage\Main.class
+Clases\DataUsuario.class
 SourcePackage\Main$11.class
 SourcePackage\RegistroEdicionCurso2$3.class
 Clases\DataCursos.class
@@ -78,6 +80,7 @@ SourcePackage\InscribirEstudianteProgramaFormacion$1.class
 Clases\periodo.class
 SourcePackage\ConsultarEdicionCurso$4.class
 SourcePackage\RegistrarProgramaFormacion$2.class
+Clases\DataEdiciones.class
 SourcePackage\ConsultarCursos$3.class
 SourcePackage\Inscribir$5.class
 SourcePackage\RegistroCurso$1.class
@@ -87,6 +90,7 @@ SourcePackage\Main$9.class
 SourcePackage\InscribirEstudianteProgramaFormacion$2.class
 Clases\curso.class
 SourcePackage\RegistroEdicionCurso2.class
+Clases\DataInstituto.class
 SourcePackage\ConsultarUsuarios$2.class
 SourcePackage\AgregarCursoProgramaFormacion.class
 Clases\instituto.class

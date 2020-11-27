@@ -1,13 +1,13 @@
+<%//@page import="Clases.edicionCurso"%>
+<%//@page import="Clases.instituto"%>
+<%//@page import="Clases.curso"%>
+<%//@page import="Clases.ControladorCurso"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.net.URL"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="Clases.edicionCurso"%>
-<%@page import="Clases.instituto"%>
-<%@page import="Clases.curso"%>
-<%@page import="Clases.ControladorCurso"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,17 +66,19 @@
                         <% 
                             if(request.getParameter("curso")!=null){
                                 
-                                curso cur = OP.BuscarCurso(request.getParameter("curso"));
+                                servidor.Curso curWS = OP.findCursoWS(request.getParameter("curso"));
+                                
                                 out.println("<div class='text'>");
-                                out.println("<h3 style='color: black'>" + cur.getName() + "</h3><br>");
-                                out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(cur.getName()) +"</font><br><br>");
+                                out.println("<h3 style='color: black'>" + curWS.getNombre()+ "</h3><br>");
+                                out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(curWS.getNombre()) +"</font><br><br>");
                                 out.println("</div></div>");
                                 out.println("<div class='d-lg-block m-b-25 podcast-entry bg-white'>");
-                                out.println("<a style='color:cornflowerblue' href='curos.html' class='h10'>"+cur.getURL()+"<br><br></a>");
+                                out.println("<a style='color:cornflowerblue' href='curos.html' class='h10'>"+curWS.getURL()+"<br><br></a>");
                                 out.println("<h3 class='font-weight-light'>");
-                                out.println(cur.getDesc());
+                                out.println(curWS.getDescripcion());
                                 out.println("</h3>");
                                 out.println("</div>");
+                                
                             }
                         %>
                     </div>
@@ -86,19 +88,23 @@
                         <h3 style="color: black">Ediciones del cursos</h3>
 
                         <%
-                            
                             if(request.getParameter("curso")!= null){
-                                curso cur = OP.BuscarCurso(request.getParameter("curso"));
-                                //List<edicionCurso> Listec = cc.buscarEdiciones(cur.getId());
-                                List<edicionCurso> Listec = OP.BuscarEdicionCurso();
-                                Iterator itEC = Listec.iterator();
                                 
-                                edicionCurso ec = null;
+                                //out.println(request.getParameter("curso"));
+                                List<servidor.Curso> curWS = OP.BuscarCursosWS("");
+                                servidor.Curso cur = curWS.get(0);
+                                //out.println(cur.getNombre());
                                 
+                                List<servidor.EdicionCurso> ListecWS = OP.buscarEdicionesWS("");
+                                //out.println("resultados ediciones: " + ListecWS.get(0).getNombre()+ "<br>");
+                                servidor.EdicionCurso ec = null;
+                                
+                                Iterator itEC = ListecWS.iterator();
                                 while(itEC.hasNext()){
-                                    ec = (edicionCurso) itEC.next();                                    
-                                    if(cur.getId() == ec.getCurso().getId()){                                        
-                                        /*CODIFICO EL NOMBRE DE LA EDICION DE CURSO PARA ENVIARLO POR URL*/
+                                    ec = (servidor.EdicionCurso)itEC.next();
+                                    out.println(ec.getNombre()+ "<br>");
+                                    if(cur.getId()== ec.getCurso().getId()){                                        
+                                        //CODIFICO EL NOMBRE DE LA EDICION DE CURSO PARA ENVIARLO POR URL
                                         String url = ec.getNombre();
                                         String encodedurl = URLEncoder.encode(url,"UTF-8"); 
                                         

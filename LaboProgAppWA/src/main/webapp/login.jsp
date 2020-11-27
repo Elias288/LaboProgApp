@@ -58,7 +58,7 @@
 
                                 HttpSession sesion = request.getSession();
 
-                                switch(OP.loguear(user, passwd)){
+                                switch(OP.loguearWS(user, passwd)){
                                     case 1: //el usuario es docente
                                         sesion.setAttribute("user", user);
                                         sesion.setAttribute("nivel", "1");

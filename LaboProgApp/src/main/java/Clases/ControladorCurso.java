@@ -89,6 +89,7 @@ public class ControladorCurso {
         em.close();
     }
     
+    //Ya esta publicado
     public List<instituto> buscarInstituto(String Facultad){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
@@ -112,6 +113,8 @@ public class ControladorCurso {
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         return em.find(instituto.class,idInstituto);
     }
+    
+    //Ya esta publicado
     public instituto obtenerIsntituto(String name){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
@@ -127,6 +130,7 @@ public class ControladorCurso {
         return cur.getInsti();
     }
     
+    //Ya esta publicado, funciona en main, pero no en soap
     public List<categoria> buscarCategorias(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
@@ -216,7 +220,8 @@ public class ControladorCurso {
             em.getTransaction().rollback();
         }
     }
-          
+    
+    //Ya esta publicado
     public List<curso> buscarCurso(String nombreins){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
@@ -251,6 +256,7 @@ public class ControladorCurso {
         return lista;
     }
     
+    //Ya esta publicado
     public curso findCurso(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         try{
@@ -361,6 +367,7 @@ public class ControladorCurso {
         em.close();
     }
     
+    //Ya esta publicado
     public edicionCurso buscarEdicion(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         return em.find(edicionCurso.class,nombre);
@@ -391,45 +398,10 @@ public class ControladorCurso {
         List<edicionCurso> lista = new ArrayList<>();
         List<edicionCurso> listaRes = new ArrayList<>();
 
-        /*TypedQuery<Long> query = em.createQuery("SELECT id FROM instituto xd WHERE xd.Facultad LIKE :nickname",Long.class);
-        query.setParameter("nickname", nombreIns);
-        Long idIns = query.getSingleResult();
-        instituto ins = em.find(instituto.class, idIns);
-        
-        Query queryCursos = em.createQuery("SELECT xd FROM curso xd WHERE xd.instituto_id = :nickname");
-        queryCursos.setParameter("nickname", 1);
-        List<curso> listCursos = queryCursos.getResultList();
-        
-        Iterator iter = listCursos.iterator();
-        curso cur;
-        
-        List<edicionCurso>datos = buscarEdiciones("");
-        
-        while(iter.hasNext()){
-            cur = (curso)iter.next();
-            Iterator opaaaa = datos.iterator();
-            edicionCurso opa = null;
-            
-            while(opaaaa.hasNext()){
-                opa = (edicionCurso)opaaaa.next();
-                 if(opa.getCurso() == cur)
-                     lista.add(opa);
-            }
-        }*/
-
-        /*Query query = em.createQuery("SELECT xd FROM edicionCurso xd JOIN xd.curso c JOIN c.instituto ins WHERE ins.Facultad LIKE :nickname");
-        query.setParameter("nickname", nombreIns);
-        lista = query.getResultLi*/
-        
         List<curso> cursos = new ArrayList<>();
         cursos = buscarCurso(nombreIns);
         
-        
-        
         lista = buscarEdiciones("");
-        
-
-        
         Iterator iteCur = cursos.iterator();
         
         curso cur;
@@ -485,15 +457,29 @@ public class ControladorCurso {
         return CurList;
     }
 
-    public List<edicionCurso> buscarEdiciones (long idCurso){
+    public List<edicionCurso> buscarEdicionesxCurso(String nombreCur){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        List<edicionCurso> ListEdi = new ArrayList<>();
-        Query query = em.createQuery("SELECT xd FROM edicioncurso xd WHERE Curso_id = :idcurso", Long.class);
+        List<edicionCurso> ListEdi = buscarEdiciones(""); //todas las ediciones
+        List<edicionCurso> ListEdi2 = new ArrayList<>(); //lista de resultados
+        curso cur = findCurso(nombreCur);
+        
+        Iterator iteEd = ListEdi.iterator();
+        edicionCurso ed;
+        while(iteEd.hasNext()){
+            ed = (edicionCurso)iteEd.next();
+            if(ed.getCurso().getId() == cur.getId()){
+                ListEdi2.add(ed);
+            }
+        }
+        
+        /*
+        Query query = em.createQuery("SELECT xd FROM edicionCurso xd WHERE xd.Curso = :idcurso");
         query.setParameter("idcurso", idCurso);
 
         ListEdi = query.getResultList();
-       System.out.println("///////Lenght = "+ListEdi.size()+"//////////////");
-        return ListEdi;
+        System.out.println("///////Lenght = "+ListEdi.size()+"//////////////");*/
+        
+        return ListEdi2;
     }
     
     public List<inscripcion> listarInscripciones(String nombreAlu, String nombreEd){

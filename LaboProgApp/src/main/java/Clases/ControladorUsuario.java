@@ -107,6 +107,7 @@ public class ControladorUsuario {
         em.close();
     }
     
+    //Ya esta publicado
     public usuario findusu(String ID){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
          

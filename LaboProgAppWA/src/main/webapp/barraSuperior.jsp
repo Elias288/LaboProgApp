@@ -1,9 +1,13 @@
-<%@page import="Clases.usuario"%>
-<%@page import="Clases.ControladorUsuario"%>
+<%//@page import="Clases.usuario"%>
+<%//@page import="Clases.ControladorUsuario"%>
+<%@page import="com.mycompany.laboprogappwa.Operaciones"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<%HttpSession sesion = request.getSession();%>
+<%
+    HttpSession sesion = request.getSession();
+    Operaciones OP = new Operaciones();
+%>
 <div class="container">
     <div class="row align-items-center" style="border-bottom: 2px solid">
         <div class="col-3">
@@ -23,10 +27,13 @@
 
                         <%
                             if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
-                                ControladorUsuario CU = new ControladorUsuario();
-                                usuario usu = CU.findusu(sesion.getAttribute("user").toString());
+                                /*ControladorUsuario CU = new ControladorUsuario();
+                                usuario usu = CU.findusu(sesion.getAttribute("user").toString());*/
+                                
+                                servidor.DataUsuario Dusu = OP.findusuWS(sesion.getAttribute("user").toString());
+                                //servidor.Usuario usuWS;
                                 //String tipo = sesion.getAttribute("nivel").toString();
-                                out.println("<li class='active'><a href='User.html'>" + usu.getNN() + "</a></li>");
+                                out.println("<li class='active'><a href='User.html'>" + Dusu.getNickname() + "</a></li>");
                                 out.println("<li class='active'></a></li>");
                             }else{
                                 out.println("<li><a href='login.jsp'>Login</a></li>");

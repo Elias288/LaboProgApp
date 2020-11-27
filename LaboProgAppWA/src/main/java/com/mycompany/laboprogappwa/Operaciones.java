@@ -6,13 +6,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import servidor.Categoria;
 import servidor.Curso;
+import servidor.Docente;
 
 public class Operaciones {
     
     ControladorUsuario CU = new ControladorUsuario();
     ControladorCurso CC = new ControladorCurso();
-    
+    /*
     public int loguear(String usuario, String passwd){
         usuario usu = CU.findusu(usuario);
         int tipo=0;
@@ -28,7 +30,6 @@ public class Operaciones {
         
         return tipo;
     }
-    
     public List<instituto> institutos(){
         return CC.buscarInstituto("");
     }
@@ -47,7 +48,7 @@ public class Operaciones {
                 cur = edi.getCurso();
         }
         return cur;
-    }
+    }*/
     
     public String insitutoCur(String nomCurso){
         
@@ -56,7 +57,7 @@ public class Operaciones {
         else
             return "no existe El instituto";
     }
-    
+    /*
     public curso BuscarCurso(String nombreCur){
         return CC.findCurso(nombreCur);
     }
@@ -65,7 +66,7 @@ public class Operaciones {
     }
     public List<edicionCurso> BuscarEdicionCurso(){
         return CC.buscarEdiciones("");
-    }
+    }*/
     public List<curso> BuscarCursCate(String cat){
         return CC.buscarCursoCat(cat);
     }
@@ -130,7 +131,7 @@ public class Operaciones {
 
 
     // VISUALIZAR EDICIONES DE CURSOS PARA PROFESORES
-    public servidor.EdicionCurso BuscarEdicion(String nombre){
+    public servidor.EdicionCurso BuscarEdicionWS(String nombre){
         servidor.EdicionCurso result = new servidor.EdicionCurso();
         try { // Call Web Service Operation
             servidor.WebserverService service = new servidor.WebserverService();
@@ -141,11 +142,8 @@ public class Operaciones {
             } 
         catch (Exception ex) {
             return null;
-
         }
-      
     }
-    
     
     public List<Curso> BuscarCursosWS(String nombreCur){
         List<Curso> cur = null;
@@ -162,5 +160,116 @@ public class Operaciones {
         }
         
         return cur;
+    }
+    
+    public List<servidor.Instituto> insitututosWS(String nombre){
+        List<servidor.Instituto> insWS = null;
+        
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            servidor.DataInstituto result = port.buscarInstituto(nombre);
+            insWS = result.getInstitutos();
+            return insWS;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+    
+    public List<servidor.Categoria> categoriaWS(String nombre){
+        List<Categoria> cat = null;
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            servidor.DataCategoria result = port.buscarCategoria(nombre);
+            cat = result.getCategorias();
+            return cat;
+        } catch (Exception ex) {
+            return null;
+        }
+
+    }
+    
+    public Docente findDocenteWS(String nombre){
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            servidor.Docente result = port.findDocente(nombre);
+            return result;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+    
+    public int loguearWS(String NN, String pass){
+        
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            int result = port.logear(NN, pass);
+            return result;
+        } catch (Exception ex) {
+            return 0;
+        }
+    }
+    
+    public servidor.DataUsuario findusuWS(String nombre){
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            servidor.DataUsuario result = port.findusu(nombre);
+            return result;
+        } catch (Exception ex) {
+            return null;
+        }
+
+    }
+    
+    public List<servidor.EdicionCurso> buscarEdicionesWS(String nombre){
+        List<servidor.EdicionCurso> edWS = null;
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            servidor.DataEdiciones result = port.buscarEdiciones(nombre);
+            edWS = result.getEdiciones();
+            return edWS;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+    
+    public List<servidor.EdicionCurso> buscarEdicionesXCursoWS(String nombreCur){
+        List<servidor.EdicionCurso> edWS = null;
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            servidor.DataEdiciones result = port.buscarEdicionesxCurso(nombreCur);
+            edWS = result.getEdiciones();
+            return edWS;
+        } catch (Exception ex) {
+            return null;
+        }
+
+    }
+    
+    public servidor.Curso findCursoWS(String nombre){
+        
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            servidor.Curso result = port.findcurso(nombre);
+            return result;
+        } catch (Exception ex) {
+            return null;
+        }
+
     }
 }

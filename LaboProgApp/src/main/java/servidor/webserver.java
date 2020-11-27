@@ -2,10 +2,15 @@ package servidor;
 
 import Clases.ControladorCurso;
 import Clases.ControladorUsuario;
+import Clases.DataCategoria;
 import Clases.edicionCurso;
 import Clases.DataCursos;
+import Clases.DataEdiciones;
+import Clases.DataInstituto;
 import Clases.DataUsuario;
+import Clases.categoria;
 import Clases.curso;
+import Clases.docente;
 import Clases.instituto;
 import Clases.usuario;
 import java.io.File;
@@ -23,7 +28,9 @@ import javax.xml.ws.Endpoint;
  @WebService
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.WRAPPED)
 public class webserver {
-
+     
+    ControladorCurso CC = new ControladorCurso();
+    ControladorUsuario CU = new ControladorUsuario();
 
 
     private Endpoint endpoint = null;
@@ -56,35 +63,46 @@ public class webserver {
     
     @WebMethod
     public int logear(String nickname, String passwd) {
-        ControladorUsuario CU2 = new ControladorUsuario();
-        int ret = CU2.loguear(nickname, passwd);
+        int ret = CU.loguear(nickname, passwd);
         return ret;
     }
     
     @WebMethod
     public edicionCurso buscarEdicion(String nombre){
-        ControladorCurso cu = new ControladorCurso();
-        return cu.buscarEdicion(nombre);
+        return CC.buscarEdicion(nombre);
+    }
+    
+    @WebMethod
+    public DataEdiciones buscarEdiciones(String nombre){
+        List<edicionCurso> ed = CC.buscarEdiciones(nombre);
+        DataEdiciones Ded = new DataEdiciones();
+        Ded.setEdiciones(ed);
+        return Ded;
+    }
+    
+    @WebMethod
+    public DataEdiciones buscarEdicionesxCurso(String nombreCurso){
+        List<edicionCurso> ed = CC.buscarEdicionesxCurso(nombreCurso);
+        DataEdiciones Ded = new DataEdiciones();
+        Ded.setEdiciones(ed);
+        return Ded;
     }
     
     @WebMethod
     public DataUsuario findusu(String nombre){
-        ControladorUsuario CU = new ControladorUsuario();
         DataUsuario DU = new DataUsuario(CU.findusu(nombre));
         return DU;
     }
     
     @WebMethod
     public instituto obtenerIsntituto(String nombre){
-        ControladorCurso cu = new ControladorCurso();
-        return cu.obtenerIsntituto(nombre);
+        return CC.obtenerIsntituto(nombre);
     }
     
     
     @WebMethod
     public DataCursos buscarCurso(String nombre){
-        ControladorCurso cu = new ControladorCurso();
-        List<curso> cur = cu.buscarCurso(nombre);
+        List<curso> cur = CC.buscarCurso(nombre);
         DataCursos cursos = new DataCursos();
         
         cursos.SetCursos(cur);
@@ -94,9 +112,30 @@ public class webserver {
     
     @WebMethod
     public curso findcurso(String nombre){
-        ControladorCurso cu = new ControladorCurso();
-        curso cur = cu.findCurso(nombre);
+        curso cur = CC.findCurso(nombre);
         return cur;
     }
     
+    @WebMethod 
+    public DataInstituto buscarInstituto(String nombre){
+        List<instituto> ins = CC.buscarInstituto(nombre);
+        DataInstituto Dins = new DataInstituto();
+        Dins.setInstitutos(ins);
+        return Dins;
+    }
+    
+    @WebMethod
+    public docente findDocente(String nombre){
+        docente doc = CU.findDocente(nombre);
+        return doc;
+    }
+    
+    //no funciona ??
+    @WebMethod
+    public DataCategoria buscarCategoria(String nombre){
+        List<categoria> cat = CC.buscarCategorias(nombre);
+        DataCategoria Dcat = new DataCategoria();
+        Dcat.SetCategorias(cat);
+        return Dcat;
+    }
 }

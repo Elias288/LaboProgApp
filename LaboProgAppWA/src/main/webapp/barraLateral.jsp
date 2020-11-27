@@ -1,12 +1,15 @@
-<%@page import="Clases.docente"%>
-<%@page import="Clases.categoria"%>
+<%//@page import="Clases.docente"%>
+<%//@page import="Clases.categoria"%>
+<%//@page import="Clases.usuario"%>
+<%//@page import="Clases.ControladorUsuario"%>
+<%//@page import="Clases.instituto"%>
+<%@page import="servidor.Docente"%>
+<%@page import="servidor.Categoria"%>
+<%@page import="servidor.Instituto"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
-<%@page import="Clases.instituto"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
-<%@page import="Clases.usuario"%>
-<%@page import="Clases.ControladorUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -28,11 +31,14 @@
 
                     <!--LISAR INSTITUTOS-->
                     <%
-                        List<instituto>listaIns = OP.institutos();
-                        Iterator itIns = listaIns.iterator();
-                        instituto ins = null;
+                        //List<instituto>listaIns = OP.institutos();
+                        List<servidor.Instituto> listaInsWS = OP.insitututosWS("");
+                        
+                        Iterator itIns = listaInsWS.iterator();
+                        
+                        Instituto ins = null;
                         while(itIns.hasNext()){
-                            ins = (instituto) itIns.next();
+                            ins = (Instituto) itIns.next();
                             out.println("<li><a href='consultaCursos.jsp?instituto="+ ins.getFacultad() +"' class='d-flex align-items-center'>");
                             out.println("<div class='podcaster'><span class='d-block'>" + ins.getFacultad() + "</span></div></a></li>");
 
@@ -49,13 +55,16 @@
                 <ul class="list-unstyled">
 
                     <%
-                        List<categoria>listaCate = OP.categoria();
-                        Iterator itCate = listaCate.iterator();
-                        categoria cat = null;
+                        //List<categoria> listaCate = OP.categoria();
+                        List<servidor.Categoria>listaCateWS = OP.categoriaWS("");
+                        
+                        Iterator itCate = listaCateWS.iterator();
+                        
+                        servidor.Categoria cat = null;
                         while(itCate.hasNext()){
-                            cat = (categoria) itCate.next();
-                            out.println("<li><a href='consultaCursos.jsp?categoria="+cat.Getnombre()+"' class='d-flex align-items-center'>");
-                            out.println("<div class='podcaster'><span class='d-block'>" + cat.Getnombre() + "</span></div>");
+                            cat = (servidor.Categoria) itCate.next();
+                            out.println("<li><a href='consultaCursos.jsp?categoria="+cat.getNombre()+"' class='d-flex align-items-center'>");
+                            out.println("<div class='podcaster'><span class='d-block'>" + cat.getNombre() + "</span></div>");
                             out.println("</a></li>");
                         }
                     %>
@@ -180,27 +189,29 @@
                     if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){ //si la sesion esta iniciada
                         
                         if(sesion.getAttribute("nivel").toString().equals("1")){
-                            ControladorUsuario CU = new ControladorUsuario();
+                            //ControladorUsuario CU = new ControladorUsuario();
                             //usuario usu = CU.findusu(sesion.getAttribute("user").toString());
-                            docente doc = CU.findDocente(sesion.getAttribute("user").toString());
+                            //docente doc = CU.findDocente(sesion.getAttribute("user").toString());
+                            servidor.Docente docWS = OP.findDocenteWS(sesion.getAttribute("user").toString());
                         
-                            List<instituto>listaInsProf = OP.institutos();
-                            Iterator itInsProf = listaInsProf.iterator();
-                            instituto insProf = null;
+                            //List<instituto>listaInsProf = OP.institutos();
+                            List<servidor.Instituto>listaInsProfWS = OP.insitututosWS("");
+                            Iterator itInsProf = listaInsProfWS.iterator();
+                            servidor.Instituto insProf = null;
                             while(itInsProf.hasNext()){
-                                insProf = (instituto) itInsProf.next();
-                                if(insProf.getId()== doc.getInstituto().getId()){
+                                insProf = (servidor.Instituto) itInsProf.next();
+                                if(insProf.getId()== docWS.getInstituto().getId()){
                                     out.println("<li><a href='consultaCursos.jsp?instituto="+ insProf.getFacultad() +
                                         "' class='d-flex align-items-center'><div class='podcaster'><span class='d-block'>"
                                         +insProf.getFacultad()+"</span></div></a></li>");                            
                                 }  
                             }
                         }else if(sesion.getAttribute("nivel").toString().equals("2")){
-                            List<instituto>listaInsAlum = OP.institutos();
+                            List<servidor.Instituto>listaInsAlum = OP.insitututosWS("");
                             Iterator itInsAlum = listaInsAlum.iterator();
-                            instituto insAlumn = null;
+                            servidor.Instituto insAlumn = null;
                             while(itInsAlum.hasNext()){
-                                insAlumn = (instituto) itInsAlum.next();
+                                insAlumn = (servidor.Instituto) itInsAlum.next();
                                 out.println("<li><a href='consultaCursos.jsp?instituto="+ insAlumn.getFacultad() +"' class='d-flex align-items-center'>");
                                 out.println("<div class='podcaster'><span class='d-block'>" + insAlumn.getFacultad() + "</span></div></a></li>");
                             }
@@ -218,13 +229,13 @@
                 <ul class="list-unstyled">
 
                     <%
-                        listaCate = OP.categoria();
-                        itCate = listaCate.iterator();
+                        listaCateWS = OP.categoriaWS("");
+                        itCate = listaCateWS.iterator();
                         cat = null;
                         while(itCate.hasNext()){
-                            cat = (categoria) itCate.next();
-                            out.println("<li><a href='consultaCursos.jsp?categoria="+cat.Getnombre()+"' class='d-flex align-items-center'>");
-                            out.println("<div class='podcaster'><span class='d-block'>" + cat.Getnombre() + "</span></div>");
+                            cat = (servidor.Categoria) itCate.next();
+                            out.println("<li><a href='consultaCursos.jsp?categoria="+cat.getNombre() +"' class='d-flex align-items-center'>");
+                            out.println("<div class='podcaster'><span class='d-block'>" + cat.getNombre() + "</span></div>");
                             out.println("</a></li>");
                         }
                     %>
