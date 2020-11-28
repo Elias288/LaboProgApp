@@ -8,9 +8,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DataCursos {
     private long id;
-    private String nombre,descripcion, URL;
-    private int duracion, cantHoras, Creditos;
+    private String nombre;
+    private String descripcion, URL;
+    private int duracion;
+    private int cantHoras;
     private Date fecha;
+    private int Creditos;
     private List<categoria> cat;
     private List<curso> Previas;
     private docente doc;
@@ -18,18 +21,7 @@ public class DataCursos {
     
     private List<curso> cursos = null;
     
-    public DataCursos(){
-        this.Creditos = 0;
-        this.Previas = null;
-        this.URL = null;
-        this.descripcion = null;
-        this.cantHoras = 0;
-        this.nombre = null;
-        this.cat = null;
-        this.doc = null;
-        this.instituto = null;
-        this.id = 0;
-    }
+    public DataCursos(){}
     
     public DataCursos(curso cur){
         this.id = cur.getId();

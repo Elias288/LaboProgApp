@@ -1,5 +1,3 @@
-<%@page import="java.time.format.DateTimeFormatter"%>
-<%@page import="java.time.LocalDate"%>
 <%//@page import="Clases.inscripcion"%>
 <%//@page import="Clases.edicionCurso"%>
 <%//@page import="Clases.ControladorUsuario"%>
@@ -81,12 +79,13 @@
                                     /*out.println("<form action='curso.jsp' method='GET'>");
                                     out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
                                     out.println("</form><br>");*/
+                                    out.println("<div>");
                     
-                                    out.println("<p><strong style='font-weight: bold'>Nickname: </strong>"+usuariox.getNickname()+"</p>"); 
+                                    out.println("<p> <strong style='font-weight: bold'>Nickname: </strong>"+usuariox.getNickname()+"</p>"); 
                                     out.println("<p><strong style='font-weight: bold'>Nombre: </strong>"+usuariox.getNombre()+"</p>");
                                     out.println("<p><strong style='font-weight: bold'>Apellido:</strong> "+usuariox.getApellido()+"</p>" );
                                             
-                                    
+                                    out.println("</div>");
                             
                             
                                 }
@@ -95,37 +94,21 @@
                                     //ControladorCurso  cc= new ControladorCurso();
 
                                     //curso cu= OP.findCurso2(nickname);
-                                    List<servidor.Curso> cursos= OP.findCursoXDocenteWS(nickname);
-                                    servidor.Curso cur = null;
-                                    
-                                    Iterator Itcur = cursos.iterator();
-                                    while(Itcur.hasNext()){
-                                        cur = (servidor.Curso)Itcur.next();
-                                        
-                                        out.println("<h3>Curso " + cur.getNombre() + "</h3>");
-                                        List<servidor.EdicionCurso>datos = OP.buscarEdicionesWS(cur.getNombre());
-                                        
-                                        Iterator opaaaa = datos.iterator();
-                                        servidor.EdicionCurso opa = null;
-                                        while(opaaaa.hasNext()){
-                                            opa = (servidor.EdicionCurso) opaaaa.next();
-                                            
-                                            out.println("<h4> Nombre Edicion: "+opa.getNombre()+"</h4>");
-                                            
-                                            //Formato de fecha
-                                            
-                                            LocalDate fechaPfin = LocalDate.of(opa.getPfin().getYear(),opa.getPinicio().getMonth(), opa.getPinicio().getDay());
-                                            LocalDate fechaIni = LocalDate.of(opa.getPinicio().getYear(),opa.getPinicio().getMonth(), opa.getPinicio().getDay());
-                                            LocalDate fechaPub = LocalDate.of(opa.getFechaPublicacion().getYear(),opa.getFechaPublicacion().getMonth(), opa.getFechaPublicacion().getDay());
-                                            DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                                            out.println("<h5> Fecha Final: "+fechaPfin.format(esDateFormat)+"</h5>");
-                                            out.println("<h5> Fecha Inicio: "+fechaIni.format(esDateFormat)+"</h5>");
-                                            out.println("<h5> Cupos: "+opa.getCupo()+"</h5>");
-                                            out.println("<h5> Fecha publicacion"+ fechaPub +"</h5>" );
-                                            
-                                        }
+                                    servidor.Curso cu= OP.findCursoXDocente(nickname);
+                            
+                                   List<servidor.EdicionCurso>datos = OP.buscarEdicionesWS(cu.getNombre());
+                   
+                                    Iterator opaaaa = datos.iterator();
+                                    servidor.EdicionCurso opa = null;
+                                    while(opaaaa.hasNext()){
+                                        opa = (servidor.EdicionCurso) opaaaa.next();
+                                        out.println("<div>");
+                                        out.println("<h4> Nombre="+opa.getNombre()+" Fecha Final="+opa.getPfin()+" Fecha Inicio="+opa.getPinicio()+" Cupos="+opa.getCupo()+" Fecha publicacion"+ opa.getFechaPublicacion()+"</h4>" );
+                                        out.println("</div>");
+                            
+                            
                                     }
-                                
+                            
                                 }else if(OP.tipousuarioWS(nickname)==2){
                                     
                                     int semaforo=0;

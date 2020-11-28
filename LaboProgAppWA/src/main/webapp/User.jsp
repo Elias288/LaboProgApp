@@ -88,7 +88,7 @@
                                 //Formato de fecha
                                 LocalDate fechaNac = LocalDate.of(Dusu.getFechaNac().getYear(), Dusu.getFechaNac().getDay(), Dusu.getFechaNac().getMonth());
                                 DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                                //fechaNac.format(esDateFormat);
+                                fechaNac.format(esDateFormat);
                             %>
                             
                             <h4><strong>Fecha de nacimiento: <%out.println(fechaNac.format(esDateFormat));%></strong></h4>
