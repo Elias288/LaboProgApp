@@ -110,23 +110,13 @@
                                         if(insWS.getAlu().getNickname().equals(Dusu.getNickname()) && !insWS.getEstado().equals("Rechazada")){
                                             out.println("<div>");
                                             out.println("<h4 style='margin-bottom: 0px';> "+insWS.getEdicionCurso().getNombre()+"</h4>");
-                                            out.println("<a style='color: cornflowerblue' href='User.jsp?rechazar=true'> Estado: "+insWS.getEstado());
-                                            out.println(" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></a>");
+                                            /*out.println("<a style='color: cornflowerblue' href='User.jsp?rechazar=true'> Estado: "+insWS.getEstado());
+                                            out.println(" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></a>");*/
                                             out.println("<p id='ejemplo' hola</p>");
+                                            out.println("<button class='tablinks' onclick='alerta()'>GENERAL</button>");
                                             out.println("</div>");
                                         }
                                     }
-                                }
-                                if(request.getParameter("rechazar") != null){
-                                    out.println("<script language='javascript'>"
-                                            + "var mensaje;"
-                                            + "var opcion = confirm('Desea desistir de la inscripcion?');"
-                                            + "if(opcion == true){"
-                                            + "mensaje = ok;"
-                                            + "}else{"
-                                            + "mensaje = not ok;}"
-                                            + "document.getElementById('ejemplo').innerHTML = mensaje;"
-                                            + "</script");
                                 }
                             
                             %>
@@ -147,6 +137,16 @@
                                 }
                                 document.getElementById(cityName).style.display = "block";
                                 evt.currentTarget.className += " active";
+                            }
+                            
+                            function alerta(){
+                                var mensaje;
+                                var opcion = confirm("Clicka en Aceptar o Cancelar");   
+                                if (opcion === true) {       
+                                    mensaje = "Has clickado OK";
+                                } else {
+                                    mensaje = "Has clickado Cancelar";}
+                                document.getElementById("ejemplo").innerHTML = mensaje;
                             }
                         </script>
                     </div>
