@@ -45,18 +45,19 @@ public class EditInscripcion extends HttpServlet {
                     //ins = CC.listarInscripciones(chequed[f], nombreEd).get(0);
                     insWS = OP.listarInscripcionesWS(chequed[f], nombreEd).get(0);
                     
-                    
-                    if(nota!= null){
-                        //ins = CC.listarInscripciones(chequed[f], nombreEd).get(0);
-                            insWS = OP.listarInscripcionesWS(nota[f], nombreEd).get(0);
-                            OP.editIsncripcionWS(insWS, "Aceptada",nota[f]);
-
-                            }else OP.editIsncripcionWS(insWS, "Aceptada",nota[f]);
-                 
-                    }
+                }       
+                   
             }
             
-              
+               if(nota!= null){
+                    for(int f = 0;f < chequed.length;f++){
+                        //ins = CC.listarInscripciones(chequed[f], nombreEd).get(0);
+                            insWS = OP.listarInscripcionesWS(chequed[f], nombreEd).get(0);
+                            OP.editIsncripcionWS(insWS, "Aceptada",nota[f]);
+                            out.println("la nota de mierda es: "+nota[f]);
+                            
+               }
+                    }
             int semaforo=0;
             
             
@@ -78,7 +79,7 @@ public class EditInscripcion extends HttpServlet {
                 }
             }
             
-            out.println("<script> location.replace('EdicionCurso.jsp?EdCur="+nombreEd+"');</script>");
+         //   out.println("<script> location.replace('EdicionCurso.jsp?EdCur="+nombreEd+"');</script>");
             
         }
     }
