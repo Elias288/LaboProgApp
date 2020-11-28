@@ -8,7 +8,28 @@ Clases\DataUsuario.class
 SourcePackage\RegistroCategoria$1.class
 Clases\curso.class
 Clases\DataInscripcion.class
+<<<<<<< HEAD
 SourcePackage\RegistroCategoria.class
+=======
+SourcePackage\RegistroEdicionCurso2.class
+Clases\DataInstituto.class
+SourcePackage\ConsultarUsuarios$2.class
+SourcePackage\AgregarCursoProgramaFormacion.class
+Clases\instituto.class
+SourcePackage\ModificarUsuarios$6.class
+servidor\webserver.class
+SourcePackage\Main$3.class
+SourcePackage\Main$13.class
+SourcePackage\AgregarCursoProgramaFormacion$2.class
+SourcePackage\RegistroCurso.class
+SourcePackage\ConsultarEdicionCurso$6.class
+SourcePackage\RegistroCurso$2.class
+SourcePackage\ConsultarCursos.class
+Clases\PersistenceManager.class
+SourcePackage\ConsultarCursos$2.class
+SourcePackage\MostrarDatosUsuario.class
+SourcePackage\Main$2.class
+>>>>>>> furtado
 SourcePackage\RegistroCategoria$2.class
 Clases\instituto.class
 Clases\categoria.class
