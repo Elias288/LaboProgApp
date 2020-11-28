@@ -10,6 +10,6 @@
 /LaboProgAppWebService/build/
 /LaboProgAppWebService/dist/
 /LaboProgAppWebService2/target/
-/LaboProgAppWA2/target/
+/LaboProgAppWA2/target/*
 /LaboProgAppWA2_1/target/
-/LaboProgApp\LaboProgAppWA/src/wsdl
+/LaboProgApp/LaboProgAppWA/src/wsdl/*
