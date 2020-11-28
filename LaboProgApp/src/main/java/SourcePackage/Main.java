@@ -379,7 +379,7 @@ public class Main extends javax.swing.JFrame {
         //JOptionPane.showMessageDialog(null, cc.buscarCategorias("").get(0).Getnombre());
 //        JOptionPane.showMessageDialog(null, cc.findCurso("programacion").getName());
 //        JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
-        JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getCursos().get(0).getName());
+        JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getName());
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public void CargarDatos(){

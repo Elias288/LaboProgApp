@@ -1,6 +1,5 @@
 package com.mycompany.laboprogappwa;
 //import Clases.*;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -329,18 +328,17 @@ public class Operaciones {
         }
     }
     
-    public List<servidor.Curso> findCursoXDocenteWS(String nombredoc){ //busca curso por docente
-        List<servidor.Curso> cur = new ArrayList<>();
-        try { // Call Web Service Operation
-            servidor.WebserverService service = new servidor.WebserverService();
-            servidor.Webserver port = service.getWebserverPort();
-            // TODO process result here
-            servidor.DataCursos result = port.findCursoXDocente(nombredoc);
-            cur = result.getCursos();
-            return cur;
-        } catch (Exception ex) {
-            return null;
+   public servidor.Curso findCursoXDocente(String nombredoc){ //busca curso por docente
+       List<servidor.Curso> cursos = BuscarCursosWS("");//lista todos los cursos
+        servidor.Curso cur;
+        
+        Iterator iteCur = cursos.iterator();
+        while(iteCur.hasNext()){
+            cur = (servidor.Curso)iteCur.next();
+            if(cur.getDoc().getNombre().equals(nombredoc))
+                return cur;
         }
+        return null;
     }
     
     public List<servidor.Inscripcion> listarInscripcionesWS(String nombreAlu, String nombreEd){
