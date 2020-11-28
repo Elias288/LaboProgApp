@@ -369,11 +369,11 @@ public class Operaciones {
         }
     }
     
-    public void editIsncripcionWS(servidor.Inscripcion ins, String estado){
+    public void editIsncripcionWS(servidor.Inscripcion ins, String estado, String nota){
         try { // Call Web Service Operation
             servidor.WebserverService service = new servidor.WebserverService();
             servidor.Webserver port = service.getWebserverPort();
-            port.editIsncripcion(ins, estado);
+            port.editIsncripcion(ins, estado,nota);
         } catch (Exception ex) {
         }
     }
