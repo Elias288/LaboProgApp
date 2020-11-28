@@ -328,18 +328,18 @@ public class Operaciones {
         }
     }
     
-//    public servidor.Curso findCursoXDocente(String nombredoc){ //busca curso por docente
-//        List<servidor.Curso> cursos = BuscarCursosWS("");//lista todos los cursos
-//        servidor.Curso cur;
-//        
-//        Iterator iteCur = cursos.iterator();
-//        while(iteCur.hasNext()){
-//            cur = (servidor.Curso)iteCur.next();
-//            if(cur.getDoc().getNombre().equals(nombredoc))
-//                return cur;
-//        }
-//        return null;
-//    }
+   public servidor.Curso findCursoXDocente(String nombredoc){ //busca curso por docente
+       List<servidor.Curso> cursos = BuscarCursosWS("");//lista todos los cursos
+        servidor.Curso cur;
+        
+        Iterator iteCur = cursos.iterator();
+        while(iteCur.hasNext()){
+            cur = (servidor.Curso)iteCur.next();
+            if(cur.getDoc().getNombre().equals(nombredoc))
+                return cur;
+        }
+        return null;
+    }
     
     public List<servidor.Inscripcion> listarInscripcionesWS(String nombreAlu, String nombreEd){
         List<servidor.Inscripcion> ins = null;
