@@ -87,6 +87,7 @@
 <xs:element name="id" type="xs:long"/>
 <xs:element name="estado" type="xs:string" minOccurs="0"/>
 <xs:element name="Alu" type="tns:alumno" minOccurs="0"/>
+<xs:element name="nota" type="xs:int"/>
 <xs:element name="EdicionCurso" type="tns:edicionCurso" minOccurs="0"/>
 <xs:element name="Fecha" type="xs:dateTime" minOccurs="0"/>
 </xs:sequence>
