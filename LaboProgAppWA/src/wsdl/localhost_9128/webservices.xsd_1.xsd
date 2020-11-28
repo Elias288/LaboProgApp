@@ -133,14 +133,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="dataCategoria">
-<xs:sequence>
-<xs:element name="id" type="xs:long"/>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="categorias" type="tns:categoria" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="dataEdiciones">
 <xs:sequence>
 <xs:element name="cupo" type="xs:int"/>
@@ -151,6 +143,14 @@
 <xs:element name="nombre" type="xs:string" minOccurs="0"/>
 <xs:element name="pfin" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="pinicio" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataCategoria">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="categorias" type="tns:categoria" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>
