@@ -1,20 +1,17 @@
 package com.mycompany.laboprogappwa;
-import Clases.*;
-import java.util.ArrayList;
+//import Clases.*;
 import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import servidor.Categoria;
 import servidor.Curso;
 import servidor.Docente;
 
 public class Operaciones {
-    
+    /*
     ControladorUsuario CU = new ControladorUsuario();
     ControladorCurso CC = new ControladorCurso();
-    /*
+    
     public int loguear(String usuario, String passwd){
         usuario usu = CU.findusu(usuario);
         int tipo=0;
@@ -47,13 +44,14 @@ public class Operaciones {
         return cur;
     }*/
     
-    public String insitutoCur(String nomCurso){
-        
-        if(CC.buscarInstideCurso(nomCurso)!=null)
-            return CC.buscarInstideCurso(nomCurso).getFacultad();
-        else
-            return "no existe El instituto";
-    }
+//    public String insitutoCur(String nomCurso){
+//        
+//        if(CC.buscarInstideCurso(nomCurso)!=null)
+//            return CC.buscarInstideCurso(nomCurso).getFacultad();
+//        else
+//            return "no existe El instituto";
+//    }
+    
     /*
     public curso BuscarCurso(String nombreCur){
         return CC.findCurso(nombreCur);
@@ -64,11 +62,15 @@ public class Operaciones {
     public List<edicionCurso> BuscarEdicionCurso(){
         return CC.buscarEdiciones("");
     }*/
-    public List<curso> BuscarCursCate(String cat){
-        return CC.buscarCursoCat(cat);
-    }
     
-      public curso findCurso2(String nombredoc){
+    
+//    public List<curso> BuscarCursCate(String cat){
+//        return CC.buscarCursoCat(cat);
+//    }
+    
+    
+    /*
+    public curso findCurso2(String nombredoc){ //busca curso por docente
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         TypedQuery<Long> queryId = em.createQuery("SELECT id FROM curso WHERE doc_nickname LIKE :names", Long.class);
         queryId.setParameter("names", nombredoc);
@@ -77,7 +79,7 @@ public class Operaciones {
         curso cur = em.find(curso.class, ides);
         return cur;
     }
-    /*
+    
     public List<inscripcion> listarInscripciones(){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         List<inscripcion>lista=new ArrayList<>();
@@ -86,7 +88,7 @@ public class Operaciones {
         lista = query.getResultList();
         return lista;
     }
-    */
+    
     public List<inscripcion> listarInscripciones(String nombreAlu, String nombreEd){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         List<inscripcion>lista=new ArrayList<>();
@@ -116,7 +118,7 @@ public class Operaciones {
         return lista;
     }
     
-    public void editIsncripcion(inscripcion ins, String estado){
+    public void editIsncripcion(servidor.Inscripcion ins, String estado){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         em.getTransaction().begin();
    
@@ -124,7 +126,7 @@ public class Operaciones {
         ins=em.merge(ins);
         em.getTransaction().commit();
         em.close();
-    }
+    }*/
 
 
     // VISUALIZAR EDICIONES DE CURSOS PARA PROFESORES
@@ -270,67 +272,95 @@ public class Operaciones {
 
     }
    
-public List<servidor.Instituto> institutosWS(){
-    List<servidor.Instituto> inslista=null;
-    
-try { 
-    servidor.WebserverService service = new servidor.WebserverService();
-    servidor.Webserver port = service.getWebserverPort();
-    // TODO process result here
-    servidor.DataInstituto result = port.institutos();
-    System.out.println("Result = "+result);
-         inslista=result.getInstitutos();
-         return inslista;
-} catch (Exception ex) {
-return null;
-}
+    public List<servidor.Instituto> institutosWS(){
+        List<servidor.Instituto> inslista=null;
 
+        try { 
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            servidor.DataInstituto result = port.institutos();
+            System.out.println("Result = "+result);
+            inslista=result.getInstitutos();
+            return inslista;
+        } catch (Exception ex) {
+            return null;
+        }
     }
      
-public List<servidor.Usuario> buscarusuarioWS(String NN){
-    List<servidor.Usuario> usulist=null;
-    
-try { 
-    servidor.WebserverService service = new servidor.WebserverService();
-    servidor.Webserver port = service.getWebserverPort();
-    // TODO process result here
-    servidor.DataUsuario result = port.buscarusuario(NN);
-    System.out.println("Result = "+result);
-         usulist=result.getUsuarios();
-         return usulist;
-} catch (Exception ex) {
-return null;
-}
+    public List<servidor.Usuario> buscarusuarioWS(String NN){
+        List<servidor.Usuario> usulist=null;
 
+        try { 
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            servidor.DataUsuario result = port.buscarusuario(NN);
+            usulist=result.getUsuarios();
+            return usulist;
+        } catch (Exception ex) {
+            return null;
+        }
     }
-public  int tipousuarioWS(String NN){
-try { // Call Web Service Operation
-    servidor.WebserverService service = new servidor.WebserverService();
-    servidor.Webserver port = service.getWebserverPort();
-    // TODO initialize WS operation arguments here
-    java.lang.String arg0 = "";
-    // TODO process result here
-    int result = port.typeusu(NN);
-    return result;
 
-} catch (Exception ex) {
-    // TODO handle custom exceptions here
-}
-     return 0;   
-}
+    public  int tipousuarioWS(String NN){
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            int result = port.typeusu(NN);
+            return result;
 
-public servidor.Usuario findusupostaWS (String NN){
-    
-    
-    try { 
-        servidor.WebserverService service = new servidor.WebserverService();
-        servidor.Webserver port = service.getWebserverPort();
- 
-        servidor.Usuario result = port.findusuconcreto(NN);
-        return result;
-    } catch (Exception ex) {
-     
+        } catch (Exception ex) {
+             return 0; 
+        }  
     }
-return null;
-}
+
+    public servidor.Usuario findusupostaWS (String NN){
+        try { 
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+
+            servidor.Usuario result = port.findusuconcreto(NN);
+            return result;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+    
+//    public servidor.Curso findCursoXDocente(String nombredoc){ //busca curso por docente
+//        List<servidor.Curso> cursos = BuscarCursosWS("");//lista todos los cursos
+//        servidor.Curso cur;
+//        
+//        Iterator iteCur = cursos.iterator();
+//        while(iteCur.hasNext()){
+//            cur = (servidor.Curso)iteCur.next();
+//            if(cur.getDoc().getNombre().equals(nombredoc))
+//                return cur;
+//        }
+//        return null;
+//    }
+    
+    public List<servidor.Inscripcion> listarInscripcionesWS(String nombreAlu, String nombreEd){
+        List<servidor.Inscripcion> ins = null;
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO process result here
+            servidor.DataInscripcion result = port.listarInscripciones(nombreAlu, nombreEd);
+            ins = result.getInscripciones();
+            return ins;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+    
+    public void editIsncripcionWS(servidor.Inscripcion ins, String estado){
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            port.editIsncripcion(ins, estado);
+        } catch (Exception ex) {
+        }
+    }
 }

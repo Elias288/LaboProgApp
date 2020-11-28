@@ -1,51 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Clases;
 
 import java.util.Date;
-import javax.persistence.*;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-
-@Entity 
-@Table( name="inscripcion" )
-public class inscripcion {
-    
- @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+public class DataInscripcion {
     private long id;
     private String estado="";
-    
-    @ManyToOne@JoinColumn(name="alumnoninscrip")
     private alumno Alu;
-    
-    @ManyToOne @JoinColumn(name="edicioninscrip")
     private edicionCurso EdicionCurso;
-    
     private Date Fecha;
     
-    public inscripcion() {}
+    private List<inscripcion> inscripciones = null;
     
-     public inscripcion(edicionCurso EdicionCurso, alumno Alumno, Date fech, String est){
+    public DataInscripcion() {}
+    
+    public DataInscripcion(inscripcion ins) {
+        this.id = ins.getId();
+        this.estado = ins.getEstado();
+        this.Alu = ins.getAlumno();
+        this.EdicionCurso = ins.getedicion();
+        this.Fecha = ins.getFecha();
+    }
+    
+    public DataInscripcion(edicionCurso EdicionCurso, alumno Alumno, Date fech, String est){
         this.Alu = Alumno;
         this.EdicionCurso = EdicionCurso;
         this.Fecha = fech;
         this.estado = est;
     }
     
-    public long getId(){return this.id;}
     public Date getFecha(){return this.Fecha;}
     public alumno getAlumno(){return this.Alu;}
     public edicionCurso getedicion(){return this.EdicionCurso;}
     public String getEstado(){return this.estado;}
+    public List<inscripcion> getInscripciones(){return this.inscripciones;}
     
     public void setFecha(Date fecha){this.Fecha = fecha;}
     public void setAlumno(alumno al){this.Alu = al;}
     public void setEdicionCurso(edicionCurso EdC){this.EdicionCurso=EdC;}
     public void setEstado(String est){this.estado=est;}
-
+    public void setInscripciones(List<inscripcion> ins){this.inscripciones = ins;}
 }

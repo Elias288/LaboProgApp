@@ -11,12 +11,14 @@
         <%
             String nombre = request.getParameter("edcur");
             Operaciones op = new Operaciones();
-             //op.BuscarEdicion(nombre);
+            //op.BuscarEdicion(nombre);
             out.println("resultado edicion: "+ op.BuscarEdicionWS(nombre).getNombre() + "<br>");
-            out.println("resultados usuario: " + op.BuscarCursosWS("innova").get(0).getNombre() + "<br>");
+            out.println("resultados cursos " + op.BuscarCursosWS("").get(0).getNombre() + "<br>");
             out.println("resultados categoria: " + op.categoriaWS("").get(0).getNombre() + "<br>");
             out.println("resultados ediciones: " + op.buscarEdicionesWS("chispa").get(0).getNombre()+ "<br>");
-            out.println("resultados ediciones: " + op.buscarEdicionesXCursoWS("programacion").get(0).getNombre()+ "<br>");
+            out.println("resultados ediciones por curso: " + op.buscarEdicionesXCursoWS("programacion").get(0).getNombre()+ "<br>");
+            out.println("tipo Usuario: " + op.tipousuarioWS("ElProfe") + "<br>");
+            //out.println("resultado curso por docente " + op.findCursoXDocente("ElProfe") + "<br>");
         %>
     </body>
 </html>

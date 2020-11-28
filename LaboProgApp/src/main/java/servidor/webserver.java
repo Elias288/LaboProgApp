@@ -6,11 +6,13 @@ import Clases.DataCategoria;
 import Clases.edicionCurso;
 import Clases.DataCursos;
 import Clases.DataEdiciones;
+import Clases.DataInscripcion;
 import Clases.DataInstituto;
 import Clases.DataUsuario;
 import Clases.categoria;
 import Clases.curso;
 import Clases.docente;
+import Clases.inscripcion;
 import Clases.instituto;
 import Clases.usuario;
 import java.io.File;
@@ -139,32 +141,48 @@ public class webserver {
         return Dcat;
     }
     
-         @WebMethod
-        public DataInstituto institutos(){
-            List<instituto> ins = CC.buscarInstituto("");
-            DataInstituto ins2 =  new DataInstituto();
-            ins2.SetFacultad(ins);
-            return ins2;
-}
-        @WebMethod
-        public DataUsuario buscarusuario(String NN){
+    @WebMethod
+    public DataInstituto institutos(){
+        List<instituto> ins = CC.buscarInstituto("");
+        DataInstituto ins2 =  new DataInstituto();
+        ins2.SetFacultad(ins);
+        return ins2;
+    }
+    
+    @WebMethod
+    public DataUsuario buscarusuario(String NN){
             
-            List<usuario> usulist = CU.buscarusuario(NN);
-            DataUsuario usu2 =  new DataUsuario();
-            usu2.setUsuarios(usulist);
-            return usu2;
-        
-}
-        @WebMethod
-        public int typeusu(String NN){
-       
-  
+        List<usuario> usulist = CU.buscarusuario(NN);
+        DataUsuario usu2 =  new DataUsuario();
+        usu2.setUsuarios(usulist);
+        return usu2;    
+    }
+    @WebMethod
+    public int typeusu(String NN){
         return CU.tipoUsuario(NN);
-        }
+    }
         
-          @WebMethod
-       public usuario findusuconcreto(String NN){
+    @WebMethod
+    public usuario findusuconcreto(String NN){
         return  CU.findusu(NN);
- }
+    }
+    
+    @WebMethod
+    public DataInscripcion listarInscripciones(String nombreAlu, String nombreEd){
+        List<inscripcion> ins = CC.listarInscripciones(nombreAlu, nombreEd);
+        DataInscripcion Dins = new DataInscripcion();
+        Dins.setInscripciones(ins);
+        return Dins;
+    }
+    
+    @WebMethod
+    public void editIsncripcion(inscripcion ins, String estado){
+        CC.editIsncripcion(ins, estado);
+    }
+    
+    @WebMethod
+    public curso findCursoXDocente(String nombredoc){
+        return CC.findCursoXDocente(nombredoc);
+    }
           
  }

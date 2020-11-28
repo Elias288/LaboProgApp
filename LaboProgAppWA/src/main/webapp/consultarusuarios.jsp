@@ -1,14 +1,14 @@
-<%@page import="Clases.inscripcion"%>
-<%@page import="Clases.edicionCurso"%>
-<%@page import="Clases.ControladorUsuario"%>
+<%//@page import="Clases.inscripcion"%>
+<%//@page import="Clases.edicionCurso"%>
+<%//@page import="Clases.ControladorUsuario"%>
 <%//@page import="Clases.usuario"%> 
-<%@page import="Clases.categoria"%>
+<%//@page import="Clases.categoria"%>
+<%//@page import="Clases.curso"%>
+<%//@page import="Clases.ControladorCurso"%>
+<%//@page import="Clases.instituto"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="Clases.instituto"%>
 <%@page import="java.util.List"%>
-<%@page import="Clases.curso"%>
-<%@page import="Clases.ControladorCurso"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -47,6 +47,7 @@
   
     <%
         HttpSession sesion = request.getSession();
+        Operaciones OP = new Operaciones();
     %>
     
     
@@ -66,7 +67,6 @@
                 <div class="col-lg-9">
                     <div class="d-block podcast-entry bg-white" data-aos="fade-up">
                         <% 
-             Operaciones OP = new Operaciones();
                            
                             if(request.getParameter("usuario") != null){
                                 String nickname = request.getParameter("usuario");
@@ -91,16 +91,16 @@
                                 }
                                 if(OP.tipousuarioWS(nickname)==1){
                                     out.println("<h4> Es docente </h4>"); 
-                                    ControladorCurso  cc= new ControladorCurso();
-                                 
-                                                
-                                  
-                                    curso cu= OP.findCurso2(nickname);
-                                    List<edicionCurso>datos = cc.buscarEdiciones(cu.getName());
+                                    //ControladorCurso  cc= new ControladorCurso();
+
+                                    //curso cu= OP.findCurso2(nickname);
+                                    servidor.Curso cu= OP.findCursoXDocente(nickname);}/*
+                                    //List<edicionCurso>datos = cc.buscarEdiciones(cu.getName());
+                                    List<servidor.EdicionCurso>datos = OP.buscarEdicionesWS(cu.getNombre());
                                     Iterator opaaaa = datos.iterator();
-                                    edicionCurso opa = null;
+                                    servidor.EdicionCurso opa = null;
                                     while(opaaaa.hasNext()){
-                                        opa = (edicionCurso) opaaaa.next();
+                                        opa = (servidor.EdicionCurso) opaaaa.next();
                                         out.println("<div>");
                                         out.println("<h4> Nombre="+opa.getNombre()+" Fecha Final="+opa.getPfin()+" Fecha Inicio="+opa.getPinicio()+" Cupos="+opa.getCupo()+" Fecha publicacion"+ opa.getFechaPublicacion()+"</h4>" );
                                         out.println("</div>");
@@ -111,11 +111,12 @@
                                 }else if(OP.tipousuarioWS(nickname)==2){
                                     
                                     int semaforo=0;
-                                    List<inscripcion> inscrip2 = OP.listarInscripciones("","");
+                                    //List<inscripcion> inscrip2 = OP.listarInscripciones("","");
+                                    List<servidor.Inscripcion> inscrip2 = OP.listarInscripcionesWS("","");
                                     Iterator iter2 = inscrip2.iterator();
                                     while(iter2.hasNext()){
-                                        inscripcion ins = (inscripcion)iter2.next();
-                                        if(ins.getAlumno().getNN().equals(nickname) && !ins.getEstado().equals("Rechazada")){
+                                        servidor.Inscripcion insWS = (servidor.Inscripcion)iter2.next();
+                                        if(insWS.getAlu().getNickname().equals(nickname) && !insWS.getEstado().equals("Rechazada")){
                                             semaforo=1;
                                         }   
 
@@ -124,15 +125,16 @@
                                     if(semaforo==1){
                                         //out.println("<p>Estas son las ediciones a las que solicito inscribirse</p>"); 
                             
-                                        List<inscripcion> inscrip = OP.listarInscripciones("","");
+                                        //List<inscripcion> inscrip = OP.listarInscripciones("","");
+                                        List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS("","");
                                         Iterator iter = inscrip.iterator();
 
                                         out.println("<h3>Ediciones de Curso</h3>");
                                         while(iter.hasNext()){
-                                            inscripcion ins = (inscripcion)iter.next();
-                                            if(ins.getAlumno().getNN().equals(nickname) && !ins.getEstado().equals("Rechazada")){
+                                            servidor.Inscripcion insWS = (servidor.Inscripcion)iter.next();
+                                            if(insWS.getAlu().getNickname().equals(nickname) && !insWS.getEstado().equals("Rechazada")){
                                                 out.println("<div>");
-                                                out.println("<h4> "+ins.getedicion().getNombre()+"</h4>"+"<p> Estado: "+ins.getEstado()+"</p>");
+                                                out.println("<h4> "+insWS.getEdicionCurso().getNombre()+"</h4>"+"<p> Estado: "+insWS.getEstado()+"</p>");
                                                 out.println("</div>");
                                             }   
 
@@ -142,13 +144,13 @@
                                         servidor.Usuario usua = OP.findusupostaWS(sesion.getAttribute("user").toString());
 
                                         if(usua.getNickname().equals(nickname)){
-                                            List<inscripcion> inscrip = OP.listarInscripciones("","");
+                                            List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS("","");
                                             Iterator iter = inscrip.iterator();
                                             while(iter.hasNext()){
-                                                inscripcion ins = (inscripcion)iter.next();
-                                                if(ins.getAlumno().getNN().equals(nickname) && ins.getEstado().equals("Rechazada")){
+                                                servidor.Inscripcion insWS = (servidor.Inscripcion)iter.next();
+                                                if(insWS.getAlu().getNickname().equals(nickname) && insWS.getEstado().equals("Rechazada")){
                                                     out.println("<div>");
-                                                    out.println("<h4> "+ins.getedicion().getNombre()+"</h4>"+"<p> Estado: "+ins.getEstado()+"</p>");
+                                                    out.println("<h4> "+insWS.getEdicionCurso().getNombre()+"</h4>"+"<p> Estado: "+insWS.getEstado()+"</p>");
                                                     out.println("</div>");
                                                 }   
 
@@ -156,7 +158,7 @@
                                         }
                                     }
 
-                                }
+                                }*/
                             }else{
                              
                                 List<servidor.Usuario>usu = OP.buscarusuarioWS("");

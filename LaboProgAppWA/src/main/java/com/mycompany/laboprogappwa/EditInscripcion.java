@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.laboprogappwa;
 
-import Clases.inscripcion;
+//import Clases.ControladorCurso;
+//import Clases.inscripcion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,10 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Elias
- */
 @WebServlet(name = "EditInscripcion", urlPatterns = {"/EditInscripcion"})
 public class EditInscripcion extends HttpServlet {
 
@@ -37,7 +29,9 @@ public class EditInscripcion extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             
             Operaciones OP = new Operaciones();
-            inscripcion ins = null;
+            //ControladorCurso CC = new ControladorCurso();
+            //inscripcion ins = null;
+            servidor.Inscripcion insWS = null;
             String chequed[] = request.getParameterValues("checkboxAceptado");
             String chequed2[] = request.getParameterValues("checkbox");
             String nombreEd = request.getParameter("edicion");
@@ -47,8 +41,9 @@ public class EditInscripcion extends HttpServlet {
                 for(int f = 0;f < chequed.length;f++){
                     out.println(chequed[f]);
                     out.println("chequeado<br>");
-                    ins = OP.listarInscripciones(chequed[f], nombreEd).get(0);
-                    OP.editIsncripcion(ins, "Aceptada");
+                    //ins = CC.listarInscripciones(chequed[f], nombreEd).get(0);
+                    insWS = OP.listarInscripcionesWS(chequed[f], nombreEd).get(0);
+                    OP.editIsncripcionWS(insWS, "Aceptada");
                 }
             }
             
@@ -67,8 +62,8 @@ public class EditInscripcion extends HttpServlet {
                     }
                     if(semaforo==0){
                         out.println("cambio<br>");
-                        ins = OP.listarInscripciones(nombreEst[f], nombreEd).get(0);
-                        OP.editIsncripcion(ins, "Rechazada");
+                        insWS = OP.listarInscripcionesWS(nombreEst[f], nombreEd).get(0);
+                        OP.editIsncripcionWS(insWS, "Rechazada");
                     }
                 }
             }

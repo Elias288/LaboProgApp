@@ -3,7 +3,6 @@ package Clases;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
- 
 public class PersistenceManager {
    static private final String PERSISTENCE_UNIT_NAME = "LaboProgApp";
    protected static PersistenceManager me = null;

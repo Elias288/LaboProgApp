@@ -130,6 +130,23 @@ public class ControladorCurso {
         return cur.getInsti();
     }
     
+    //ya publicado
+    public DataCursos findCursoXDocente(String nombredoc){ //busca curso por docente
+        List<curso> cursos = buscarCurso("");//lista todos los cursos
+        List<curso> cursos2 = null;
+        DataCursos Dcur= null;
+        curso cur = new curso();
+        
+        Iterator iteCur = cursos.iterator();
+        while(iteCur.hasNext()){
+            cur = (curso)iteCur.next();
+            if(cur.getDocente().getNN().equals(nombredoc))
+                cursos2.add(cur);
+        }
+        Dcur.SetCursos(cursos2);
+        return Dcur;
+    }
+    
     //Ya esta publicado, funciona en main, pero no en soap
     public List<categoria> buscarCategorias(String nombre){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
@@ -471,14 +488,6 @@ public class ControladorCurso {
                 ListEdi2.add(ed);
             }
         }
-        
-        /*
-        Query query = em.createQuery("SELECT xd FROM edicionCurso xd WHERE xd.Curso = :idcurso");
-        query.setParameter("idcurso", idCurso);
-
-        ListEdi = query.getResultList();
-        System.out.println("///////Lenght = "+ListEdi.size()+"//////////////");*/
-        
         return ListEdi2;
     }
     
@@ -510,7 +519,7 @@ public class ControladorCurso {
         }
         return lista;
     }
-    
+    //ya publicada
     public void editIsncripcion(inscripcion ins, String estado){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         em.getTransaction().begin();

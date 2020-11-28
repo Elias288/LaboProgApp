@@ -100,7 +100,7 @@
                 <div class="has-children">
                     <h3 class="mb-4">Mi perfil ></h3>
                     <ul class="miperfil arrow-top" style="border: 2px solid">
-                        <li><a href='User.html'>Gestionar</a></li>
+                        <li><a href='User.jsp'>Gestionar</a></li>
                         <% 
                             if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){ //si la sesion esta iniciada
                                 String tipo = sesion.getAttribute("nivel").toString();
