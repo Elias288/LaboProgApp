@@ -184,5 +184,13 @@ public class webserver {
     public DataCursos findCursoXDocente(String nombredoc){
         return CC.findCursoXDocente(nombredoc);
     }
+    
+    @WebMethod
+    public String insitutoCur (String nomCurso){
+        if(CC.buscarInstideCurso(nomCurso) != null)
+            return CC.buscarInstideCurso(nomCurso).getFacultad();
+        else
+            return "no existe El instituto";
+    }
           
  }

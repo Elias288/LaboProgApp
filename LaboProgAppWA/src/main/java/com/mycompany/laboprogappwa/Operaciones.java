@@ -52,6 +52,26 @@ public class Operaciones {
 //        else
 //            return "no existe El instituto";
 //    }
+    public String insitutoCur(String nomCurso){
+        
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO initialize WS operation arguments here
+            java.lang.String arg0 = "";
+            // TODO process result here
+            if(port.insitutoCur(arg0)!=null)
+                return port.insitutoCur(arg0);
+            else
+                return "no existe El instituto";
+//            java.lang.String result = port.insitutoCur(arg0);
+//            return result;
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+            return null;
+        }
+
+    }
     
     /*
     public curso BuscarCurso(String nombreCur){
@@ -62,7 +82,8 @@ public class Operaciones {
     }
     public List<edicionCurso> BuscarEdicionCurso(){
         return CC.buscarEdiciones("");
-    }*/
+    }
+    */
     
     
 //    public List<curso> BuscarCursCate(String cat){
