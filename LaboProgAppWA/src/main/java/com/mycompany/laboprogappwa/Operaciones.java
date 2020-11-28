@@ -34,16 +34,16 @@ public class Operaciones {
         lista = CC.buscarCategorias("");
         return lista;
     }
-    
-    public curso CursoDeEdCur(String nombreEdCur){
-        curso cur = null;
-        if(!nombreEdCur.isBlank() && CC.buscarEdicion(nombreEdCur)!=null){
-            edicionCurso edi = CC.buscarEdicion(nombreEdCur);
+    */
+    public servidor.Curso CursoDeEdCur(String nombreEdCur){
+        servidor.Curso cur = null;
+        if(!nombreEdCur.isBlank() && BuscarEdicionWS(nombreEdCur)!=null){
+            servidor.EdicionCurso edi = BuscarEdicionWS(nombreEdCur);
             if(edi != null)
                 cur = edi.getCurso();
         }
         return cur;
-    }*/
+    }
     
 //    public String insitutoCur(String nomCurso){
 //        
@@ -58,10 +58,10 @@ public class Operaciones {
             servidor.WebserverService service = new servidor.WebserverService();
             servidor.Webserver port = service.getWebserverPort();
             // TODO initialize WS operation arguments here
-            java.lang.String arg0 = "";
+            
             // TODO process result here
-            if(port.insitutoCur(arg0)!=null)
-                return port.insitutoCur(arg0);
+            if(port.insitutoCur(nomCurso)!=null)
+                return port.insitutoCur(nomCurso);
             else
                 return "no existe El instituto";
 //            java.lang.String result = port.insitutoCur(arg0);
@@ -101,16 +101,7 @@ public class Operaciones {
         curso cur = em.find(curso.class, ides);
         return cur;
     }
-    
-    public List<inscripcion> listarInscripciones(){
-        EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        List<inscripcion>lista=new ArrayList<>();
-        
-        Query query = em.createQuery("SELECT xd FROM inscripcion xd");
-        lista = query.getResultList();
-        return lista;
-    }
-    
+
     public List<inscripcion> listarInscripciones(String nombreAlu, String nombreEd){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         List<inscripcion>lista=new ArrayList<>();
@@ -386,4 +377,6 @@ public class Operaciones {
         } catch (Exception ex) {
         }
     }
+    
+    
 }
