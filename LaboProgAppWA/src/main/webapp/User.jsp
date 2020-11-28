@@ -1,3 +1,5 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.util.Date"%>
@@ -99,7 +101,37 @@
                         </div>
 
                         <div id="programas" class="tabcontent">
-                            <h4>Programas</h4>
+                            <%
+                                if(OP.tipousuarioWS(Dusu.getNickname())==2){
+                                    List<servidor.Inscripcion> inscrip2 = OP.listarInscripcionesWS("","");
+                                    Iterator iter2 = inscrip2.iterator();
+                                    while(iter2.hasNext()){
+                                        servidor.Inscripcion insWS = (servidor.Inscripcion)iter2.next();
+                                        if(insWS.getAlu().getNickname().equals(Dusu.getNickname()) && !insWS.getEstado().equals("Rechazada")){
+                                            out.println("<div>");
+                                            out.println("<h4 style='margin-bottom: 0px';> "+insWS.getEdicionCurso().getNombre()+"</h4>");
+                                            out.println("<a style='color: cornflowerblue' href='User.jsp?rechazar=true'> Estado: "+insWS.getEstado());
+                                            out.println(" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></a>");
+                                            out.println("<p id='ejemplo' hola</p>");
+                                            out.println("</div>");
+                                        }
+                                    }
+                                }
+                                if(request.getParameter("rechazar") != null){
+                                    out.println("<script language='javascript'>"
+                                            + "var mensaje;"
+                                            + "var opcion = confirm('Desea desistir de la inscripcion?');"
+                                            + "if(opcion == true){"
+                                            + "mensaje = ok;"
+                                            + "}else{"
+                                            + "mensaje = not ok;}"
+                                            + "document.getElementById('ejemplo').innerHTML = mensaje;"
+                                            + "</script");
+                                }
+                            
+                            %>
+                            
+                            
                         </div>
                         <script>
                             document.getElementById("defaultOpen").click();
