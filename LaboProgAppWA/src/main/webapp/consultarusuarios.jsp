@@ -94,9 +94,10 @@
                                     //ControladorCurso  cc= new ControladorCurso();
 
                                     //curso cu= OP.findCurso2(nickname);
-                                    servidor.Curso cu= OP.findCursoXDocente(nickname);}/*
-                                    //List<edicionCurso>datos = cc.buscarEdiciones(cu.getName());
-                                    List<servidor.EdicionCurso>datos = OP.buscarEdicionesWS(cu.getNombre());
+                                    servidor.Curso cu= OP.findCursoXDocente(nickname);
+                            
+                                   List<servidor.EdicionCurso>datos = OP.buscarEdicionesWS(cu.getNombre());
+                   
                                     Iterator opaaaa = datos.iterator();
                                     servidor.EdicionCurso opa = null;
                                     while(opaaaa.hasNext()){
@@ -107,7 +108,7 @@
                             
                             
                                     }
-                             
+                            
                                 }else if(OP.tipousuarioWS(nickname)==2){
                                     
                                     int semaforo=0;
@@ -158,7 +159,7 @@
                                         }
                                     }
 
-                                }*/
+                                }
                             }else{
                              
                                 List<servidor.Usuario>usu = OP.buscarusuarioWS("");
