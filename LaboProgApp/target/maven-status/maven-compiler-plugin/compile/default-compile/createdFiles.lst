@@ -89,6 +89,7 @@ SourcePackage\ConsultarEdicionCurso$5.class
 SourcePackage\Main$9.class
 SourcePackage\InscribirEstudianteProgramaFormacion$2.class
 Clases\curso.class
+Clases\DataInscripcion.class
 SourcePackage\RegistroEdicionCurso2.class
 Clases\DataInstituto.class
 SourcePackage\ConsultarUsuarios$2.class

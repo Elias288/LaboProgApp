@@ -181,7 +181,7 @@ public class webserver {
     }
     
     @WebMethod
-    public curso findCursoXDocente(String nombredoc){
+    public DataCursos findCursoXDocente(String nombredoc){
         return CC.findCursoXDocente(nombredoc);
     }
           
