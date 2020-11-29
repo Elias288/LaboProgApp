@@ -36,17 +36,28 @@ public class EditInscripcion extends HttpServlet {
             String chequed2[] = request.getParameterValues("checkbox");
             String nombreEd = request.getParameter("edicion");
             String nombreEst[] = request.getParameterValues("nombreEst");
+            String nota []= request.getParameterValues("nota");
             
-            if(chequed!= null){
+        if(chequed!= null){
                 for(int f = 0;f < chequed.length;f++){
                     out.println(chequed[f]);
                     out.println("chequeado<br>");
                     //ins = CC.listarInscripciones(chequed[f], nombreEd).get(0);
                     insWS = OP.listarInscripcionesWS(chequed[f], nombreEd).get(0);
-                    OP.editIsncripcionWS(insWS, "Aceptada");
-                }
+                    
+                }       
+                   
             }
             
+               if(nota!= null){
+                    for(int f = 0;f < chequed.length;f++){
+                        //ins = CC.listarInscripciones(chequed[f], nombreEd).get(0);
+                            insWS = OP.listarInscripcionesWS(chequed[f], nombreEd).get(0);
+                            OP.editIsncripcionWS(insWS, "Aceptada",nota[f]);
+                            out.println("la nota de mierda es: "+nota[f]);
+                            
+               }
+                    }
             int semaforo=0;
             
             
@@ -63,12 +74,12 @@ public class EditInscripcion extends HttpServlet {
                     if(semaforo==0){
                         out.println("cambio<br>");
                         insWS = OP.listarInscripcionesWS(nombreEst[f], nombreEd).get(0);
-                        OP.editIsncripcionWS(insWS, "Rechazada");
+                        OP.editIsncripcionWS(insWS, "Rechazada","0");
                     }
                 }
             }
             
-            out.println("<script> location.replace('EdicionCurso.jsp?EdCur="+nombreEd+"');</script>");
+         //   out.println("<script> location.replace('EdicionCurso.jsp?EdCur="+nombreEd+"');</script>");
             
         }
     }

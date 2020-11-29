@@ -22,7 +22,7 @@ public class inscripcion {
     
     @ManyToOne@JoinColumn(name="alumnoninscrip")
     private alumno Alu;
-    
+    private int nota;
     @ManyToOne @JoinColumn(name="edicioninscrip")
     private edicionCurso EdicionCurso;
     
@@ -30,11 +30,12 @@ public class inscripcion {
     
     public inscripcion() {}
     
-     public inscripcion(edicionCurso EdicionCurso, alumno Alumno, Date fech, String est){
+     public inscripcion(edicionCurso EdicionCurso, alumno Alumno, Date fech, String est,int nota){
         this.Alu = Alumno;
         this.EdicionCurso = EdicionCurso;
         this.Fecha = fech;
         this.estado = est;
+        this.nota=nota;
     }
     
     public long getId(){return this.id;}
@@ -42,7 +43,8 @@ public class inscripcion {
     public alumno getAlumno(){return this.Alu;}
     public edicionCurso getedicion(){return this.EdicionCurso;}
     public String getEstado(){return this.estado;}
-    
+   public void setNota(int nota){this.nota = nota;} 
+    public int getNota(){return this.nota;}
     public void setFecha(Date fecha){this.Fecha = fecha;}
     public void setAlumno(alumno al){this.Alu = al;}
     public void setEdicionCurso(edicionCurso EdC){this.EdicionCurso=EdC;}

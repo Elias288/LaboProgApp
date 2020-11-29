@@ -176,8 +176,8 @@ public class webserver {
     }
     
     @WebMethod
-    public void editIsncripcion(inscripcion ins, String estado){
-        CC.editIsncripcion(ins, estado);
+    public void editIsncripcion(inscripcion ins, String estado, String nota){
+        CC.editIsncripcion(ins, estado,nota);
     }
     
     @WebMethod

@@ -84,11 +84,11 @@
                                         /*DECODIFICO EL NOMBRE DE LA EDICION DE CUROSO PARA PODER USARLO*/
                                         String url = request.getParameter("EdCur");
                                         String NomEdCur = URLDecoder.decode(url,"UTF-8");
-                                        edicionCurso EC = CC.buscarEdicion(NomEdCur);
+                                       servidor.EdicionCurso EC = OP.BuscarEdicionWS(NomEdCur);
                                         
-                                        curso cur = OP.CursoDeEdCur(NomEdCur);
+                                        servidor.Curso cur = OP.CursoDeEdCur(NomEdCur);
                                         out.println("<font size='4' face='verdana' color='black'>" + EC.getNombre() + "</font><br>");
-                                        out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(cur.getName()) +"</font><br><br>");
+                                        out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(cur.getNombre()) +"</font><br><br>");
                                         out.println("<a href='#' class='h10'>Ver informacion del Curso</a><br>");
                                     %>
                                 </h3>
@@ -127,41 +127,44 @@
                                         <th>Nombre</th>                 
                                         <th>Fecha inscripción</th>                 
                                         <th>Inscripción</th>
-                                        <th>Estado</th>                  
+                                        <th>Estado</th>          
+                                        <th>Nota</th>  
                                     </tr>               
                                 </thead>
                                 <tbody>
                                         <%
                                             //List<inscripcion> inscrip = OP.listarInscripciones("Elias","Programacion de aplicaciones 2020");
-                                            List<inscripcion> inscrip = OP.listarInscripciones("",NomEdCur);
+                                            List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS("",NomEdCur);
                                             Iterator iter = inscrip.iterator();
 
                                             while(iter.hasNext()){
-                                                inscripcion ins = (inscripcion)iter.next();
-                                                out.println("<tr><th scope='row'><p>"+ins.getAlumno().getName()+"</p></th> ");
+                                                servidor.Inscripcion ins = (servidor.Inscripcion)iter.next();
+                                                out.println("<tr><th scope='row'><p>"+ins.getAlu().getNombre()+"</p></th> ");
                                                 out.println("<td><p>"+ins.getFecha()+"</p></td>");
-
+                                                    
                                                 if(ins.getEstado().equals("Rechazada")){
                                                     out.println("<td><label><input type='checkbox' disabled></td>");
-                                                    out.println("<td disabled><p>"+ins.getEstado()+"</p></td></tr>");
-
+                                                    out.println("<td disabled><p>"+ins.getEstado()+"</p></td>");
+                                                    out.println("<td><input type='number' min='1' max='12' name='nota' disabled></td>");
                                                 }else if(ins.getEstado().equals("Aceptada")){
-                                                    out.println("<td><label><input type='checkbox' value='"+ins.getAlumno().getName()+"' name='checkbox' id='checkbox"+ins.getAlumno().getName()+"' onclick='myFunction"+ins.getAlumno().getName()+"()' checked></td>");
-                                                    out.println("<td><p id='text"+ins.getAlumno().getName()+"'>"+ins.getEstado()+"</p></td>");
-                                                    out.println("<input type='hidden' name='nombreEst' value='"+ins.getAlumno().getName()+"'>");
-                                                    out.println("</tr>");
+                                                    out.println("<td><label><input type='checkbox' value='"+ins.getAlu().getNombre()+"' name='checkbox' id='checkbox"+ins.getAlu().getNombre()+"' onclick='myFunction"+ins.getAlu().getNombre()+"()' checked></td>");
+                                                    out.println("<td><p id='text"+ins.getAlu().getNombre()+"'>"+ins.getEstado()+"</p></td>");
+                                                    out.println("<input type='hidden' name='nombreEst' value='"+ins.getAlu().getNombre()+"'>");
+                                                    out.println("<td><input type='number' min='1' max='12' name='nota' value='"+ins.getNota()+"'></td>");   
+                                                    
 
                                                 }else{
-                                                    out.println("<td><label><input type='checkbox' value='"+ins.getAlumno().getName()+"' name='checkboxAceptado' id='checkbox"+ins.getAlumno().getName()+"' onclick='myFunction"+ins.getAlumno().getName()+"()'></td>");
-                                                    out.println("<td ><p id='text"+ins.getAlumno().getName()+"'>"+ins.getEstado()+"</p></td>");
-                                                    out.println("</tr>");
+                                                    out.println("<td><label><input type='checkbox' value='"+ins.getAlu().getNombre()+"' name='checkboxAceptado' id='checkbox"+ins.getAlu().getNombre()+"' onclick='myFunction"+ins.getAlu().getNombre()+"()'></td>");
+                                                    out.println("<td ><p id='text"+ins.getAlu().getNombre()+"'>"+ins.getEstado()+"</p></td>");
+                                                    
                                                 }
-
+                                                
+                                                 out.println("</tr>");
                                                 //SCRIPT QUE CAMBIA
                                                     out.println("<script type='text/javascript' >");
-                                                    out.println("function myFunction"+ins.getAlumno().getName()+"() {");
-                                                    out.println("var checkBox = document.getElementById('checkbox"+ins.getAlumno().getName()+"');");
-                                                    out.println("var text = document.getElementById('text"+ins.getAlumno().getName()+"');");
+                                                    out.println("function myFunction"+ins.getAlu().getNombre()+"() {");
+                                                    out.println("var checkBox = document.getElementById('checkbox"+ins.getAlu().getNombre()+"');");
+                                                    out.println("var text = document.getElementById('text"+ins.getAlu().getNombre()+"');");
                                                     out.println("if (checkBox.checked == true){");
                                                     out.println("text.innerHTML  = 'Aceptada';");
                                                     out.println("} else {");

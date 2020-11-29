@@ -367,7 +367,7 @@ public class ControladorCurso {
         listaEdicionCurso(ConsultarEdicionCurso.jTableEdicionCurso,nombres);
     }     
     
-    public void Inscribir(String edicion, String alumno, Date fech, String est){
+    public void Inscribir(String edicion, String alumno, Date fech, String est,int nota){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         em.getTransaction().begin();
@@ -375,7 +375,7 @@ public class ControladorCurso {
       //  em.persist(Curs);
         
         alumno Alu = buscarAlumno(alumno);
-        inscripcion ins=new inscripcion(Curs,Alu,fech, est);
+        inscripcion ins=new inscripcion(Curs,Alu,fech, est,nota);
 
         
         em.persist(ins);
@@ -520,10 +520,11 @@ public class ControladorCurso {
         return lista;
     }
     //ya publicada
-    public void editIsncripcion(inscripcion ins, String estado){
+    public void editIsncripcion(inscripcion ins, String estado, String nota){
+        int nota2=Integer.parseInt(nota);
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         em.getTransaction().begin();
-   
+        ins.setNota(nota2);
         ins.setEstado(estado);
         ins=em.merge(ins);
         em.getTransaction().commit();
