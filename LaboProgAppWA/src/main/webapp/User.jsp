@@ -54,8 +54,10 @@
                         <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up" style="height: 200px">
                             <div class="image" style="background-image: url('images/img-prof.jpg'); width: 200px;"></div>
                             <div class="text">
+                                
                                 <% if(sesion.getAttribute("user")!=null){
-                                    servidor.DataUsuario Dusu = OP.findusuWS(sesion.getAttribute("user").toString());
+                                    String user = (String)sesion.getAttribute("user");
+                                    servidor.DataUsuario Dusu = OP.findusuWS(user);
                                     out.println("<h2 class='font-weight-light'><strong>"+ Dusu.getNombre()+ " "+ Dusu.getApellido() +"</strong></h2>");
                                     out.println("<h3 class='font-weight-light'>"+ Dusu.getNickname() + " / " + Dusu.getCorreo() + "</h3>");
                                     //out.println("<h3 class='font-weight-light'><strong>Último ingreso: " + Dusu.getFechaNac() + "<strong></h3>");
@@ -78,7 +80,10 @@
                         <!-- ///////////////////////////////////////////////////////////////////////////// -->
                         <!-- [GENERAL] -->
                         <div id="general" class="tabcontent">
-                            <%servidor.DataUsuario Dusu = OP.findusuWS(sesion.getAttribute("user").toString());%>
+                           
+                           
+                            <%String user2 = (String)sesion.getAttribute("user");
+                                servidor.DataUsuario Dusu = OP.findusuWS(user2);%>
                             <h4>Nickname: <%out.println(Dusu.getNickname());%></h4>
                             <h4><strong>Nombre: <%out.println(Dusu.getNombre());%></strong><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></h4>
                             <h4><strong>Apellido: <%out.println(Dusu.getApellido());%> </strong><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></h4>
