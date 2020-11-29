@@ -228,7 +228,7 @@ public class ControladorCurso {
         curso cur = em.find(curso.class, ides);
         
         try {
-            edicionCurso edCurso = new edicionCurso(nombre, PInicio, PFin, cupos,fechaPublicacion, cur);
+            edicionCurso edCurso = new edicionCurso(nombre, PInicio, PFin, cupos,fechaPublicacion, cur,true);
             em.getTransaction().begin();
             em.persist(edCurso);
             em.getTransaction().commit();
@@ -531,5 +531,13 @@ public class ControladorCurso {
         em.getTransaction().commit();
         em.close();
     }
-   
+    
+    public void editVigenciaEdicion(edicionCurso edcur, boolean vigente){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        em.getTransaction().begin();
+        edcur.setVigente(vigente);
+        edcur=em.merge(edcur);
+        em.getTransaction().commit();
+        em.close();
+    }
 }
