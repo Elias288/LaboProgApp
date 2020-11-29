@@ -43,18 +43,18 @@ public class EditInscripcion extends HttpServlet {
                     out.println(chequed[f]);
                     out.println("chequeado<br>");
                     //ins = CC.listarInscripciones(chequed[f], nombreEd).get(0);
-                    insWS = OP.listarInscripcionesWS(chequed[f], nombreEd).get(0);
+                 //   insWS = OP.listarInscripcionesWS(chequed[f], nombreEd).get(0);
                     
                 }       
                    
             }
             
                if(nota!= null){
-                    for(int f = 0;f < chequed.length;f++){
-                        //ins = CC.listarInscripciones(chequed[f], nombreEd).get(0);
-                            insWS = OP.listarInscripcionesWS(chequed[f], nombreEd).get(0);
+                    for(int f = 0;f < nota.length;f++){
+                        //ins = CC.listarInscripciones(nombreEst[f], nombreEd).get(0);
+                            insWS = OP.listarInscripcionesWS(nombreEst[f], nombreEd).get(0);
                             OP.editIsncripcionWS(insWS, "Aceptada",nota[f]);
-                            out.println("la nota de mierda es: "+nota[f]);
+                            
                             
                }
                     }
@@ -79,7 +79,7 @@ public class EditInscripcion extends HttpServlet {
                 }
             }
             
-         //   out.println("<script> location.replace('EdicionCurso.jsp?EdCur="+nombreEd+"');</script>");
+           out.println("<script> location.replace('EdicionCurso.jsp?EdCur="+nombreEd+"');</script>");
             
         }
     }

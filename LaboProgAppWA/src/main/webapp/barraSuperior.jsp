@@ -26,15 +26,19 @@
                     <li class="active"><a href="index.jsp">Home</a></li>
 
                         <%
-                            if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
+                            String user = (String)sesion.getAttribute("user");
+                            String level = (String)sesion.getAttribute("nivel");
+                            if(user!=null){
                                 /*ControladorUsuario CU = new ControladorUsuario();
                                 usuario usu = CU.findusu(sesion.getAttribute("user").toString());*/
                                 
-                                servidor.DataUsuario Dusu = OP.findusuWS(sesion.getAttribute("user").toString());
+                                servidor.Usuario Dusu = OP.findusupostaWS(user);
                                 //servidor.Usuario usuWS;
                                 //String tipo = sesion.getAttribute("nivel").toString();
+                                if ( Dusu != null ){
                                 out.println("<li class='active'><a href='User.html'>" + Dusu.getNickname() + "</a></li>");
                                 out.println("<li class='active'></a></li>");
+                            }
                             }else{
                                 out.println("<li><a href='login.jsp'>Login</a></li>");
                                 out.println("<li>/</li>");
