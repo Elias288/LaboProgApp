@@ -31,19 +31,20 @@
 
                     <!--LISAR INSTITUTOS-->
                     <%
-                        //List<instituto>listaIns = OP.institutos();
                         List<servidor.Instituto> listaInsWS = OP.insitututosWS("");
                         
                         if(listaInsWS!=null){
-                        Iterator itIns = listaInsWS.iterator();
-                        
-                        Instituto ins = null;
-                        while(itIns.hasNext()){
-                            ins = (Instituto) itIns.next();
-                            out.println("<li><a href='consultaCursos.jsp?instituto="+ ins.getFacultad() +"' class='d-flex align-items-center'>");
-                            out.println("<div class='podcaster'><span class='d-block'>" + ins.getFacultad() + "</span></div></a></li>");
+                            Iterator itIns = listaInsWS.iterator();
 
-                        }
+                            Instituto ins = null;
+                            while(itIns.hasNext()){
+                                ins = (Instituto) itIns.next();
+                                out.println("<li><a href='consultaCursos.jsp?instituto="+ ins.getFacultad() +"' class='d-flex align-items-center'>");
+                                out.println("<div class='podcaster'><span class='d-block'>" + ins.getFacultad() + "</span></div></a></li>");
+
+                            }
+                        }else{
+                            out.println("Lista institutos vacia");
                         }
                     %>
                     <li><a href='test.jsp?edcur=PYE' class='d-flex align-items-center'><div class='podcaster'><span class='d-block'>Probar</span></div></a></li>
@@ -60,16 +61,18 @@
                         //List<categoria> listaCate = OP.categoria();
                         List<servidor.Categoria>listaCateWS = OP.categoriaWS("");
                         
-                       if(listaCateWS!=null){
-                        Iterator itCate = listaCateWS.iterator();
+                        if(listaCateWS!=null){
+                            Iterator itCate = listaCateWS.iterator();
                         
-                        servidor.Categoria cat = null;
-                        while(itCate.hasNext()){
-                            cat = (servidor.Categoria) itCate.next();
-                            out.println("<li><a href='consultaCursos.jsp?categoria="+cat.getNombre()+"' class='d-flex align-items-center'>");
-                            out.println("<div class='podcaster'><span class='d-block'>" + cat.getNombre() + "</span></div>");
-                            out.println("</a></li>");
-                        }
+                            servidor.Categoria cat = null;
+                            while(itCate.hasNext()){
+                                cat = (servidor.Categoria) itCate.next();
+                                out.println("<li><a href='consultaCursos.jsp?categoria="+cat.getNombre()+"' class='d-flex align-items-center'>");
+                                out.println("<div class='podcaster'><span class='d-block'>" + cat.getNombre() + "</span></div>");
+                                out.println("</a></li>");
+                            }
+                        }else{
+                            out.println("Lista categorias vacia");
                         }
                     %>
                 </ul>
@@ -206,25 +209,31 @@
                             List<servidor.Instituto>listaInsProfWS = OP.insitututosWS("");
                             
                             if(listaInsProfWS!=null){
-                         Iterator itInsProf = listaInsProfWS.iterator();
-                            servidor.Instituto insProf = null;
-                            while(itInsProf.hasNext()){
-                                insProf = (servidor.Instituto) itInsProf.next();
-                                if(insProf.getId()== docWS.getInstituto().getId()){
-                                    out.println("<li><a href='consultaCursos.jsp?instituto="+ insProf.getFacultad() +
+                                Iterator itInsProf = listaInsProfWS.iterator();
+                                servidor.Instituto insProf = null;
+                                while(itInsProf.hasNext()){
+                                    insProf = (servidor.Instituto) itInsProf.next();
+                                    if(insProf.getId()== docWS.getInstituto().getId()){
+                                        out.println("<li><a href='consultaCursos.jsp?instituto="+ insProf.getFacultad() +
                                         "' class='d-flex align-items-center'><div class='podcaster'><span class='d-block'>"
                                         +insProf.getFacultad()+"</span></div></a></li>");                            
-                                }  
-                            }
+                                    }  
+                                }
+                            }else{
+                                out.println("Lista institutos vacia");
                             }
                         }else if(nivel.equals("2")){
                             List<servidor.Instituto>listaInsAlum = OP.insitututosWS("");
-                            Iterator itInsAlum = listaInsAlum.iterator();
-                            servidor.Instituto insAlumn = null;
-                            while(itInsAlum.hasNext()){
-                                insAlumn = (servidor.Instituto) itInsAlum.next();
-                                out.println("<li><a href='consultaCursos.jsp?instituto="+ insAlumn.getFacultad() +"' class='d-flex align-items-center'>");
-                                out.println("<div class='podcaster'><span class='d-block'>" + insAlumn.getFacultad() + "</span></div></a></li>");
+                            if(listaInsAlum!= null){
+                                Iterator itInsAlum = listaInsAlum.iterator();
+                                servidor.Instituto insAlumn = null;
+                                while(itInsAlum.hasNext()){
+                                    insAlumn = (servidor.Instituto) itInsAlum.next();
+                                    out.println("<li><a href='consultaCursos.jsp?instituto="+ insAlumn.getFacultad() +"' class='d-flex align-items-center'>");
+                                    out.println("<div class='podcaster'><span class='d-block'>" + insAlumn.getFacultad() + "</span></div></a></li>");
+                                }
+                            }else{
+                                out.println("Lista institutos vacia");
                             }
                         }
                         

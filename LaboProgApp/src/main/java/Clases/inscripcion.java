@@ -43,7 +43,7 @@ public class inscripcion {
     public alumno getAlumno(){return this.Alu;}
     public edicionCurso getedicion(){return this.EdicionCurso;}
     public String getEstado(){return this.estado;}
-   public void setNota(int nota){this.nota = nota;} 
+    public void setNota(int nota){this.nota = nota;} 
     public int getNota(){return this.nota;}
     public void setFecha(Date fecha){this.Fecha = fecha;}
     public void setAlumno(alumno al){this.Alu = al;}

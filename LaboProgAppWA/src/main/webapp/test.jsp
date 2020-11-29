@@ -33,15 +33,21 @@
             DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             out.println("resultado fecha edicion: "+fechaNac.format(esDateFormat));
             
-
+            
             List<servidor.Inscripcion> inscrip = op.listarInscripcionesWS("","");
             servidor.Inscripcion insWS = null;
             out.println(inscrip.size()+"<br>");
-            Iterator iter2 = inscrip.iterator();
+            Iterator iter2 = inscrip.iterator();*/
+            
+            out.println(op.listarInscripcionesWS("Eleli", "").size());
+            servidor.Inscripcion insWS;
+            Iterator iter2 = op.listarInscripcionesWS("Eleli", "").iterator();
+            
             while(iter2.hasNext()){
+                //insWS = (servidor.Inscripcion)iter2.next();
                 insWS = (servidor.Inscripcion)iter2.next();
                 out.println(insWS.getEdicionCurso().getNombre()+"<br>");
-            }*/ 
+            }
         %>
     </body>
 </html>

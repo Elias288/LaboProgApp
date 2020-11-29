@@ -517,8 +517,18 @@ public class ControladorCurso {
                 }
             }
             return lista2;
+        }else if(!nombreAlu.equals("") && nombreEd.equals("")){
+            Iterator iter = lista.iterator();
+            while(iter.hasNext()){
+                inscripcion ins = (inscripcion)iter.next();
+                if(ins.getAlumno().getNN().equals(nombreAlu)){
+                    lista2.add(ins);
+                }
+            }
+        }else{
+            lista2 = lista;
         }
-        return lista;
+        return lista2;
     }
     //ya publicada
     public void editIsncripcion(inscripcion ins, String estado, String nota){
