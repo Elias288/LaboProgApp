@@ -228,20 +228,22 @@ public class Operaciones {
             return 0;
         }
     }
-    
-    public servidor.DataUsuario findusuWS(String nombre){
+    /*
+    public List<servidor.Usuario> findusuWS(String nombre){
+        List<servidor.Usuario>usuarios = null;
         try { // Call Web Service Operation
             servidor.WebserverService service = new servidor.WebserverService();
             servidor.Webserver port = service.getWebserverPort();
             // TODO process result here
             servidor.DataUsuario result = port.findusu(nombre);
-            return result;
+            usuarios = result.getUsuarios();
+            return usuarios;
         } catch (Exception ex) {
             return null;
         }
 
     }
-    
+    */
     public List<servidor.EdicionCurso> buscarEdicionesWS(String nombre){
         List<servidor.EdicionCurso> edWS = null;
         try { // Call Web Service Operation

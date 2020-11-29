@@ -59,7 +59,7 @@
                                 
                                 <% if(sesion.getAttribute("user")!=null){
                                     String user = (String)sesion.getAttribute("user");
-                                    servidor.DataUsuario Dusu = OP.findusuWS(user);
+                                    servidor.Usuario Dusu = OP.buscarusuarioWS(user).get(0);
                                     out.println("<h2 class='font-weight-light'><strong>"+ Dusu.getNombre()+ " "+ Dusu.getApellido() +"</strong></h2>");
                                     out.println("<h3 class='font-weight-light'>"+ Dusu.getNickname() + " / " + Dusu.getCorreo() + "</h3>");
                                     //out.println("<h3 class='font-weight-light'><strong>Último ingreso: " + Dusu.getFechaNac() + "<strong></h3>");
@@ -85,7 +85,7 @@
                            
                            
                             <%String user2 = (String)sesion.getAttribute("user");
-                                servidor.DataUsuario Dusu = OP.findusuWS(user2);%>
+                            servidor.Usuario Dusu = OP.buscarusuarioWS(user2).get(0);%>
                             <h4>Nickname: <%out.println(Dusu.getNickname());%></h4>
                             <h4><strong>Nombre: <%out.println(Dusu.getNombre());%></strong><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></h4>
                             <h4><strong>Apellido: <%out.println(Dusu.getApellido());%> </strong><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></h4>
