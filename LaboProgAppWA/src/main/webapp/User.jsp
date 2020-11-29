@@ -1,3 +1,5 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.util.Date"%>
@@ -104,7 +106,28 @@
                         </div>
 
                         <div id="programas" class="tabcontent">
-                            <h4>Programas</h4>
+                            <%
+                                if(OP.tipousuarioWS(Dusu.getNickname())==2){
+                                    //out.println("alumno<br>");
+                                    List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS("","");
+                                    servidor.Inscripcion insWS = new servidor.Inscripcion();
+                                    
+                                    Iterator iter2 = inscrip.iterator();
+                                    while(iter2.hasNext()){
+                                        insWS = (servidor.Inscripcion)iter2.next();
+                                        if(insWS.getAlu().getNickname().equals(Dusu.getNickname()) && !insWS.getEstado().equals("Rechazada")){
+                                            out.println("<div>");
+                                            out.println("<h4 style='margin-bottom: 0px';> "+insWS.getEdicionCurso().getNombre()+"</h4>");
+                                            out.println("<hidden>");
+                                            out.println("<p><button class='tablinks' style='color: cornflowerblue' onclick='alerta()'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></button></p>");
+                                            out.println("</div>");
+                                        }
+                                    }
+                                }
+                            
+                            %>
+                            
+                            
                         </div>
                         <script>
                             document.getElementById("defaultOpen").click();
@@ -120,6 +143,16 @@
                                 }
                                 document.getElementById(cityName).style.display = "block";
                                 evt.currentTarget.className += " active";
+                            }
+                            
+                            function alerta(){
+                                var mensaje;
+                                var opcion = confirm("Clicka en Aceptar o Cancelar");   
+                                if (opcion === true) {       
+                                    mensaje = "Has clickado OK";
+                                } else {
+                                    mensaje = "Has clickado Cancelar";}
+                                document.getElementById("ejemplo").innerHTML = mensaje;
                             }
                         </script>
                     </div>

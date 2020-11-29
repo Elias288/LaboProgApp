@@ -1,3 +1,4 @@
+<%@page import="java.util.Iterator"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.util.List"%>
@@ -22,7 +23,7 @@
             out.println("resultados ediciones por curso: " + op.buscarEdicionesXCursoWS("programacion").get(0).getNombre()+ "<br>");
             out.println("tipo Usuario: " + op.tipousuarioWS("ElProfe") + "<br>");
             out.println("resultado curso por docente " + op.findCursoXDocenteWS("ElProfe").get(0).getNombre() + "<br>");
-            */
+            
             List<servidor.EdicionCurso>datos = op.buscarEdicionesWS("Programacion de aplicaciones 2020");
             servidor.EdicionCurso ed = datos.get(0);
             out.println(ed.getNombre());
@@ -30,7 +31,16 @@
             LocalDate fechaNac = LocalDate.of(ed.getPinicio().getYear(),ed.getPinicio().getMonth(), ed.getPinicio().getDay());
             DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             out.println("resultado fecha edicion: "+fechaNac.format(esDateFormat));
-             
+            
+
+            List<servidor.Inscripcion> inscrip = op.listarInscripcionesWS("","");
+            servidor.Inscripcion insWS = null;
+            out.println(inscrip.size()+"<br>");
+            Iterator iter2 = inscrip.iterator();
+            while(iter2.hasNext()){
+                insWS = (servidor.Inscripcion)iter2.next();
+                out.println(insWS.getEdicionCurso().getNombre()+"<br>");
+            }*/ 
         %>
     </body>
 </html>

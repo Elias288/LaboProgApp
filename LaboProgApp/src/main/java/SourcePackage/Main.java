@@ -377,9 +377,11 @@ public class Main extends javax.swing.JFrame {
         ControladorCurso cc = new ControladorCurso();
         //JOptionPane.showMessageDialog(null, cc.buscarEdicionXIns("Innova").size());
         //JOptionPane.showMessageDialog(null, cc.buscarCategorias("").get(0).Getnombre());
-//        JOptionPane.showMessageDialog(null, cc.findCurso("programacion").getName());
-//        JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
-        JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getCursos().get(0).getName());
+        //JOptionPane.showMessageDialog(null, cc.buscarEdiciones("").get(0).getNombre());
+        //JOptionPane.showMessageDialog(null, cc.findCurso("programacion").getName());
+        //JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
+        //JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getCursos().get(0).getName());
+        JOptionPane.showMessageDialog(null, cc.listarInscripciones("","").get(0).getAlumno().getName());
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public void CargarDatos(){

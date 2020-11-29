@@ -356,7 +356,7 @@ public class Operaciones {
     }
     
     public List<servidor.Inscripcion> listarInscripcionesWS(String nombreAlu, String nombreEd){
-        List<servidor.Inscripcion> ins = null;
+        List<servidor.Inscripcion> ins = new ArrayList<>();
         try { // Call Web Service Operation
             servidor.WebserverService service = new servidor.WebserverService();
             servidor.Webserver port = service.getWebserverPort();

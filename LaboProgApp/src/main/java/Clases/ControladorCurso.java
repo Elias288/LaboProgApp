@@ -493,8 +493,9 @@ public class ControladorCurso {
     
     public List<inscripcion> listarInscripciones(String nombreAlu, String nombreEd){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        List<inscripcion>lista=new ArrayList<>();
-        List<inscripcion>lista2=new ArrayList<>();
+        List<inscripcion>lista = new ArrayList<>();
+        List<inscripcion>lista2 = new ArrayList<>();
+        
         Query query = em.createQuery("SELECT xd FROM inscripcion xd");
         lista = query.getResultList();
         
