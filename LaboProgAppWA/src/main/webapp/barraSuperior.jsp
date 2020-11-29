@@ -27,14 +27,10 @@
 
                         <%
                             String user = (String)sesion.getAttribute("user");
-                            String level = (String)sesion.getAttribute("nivel");
+                            //String level = (String)sesion.getAttribute("nivel");
                             if(user!=null){
-                                /*ControladorUsuario CU = new ControladorUsuario();
-                                usuario usu = CU.findusu(sesion.getAttribute("user").toString());*/
                                 
-                                servidor.Usuario Dusu = OP.findusupostaWS(user);
-                                //servidor.Usuario usuWS;
-                                //String tipo = sesion.getAttribute("nivel").toString();
+                                servidor.Usuario Dusu = OP.buscarusuarioWS(user).get(0);
                                 if ( Dusu != null ){
                                 out.println("<li class='active'><a href='User.html'>" + Dusu.getNickname() + "</a></li>");
                                 out.println("<li class='active'></a></li>");

@@ -375,13 +375,16 @@ public class Main extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         ControladorCurso cc = new ControladorCurso();
+        ControladorUsuario cu = new ControladorUsuario();
         //JOptionPane.showMessageDialog(null, cc.buscarEdicionXIns("Innova").size());
         //JOptionPane.showMessageDialog(null, cc.buscarCategorias("").get(0).Getnombre());
         //JOptionPane.showMessageDialog(null, cc.buscarEdiciones("").get(0).getNombre());
         //JOptionPane.showMessageDialog(null, cc.findCurso("programacion").getName());
         //JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
         //JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getCursos().get(0).getName());
-        JOptionPane.showMessageDialog(null, cc.listarInscripciones("","").get(0).getAlumno().getName());
+        //JOptionPane.showMessageDialog(null, cc.listarInscripciones("","").get(0).getAlumno().getName());
+        JOptionPane.showMessageDialog(null, cu.findusu("ElProfe").getName());
+        JOptionPane.showMessageDialog(null, cu.findusu("Eleli").getName());
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public void CargarDatos(){

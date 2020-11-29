@@ -164,7 +164,7 @@ public class webserver {
         
     @WebMethod
     public usuario findusuconcreto(String NN){
-        return  CU.findusu(NN);
+        return CU.findusu(NN);
     }
     
     @WebMethod
