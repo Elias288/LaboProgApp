@@ -22,6 +22,7 @@ public class edicionCurso {
     private Date Pfin;
     private int cupo;
     private Date fechaPublicacion;
+    private boolean vigente;
     
     @OneToMany
      List<inscripcion> inscr;
@@ -33,13 +34,14 @@ public class edicionCurso {
     private curso Curso;
     
     public edicionCurso() {}
-    public edicionCurso(String nombre, Date PInicio, Date PFin, int cupo, Date fechaPublicacion, curso Curso) {
+    public edicionCurso(String nombre, Date PInicio, Date PFin, int cupo, Date fechaPublicacion, curso Curso,boolean vigente) {
         this.nombre = nombre;
         this.Pfin = PFin;
         this.Pinicio = PInicio;
         this.cupo = cupo;
         this.fechaPublicacion = fechaPublicacion;
         this.Curso=Curso;
+        this.vigente=vigente;
     }
 
     public List<inscripcion> getInscripcion(){return this.inscr;}
@@ -56,4 +58,6 @@ public class edicionCurso {
     public void setPfin(Date Pfin) {this.Pfin = Pfin;}
     public curso getCurso() {return Curso;}
     public void setCurso(curso Curso) {this.Curso = Curso;}
+    public boolean getVigente (){return this.vigente;}
+    public void setVigente(boolean vige){this.vigente=vige;}
 }

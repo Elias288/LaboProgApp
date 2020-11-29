@@ -378,5 +378,19 @@ public class Operaciones {
         }
     }
     
+    public void editVigenciaEdicion(servidor.EdicionCurso edcur, boolean vigente){
+        
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            // TODO initialize WS operation arguments here
+            //servidor.EdicionCurso arg0 = new servidor.EdicionCurso();
+            //boolean arg1 = false;
+            port.editVigenciaEdicion(edcur, vigente);
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+
+    }
     
 }
