@@ -23,39 +23,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="inscripcion">
-<xs:sequence>
-<xs:element name="id" type="xs:long"/>
-<xs:element name="estado" type="xs:string" minOccurs="0"/>
-<xs:element name="Alu" type="tns:alumno" minOccurs="0"/>
-<xs:element name="nota" type="xs:int"/>
-<xs:element name="EdicionCurso" type="tns:edicionCurso" minOccurs="0"/>
-<xs:element name="Fecha" type="xs:dateTime" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="alumno">
-<xs:complexContent>
-<xs:extension base="tns:usuario">
-<xs:sequence>
-<xs:element name="inscripciones" type="tns:inscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="edicionCurso">
-<xs:sequence>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="Pinicio" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="Pfin" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="cupo" type="xs:int"/>
-<xs:element name="fechaPublicacion" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="inscr" type="tns:inscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="Curso" type="tns:curso" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="curso">
 <xs:sequence>
 <xs:element name="id" type="xs:long"/>
@@ -112,6 +79,39 @@
 <xs:element name="doc" type="tns:docente" minOccurs="0"/>
 <xs:element name="instituto" type="tns:instituto" minOccurs="0"/>
 <xs:element name="cursos" type="tns:curso" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="inscripcion">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="estado" type="xs:string" minOccurs="0"/>
+<xs:element name="Alu" type="tns:alumno" minOccurs="0"/>
+<xs:element name="nota" type="xs:int"/>
+<xs:element name="EdicionCurso" type="tns:edicionCurso" minOccurs="0"/>
+<xs:element name="Fecha" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="alumno">
+<xs:complexContent>
+<xs:extension base="tns:usuario">
+<xs:sequence>
+<xs:element name="inscripciones" type="tns:inscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="edicionCurso">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="Pinicio" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="Pfin" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="cupo" type="xs:int"/>
+<xs:element name="fechaPublicacion" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="inscr" type="tns:inscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="Curso" type="tns:curso" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

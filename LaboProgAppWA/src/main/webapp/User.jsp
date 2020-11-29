@@ -103,23 +103,21 @@
                         <div id="programas" class="tabcontent">
                             <%
                                 if(OP.tipousuarioWS(Dusu.getNickname())==2){
-                                    out.println("alumno<br>");
+                                    //out.println("alumno<br>");
                                     List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS("","");
                                     servidor.Inscripcion insWS = new servidor.Inscripcion();
-                                    /*
+                                    
                                     Iterator iter2 = inscrip.iterator();
                                     while(iter2.hasNext()){
                                         insWS = (servidor.Inscripcion)iter2.next();
                                         if(insWS.getAlu().getNickname().equals(Dusu.getNickname()) && !insWS.getEstado().equals("Rechazada")){
                                             out.println("<div>");
                                             out.println("<h4 style='margin-bottom: 0px';> "+insWS.getEdicionCurso().getNombre()+"</h4>");
-                                            out.println("<a style='color: cornflowerblue' href='User.jsp?rechazar=true'> Estado: "+insWS.getEstado());
-                                            out.println(" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></a>");
-                                            out.println("<p id='ejemplo' hola</p>");
-                                            out.println("<button class='tablinks' onclick='alerta()'>GENERAL</button>");
+                                            out.println("<hidden>");
+                                            out.println("<p><button class='tablinks' style='color: cornflowerblue' onclick='alerta()'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></button></p>");
                                             out.println("</div>");
                                         }
-                                    }*/
+                                    }
                                 }
                             
                             %>

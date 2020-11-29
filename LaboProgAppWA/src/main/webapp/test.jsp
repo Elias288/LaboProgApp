@@ -31,10 +31,16 @@
             LocalDate fechaNac = LocalDate.of(ed.getPinicio().getYear(),ed.getPinicio().getMonth(), ed.getPinicio().getDay());
             DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             out.println("resultado fecha edicion: "+fechaNac.format(esDateFormat));
-            */ 
+            
 
             List<servidor.Inscripcion> inscrip = op.listarInscripcionesWS("","");
-            out.println(inscrip.size());
+            servidor.Inscripcion insWS = null;
+            out.println(inscrip.size()+"<br>");
+            Iterator iter2 = inscrip.iterator();
+            while(iter2.hasNext()){
+                insWS = (servidor.Inscripcion)iter2.next();
+                out.println(insWS.getEdicionCurso().getNombre()+"<br>");
+            }*/ 
         %>
     </body>
 </html>
