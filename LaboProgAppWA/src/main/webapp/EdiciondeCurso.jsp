@@ -1,8 +1,9 @@
-
+<%@page import="java.util.Iterator"%>
 <%@page import="servidor.EdicionCurso"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
-<%@page import="Clases.edicionCurso"%>
-<%@page import="Clases.ControladorCurso"%>
+<%//@page import="Clases.edicionCurso"%>
+<%//@page import="Clases.ControladorCurso"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,12 +59,12 @@
                                 <h3 class="font-weight-light">
                                     <% 
                                         
-                                        ControladorCurso cc = new ControladorCurso();
+                                        //ControladorCurso cc = new ControladorCurso();
                                         Operaciones OP = new Operaciones();
-                                        edicionCurso ed = cc.buscarEdicion(request.getParameter("edicion"));
+                                        //edicionCurso ed = cc.buscarEdicion(request.getParameter("edicion"));
                                         EdicionCurso EC = OP.BuscarEdicionWS(request.getParameter("edicion"));
                                     %>
-                                    <font size="4" face="verdana" color="black"><% out.print(ed.getNombre()+" "+EC.getFechaPublicacion()); %><br>
+                                    <font size="4" face="verdana" color="black"><% out.print(EC.getNombre()+" "+EC.getFechaPublicacion()); %><br>
                                         <font  size ="2" face="verdana" color="black"> 
                                         Intituto
                                         </font><br><br>
@@ -85,9 +86,26 @@
                                         <strong>Fecha publicacion:<% out.print(EC.getFechaPublicacion()); %></strong>
                                         <%
                                             if(!EC.isVigente()){
-                                                out.print("<strong>Edición cerrada</strong>");
+                                                out.print("<strong>Edición cerrada</strong><br>");
+                                                String user = (String)sesion.getAttribute("user");
+                                                List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS(user,"");
+                                                if (inscrip!=null){
+                                                    servidor.Inscripcion insWS = new servidor.Inscripcion();
+                                                    Iterator iter2 = inscrip.iterator();
+                                                    while(iter2.hasNext()){
+                                                        insWS = (servidor.Inscripcion)iter2.next();
+                                                        if(EC.getNombre().equals(insWS.getEdicionCurso().getNombre())){
+                                                            out.print("<strong>Nota Final: "+insWS.getNota()+"</strong>");
+                                                            if(insWS.getNota()>=7){
+                                                                out.print("<strong> Aprobado</strong><br>");
+                                                            }
+                                                            else{
+                                                                out.print("<strong> Reprobado</strong><br>");
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
-                                            
                                         %>
                                         <br><br>
                                     </font> 
