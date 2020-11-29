@@ -16,6 +16,7 @@
             String nombre = request.getParameter("edcur");
             Operaciones op = new Operaciones();
             //op.BuscarEdicion(nombre);
+            out.println(op.buscarusuarioWS("Eleli").get(0).getNombre());
             /*out.println("resultado edicion: "+ op.BuscarEdicionWS(nombre).getNombre() + "<br>");
             out.println("resultados cursos " + op.BuscarCursosWS("").get(0).getNombre() + "<br>");
             out.println("resultados categoria: " + op.categoriaWS("").get(0).getNombre() + "<br>");
