@@ -34,6 +34,7 @@
                         //List<instituto>listaIns = OP.institutos();
                         List<servidor.Instituto> listaInsWS = OP.insitututosWS("");
                         
+                        if(listaInsWS!=null){
                         Iterator itIns = listaInsWS.iterator();
                         
                         Instituto ins = null;
@@ -42,6 +43,7 @@
                             out.println("<li><a href='consultaCursos.jsp?instituto="+ ins.getFacultad() +"' class='d-flex align-items-center'>");
                             out.println("<div class='podcaster'><span class='d-block'>" + ins.getFacultad() + "</span></div></a></li>");
 
+                        }
                         }
                     %>
                     <li><a href='test.jsp?edcur=PYE' class='d-flex align-items-center'><div class='podcaster'><span class='d-block'>Probar</span></div></a></li>
@@ -58,6 +60,7 @@
                         //List<categoria> listaCate = OP.categoria();
                         List<servidor.Categoria>listaCateWS = OP.categoriaWS("");
                         
+                       if(listaCateWS!=null){
                         Iterator itCate = listaCateWS.iterator();
                         
                         servidor.Categoria cat = null;
@@ -66,6 +69,7 @@
                             out.println("<li><a href='consultaCursos.jsp?categoria="+cat.getNombre()+"' class='d-flex align-items-center'>");
                             out.println("<div class='podcaster'><span class='d-block'>" + cat.getNombre() + "</span></div>");
                             out.println("</a></li>");
+                        }
                         }
                     %>
                 </ul>
@@ -103,7 +107,7 @@
                         <li><a href='User.jsp'>Gestionar</a></li>
                         <% 
                             if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){ //si la sesion esta iniciada
-                                String tipo = sesion.getAttribute("nivel").toString();
+                                String tipo = (String)sesion.getAttribute("nivel");
                                 if(tipo.equals("1")){ //si el tipo es profesor
                                     out.println("<li><a href='#'>Menu one</a></li>");
                                     out.println("<li><a href='#'>Menu two</a></li>");
@@ -124,7 +128,7 @@
             <!--INSCRIPCIONES (ALUMNO)-->
             <%
                 if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){ //si la sesion esta iniciada
-                    String tipo = sesion.getAttribute("nivel").toString();
+                    String tipo = (String)sesion.getAttribute("nivel");
                     if(tipo.equals("2")){ //si el tipo es alumno
                         out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid'>");
                     }else
@@ -152,7 +156,7 @@
         <!--CURSOS (PROFESOR)-->
         <%
             if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){ //si la sesion esta iniciada
-                String tipo = sesion.getAttribute("nivel").toString();
+                String tipo = (String)sesion.getAttribute("nivel");
                 if(tipo.equals("1")){ //si el tipo es profesor
                     out.println("<div class='featured-user  mb-5 mb-lg-0' style='border-bottom: 2px solid'>");
                 }else
@@ -186,17 +190,23 @@
                 
                 <!--LISAR INSTITUTOS-->
                 <%
-                    if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){ //si la sesion esta iniciada
+                    String user = (String)sesion.getAttribute("user");
+                    String nivel=(String)sesion.getAttribute("nivel");
+                    if(user!=null && nivel!=null){ //si la sesion esta iniciada
                         
-                        if(sesion.getAttribute("nivel").toString().equals("1")){
+                        if(nivel.equals("1")){
                             //ControladorUsuario CU = new ControladorUsuario();
                             //usuario usu = CU.findusu(sesion.getAttribute("user").toString());
                             //docente doc = CU.findDocente(sesion.getAttribute("user").toString());
-                            servidor.Docente docWS = OP.findDocenteWS(sesion.getAttribute("user").toString());
+                             
+                             
+                            servidor.Docente docWS = OP.findDocenteWS(user);
                         
                             //List<instituto>listaInsProf = OP.institutos();
                             List<servidor.Instituto>listaInsProfWS = OP.insitututosWS("");
-                            Iterator itInsProf = listaInsProfWS.iterator();
+                            
+                            if(listaInsProfWS!=null){
+                         Iterator itInsProf = listaInsProfWS.iterator();
                             servidor.Instituto insProf = null;
                             while(itInsProf.hasNext()){
                                 insProf = (servidor.Instituto) itInsProf.next();
@@ -206,7 +216,8 @@
                                         +insProf.getFacultad()+"</span></div></a></li>");                            
                                 }  
                             }
-                        }else if(sesion.getAttribute("nivel").toString().equals("2")){
+                            }
+                        }else if(nivel.equals("2")){
                             List<servidor.Instituto>listaInsAlum = OP.insitututosWS("");
                             Iterator itInsAlum = listaInsAlum.iterator();
                             servidor.Instituto insAlumn = null;
@@ -229,6 +240,9 @@
                 <ul class="list-unstyled">
 
                     <%
+                        if(listaCateWS!=null){
+                         servidor.Categoria cat = null;
+                        Iterator itCate = listaCateWS.iterator();
                         listaCateWS = OP.categoriaWS("");
                         itCate = listaCateWS.iterator();
                         cat = null;
@@ -237,6 +251,7 @@
                             out.println("<li><a href='consultaCursos.jsp?categoria="+cat.getNombre() +"' class='d-flex align-items-center'>");
                             out.println("<div class='podcaster'><span class='d-block'>" + cat.getNombre() + "</span></div>");
                             out.println("</a></li>");
+                        }
                         }
                     %>
                 </ul>
