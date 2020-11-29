@@ -133,8 +133,8 @@ public class ControladorCurso {
     //ya publicado
     public DataCursos findCursoXDocente(String nombredoc){ //busca curso por docente
         List<curso> cursos = buscarCurso("");//lista todos los cursos
-        List<curso> cursos2 = new ArrayList<>();
-        DataCursos Dcur= new DataCursos();
+        List<curso> cursos2 = null;
+        DataCursos Dcur= null;
         curso cur = new curso();
         
         Iterator iteCur = cursos.iterator();
