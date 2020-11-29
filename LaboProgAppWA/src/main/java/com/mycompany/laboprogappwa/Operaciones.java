@@ -286,7 +286,7 @@ public class Operaciones {
         }
 
     }
-   
+    /*
     public List<servidor.Instituto> institutosWS(){
         List<servidor.Instituto> inslista=null;
 
@@ -302,7 +302,7 @@ public class Operaciones {
             return null;
         }
     }
-     
+    */ 
     public List<servidor.Usuario> buscarusuarioWS(String NN){
         List<servidor.Usuario> usulist=null;
 
@@ -358,7 +358,7 @@ public class Operaciones {
     }
     
     public List<servidor.Inscripcion> listarInscripcionesWS(String nombreAlu, String nombreEd){
-        List<servidor.Inscripcion> ins = new ArrayList<>();
+        List<servidor.Inscripcion> ins;
         try { // Call Web Service Operation
             servidor.WebserverService service = new servidor.WebserverService();
             servidor.Webserver port = service.getWebserverPort();

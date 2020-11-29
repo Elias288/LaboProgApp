@@ -383,8 +383,9 @@ public class Main extends javax.swing.JFrame {
         //JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
         //JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getCursos().get(0).getName());
         //JOptionPane.showMessageDialog(null, cc.listarInscripciones("","").get(0).getAlumno().getName());
-        JOptionPane.showMessageDialog(null, cu.findusu("ElProfe").getName());
-        JOptionPane.showMessageDialog(null, cu.findusu("Eleli").getName());
+        List<inscripcion> ins = cc.listarInscripciones("Eleli", "");
+        JOptionPane.showMessageDialog(null, ins.size());
+        //JOptionPane.showMessageDialog(null, ins.get(1).getedicion().getNombre());
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public void CargarDatos(){

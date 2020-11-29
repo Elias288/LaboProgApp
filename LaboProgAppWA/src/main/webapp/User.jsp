@@ -84,8 +84,11 @@
                         <div id="general" class="tabcontent">
                            
                            
-                            <%String user2 = (String)sesion.getAttribute("user");
-                            servidor.Usuario Dusu = OP.buscarusuarioWS(user2).get(0);%>
+                            <%
+                                String user2 = (String)sesion.getAttribute("user");
+                                servidor.Usuario Dusu = OP.buscarusuarioWS(user2).get(0);
+                            %>
+                            
                             <h4>Nickname: <%out.println(Dusu.getNickname());%></h4>
                             <h4><strong>Nombre: <%out.println(Dusu.getNombre());%></strong><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></h4>
                             <h4><strong>Apellido: <%out.println(Dusu.getApellido());%> </strong><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></h4>
@@ -109,19 +112,32 @@
                             <%
                                 if(OP.tipousuarioWS(Dusu.getNickname())==2){
                                     //out.println("alumno<br>");
-                                    List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS("","");
+                                    List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS(Dusu.getNickname(),""); //todas las inscripciones del usuario
                                     servidor.Inscripcion insWS = new servidor.Inscripcion();
+                                    servidor.Alumno AluWS = insWS.getAlu();
                                     
-                                    Iterator iter2 = inscrip.iterator();
-                                    while(iter2.hasNext()){
-                                        insWS = (servidor.Inscripcion)iter2.next();
-                                        if(insWS.getAlu().getNickname().equals(Dusu.getNickname()) && !insWS.getEstado().equals("Rechazada")){
+                                    if(inscrip!= null){
+                                        
+                                        //out.println("Inscripciones no vacias<br>");
+                                        
+                                        Iterator iter2 = inscrip.iterator();
+                                        while(iter2.hasNext()){
+                                            insWS = (servidor.Inscripcion)iter2.next();
+                                            
                                             out.println("<div>");
                                             out.println("<h4 style='margin-bottom: 0px';> "+insWS.getEdicionCurso().getNombre()+"</h4>");
-                                            out.println("<hidden>");
-                                            out.println("<p><button class='tablinks' style='color: cornflowerblue' onclick='alerta()'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></button></p>");
+                                            //out.println("<p><button class='tablinks' id='boton"+insWS.getAlu().getNickname()+" style='color: cornflowerblue' onclick='alerta()'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></button></p>");
+                                            if(insWS.getEstado().equals("Inscripto")){
+                                                out.println("<p><button class='tablinks' style='color: cornflowerblue' onclick='alerta()'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></button></p>");
+                                            }else
+                                                out.println("<p>Estado: "+insWS.getEstado()+"</p>");
+                                            
+                                            
                                             out.println("</div>");
+                                            
                                         }
+                                    }else{
+                                        out.println("Inscripciones vacias");
                                     }
                                 }
                             
@@ -147,12 +163,10 @@
                             
                             function alerta(){
                                 var mensaje;
-                                var opcion = confirm("Clicka en Aceptar o Cancelar");   
+                                var opcion = confirm("Desea desistir de la Inscripción?");   
                                 if (opcion === true) {       
-                                    mensaje = "Has clickado OK";
-                                } else {
-                                    mensaje = "Has clickado Cancelar";}
-                                document.getElementById("ejemplo").innerHTML = mensaje;
+                                    mensaje = "Vaja";
+                                }
                             }
                         </script>
                     </div>

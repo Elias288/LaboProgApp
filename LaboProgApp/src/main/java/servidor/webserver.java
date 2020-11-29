@@ -142,14 +142,6 @@ public class webserver {
     }
     
     @WebMethod
-    public DataInstituto institutos(){
-        List<instituto> ins = CC.buscarInstituto("");
-        DataInstituto ins2 =  new DataInstituto();
-        ins2.SetFacultad(ins);
-        return ins2;
-    }
-    
-    @WebMethod
     public DataUsuario buscarusuario(String NN){
             
         List<usuario> usulist = CU.buscarusuario(NN);

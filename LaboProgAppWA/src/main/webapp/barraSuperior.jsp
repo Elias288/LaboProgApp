@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="servidor.Usuario"%>
 <%//@page import="Clases.usuario"%>
 <%//@page import="Clases.ControladorUsuario"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
@@ -27,14 +29,13 @@
 
                         <%
                             String user = (String)sesion.getAttribute("user");
-                            //String level = (String)sesion.getAttribute("nivel");
                             if(user!=null){
-                                
-                                servidor.Usuario Dusu = OP.buscarusuarioWS(user).get(0);
-                                if ( Dusu != null ){
-                                out.println("<li class='active'><a href='User.html'>" + Dusu.getNickname() + "</a></li>");
-                                out.println("<li class='active'></a></li>");
-                            }
+                                if ( user != null ){
+                                    out.println("<li class='active'><a href='User.jsp'>" + user + "</a></li>");
+                                    out.println("<li class='active'></a></li>");
+                                }else{
+                                    out.println("usuario "+ user + " no encontrado<br>");
+                                }
                             }else{
                                 out.println("<li><a href='login.jsp'>Login</a></li>");
                                 out.println("<li>/</li>");
