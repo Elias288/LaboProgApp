@@ -133,8 +133,8 @@ public class ControladorCurso {
     //ya publicado
     public DataCursos findCursoXDocente(String nombredoc){ //busca curso por docente
         List<curso> cursos = buscarCurso("");//lista todos los cursos
-        List<curso> cursos2 = null;
-        DataCursos Dcur= null;
+        List<curso> cursos2 = new ArrayList<>();
+        DataCursos Dcur= new DataCursos();
         curso cur = new curso();
         
         Iterator iteCur = cursos.iterator();
@@ -228,7 +228,7 @@ public class ControladorCurso {
         curso cur = em.find(curso.class, ides);
         
         try {
-            edicionCurso edCurso = new edicionCurso(nombre, PInicio, PFin, cupos,fechaPublicacion, cur);
+            edicionCurso edCurso = new edicionCurso(nombre, PInicio, PFin, cupos,fechaPublicacion, cur,true);
             em.getTransaction().begin();
             em.persist(edCurso);
             em.getTransaction().commit();
@@ -367,7 +367,7 @@ public class ControladorCurso {
         listaEdicionCurso(ConsultarEdicionCurso.jTableEdicionCurso,nombres);
     }     
     
-    public void Inscribir(String edicion, String alumno, Date fech, String est){
+    public void Inscribir(String edicion, String alumno, Date fech, String est,int nota){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         
         em.getTransaction().begin();
@@ -375,7 +375,7 @@ public class ControladorCurso {
       //  em.persist(Curs);
         
         alumno Alu = buscarAlumno(alumno);
-        inscripcion ins=new inscripcion(Curs,Alu,fech, est);
+        inscripcion ins=new inscripcion(Curs,Alu,fech, est,nota);
 
         
         em.persist(ins);
@@ -493,8 +493,9 @@ public class ControladorCurso {
     
     public List<inscripcion> listarInscripciones(String nombreAlu, String nombreEd){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
-        List<inscripcion>lista=new ArrayList<>();
-        List<inscripcion>lista2=new ArrayList<>();
+        List<inscripcion>lista = new ArrayList<>();
+        List<inscripcion>lista2 = new ArrayList<>();
+        
         Query query = em.createQuery("SELECT xd FROM inscripcion xd");
         lista = query.getResultList();
         
@@ -516,18 +517,37 @@ public class ControladorCurso {
                 }
             }
             return lista2;
+        }else if(!nombreAlu.equals("") && nombreEd.equals("")){
+            Iterator iter = lista.iterator();
+            while(iter.hasNext()){
+                inscripcion ins = (inscripcion)iter.next();
+                if(ins.getAlumno().getNN().equals(nombreAlu)){
+                    lista2.add(ins);
+                }
+            }
+        }else{
+            lista2 = lista;
         }
-        return lista;
+        return lista2;
     }
     //ya publicada
-    public void editIsncripcion(inscripcion ins, String estado){
+    public void editIsncripcion(inscripcion ins, String estado, String nota){
+        int nota2=Integer.parseInt(nota);
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         em.getTransaction().begin();
-   
+        ins.setNota(nota2);
         ins.setEstado(estado);
         ins=em.merge(ins);
         em.getTransaction().commit();
         em.close();
     }
-   
+    
+    public void editVigenciaEdicion(edicionCurso edcur, boolean vigente){
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        em.getTransaction().begin();
+        edcur.setVigente(vigente);
+        edcur=em.merge(edcur);
+        em.getTransaction().commit();
+        em.close();
+    }
 }

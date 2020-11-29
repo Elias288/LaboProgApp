@@ -142,14 +142,6 @@ public class webserver {
     }
     
     @WebMethod
-    public DataInstituto institutos(){
-        List<instituto> ins = CC.buscarInstituto("");
-        DataInstituto ins2 =  new DataInstituto();
-        ins2.SetFacultad(ins);
-        return ins2;
-    }
-    
-    @WebMethod
     public DataUsuario buscarusuario(String NN){
             
         List<usuario> usulist = CU.buscarusuario(NN);
@@ -164,7 +156,7 @@ public class webserver {
         
     @WebMethod
     public usuario findusuconcreto(String NN){
-        return  CU.findusu(NN);
+        return CU.findusu(NN);
     }
     
     @WebMethod
@@ -176,13 +168,25 @@ public class webserver {
     }
     
     @WebMethod
-    public void editIsncripcion(inscripcion ins, String estado){
-        CC.editIsncripcion(ins, estado);
+    public void editIsncripcion(inscripcion ins, String estado, String nota){
+        CC.editIsncripcion(ins, estado,nota);
     }
     
     @WebMethod
-    public curso findCursoXDocente(String nombredoc){
+    public DataCursos findCursoXDocente(String nombredoc){
         return CC.findCursoXDocente(nombredoc);
     }
-          
+    
+    @WebMethod
+    public String insitutoCur (String nomCurso){
+        if(CC.buscarInstideCurso(nomCurso) != null)
+            return CC.buscarInstideCurso(nomCurso).getFacultad();
+        else
+            return "no existe El instituto";
+    }
+    
+    @WebMethod
+    public void editVigenciaEdicion(edicionCurso edcur,boolean vigente){
+        CC.editVigenciaEdicion(edcur, vigente);
+    }
  }

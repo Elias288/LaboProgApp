@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="servidor.Usuario"%>
 <%//@page import="Clases.usuario"%>
 <%//@page import="Clases.ControladorUsuario"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
@@ -26,15 +28,14 @@
                     <li class="active"><a href="index.jsp">Home</a></li>
 
                         <%
-                            if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
-                                /*ControladorUsuario CU = new ControladorUsuario();
-                                usuario usu = CU.findusu(sesion.getAttribute("user").toString());*/
-                                
-                                servidor.DataUsuario Dusu = OP.findusuWS(sesion.getAttribute("user").toString());
-                                //servidor.Usuario usuWS;
-                                //String tipo = sesion.getAttribute("nivel").toString();
-                                out.println("<li class='active'><a href='User.html'>" + Dusu.getNickname() + "</a></li>");
-                                out.println("<li class='active'></a></li>");
+                            String user = (String)sesion.getAttribute("user");
+                            if(user!=null){
+                                if ( user != null ){
+                                    out.println("<li class='active'><a href='User.jsp'>" + user + "</a></li>");
+                                    out.println("<li class='active'></a></li>");
+                                }else{
+                                    out.println("usuario "+ user + " no encontrado<br>");
+                                }
                             }else{
                                 out.println("<li><a href='login.jsp'>Login</a></li>");
                                 out.println("<li>/</li>");

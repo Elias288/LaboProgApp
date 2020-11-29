@@ -375,11 +375,17 @@ public class Main extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         ControladorCurso cc = new ControladorCurso();
+        ControladorUsuario cu = new ControladorUsuario();
         //JOptionPane.showMessageDialog(null, cc.buscarEdicionXIns("Innova").size());
         //JOptionPane.showMessageDialog(null, cc.buscarCategorias("").get(0).Getnombre());
-//        JOptionPane.showMessageDialog(null, cc.findCurso("programacion").getName());
-//        JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
-        JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getName());
+        //JOptionPane.showMessageDialog(null, cc.buscarEdiciones("").get(0).getNombre());
+        //JOptionPane.showMessageDialog(null, cc.findCurso("programacion").getName());
+        //JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
+        //JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getCursos().get(0).getName());
+        //JOptionPane.showMessageDialog(null, cc.listarInscripciones("","").get(0).getAlumno().getName());
+        List<inscripcion> ins = cc.listarInscripciones("Eleli", "");
+        JOptionPane.showMessageDialog(null, ins.size());
+        //JOptionPane.showMessageDialog(null, ins.get(1).getedicion().getNombre());
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public void CargarDatos(){
@@ -491,11 +497,11 @@ public class Main extends javax.swing.JFrame {
             CC.altaEdicion("Programacion de aplicaciones 2020",fechaJ,fechaA,25,fechaN,"programacion");
             CC.altaEdicion("chispa",fechaJ,fechaA,25,fechaN,"Sebar mates");
                     
-            CC.Inscribir("Programacion de aplicaciones 2020", "Eleli", fechaN, "Aceptada");
-            CC.Inscribir("chispa", "Eleli", fechaN, "Inscripto");
-            CC.Inscribir("Programacion de aplicaciones 2020", "Fran123", fechaN, "Rechazada");
-            CC.Inscribir("Programacion de aplicaciones 2020", "Furta3", fechaN, "Aceptada");
-            CC.Inscribir("PYE", "Fran123", fechaN, "Aceptada");
+            CC.Inscribir("Programacion de aplicaciones 2020", "Eleli", fechaN, "Aceptada",12);
+            CC.Inscribir("chispa", "Eleli", fechaN, "Inscripto",10);
+            CC.Inscribir("Programacion de aplicaciones 2020", "Fran123", fechaN, "Rechazada",12);
+            CC.Inscribir("Programacion de aplicaciones 2020", "Furta3", fechaN, "Aceptada",10);
+            CC.Inscribir("PYE", "Fran123", fechaN, "Aceptada",12);
         }
         
         if(usuarioB || institutoB || categoriaB || cursoB || edicionB){

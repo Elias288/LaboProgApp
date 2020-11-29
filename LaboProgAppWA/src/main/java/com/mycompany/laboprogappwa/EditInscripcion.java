@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servidor.EdicionCurso;
 
 @WebServlet(name = "EditInscripcion", urlPatterns = {"/EditInscripcion"})
 public class EditInscripcion extends HttpServlet {
@@ -36,17 +37,28 @@ public class EditInscripcion extends HttpServlet {
             String chequed2[] = request.getParameterValues("checkbox");
             String nombreEd = request.getParameter("edicion");
             String nombreEst[] = request.getParameterValues("nombreEst");
+            String nota []= request.getParameterValues("nota");
             
-            if(chequed!= null){
+        if(chequed!= null){
                 for(int f = 0;f < chequed.length;f++){
                     out.println(chequed[f]);
                     out.println("chequeado<br>");
                     //ins = CC.listarInscripciones(chequed[f], nombreEd).get(0);
-                    insWS = OP.listarInscripcionesWS(chequed[f], nombreEd).get(0);
-                    OP.editIsncripcionWS(insWS, "Aceptada");
-                }
+                 //   insWS = OP.listarInscripcionesWS(chequed[f], nombreEd).get(0);
+                    
+                }       
+                   
             }
             
+               if(nota!= null){
+                    for(int f = 0;f < nota.length;f++){
+                        //ins = CC.listarInscripciones(nombreEst[f], nombreEd).get(0);
+                            insWS = OP.listarInscripcionesWS(nombreEst[f], nombreEd).get(0);
+                            OP.editIsncripcionWS(insWS, "Aceptada",nota[f]);
+                            
+                            
+               }
+                    }
             int semaforo=0;
             
             
@@ -63,11 +75,16 @@ public class EditInscripcion extends HttpServlet {
                     if(semaforo==0){
                         out.println("cambio<br>");
                         insWS = OP.listarInscripcionesWS(nombreEst[f], nombreEd).get(0);
-                        OP.editIsncripcionWS(insWS, "Rechazada");
+                        OP.editIsncripcionWS(insWS, "Rechazada","0");
                     }
                 }
             }
-            
+            if(request.getParameter("cerrar").equals("cerrar")){
+                EdicionCurso edcur = OP.BuscarEdicionWS(nombreEd);
+                OP.editVigenciaEdicion(edcur,false);
+            }
+                //funcion cerrar edicion
+                
             out.println("<script> location.replace('EdicionCurso.jsp?EdCur="+nombreEd+"');</script>");
             
         }

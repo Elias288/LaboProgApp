@@ -1,3 +1,5 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.util.Date"%>
@@ -54,8 +56,10 @@
                         <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up" style="height: 200px">
                             <div class="image" style="background-image: url('images/img-prof.jpg'); width: 200px;"></div>
                             <div class="text">
+                                
                                 <% if(sesion.getAttribute("user")!=null){
-                                    servidor.DataUsuario Dusu = OP.findusuWS(sesion.getAttribute("user").toString());
+                                    String user = (String)sesion.getAttribute("user");
+                                    servidor.Usuario Dusu = OP.buscarusuarioWS(user).get(0);
                                     out.println("<h2 class='font-weight-light'><strong>"+ Dusu.getNombre()+ " "+ Dusu.getApellido() +"</strong></h2>");
                                     out.println("<h3 class='font-weight-light'>"+ Dusu.getNickname() + " / " + Dusu.getCorreo() + "</h3>");
                                     //out.println("<h3 class='font-weight-light'><strong>Último ingreso: " + Dusu.getFechaNac() + "<strong></h3>");
@@ -78,7 +82,13 @@
                         <!-- ///////////////////////////////////////////////////////////////////////////// -->
                         <!-- [GENERAL] -->
                         <div id="general" class="tabcontent">
-                            <%servidor.DataUsuario Dusu = OP.findusuWS(sesion.getAttribute("user").toString());%>
+                           
+                           
+                            <%
+                                String user2 = (String)sesion.getAttribute("user");
+                                servidor.Usuario Dusu = OP.buscarusuarioWS(user2).get(0);
+                            %>
+                            
                             <h4>Nickname: <%out.println(Dusu.getNickname());%></h4>
                             <h4><strong>Nombre: <%out.println(Dusu.getNombre());%></strong><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></h4>
                             <h4><strong>Apellido: <%out.println(Dusu.getApellido());%> </strong><i class="glyphicon glyphicon-edit" aria-hidden="true"></i></h4>
@@ -88,7 +98,7 @@
                                 //Formato de fecha
                                 LocalDate fechaNac = LocalDate.of(Dusu.getFechaNac().getYear(), Dusu.getFechaNac().getDay(), Dusu.getFechaNac().getMonth());
                                 DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                                fechaNac.format(esDateFormat);
+                                //fechaNac.format(esDateFormat);
                             %>
                             
                             <h4><strong>Fecha de nacimiento: <%out.println(fechaNac.format(esDateFormat));%></strong></h4>
@@ -99,7 +109,41 @@
                         </div>
 
                         <div id="programas" class="tabcontent">
-                            <h4>Programas</h4>
+                            <%
+                                if(OP.tipousuarioWS(Dusu.getNickname())==2){
+                                    //out.println("alumno<br>");
+                                    List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS(Dusu.getNickname(),""); //todas las inscripciones del usuario
+                                    servidor.Inscripcion insWS = new servidor.Inscripcion();
+                                    servidor.Alumno AluWS = insWS.getAlu();
+                                    
+                                    if(inscrip!= null){
+                                        
+                                        //out.println("Inscripciones no vacias<br>");
+                                        
+                                        Iterator iter2 = inscrip.iterator();
+                                        while(iter2.hasNext()){
+                                            insWS = (servidor.Inscripcion)iter2.next();
+                                            
+                                            out.println("<div>");
+                                            out.println("<h4 style='margin-bottom: 0px';> "+insWS.getEdicionCurso().getNombre()+"</h4>");
+                                            //out.println("<p><button class='tablinks' id='boton"+insWS.getAlu().getNickname()+" style='color: cornflowerblue' onclick='alerta()'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></button></p>");
+                                            if(insWS.getEstado().equals("Inscripto")){
+                                                out.println("<p><button class='tablinks' style='color: cornflowerblue' onclick='alerta()'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></button></p>");
+                                            }else
+                                                out.println("<p>Estado: "+insWS.getEstado()+"</p>");
+                                            
+                                            
+                                            out.println("</div>");
+                                            
+                                        }
+                                    }else{
+                                        out.println("Inscripciones vacias");
+                                    }
+                                }
+                            
+                            %>
+                            
+                            
                         </div>
                         <script>
                             document.getElementById("defaultOpen").click();
@@ -115,6 +159,14 @@
                                 }
                                 document.getElementById(cityName).style.display = "block";
                                 evt.currentTarget.className += " active";
+                            }
+                            
+                            function alerta(){
+                                var mensaje;
+                                var opcion = confirm("Desea desistir de la Inscripción?");   
+                                if (opcion === true) {       
+                                    mensaje = "Vaja";
+                                }
                             }
                         </script>
                     </div>
