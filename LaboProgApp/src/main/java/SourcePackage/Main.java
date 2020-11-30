@@ -378,6 +378,7 @@ public class Main extends javax.swing.JFrame {
         ControladorUsuario cu = new ControladorUsuario();
         //JOptionPane.showMessageDialog(null, cc.buscarEdicionXIns("Innova").size());
         //JOptionPane.showMessageDialog(null, cc.buscarCategorias("").get(0).Getnombre());
+
         //JOptionPane.showMessageDialog(null, cc.buscarEdiciones("").get(0).getNombre());
         //JOptionPane.showMessageDialog(null, cc.findCurso("programacion").getName());
         //JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
@@ -386,8 +387,7 @@ public class Main extends javax.swing.JFrame {
         //List<inscripcion> ins = cc.listarInscripciones("Eleli", "");
         //JOptionPane.showMessageDialog(null, ins.size());
         //JOptionPane.showMessageDialog(null, ins.get(1).getedicion().getNombre());
-        //JOptionPane.showMessageDialog(null, cu.buscarusuario("Eleli").get(0).getName());
-        cc.eliminarInscripcion("Eleli", "chispa");
+
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public void CargarDatos(){

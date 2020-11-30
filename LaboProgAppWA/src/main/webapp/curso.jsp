@@ -95,6 +95,7 @@
                                 //servidor.Curso cur = curWS.get(0);
                                 
                                 List<servidor.EdicionCurso> ListecWS = OP.buscarEdicionesWS("");
+                                if(ListecWS!=null){
                                 servidor.EdicionCurso ec = null;
                                 Iterator itEC = ListecWS.iterator();
                                 
@@ -123,6 +124,7 @@
                                         out.println("</div></div></a>");
                                     }
                                 }
+                            }
                             }
                         %>
                   
