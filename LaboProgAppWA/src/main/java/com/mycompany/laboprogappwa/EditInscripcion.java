@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servidor.EdicionCurso;
 
 @WebServlet(name = "EditInscripcion", urlPatterns = {"/EditInscripcion"})
 public class EditInscripcion extends HttpServlet {
@@ -78,8 +79,13 @@ public class EditInscripcion extends HttpServlet {
                     }
                 }
             }
-            
-           out.println("<script> location.replace('EdicionCurso.jsp?EdCur="+nombreEd+"');</script>");
+            if(request.getParameter("cerrar").equals("cerrar")){
+                EdicionCurso edcur = OP.BuscarEdicionWS(nombreEd);
+                OP.editVigenciaEdicion(edcur,false);
+            }
+                //funcion cerrar edicion
+                
+            out.println("<script> location.replace('EdicionCurso.jsp?EdCur="+nombreEd+"');</script>");
             
         }
     }

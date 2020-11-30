@@ -49,7 +49,7 @@
         <%
             HttpSession sesion = request.getSession();
             Operaciones OP = new Operaciones();
-            ControladorCurso CC = new ControladorCurso();
+            //ControladorCurso CC = new ControladorCurso();
             
             //out.println(OP.CursoDeEdCur("chispa"));
             //out.println(OP.insitutoCur(OP.CursoDeEdCur("chispa")));
@@ -105,6 +105,8 @@
                                             out.println("<strong>Fecha Fin:</strong> "+EC.getPfin()+"<br>");
                                             out.println("<strong>Cupo:</strong> "+EC.getCupo()+"<br>");
                                             out.println("<strong>Fecha publicacion: </strong> "+EC.getFechaPublicacion()+"<br>");
+                                            if(!EC.isVigente())
+                                                out.println("<strong>Edición Cerrada.</strong><br>");
                                         %>
                                         <!--
                                         <strong>Fecha inicio:</strong> 10/09/19<br>
@@ -175,7 +177,13 @@
                                 </tbody>
                             </table>
                             <div>
-                                <button style="width: 30%" class="login100-form-btn">Guardar Selección</button>
+                                <%
+                                    if(EC.isVigente()){
+                                        out.println("<button style='width: 30%' class='login100-form-btn' name='guardar' value='guardar'>Guardar Selección</button>");
+                                        out.println("<button style='width: 30%' class='login100-form-btn' name='cerrar' value='cerrar'>Cerrar edición</button>");
+                                    }
+                                %>
+                                
                             </div> 
                         </form>
                     </div>

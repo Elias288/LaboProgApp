@@ -70,49 +70,49 @@
                                 
                                 //List<curso> cursos = cc.buscarCurso(ins);
                                 List<servidor.Curso> cursosWS = OP.BuscarCursosWS(ins);
-                                
-                                Iterator itCur = cursosWS.iterator();
-                                servidor.Curso cur = null;
-                                while(itCur.hasNext()){
-                                    cur = (servidor.Curso) itCur.next();
-                                    /*out.println("<form action='curso.jsp' method='GET'>");
-                                    out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
-                                    out.println("</form><br>");*/
-                                    out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
-                                    out.println("<div class='text'>");
-                                    out.println("<a href='curso.jsp?curso="+cur.getNombre()+"'class='mb-4' style='color: black'>"+cur.getNombre()+"</a><br><br>");
-                                    out.println("</div></div>");
+                                if(cursosWS!=null){
+                                    Iterator itCur = cursosWS.iterator();
+                                    servidor.Curso cur = null;
+                                    while(itCur.hasNext()){
+                                        cur = (servidor.Curso) itCur.next();
+                                        /*out.println("<form action='curso.jsp' method='GET'>");
+                                        out.println("<button type='submit' name='curso' value='"+cur.getName()+"' >"+cur.getName()+"</button>");
+                                        out.println("</form><br>");*/
+                                        out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
+                                        out.println("<div class='text'>");
+                                        out.println("<a href='curso.jsp?curso="+cur.getNombre()+"'class='mb-4' style='color: black'>"+cur.getNombre()+"</a><br><br>");
+                                        out.println("</div></div>");
+                                    }
                                 }
                             }
                             if(request.getParameter("categoria") != null){
                                 String cato =request.getParameter("categoria");
                                 //List<categoria> cat = cc.buscarCategorias(cato); //categoria a buscar
                                 List<servidor.Categoria> catWS = OP.categoriaWS(cato);
-                                
-                                //categoria cat1 = cat.get(0); //guardo la categoria en un objeto categoria
-                                servidor.Categoria cat1WS = catWS.get(0); //guardo la categoria en un objeto categoria
-                                List<servidor.Curso> cursos = OP.BuscarCursosWS(""); //lista de cursos
-                                Iterator itCur = cursos.iterator();
-                                servidor.Curso cur = null; //curso
-                                while(itCur.hasNext()){
-                                    cur = (servidor.Curso) itCur.next();
-                                    
-                                    List<servidor.Categoria> cates = cur.getCat();
-                                    Iterator itCates = cates.iterator();
-                                    servidor.Categoria catego = null;
-                                    while(itCates.hasNext()){
-                                        catego = (servidor.Categoria) itCates.next();
-                                        if(cat1WS.getNombre().equals(catego.getNombre())){
-                                            out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
-                                            out.println("<div class='text'>");
-                                            out.println("<a href='curso.jsp?curso="+cur.getNombre()+"' class='mb-4' style='color: black'>"+cur.getNombre()+"</a><br><br>");
-                                            out.println("</div></div>");
+                                if(catWS!=null){
+                                    //categoria cat1 = cat.get(0); //guardo la categoria en un objeto categoria
+                                    servidor.Categoria cat1WS = catWS.get(0); //guardo la categoria en un objeto categoria
+                                    List<servidor.Curso> cursos = OP.BuscarCursosWS(""); //lista de cursos
+                                    Iterator itCur = cursos.iterator();
+                                    servidor.Curso cur = null; //curso
+                                    while(itCur.hasNext()){
+                                        cur = (servidor.Curso) itCur.next();
+
+                                        List<servidor.Categoria> cates = cur.getCat();
+                                        Iterator itCates = cates.iterator();
+                                        servidor.Categoria catego = null;
+                                        while(itCates.hasNext()){
+                                            catego = (servidor.Categoria) itCates.next();
+                                            if(cat1WS.getNombre().equals(catego.getNombre())){
+                                                out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
+                                                out.println("<div class='text'>");
+                                                out.println("<a href='curso.jsp?curso="+cur.getNombre()+"' class='mb-4' style='color: black'>"+cur.getNombre()+"</a><br><br>");
+                                                out.println("</div></div>");
+                                            }
                                         }
                                     }
-                                    
                                 }
                             }
-
                          %>
                     </div>
                 </div>

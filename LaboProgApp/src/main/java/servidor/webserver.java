@@ -184,5 +184,9 @@ public class webserver {
         else
             return "no existe El instituto";
     }
-          
+    
+    @WebMethod
+    public void editVigenciaEdicion(edicionCurso edcur,boolean vigente){
+        CC.editVigenciaEdicion(edcur, vigente);
+    }
  }
