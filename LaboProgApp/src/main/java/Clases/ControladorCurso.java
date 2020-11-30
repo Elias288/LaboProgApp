@@ -503,7 +503,7 @@ public class ControladorCurso {
             Iterator iter = lista.iterator();
             while(iter.hasNext()){
                 inscripcion ins = (inscripcion)iter.next();
-                if(ins.getedicion().getNombre().equals(nombreEd) && ins.getAlumno().getName().equals(nombreAlu)){
+                if(ins.getedicion().getNombre().equals(nombreEd) && ins.getAlumno().getNN().equals(nombreAlu)){
                     lista2.add(ins);
                 }
             }
@@ -542,6 +542,18 @@ public class ControladorCurso {
         em.close();
     }
     
+    //ya publicada
+    public void eliminarInscripcion(String nomEst, String nomEd){
+        inscripcion ins = listarInscripciones(nomEst, nomEd).get(0);
+        EntityManager em = PersistenceManager.getInstance().createEntityManager();
+        em.getTransaction().begin();
+        ins=em.merge(ins);
+        em.remove(ins);
+        em.getTransaction().commit();
+        em.close();
+    }
+    
+    //ya publicada
     public void editVigenciaEdicion(edicionCurso edcur, boolean vigente){
         EntityManager em = PersistenceManager.getInstance().createEntityManager();
         em.getTransaction().begin();

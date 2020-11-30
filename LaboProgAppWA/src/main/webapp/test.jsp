@@ -37,7 +37,7 @@
             List<servidor.Inscripcion> inscrip = op.listarInscripcionesWS("","");
             servidor.Inscripcion insWS = null;
             out.println(inscrip.size()+"<br>");
-            Iterator iter2 = inscrip.iterator();*/
+            Iterator iter2 = inscrip.iterator();
             
             out.println(op.listarInscripcionesWS("Eleli", "").size());
             servidor.Inscripcion insWS;
@@ -47,7 +47,10 @@
                 //insWS = (servidor.Inscripcion)iter2.next();
                 insWS = (servidor.Inscripcion)iter2.next();
                 out.println(insWS.getEdicionCurso().getNombre()+"<br>");
-            }
+            }*/
+            op.eliminarInscripcionWS("Eleli", "chispa");
+            //op.editIsncripcionWS(op.listarInscripcionesWS("", "").get(0), "aceptada", "7");
+
         %>
     </body>
 </html>
