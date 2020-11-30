@@ -395,4 +395,14 @@ public class Operaciones {
 
     }
     
+    public void eliminarInscripcionWS(String nombreEst, String nombreEd){
+        try { // Call Web Service Operation
+            servidor.WebserverService service = new servidor.WebserverService();
+            servidor.Webserver port = service.getWebserverPort();
+            port.elimInscripcion(nombreEst, nombreEd);
+        } catch (Exception ex) {
+        }
+
+    }
+    
 }
