@@ -49,6 +49,7 @@
                 out.println(insWS.getEdicionCurso().getNombre()+"<br>");
             }*/
             op.eliminarInscripcionWS("Eleli", "chispa");
+            //op.editIsncripcionWS(op.listarInscripcionesWS("", "").get(0), "aceptada", "7");
 
         %>
     </body>
