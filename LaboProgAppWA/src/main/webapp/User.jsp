@@ -1,3 +1,5 @@
+<%@page import="java.util.Collections"%>
+<%@page import="javax.xml.datatype.XMLGregorianCalendar"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -96,8 +98,9 @@
                             
                             <%
                                 //Formato de fecha
-                                LocalDate fechaNac = LocalDate.of(Dusu.getFechaNac().getYear(), Dusu.getFechaNac().getDay(), Dusu.getFechaNac().getMonth());
                                 DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                LocalDate fechaNac = Dusu.getFechaNac().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                
                                 //fechaNac.format(esDateFormat);
                             %>
                             
@@ -110,23 +113,24 @@
 
                         <div id="programas" class="tabcontent">
                             <%
-                                if(OP.tipousuarioWS(Dusu.getNickname())==2){
-                                    //out.println("alumno<br>");
+                                if(OP.tipousuarioWS(Dusu.getNickname())==2){ //solo si es alumno
                                     List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS(Dusu.getNickname(),""); //todas las inscripciones del usuario
-                                    servidor.Inscripcion insWS = new servidor.Inscripcion();
-                                    servidor.Alumno AluWS = insWS.getAlu();
                                     
                                     if(inscrip!= null){
+                                        List<servidor.Inscripcion> inscripOrdenado = null;
                                         
-                                        //out.println("Inscripciones no vacias<br>");
-                                        
+                                        servidor.Inscripcion insWS = new servidor.Inscripcion();
                                         Iterator iter2 = inscrip.iterator();
                                         while(iter2.hasNext()){
                                             insWS = (servidor.Inscripcion)iter2.next();
                                             
                                             out.println("<div>");
-                                            out.println("<h4 style='margin-bottom: 0px';> "+insWS.getEdicionCurso().getNombre()+"</h4>");
-                                            //out.println("<p><button class='tablinks' id='boton"+insWS.getAlu().getNickname()+" style='color: cornflowerblue' onclick='alerta()'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></button></p>");
+                                            out.println("<h4 style='margin-bottom: 0px'> "+insWS.getEdicionCurso().getNombre()+"</h4>");
+                                            
+                                            LocalDate fechaIns = insWS.getFecha().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                            DateTimeFormatter esDateFormat2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                            out.println("<p style='margin-bottom: 0px'>"+fechaIns.format(esDateFormat2)+"</p>");
+                                            
                                             if(insWS.getEstado().equals("Inscripto")){
                                                 out.println("<p><button class='tablinks' style='color: cornflowerblue' onclick='alerta()'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></button></p>");
                                             }else
@@ -162,10 +166,9 @@
                             }
                             
                             function alerta(){
-                                var mensaje;
                                 var opcion = confirm("Desea desistir de la Inscripción?");   
                                 if (opcion === true) {       
-                                    mensaje = "Vaja";
+                                    
                                 }
                             }
                         </script>
