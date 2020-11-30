@@ -378,20 +378,16 @@ public class Main extends javax.swing.JFrame {
         ControladorUsuario cu = new ControladorUsuario();
         //JOptionPane.showMessageDialog(null, cc.buscarEdicionXIns("Innova").size());
         //JOptionPane.showMessageDialog(null, cc.buscarCategorias("").get(0).Getnombre());
-<<<<<<< HEAD
+
         //JOptionPane.showMessageDialog(null, cc.buscarEdiciones("").get(0).getNombre());
         //JOptionPane.showMessageDialog(null, cc.findCurso("programacion").getName());
         //JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
         //JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getCursos().get(0).getName());
         //JOptionPane.showMessageDialog(null, cc.listarInscripciones("","").get(0).getAlumno().getName());
-        List<inscripcion> ins = cc.listarInscripciones("Eleli", "");
-        JOptionPane.showMessageDialog(null, ins.size());
+        //List<inscripcion> ins = cc.listarInscripciones("Eleli", "");
+        //JOptionPane.showMessageDialog(null, ins.size());
         //JOptionPane.showMessageDialog(null, ins.get(1).getedicion().getNombre());
-=======
-//        JOptionPane.showMessageDialog(null, cc.findCurso("programacion").getName());
-//        JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
-        JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getName());
->>>>>>> ca864e7000b7cdaa602e924b658f043ab6f6c596
+
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public void CargarDatos(){

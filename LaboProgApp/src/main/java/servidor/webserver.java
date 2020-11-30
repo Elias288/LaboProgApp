@@ -173,6 +173,11 @@ public class webserver {
     }
     
     @WebMethod
+    public void elimInscripcion(String nomEst, String nomEd){
+        CC.eliminarInscripcion(nomEst,nomEd);
+    }
+    
+    @WebMethod
     public DataCursos findCursoXDocente(String nombredoc){
         return CC.findCursoXDocente(nombredoc);
     }

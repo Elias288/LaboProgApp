@@ -122,6 +122,7 @@
                                     out.println("<li><a href='#'>Menu two</a></li>");
                                     out.println("<li><a href='#'>Menu three</a></li>");
                                 }
+                                out.println("<li><a href='login.jsp?cerrar=true'class='mb-4'>Salir <i class='glyphicon glyphicon-log-out' aria-hidden='true'></i></a></li>");
                             }
                         %>
                     </ul>

@@ -44,7 +44,8 @@
     <%
         HttpSession sesion = request.getSession();
         Operaciones OP = new Operaciones();
-        
+        String user = (String)sesion.getAttribute("user");
+        String tipo = (String)sesion.getAttribute("nivel");
     %>
     
     <!--CODIGO DE BARRA SUPERIOR-->
@@ -89,33 +90,32 @@
 
                         <%
                             if(request.getParameter("curso")!= null){
+                                servidor.Curso curWS = OP.findCursoWS(request.getParameter("curso"));
                                 
-                                //out.println(request.getParameter("curso"));
-                                List<servidor.Curso> curWS = OP.BuscarCursosWS("");
-                                servidor.Curso cur = curWS.get(0);
-                                //out.println(cur.getNombre());
+                                //servidor.Curso cur = curWS.get(0);
                                 
                                 List<servidor.EdicionCurso> ListecWS = OP.buscarEdicionesWS("");
-                                //out.println("resultados ediciones: " + ListecWS.get(0).getNombre()+ "<br>");
                                 servidor.EdicionCurso ec = null;
-                                
                                 Iterator itEC = ListecWS.iterator();
+                                
                                 while(itEC.hasNext()){
+                                    
                                     ec = (servidor.EdicionCurso)itEC.next();
-                                    out.println(ec.getNombre()+ "<br>");
-                                    if(cur.getId()== ec.getCurso().getId()){                                        
+                                    if(curWS.getId() == ec.getCurso().getId()){ 
+                                        
                                         //CODIFICO EL NOMBRE DE LA EDICION DE CURSO PARA ENVIARLO POR URL
                                         String url = ec.getNombre();
                                         String encodedurl = URLEncoder.encode(url,"UTF-8"); 
                                         
-                                        if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
-                                            String tipo = sesion.getAttribute("nivel").toString();
+                                        if(user != null && tipo != null){
+                                            
                                             if(tipo.equals("1")) //si el tipo es profesor
                                                 out.println("<a style='color:black' href=EdicionCurso.jsp?EdCur="+encodedurl+">");
                                             else
                                                 out.println("<a style='color:black' href=EdiciondeCurso.jsp?edicion="+encodedurl+">");
                                         }else
                                             out.println("<a style='color:black' href=EdiciondeCurso.jsp?edicion="+encodedurl+">");
+                                        
                                         out.println("<div class='d-block m-b-25 d-md-flex podcast-entry2 bg-white' data-aos='fade-up'>");
                                         out.println("<div class='image' style='background-image: url('images/img-02.jpg');'></div>");
                                         out.println("<div class='text'>");
