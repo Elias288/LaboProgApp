@@ -1,3 +1,5 @@
+<%@page import="java.util.Collections"%>
+<%@page import="javax.xml.datatype.XMLGregorianCalendar"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -60,9 +62,13 @@
                                 <% if(sesion.getAttribute("user")!=null){
                                     String user = (String)sesion.getAttribute("user");
                                     servidor.Usuario Dusu = OP.buscarusuarioWS(user).get(0);
-                                    out.println("<h2 class='font-weight-light'><strong>"+ Dusu.getNombre()+ " "+ Dusu.getApellido() +"</strong></h2>");
-                                    out.println("<h3 class='font-weight-light'>"+ Dusu.getNickname() + " / " + Dusu.getCorreo() + "</h3>");
-                                    //out.println("<h3 class='font-weight-light'><strong>Último ingreso: " + Dusu.getFechaNac() + "<strong></h3>");
+                                    if(Dusu != null){
+                                        out.println("<h2 class='font-weight-light'><strong>"+ Dusu.getNombre()+ " "+ Dusu.getApellido() +"</strong></h2>");
+                                        out.println("<h3 class='font-weight-light'>"+ Dusu.getNickname() + " / " + Dusu.getCorreo() + "</h3>");
+                                        //out.println("<h3 class='font-weight-light'><strong>Último ingreso: " + Dusu.getFechaNac() + "<strong></h3>");
+                                    }else{
+                                        out.println("Usuario no encontrado");
+                                    }
                                 }else{
                                     out.println("<script>location.replace('index.jsp')</script>");
                                 }
@@ -96,9 +102,10 @@
                             
                             <%
                                 //Formato de fecha
-                                LocalDate fechaNac = LocalDate.of(Dusu.getFechaNac().getYear(), Dusu.getFechaNac().getDay(), Dusu.getFechaNac().getMonth());
                                 DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                                fechaNac.format(esDateFormat);
+                                LocalDate fechaNac = Dusu.getFechaNac().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                
+
                             %>
                             
                             <h4><strong>Fecha de nacimiento: <%out.println(fechaNac.format(esDateFormat));%></strong></h4>
@@ -109,41 +116,44 @@
                         </div>
 
                         <div id="programas" class="tabcontent">
-                            <%
-                                if(OP.tipousuarioWS(Dusu.getNickname())==2){
-                                    //out.println("alumno<br>");
-                                    List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS(Dusu.getNickname(),""); //todas las inscripciones del usuario
-                                    servidor.Inscripcion insWS = new servidor.Inscripcion();
-                                    servidor.Alumno AluWS = insWS.getAlu();
-                                    
-                                    if(inscrip!= null){
+                            <form action="EliminarInscripcion" method="GET">
+                                <%
+                                    if(OP.tipousuarioWS(Dusu.getNickname())==2){ //solo si es alumno
+                                        out.println("<input type='hidden' value='"+Dusu.getNickname()+"' name='usuario'>");
+                                        List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS(Dusu.getNickname(),""); //todas las inscripciones del usuario
                                         
-                                        //out.println("Inscripciones no vacias<br>");
-                                        
-                                        Iterator iter2 = inscrip.iterator();
-                                        while(iter2.hasNext()){
-                                            insWS = (servidor.Inscripcion)iter2.next();
+                                        if(inscrip!= null){
                                             
-                                            out.println("<div>");
-                                            out.println("<h4 style='margin-bottom: 0px';> "+insWS.getEdicionCurso().getNombre()+"</h4>");
-                                            //out.println("<p><button class='tablinks' id='boton"+insWS.getAlu().getNickname()+" style='color: cornflowerblue' onclick='alerta()'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></button></p>");
-                                            if(insWS.getEstado().equals("Inscripto")){
-                                                out.println("<p><button class='tablinks' style='color: cornflowerblue' onclick='alerta()'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></button></p>");
-                                            }else
-                                                out.println("<p>Estado: "+insWS.getEstado()+"</p>");
-                                            
-                                            
-                                            out.println("</div>");
-                                            
+                                            servidor.Inscripcion insWS = new servidor.Inscripcion();
+                                            Iterator iter2 = inscrip.iterator();
+                                            while(iter2.hasNext()){
+                                                insWS = (servidor.Inscripcion)iter2.next();
+
+                                                out.println("<div>");
+                                                out.println("<h4 style='margin-bottom: 0px'> "+insWS.getEdicionCurso().getNombre()+"</h4>");
+                                                
+                                                LocalDate fechaIns = insWS.getFecha().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                                DateTimeFormatter esDateFormat2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                                out.println("<p style='margin-bottom: 0px'>"+fechaIns.format(esDateFormat2)+"</p>");
+                                                
+                                                if(insWS.getEstado().equals("Inscripto")){
+                                                    out.println("<p><a class='tablinks' style='color: cornflowerblue' onclick='alerta(\""+insWS.getEdicionCurso().getNombre()+"\")'>Estado: "+insWS.getEstado()+" <i class='glyphicon glyphicon-edit' aria-hidden='true'></i></a></p>");
+                                                    out.println("<input type='hidden' id='"+insWS.getEdicionCurso().getNombre()+"' name='Edicion'></input>");
+                                                }else
+                                                    out.println("<p>Estado: "+insWS.getEstado()+"</p>");
+
+
+                                                out.println("</div>");
+
+                                            }
+                                        }else{
+                                            out.println("Inscripciones vacias");
                                         }
-                                    }else{
-                                        out.println("Inscripciones vacias");
                                     }
-                                }
-                            
-                            %>
-                            
-                            
+
+                                %>
+                                <br><button style="width: 30%" class="login100-form-btn">Guardar Selección</button>
+                            </form>
                         </div>
                         <script>
                             document.getElementById("defaultOpen").click();
@@ -161,12 +171,14 @@
                                 evt.currentTarget.className += " active";
                             }
                             
-                            function alerta(){
+                            function alerta(id){
                                 var mensaje;
                                 var opcion = confirm("Desea desistir de la Inscripción?");   
                                 if (opcion === true) {       
-                                    mensaje = "Vaja";
+                                    mensaje = id;
                                 }
+                                //document.getElementById(id).innerHTML = mensaje;
+                                document.getElementById(id).value = mensaje;
                             }
                         </script>
                     </div>

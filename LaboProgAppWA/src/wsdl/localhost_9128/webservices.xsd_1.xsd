@@ -87,6 +87,7 @@
 <xs:element name="id" type="xs:long"/>
 <xs:element name="estado" type="xs:string" minOccurs="0"/>
 <xs:element name="Alu" type="tns:alumno" minOccurs="0"/>
+<xs:element name="nota" type="xs:int"/>
 <xs:element name="EdicionCurso" type="tns:edicionCurso" minOccurs="0"/>
 <xs:element name="Fecha" type="xs:dateTime" minOccurs="0"/>
 </xs:sequence>
@@ -109,6 +110,7 @@
 <xs:element name="Pfin" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="cupo" type="xs:int"/>
 <xs:element name="fechaPublicacion" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="vigente" type="xs:boolean"/>
 <xs:element name="inscr" type="tns:inscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 <xs:element name="Curso" type="tns:curso" minOccurs="0"/>
 </xs:sequence>
@@ -122,14 +124,6 @@
 <xs:element name="EdicionCurso" type="tns:edicionCurso" minOccurs="0"/>
 <xs:element name="Fecha" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="inscripciones" type="tns:inscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataInstituto">
-<xs:sequence>
-<xs:element name="id" type="xs:long"/>
-<xs:element name="Facultad" type="xs:string" minOccurs="0"/>
-<xs:element name="institutos" type="tns:instituto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -151,6 +145,14 @@
 <xs:element name="nombre" type="xs:string" minOccurs="0"/>
 <xs:element name="pfin" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="pinicio" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataInstituto">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="Facultad" type="xs:string" minOccurs="0"/>
+<xs:element name="institutos" type="tns:instituto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

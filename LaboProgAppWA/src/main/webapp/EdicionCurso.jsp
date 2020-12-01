@@ -1,3 +1,5 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Clases.inscripcion"%>
 <%@page import="java.util.List"%>
@@ -138,40 +140,35 @@
                                             //List<inscripcion> inscrip = OP.listarInscripciones("Elias","Programacion de aplicaciones 2020");
                                             List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS("",NomEdCur);
                                             Iterator iter = inscrip.iterator();
-
+                                            
+                                            DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                            
                                             while(iter.hasNext()){
                                                 servidor.Inscripcion ins = (servidor.Inscripcion)iter.next();
+                                                
+                                                LocalDate fechaIns = ins.getFecha().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                                
                                                 out.println("<tr><th scope='row'><p>"+ins.getAlu().getNombre()+"</p></th> ");
-                                                out.println("<td><p>"+ins.getFecha()+"</p></td>");
+                                                out.println("<td><p>"+fechaIns.format(esDateFormat)+"</p></td>");
                                                     
                                                 if(ins.getEstado().equals("Rechazada")){
                                                     out.println("<td><label><input type='checkbox' disabled></td>");
                                                     out.println("<td disabled><p>"+ins.getEstado()+"</p></td>");
                                                     out.println("<td><input type='number' min='1' max='12' name='nota' disabled></td>");
+                                                    
                                                 }else if(ins.getEstado().equals("Aceptada")){
-                                                    out.println("<td><label><input type='checkbox' value='"+ins.getAlu().getNombre()+"' name='checkbox' id='checkbox"+ins.getAlu().getNombre()+"' onclick='myFunction"+ins.getAlu().getNombre()+"()' checked></td>");
-                                                    out.println("<td><p id='text"+ins.getAlu().getNombre()+"'>"+ins.getEstado()+"</p></td>");
+                                                    out.println("<td><label><input type='checkbox' name='checkbox' id='"+ins.getAlu().getNombre()+"' onclick='CambiarEstado(this.id,\"text_"+ins.getAlu().getNombre()+"\")' checked></td>");
+                                                    out.println("<td><p id='text_"+ins.getAlu().getNombre()+"'>"+ins.getEstado()+"</p></td>");
                                                     out.println("<input type='hidden' name='nombreEst' value='"+ins.getAlu().getNombre()+"'>");
                                                     out.println("<td><input type='number' min='1' max='12' name='nota' value='"+ins.getNota()+"'></td>");   
                                                     
 
                                                 }else{
-                                                    out.println("<td><label><input type='checkbox' value='"+ins.getAlu().getNombre()+"' name='checkboxAceptado' id='checkbox"+ins.getAlu().getNombre()+"' onclick='myFunction"+ins.getAlu().getNombre()+"()'></td>");
-                                                    out.println("<td ><p id='text"+ins.getAlu().getNombre()+"'>"+ins.getEstado()+"</p></td>");
+                                                    out.println("<td><label><input type='checkbox' name='checkboxAceptado' id='"+ins.getAlu().getNombre()+"' onclick='CambiarEstado(this.id,\"text_"+ins.getAlu().getNombre()+"\")'></td>");
+                                                    out.println("<td ><p id='text_"+ins.getAlu().getNombre()+"'>"+ins.getEstado()+"</p></td>");
                                                     
                                                 }
-                                                
-                                                 out.println("</tr>");
-                                                //SCRIPT QUE CAMBIA
-                                                    out.println("<script type='text/javascript' >");
-                                                    out.println("function myFunction"+ins.getAlu().getNombre()+"() {");
-                                                    out.println("var checkBox = document.getElementById('checkbox"+ins.getAlu().getNombre()+"');");
-                                                    out.println("var text = document.getElementById('text"+ins.getAlu().getNombre()+"');");
-                                                    out.println("if (checkBox.checked == true){");
-                                                    out.println("text.innerHTML  = 'Aceptada';");
-                                                    out.println("} else {");
-                                                    out.println("text.innerHTML  = 'Rechazada';}");
-                                                    out.println("}</script>");
+                                                out.println("</tr>");
                                             }
                                         %>
                                 </tbody>
@@ -186,6 +183,20 @@
                                 
                             </div> 
                         </form>
+                        <script>
+                            function CambiarEstado(idCheckbox, idp){
+                                var checkBox = document.getElementById(idCheckbox);
+                                var text = document.getElementById(idp);
+                                
+                                if (checkBox.checked === true){
+                                    text.innerHTML  = 'Aceptada';
+                                }else{
+                                    text.innerHTML  = 'Rechazada';
+                                }
+
+                            }
+
+                        </script>
                     </div>
                 </div>
             </div>
