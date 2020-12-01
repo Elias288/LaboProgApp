@@ -1,3 +1,5 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="servidor.EdicionCurso"%>
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
@@ -37,7 +39,10 @@
     <body>
             
     <!--Valida sesion -->
-    <%HttpSession sesion = request.getSession();%>
+    <%
+        HttpSession sesion = request.getSession();
+        String user = (String)sesion.getAttribute("user");
+    %>
     
     <!--CODIGO DE BARRA SUPERIOR-->
     <header class="site-navbar py-4" role="banner" >
@@ -58,10 +63,7 @@
                             <div class="text">
                                 <h3 class="font-weight-light">
                                     <% 
-                                        
-                                        //ControladorCurso cc = new ControladorCurso();
                                         Operaciones OP = new Operaciones();
-                                        //edicionCurso ed = cc.buscarEdicion(request.getParameter("edicion"));
                                         EdicionCurso EC = OP.BuscarEdicionWS(request.getParameter("edicion"));
                                     %>
                                     <font size="4" face="verdana" color="black"><% out.print(EC.getNombre()+" "+EC.getFechaPublicacion()); %><br>
@@ -80,14 +82,19 @@
                             <div class="text">
                                 <h3 class="font-weight-light">
                                     <font size="4" face="verdana" color="black"> 
-                                        <strong>Fecha inicio:</strong> <% out.print(EC.getPinicio()); %><br>
-                                        <strong>Fecha Fin:</strong> <% out.print(EC.getPfin()); %> <br>
+                                        <%
+                                            DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                            LocalDate fechaIni = EC.getPinicio().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                            LocalDate fechaFin = EC.getPfin().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                            LocalDate fechaPublicacion = EC.getFechaPublicacion().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                        %>
+                                        <strong>Fecha inicio:</strong> <% out.print(fechaIni.format(esDateFormat)); %><br>
+                                        <strong>Fecha Fin:</strong> <% out.print(fechaFin.format(esDateFormat)); %> <br>
                                         <strong>Cupo:</strong> <% out.print(EC.getCupo()); %> <br>
-                                        <strong>Fecha publicacion:<% out.print(EC.getFechaPublicacion()); %></strong>
+                                        <strong>Fecha publicacion:<% out.print(fechaPublicacion.format(esDateFormat)); %></strong>
                                         <%
                                             if(!EC.isVigente()){
                                                 out.print("<strong>Edición cerrada</strong><br>");
-                                                String user = (String)sesion.getAttribute("user");
                                                 List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS(user,"");
                                                 if (inscrip!=null){
                                                     servidor.Inscripcion insWS = new servidor.Inscripcion();
