@@ -103,7 +103,7 @@
                             <%
                                 //Formato de fecha
                                 DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                        LocalDate fechaNac = Dusu.getFechaNac().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                LocalDate fechaNac = Dusu.getFechaNac().toGregorianCalendar().toZonedDateTime().toLocalDate();
                                 
 
                             %>

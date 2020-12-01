@@ -1,3 +1,5 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Clases.inscripcion"%>
 <%@page import="java.util.List"%>
@@ -138,11 +140,16 @@
                                             //List<inscripcion> inscrip = OP.listarInscripciones("Elias","Programacion de aplicaciones 2020");
                                             List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS("",NomEdCur);
                                             Iterator iter = inscrip.iterator();
-
+                                            
+                                            DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                            
                                             while(iter.hasNext()){
                                                 servidor.Inscripcion ins = (servidor.Inscripcion)iter.next();
+                                                
+                                                LocalDate fechaIns = ins.getFecha().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                                
                                                 out.println("<tr><th scope='row'><p>"+ins.getAlu().getNombre()+"</p></th> ");
-                                                out.println("<td><p>"+ins.getFecha()+"</p></td>");
+                                                out.println("<td><p>"+fechaIns.format(esDateFormat)+"</p></td>");
                                                     
                                                 if(ins.getEstado().equals("Rechazada")){
                                                     out.println("<td><label><input type='checkbox' disabled></td>");
