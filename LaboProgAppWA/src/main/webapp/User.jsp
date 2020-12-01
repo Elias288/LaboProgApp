@@ -1,3 +1,4 @@
+<%@page import="servidor.Usuario"%>
 <%@page import="java.util.Collections"%>
 <%@page import="javax.xml.datatype.XMLGregorianCalendar"%>
 <%@page import="java.util.Iterator"%>
@@ -92,7 +93,10 @@
                            
                             <%
                                 String user2 = (String)sesion.getAttribute("user");
-                                servidor.Usuario Dusu = OP.buscarusuarioWS(user2).get(0);
+                                servidor.Usuario Dusu = null;
+                                if(OP.buscarusuarioWS(user2)!= null)
+                                    Dusu = OP.buscarusuarioWS(user2).get(0);
+                                
                             %>
                             
                             <h4>Nickname: <%out.println(Dusu.getNickname());%></h4>

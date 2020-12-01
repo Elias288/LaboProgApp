@@ -65,8 +65,11 @@
                                     <% 
                                         Operaciones OP = new Operaciones();
                                         EdicionCurso EC = OP.BuscarEdicionWS(request.getParameter("edicion"));
+
+                                        DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");                                        
+                                        LocalDate fechaPublicacion = EC.getFechaPublicacion().toGregorianCalendar().toZonedDateTime().toLocalDate();
                                     %>
-                                    <font size="4" face="verdana" color="black"><% out.print(EC.getNombre()+" "+EC.getFechaPublicacion()); %><br>
+                                    <font size="4" face="verdana" color="black"><% out.print(EC.getNombre()+" "+fechaPublicacion.format(esDateFormat)); %><br>
                                         <font  size ="2" face="verdana" color="black"> 
                                         Intituto
                                         </font><br><br>
@@ -83,10 +86,9 @@
                                 <h3 class="font-weight-light">
                                     <font size="4" face="verdana" color="black"> 
                                         <%
-                                            DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                                             LocalDate fechaIni = EC.getPinicio().toGregorianCalendar().toZonedDateTime().toLocalDate();
                                             LocalDate fechaFin = EC.getPfin().toGregorianCalendar().toZonedDateTime().toLocalDate();
-                                            LocalDate fechaPublicacion = EC.getFechaPublicacion().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                            //LocalDate fechaPublicacion = EC.getFechaPublicacion().toGregorianCalendar().toZonedDateTime().toLocalDate();
                                         %>
                                         <strong>Fecha inicio:</strong> <% out.print(fechaIni.format(esDateFormat)); %><br>
                                         <strong>Fecha Fin:</strong> <% out.print(fechaFin.format(esDateFormat)); %> <br>

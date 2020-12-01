@@ -67,20 +67,23 @@
                             
                             Operaciones OP = new Operaciones();
                             List<Curso> cursosWS = OP.BuscarCursosWS("");
+                            if(cursosWS != null){
+                                Iterator itCur = cursosWS.iterator();
+                                Curso cur = null;
+                                while(itCur.hasNext()){
+                                    cur = (servidor.Curso) itCur.next();
+                                    out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
+                                    out.println("<div class='image' style='background-image: url(images/img-02.jpg)'></div>");
+                                    out.println("<div class='text'>");
+                                    out.println("<h3 class='font-weight-light'><strong>"+ cur.getNombre() +"</strong> "+cur.getDescripcion() + "</h3>");
+                                    out.println("<a href='curso.jsp?curso="+cur.getNombre()+"' class='h10'>leer mas</a>");    
+                                    out.println("</div></div>");
+                                }
+                            }else
+                                out.println("<p>Sin cursos</p>");
                             
-                            Iterator itCur = cursosWS.iterator();
-                            Curso cur = null;
-                            while(itCur.hasNext()){
-                                cur = (servidor.Curso) itCur.next();
-                                out.println("<div class='d-block d-md-flex podcast-entry bg-white mb-5' style='height: 200px' data-aos='fade-up'>");
-                                out.println("<div class='image' style='background-image: url(images/img-02.jpg)'></div>");
-                                out.println("<div class='text'>");
-                                out.println("<h3 class='font-weight-light'><strong>"+ cur.getNombre() +"</strong> "+cur.getDescripcion() + "</h3>");
-                                out.println("<a href='curso.jsp?curso="+cur.getNombre()+"' class='h10'>leer mas</a>");    
-                                out.println("</div></div>");
-                            }
                         %>
-                    
+                    <!--
                     <div class="d-block d-md-flex podcast-entry bg-white" data-aos="fade-up">
                             <div class="image" style="background-image: url(images/img-02.jpg);"></div>
                             <div class="text">
@@ -114,7 +117,7 @@
                                 <a href="#" class="h10">leer mas</a>
                             </h3>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 
             </div>
