@@ -48,7 +48,7 @@
             }*/
             //op.eliminarInscripcionWS("Eleli", "chispa");
             //op.editIsncripcionWS(op.listarInscripcionesWS("", "").get(0), "aceptada", "7");
-
+            out.println(op.listarInscripcionesWS("Eleli", "Programacion avanzada 2020").get(0).getEdicionCurso().getNombre());
 
         %>
     </body>
