@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 <%@page import="java.util.Iterator"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.util.List"%>
-=======
->>>>>>> ca864e7000b7cdaa602e924b658f043ab6f6c596
 <%@page import="com.mycompany.laboprogappwa.Operaciones"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,34 +16,25 @@
             String nombre = request.getParameter("edcur");
             Operaciones op = new Operaciones();
             //op.BuscarEdicion(nombre);
-<<<<<<< HEAD
-            out.println(op.buscarusuarioWS("Eleli").get(0).getNombre());
+            //out.println(op.buscarusuarioWS("Eleli").get(0).getNombre());
             /*out.println("resultado edicion: "+ op.BuscarEdicionWS(nombre).getNombre() + "<br>");
-=======
-            out.println("resultado edicion: "+ op.BuscarEdicionWS(nombre).getNombre() + "<br>");
->>>>>>> ca864e7000b7cdaa602e924b658f043ab6f6c596
             out.println("resultados cursos " + op.BuscarCursosWS("").get(0).getNombre() + "<br>");
             out.println("resultados categoria: " + op.categoriaWS("").get(0).getNombre() + "<br>");
             out.println("resultados ediciones: " + op.buscarEdicionesWS("chispa").get(0).getNombre()+ "<br>");
             out.println("resultados ediciones por curso: " + op.buscarEdicionesXCursoWS("programacion").get(0).getNombre()+ "<br>");
             out.println("tipo Usuario: " + op.tipousuarioWS("ElProfe") + "<br>");
-<<<<<<< HEAD
             out.println("resultado curso por docente " + op.findCursoXDocenteWS("ElProfe").get(0).getNombre() + "<br>");
-            
             List<servidor.EdicionCurso>datos = op.buscarEdicionesWS("Programacion de aplicaciones 2020");
             servidor.EdicionCurso ed = datos.get(0);
             out.println(ed.getNombre());
-            
             LocalDate fechaNac = LocalDate.of(ed.getPinicio().getYear(),ed.getPinicio().getMonth(), ed.getPinicio().getDay());
             DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             out.println("resultado fecha edicion: "+fechaNac.format(esDateFormat));
-            
-            
             List<servidor.Inscripcion> inscrip = op.listarInscripcionesWS("","");
             servidor.Inscripcion insWS = null;
             out.println(inscrip.size()+"<br>");
             Iterator iter2 = inscrip.iterator();
-            
+
             out.println(op.listarInscripcionesWS("Eleli", "").size());
             servidor.Inscripcion insWS;
             Iterator iter2 = op.listarInscripcionesWS("Eleli", "").iterator();
@@ -58,7 +46,7 @@
 
 
             }*/
-            op.eliminarInscripcionWS("Eleli", "chispa");
+            //op.eliminarInscripcionWS("Eleli", "chispa");
             //op.editIsncripcionWS(op.listarInscripcionesWS("", "").get(0), "aceptada", "7");
 
 

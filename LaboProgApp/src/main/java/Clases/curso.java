@@ -31,7 +31,20 @@ public class curso implements Serializable{
     private instituto instituto;
     
    
-    public curso(){}
+    public curso(){
+        this.Creditos = 0;
+        this.Previas = null;
+        this.URL = null;
+        this.cantHoras = 0;
+        this.cat = null;
+        this.descripcion = null;
+        this.doc = null;
+        this.duracion = 0;
+        this.fecha = null;
+        this.id = 0;
+        this.instituto = null;
+        this.nombre = null;
+    }
     
     public String getName(){return this.nombre;}
     public String getDesc(){return this.descripcion;}

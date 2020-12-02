@@ -1,3 +1,4 @@
+<%@page import="servidor.Usuario"%>
 <%@page import="java.util.Collections"%>
 <%@page import="javax.xml.datatype.XMLGregorianCalendar"%>
 <%@page import="java.util.Iterator"%>
@@ -92,7 +93,10 @@
                            
                             <%
                                 String user2 = (String)sesion.getAttribute("user");
-                                servidor.Usuario Dusu = OP.buscarusuarioWS(user2).get(0);
+                                servidor.Usuario Dusu = null;
+                                if(OP.buscarusuarioWS(user2)!= null)
+                                    Dusu = OP.buscarusuarioWS(user2).get(0);
+                                
                             %>
                             
                             <h4>Nickname: <%out.println(Dusu.getNickname());%></h4>
@@ -104,8 +108,6 @@
                                 //Formato de fecha
                                 DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                                 LocalDate fechaNac = Dusu.getFechaNac().toGregorianCalendar().toZonedDateTime().toLocalDate();
-                                
-
                             %>
                             
                             <h4><strong>Fecha de nacimiento: <%out.println(fechaNac.format(esDateFormat));%></strong></h4>

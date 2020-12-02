@@ -44,7 +44,7 @@
 
                             }
                         }else{
-                            out.println("Lista institutos vacia");
+                            out.println("<p>Sin institutos</p>");
                         }
                     %>
                     <li><a href='test.jsp?edcur=PYE' class='d-flex align-items-center'><div class='podcaster'><span class='d-block'>Probar</span></div></a></li>
@@ -72,7 +72,7 @@
                                 out.println("</a></li>");
                             }
                         }else{
-                            out.println("Lista categorias vacia");
+                            out.println("<p>Sin categorias</p>");
                         }
                     %>
                 </ul>
