@@ -30,56 +30,35 @@ public class EditInscripcion extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             
             Operaciones OP = new Operaciones();
-            //ControladorCurso CC = new ControladorCurso();
-            //inscripcion ins = null;
-            servidor.Inscripcion insWS = null;
-            String chequed[] = request.getParameterValues("checkboxAceptado");
-            String chequed2[] = request.getParameterValues("checkbox");
+            
+            servidor.Inscripcion insWS;
+            
             String nombreEd = request.getParameter("edicion");
             String nombreEst[] = request.getParameterValues("nombreEst");
-            String nota []= request.getParameterValues("nota");
+            String estado[] = request.getParameterValues("estado");
+            String nota[]= request.getParameterValues("nota");
+            String Cerrar = request.getParameter("cerrar");
             
-        if(chequed!= null){
-                for(int f = 0;f < chequed.length;f++){
-                    out.println(chequed[f]);
-                    out.println("chequeado<br>");
-                    //ins = CC.listarInscripciones(chequed[f], nombreEd).get(0);
-                 //   insWS = OP.listarInscripcionesWS(chequed[f], nombreEd).get(0);
+            if(nombreEst!= null && estado!= null){
+                for(int f =0; f < nombreEst.length; f++){
+                    String est = nombreEst[f];
+                    /*
+                        out.println(nombreEst[f]);
+                        out.println(nota[f]);
+                        out.println(estado[f]+"<br>");
+                    */
                     
-                }       
-                   
-            }
-            
-               if(nota!= null){
-                    for(int f = 0;f < nota.length;f++){
-                        //ins = CC.listarInscripciones(nombreEst[f], nombreEd).get(0);
-                            insWS = OP.listarInscripcionesWS(nombreEst[f], nombreEd).get(0);
-                            OP.editIsncripcionWS(insWS, "Aceptada",nota[f]);
-                            
-                            
-               }
-                    }
-            int semaforo=0;
-            
-            
-            if(nombreEst!= null){
-                for(int f = 0;f < nombreEst.length;f++){
-                    out.println(nombreEst[f]);
-                    if(chequed2 != null){
-                        for(int x = 0;x < chequed2.length;x++){
-                            if(chequed2[x].equals(nombreEst[f])){
-                                semaforo = 1;
-                            }
-                        }
-                    }
-                    if(semaforo==0){
-                        out.println("cambio<br>");
+                    if(estado[f].equals("Aceptada")){
                         insWS = OP.listarInscripcionesWS(nombreEst[f], nombreEd).get(0);
+                        OP.editIsncripcionWS(insWS, "Aceptada",nota[f]);
+                    }else if(estado[f].equals("Rechazada")){
+                        insWS = OP.listarInscripcionesWS(est, nombreEd).get(0);
                         OP.editIsncripcionWS(insWS, "Rechazada","0");
-                    }
+                    }   
                 }
             }
-            if(request.getParameter("cerrar").equals("cerrar")){
+            
+            if(Cerrar != null && Cerrar.equals("cerrar")){
                 EdicionCurso edcur = OP.BuscarEdicionWS(nombreEd);
                 OP.editVigenciaEdicion(edcur,false);
             }

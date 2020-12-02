@@ -57,7 +57,8 @@
             //out.println(OP.insitutoCur(OP.CursoDeEdCur("chispa")));
             
             if(sesion.getAttribute("user")!=null && sesion.getAttribute("nivel")!=null){
-                String tipo = sesion.getAttribute("nivel").toString();
+                String tipo = (String)sesion.getAttribute("nivel");
+                String nombreUsu = (String)sesion.getAttribute("user");
                 if(!tipo.equals("1")) //si el tipo no es profesor
                     out.println("<script>location.replace('index.jsp')</script>");
             }else
@@ -86,12 +87,16 @@
                                         /*DECODIFICO EL NOMBRE DE LA EDICION DE CUROSO PARA PODER USARLO*/
                                         String url = request.getParameter("EdCur");
                                         String NomEdCur = URLDecoder.decode(url,"UTF-8");
-                                       servidor.EdicionCurso EC = OP.BuscarEdicionWS(NomEdCur);
-                                        
-                                        servidor.Curso cur = OP.CursoDeEdCur(NomEdCur);
-                                        out.println("<font size='4' face='verdana' color='black'>" + EC.getNombre() + "</font><br>");
-                                        out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(cur.getNombre()) +"</font><br><br>");
-                                        out.println("<a href='#' class='h10'>Ver informacion del Curso</a><br>");
+                                        servidor.EdicionCurso EC = OP.BuscarEdicionWS(NomEdCur);
+                                        if(EC!= null){
+                                            servidor.Curso cur = OP.CursoDeEdCur(NomEdCur);
+                                            if(cur!=null){
+                                                out.println("<font size='4' face='verdana' color='black'>" + EC.getNombre() + "</font><br>");
+                                                out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(cur.getNombre()) +"</font><br><br>");
+                                                out.println("<a href='#' class='h10'>Ver informacion del Curso</a><br>");
+                                            }else
+                                                out.println("<p>No existe Curso</p>");
+                                       
                                     %>
                                 </h3>
                             </div>
@@ -103,21 +108,21 @@
                                 <h3 class="font-weight-light">
                                     <font size="4" face="verdana" color="black">
                                         <%
-                                            out.println("<strong>Fecha inicio:</strong> "+EC.getPinicio()+"<br>"); //simpledateformat
-                                            out.println("<strong>Fecha Fin:</strong> "+EC.getPfin()+"<br>");
+                                            DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                            LocalDate fechaIns = EC.getPinicio().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                            LocalDate fechafin = EC.getPfin().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                            LocalDate fechapub= EC.getFechaPublicacion().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                            
+                                            out.println("<strong>Fecha inicio:</strong> "+fechaIns.format(esDateFormat)+"<br>"); //simpledateformat
+                                            out.println("<strong>Fecha Fin:</strong> "+fechafin.format(esDateFormat)+"<br>");
                                             out.println("<strong>Cupo:</strong> "+EC.getCupo()+"<br>");
-                                            out.println("<strong>Fecha publicacion: </strong> "+EC.getFechaPublicacion()+"<br>");
+                                            out.println("<strong>Fecha publicacion: </strong> "+fechapub.format(esDateFormat)+"<br>");
                                             if(!EC.isVigente())
                                                 out.println("<strong>Edición Cerrada.</strong><br>");
+                                        }else
+                                            out.println("<p>No existe Edicion</p>");
                                         %>
-                                        <!--
-                                        <strong>Fecha inicio:</strong> 10/09/19<br>
-                                        <strong>Fecha Fin:</strong> 08/11/019 <br>
-                                        <strong>Cupo:</strong> 20 <br>
-                                        <strong>Fecha publicacion:15/08/19</strong>  <br>
-                                        <br>
-                                        <strong>Inscripciones:</strong>
-                                        -->
+                                        
                                     </font> 
                                 </h3>
                             </div>
@@ -139,45 +144,53 @@
                                         <%
                                             //List<inscripcion> inscrip = OP.listarInscripciones("Elias","Programacion de aplicaciones 2020");
                                             List<servidor.Inscripcion> inscrip = OP.listarInscripcionesWS("",NomEdCur);
-                                            Iterator iter = inscrip.iterator();
-                                            
-                                            DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                                            
-                                            while(iter.hasNext()){
-                                                servidor.Inscripcion ins = (servidor.Inscripcion)iter.next();
-                                                
-                                                LocalDate fechaIns = ins.getFecha().toGregorianCalendar().toZonedDateTime().toLocalDate();
-                                                
-                                                out.println("<tr><th scope='row'><p>"+ins.getAlu().getNombre()+"</p></th> ");
-                                                out.println("<td><p>"+fechaIns.format(esDateFormat)+"</p></td>");
-                                                    
-                                                if(ins.getEstado().equals("Rechazada")){
-                                                    out.println("<td><label><input type='checkbox' disabled></td>");
-                                                    out.println("<td disabled><p>"+ins.getEstado()+"</p></td>");
-                                                    out.println("<td><input type='number' min='1' max='12' name='nota' disabled></td>");
-                                                    
-                                                }else if(ins.getEstado().equals("Aceptada")){
-                                                    out.println("<td><label><input type='checkbox' name='checkbox' id='"+ins.getAlu().getNombre()+"' onclick='CambiarEstado(this.id,\"text_"+ins.getAlu().getNombre()+"\")' checked></td>");
-                                                    out.println("<td><p id='text_"+ins.getAlu().getNombre()+"'>"+ins.getEstado()+"</p></td>");
-                                                    out.println("<input type='hidden' name='nombreEst' value='"+ins.getAlu().getNombre()+"'>");
-                                                    out.println("<td><input type='number' min='1' max='12' name='nota' value='"+ins.getNota()+"'></td>");   
-                                                    
+                                            if(inscrip!=null){
+                                                Iterator iter = inscrip.iterator();
 
-                                                }else{
-                                                    out.println("<td><label><input type='checkbox' name='checkboxAceptado' id='"+ins.getAlu().getNombre()+"' onclick='CambiarEstado(this.id,\"text_"+ins.getAlu().getNombre()+"\")'></td>");
-                                                    out.println("<td ><p id='text_"+ins.getAlu().getNombre()+"'>"+ins.getEstado()+"</p></td>");
-                                                    
+                                                DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                                                while(iter.hasNext()){
+                                                    servidor.Inscripcion ins = (servidor.Inscripcion)iter.next();
+
+                                                    LocalDate fechaIns = ins.getFecha().toGregorianCalendar().toZonedDateTime().toLocalDate();
+
+                                                    out.println("<tr><th scope='row'><p>"+ins.getAlu().getNombre()+"</p></th> ");
+                                                    out.println("<td><p>"+fechaIns.format(esDateFormat)+"</p></td>");
+
+
+                                                    if(ins.getEstado().equals("Rechazada")){
+                                                        out.println("<td><label><input type='checkbox' disabled></td>");
+                                                        out.println("<td disabled><p>"+ins.getEstado()+"</p></td>");
+                                                        out.println("<td><input type='number' min='1' max='12' name='nota' disabled></td>");
+                                                        out.println("<td><input type='hidden' min='1' max='12' name='nota' value='0'></td>");
+
+                                                    }else if(ins.getEstado().equals("Aceptada")){
+                                                        out.println("<td><label><input type='checkbox' name='checkbox' id='"+ins.getAlu().getNombre()+"' onclick='CambiarEstado(this.id,\"text_"+ins.getAlu().getNombre()+"\")' checked></td>");
+                                                        out.println("<td><p id='text_"+ins.getAlu().getNombre()+"' >"+ins.getEstado()+"</p></td>");
+                                                        out.println("<input type='hidden' id='estado_"+ins.getAlu().getNombre()+"' name='estado' value='"+ins.getEstado()+"'>"); //
+                                                        out.println("<td><input type='number' id='nota_"+ins.getAlu().getNombre()+"' min='1' max='12' name='nota' value='"+ins.getNota()+"'></td>");   
+
+
+                                                    }else{
+                                                        out.println("<td><label><input type='checkbox' name='checkboxAceptado' id='"+ins.getAlu().getNombre()+"' onclick='CambiarEstado(this.id,\"text_"+ins.getAlu().getNombre()+"\")'></td>");
+                                                        out.println("<td ><p id='text_"+ins.getAlu().getNombre()+"' name='estado'>"+ins.getEstado()+"</p></td>");
+                                                        out.println("<input type='hidden' id='estado_"+ins.getAlu().getNombre()+"' name='estado' value='null'>"); //
+                                                        out.println("<td><input type='hidden' id='nota_"+ins.getAlu().getNombre()+"' min='1' max='12' name='nota' value='0'></td>");
+
+                                                    }
+                                                    out.println("</tr>");
+                                                    out.println("<input type='hidden' name='nombreEst' value='"+ins.getAlu().getNickname()+"'>");
                                                 }
-                                                out.println("</tr>");
-                                            }
+                                            }else
+                                                out.println("<p>No hay inscripciones</p>");
                                         %>
                                 </tbody>
                             </table>
                             <div>
                                 <%
                                     if(EC.isVigente()){
-                                        out.println("<button style='width: 30%' class='login100-form-btn' name='guardar' value='guardar'>Guardar Selección</button>");
-                                        out.println("<button style='width: 30%' class='login100-form-btn' name='cerrar' value='cerrar'>Cerrar edición</button>");
+                                        out.println("<button style='width: 30%' class='login100-form-btn' name='botonG' value='guardar'>Guardar Selección</button>");
+                                        out.println("<button style='width: 30%' class='login100-form-btn' name='botonC' value='cerrar'>Cerrar edición</button>");
                                     }
                                 %>
                                 
@@ -186,14 +199,28 @@
                         <script>
                             function CambiarEstado(idCheckbox, idp){
                                 var checkBox = document.getElementById(idCheckbox);
+                                var hidden1 = "estado_"+ idCheckbox;
+                                var nota = "nota_"+ idCheckbox;
+                                changeType(nota);
+                                var mensaje1 = "Aceptada";
+                                var mensaje2 = "Rechazada";
                                 var text = document.getElementById(idp);
                                 
                                 if (checkBox.checked === true){
-                                    text.innerHTML  = 'Aceptada';
+                                    text.innerHTML  = mensaje1;
+                                    document.getElementById(hidden1).value = mensaje1;
                                 }else{
-                                    text.innerHTML  = 'Rechazada';
+                                    text.innerHTML  = mensaje2;
+                                    document.getElementById(hidden1).value = mensaje2;
                                 }
-
+                            }
+                            function changeType(id){
+                                var nota = id;
+                                if (document.getElementById(nota).type === 'hidden'){
+                                    document.getElementById(nota).type = 'number';
+                                }else{
+                                    document.getElementById(nota).type = 'hidden';
+                                }
                             }
 
                         </script>
