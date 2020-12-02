@@ -1,3 +1,5 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%//@page import="Clases.inscripcion"%>
 <%//@page import="Clases.edicionCurso"%>
 <%//@page import="Clases.ControladorUsuario"%>
@@ -69,10 +71,10 @@
                     <div class="d-block podcast-entry bg-white" data-aos="fade-up">
                         <% 
                            
-                            if(nickname != null){
+                            if(nickname != null){ //si el nickname no esta bacio
                                 List<servidor.Usuario>usu = OP.buscarusuarioWS(nickname);
                                 
-                                if(usu!= null){
+                                if(usu!= null){ //si el usuario existe
                                     Iterator itCur = usu.iterator();
                                     servidor.Usuario usuariox = null;
                                     while(itCur.hasNext()){
@@ -90,26 +92,44 @@
 
 
                                     }
-                                    if(OP.tipousuarioWS(nickname)==1){
-                                        out.println("<h4> Es docente </h4>"); 
-                                        //ControladorCurso  cc= new ControladorCurso();
-
-                                        //curso cu= OP.findCurso2(nickname);
-                                        servidor.Curso cu= OP.findCursoXDocente(nickname);
-
-                                        List<servidor.EdicionCurso>datos = OP.buscarEdicionesWS(cu.getNombre());
-
-                                        Iterator opaaaa = datos.iterator();
-                                        servidor.EdicionCurso opa = null;
-                                        while(opaaaa.hasNext()){
-                                            opa = (servidor.EdicionCurso) opaaaa.next();
-                                            out.println("<div>");
-                                            out.println("<h4> Nombre="+opa.getNombre()+" Fecha Final="+opa.getPfin()+" Fecha Inicio="+opa.getPinicio()+" Cupos="+opa.getCupo()+" Fecha publicacion"+ opa.getFechaPublicacion()+"</h4>" );
-                                            out.println("</div>");
-
-
-                                        }
-
+                                    if(OP.tipousuarioWS(nickname)==1){ //si el tipo de usuario es docente
+                                        out.println("<h3><strong> Cursos: </strong></h3>");
+                                        
+                                        List<servidor.Curso> cu= OP.findCursoXDocente(nickname);
+                                        if(cu != null){ //si tiene curso
+                                            Iterator cursos = cu.iterator();
+                                            while(cursos.hasNext()){
+                                                servidor.Curso cur = (servidor.Curso)cursos.next();
+                                                out.println("<h3>"+cur.getNombre()+":</h3>");
+                                                
+                                                List<servidor.EdicionCurso>datos = OP.buscarEdicionesXCursoWS(cur.getNombre());
+                                                if(datos!= null){
+                                                    Iterator opaaaa = datos.iterator();
+                                                    servidor.EdicionCurso opa = null;
+                                                    while(opaaaa.hasNext()){
+                                                        opa = (servidor.EdicionCurso) opaaaa.next();
+                                                        
+                                                        //Formato de fecha
+                                                        DateTimeFormatter esDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                                        LocalDate fechafin = opa.getPfin().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                                        LocalDate fechainicio = opa.getPinicio().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                                        LocalDate fechapublicacion= opa.getFechaPublicacion().toGregorianCalendar().toZonedDateTime().toLocalDate();
+                                                        
+                                                        out.println("<div>");
+                                                        out.println("<h3>"+opa.getNombre()+"</h3>");
+                                                        out.println("<h4>Fecha Inicio: "+fechainicio.format(esDateFormat)+"</h4>");
+                                                        out.println("<h4>Fecha Final: "+fechafin.format(esDateFormat)+"</h4>");
+                                                        out.println("<h4>Cupos: "+opa.getCupo()+"</h4>");
+                                                        out.println("<h4>Fecha publicacion: "+ fechapublicacion.format(esDateFormat)+"</h4>" );
+                                                        out.println("</div>");
+                                                    }
+                                                }else
+                                                    out.println("<p>Sin Edicion del curso</p>");
+                                            }
+                                            
+                                        }else
+                                            out.println("<p>Sin Curso</p>");
+                                        
                                     }else if(OP.tipousuarioWS(nickname)==2){
 
                                         int semaforo=0;

@@ -382,7 +382,7 @@ public class Main extends javax.swing.JFrame {
         //JOptionPane.showMessageDialog(null, cc.buscarEdiciones("").get(0).getNombre());
         //JOptionPane.showMessageDialog(null, cc.findCurso("programacion").getName());
         //JOptionPane.showMessageDialog(null, cc.buscarEdicionesxCurso("programacion").get(0).getNombre());
-        //JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getCursos().get(0).getName());
+        JOptionPane.showMessageDialog(null, cc.findCursoXDocente("ElProfe").getCursos().get(0).getName());
         //JOptionPane.showMessageDialog(null, cc.listarInscripciones("","").get(0).getAlumno().getName());
         //List<inscripcion> ins = cc.listarInscripciones("Eleli", "");
         //JOptionPane.showMessageDialog(null, ins.size());
@@ -454,11 +454,11 @@ public class Main extends javax.swing.JFrame {
         }
         
         Date fechaE = new Date(100,4,5);
-        Date fechaF = new Date(97,12,19);
-        Date fechaJ = new Date(98,8,25);
-        Date fechaG = new Date(100,3,15);
-        Date fechaA = new Date(91,8,16);
-        Date fechaN = new Date(87,4,22);
+        Date fechaF = new Date(110,12,19);
+        Date fechaJ = new Date(119,8,25);
+        Date fechaG = new Date(118,3,15);
+        Date fechaA = new Date(117,8,16);
+        Date fechaN = new Date(120,4,22);
         
         if(institutoB ){
             CC.AltaInstituto("Innova");
@@ -495,9 +495,9 @@ public class Main extends javax.swing.JFrame {
             
         }
         if(edicionB){
-            CC.altaEdicion("PYE",fechaJ,fechaA,25,fechaN,"Matematica");
-            CC.altaEdicion("Programacion de aplicaciones 2020",fechaJ,fechaA,25,fechaN,"programacion");
-            CC.altaEdicion("chispa",fechaJ,fechaA,25,fechaN,"Sebar mates");
+            CC.altaEdicion("PYE",fechaA,fechaJ,25,fechaN,"Matematica");
+            CC.altaEdicion("Programacion de aplicaciones 2020",fechaA,fechaJ,25,fechaN,"programacion");
+            CC.altaEdicion("chispa",fechaA,fechaJ,25,fechaN,"Sebar mates");
                     
             CC.Inscribir("Programacion de aplicaciones 2020", "Eleli", fechaN, "Aceptada",12);
             CC.Inscribir("chispa", "Eleli", fechaN, "Inscripto",10);
