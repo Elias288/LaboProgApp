@@ -342,16 +342,20 @@ public class Operaciones {
         }
     }
     
-   public servidor.Curso findCursoXDocente(String nombredoc){ //busca curso por docente
-       List<servidor.Curso> cursos = BuscarCursosWS("");//lista todos los cursos
-        servidor.Curso cur;
+   public List<servidor.Curso> findCursoXDocente(String nombredoc){ //busca curso por docente
+       List<servidor.Curso> cursos = null;
+       try { // Call Web Service Operation
+           servidor.WebserverService service = new servidor.WebserverService();
+           servidor.Webserver port = service.getWebserverPort();
+           // TODO process result here
+           servidor.DataCursos result = port.findCursoXDocente(nombredoc);
+           cursos = result.getCursos();
+           return cursos;
+       } catch (Exception ex) {
+           // TODO handle custom exceptions here
+       }
+
         
-        Iterator iteCur = cursos.iterator();
-        while(iteCur.hasNext()){
-            cur = (servidor.Curso)iteCur.next();
-            if(cur.getDoc().getNombre().equals(nombredoc))
-                return cur;
-        }
         return null;
     }
     

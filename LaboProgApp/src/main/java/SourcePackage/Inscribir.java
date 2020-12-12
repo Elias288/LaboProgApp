@@ -38,14 +38,12 @@ public class Inscribir extends javax.swing.JInternalFrame {
         jComboBoxInstituto = new javax.swing.JComboBox<>();
         jComboBoxCursos = new javax.swing.JComboBox<>();
         jComboBoxAlumno = new javax.swing.JComboBox<>();
-        jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBoxEdicion = new javax.swing.JComboBox<>();
         jbtnAgregar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
 
         setTitle("Inscribir alumno");
 
@@ -94,9 +92,6 @@ public class Inscribir extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setText("Fecha");
-        jLabel5.setToolTipText("");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,10 +111,6 @@ public class Inscribir extends javax.swing.JInternalFrame {
                             .addComponent(jComboBoxInstituto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxCursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBoxAlumno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbtnAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -145,15 +136,11 @@ public class Inscribir extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(31, 31, 31)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnAgregar)
                     .addComponent(jButton2))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -179,20 +166,20 @@ public class Inscribir extends javax.swing.JInternalFrame {
         ControladorCurso CC = new ControladorCurso();
         String edicion = (String)jComboBoxEdicion.getSelectedItem();
         String alumno = (String)jComboBoxAlumno.getSelectedItem();
-        Date fecha = jDateChooserFecha.getDate();
+        //Date fecha = jDateChooserFecha.getDate();
         //String est = (String)jComboBoxEstado.getSelectedItem();
         
-        if(edicion.equals("") || alumno.equals("") || fecha.equals("")){
+        if(edicion.equals("") || alumno.equals("")){
             JOptionPane.showMessageDialog(null, "Tienen que estar llenos todos los camapo.");
         }
         else{
-            if(fecha.compareTo(new Date()) > 0){
+            /*if(fecha.compareTo(new Date()) > 0){
                 JOptionPane.showMessageDialog(null, "La fecha de inscripción no es válida.");
             }
-            else{
-                CC.Inscribir(edicion, alumno, fecha, "Inscripto",0);
+            else{*/
+                CC.Inscribir(edicion, alumno, new Date(), "Inscripto",0);
                 JOptionPane.showMessageDialog( null, alumno +" inscripto correctamente");
-            }
+            //}
             
         }
         
@@ -301,12 +288,10 @@ public class Inscribir extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jComboBoxCursos;
     private javax.swing.JComboBox<String> jComboBoxEdicion;
     private javax.swing.JComboBox<String> jComboBoxInstituto;
-    private com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JButton jbtnAgregar;
     // End of variables declaration//GEN-END:variables
 }

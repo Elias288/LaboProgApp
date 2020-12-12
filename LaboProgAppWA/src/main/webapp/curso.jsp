@@ -68,17 +68,20 @@
                             if(request.getParameter("curso")!=null){
                                 
                                 servidor.Curso curWS = OP.findCursoWS(request.getParameter("curso"));
+                                if(curWS!=null){
                                 
-                                out.println("<div class='text'>");
-                                out.println("<h3 style='color: black'>" + curWS.getNombre()+ "</h3><br>");
-                                out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(curWS.getNombre()) +"</font><br><br>");
-                                out.println("</div></div>");
-                                out.println("<div class='d-lg-block m-b-25 podcast-entry bg-white'>");
-                                out.println("<a style='color:cornflowerblue' href='curos.html' class='h10'>"+curWS.getURL()+"<br><br></a>");
-                                out.println("<h3 class='font-weight-light'>");
-                                out.println(curWS.getDescripcion());
-                                out.println("</h3>");
-                                out.println("</div>");
+                                    out.println("<div class='text'>");
+                                    out.println("<h3 style='color: black'>" + curWS.getNombre()+ "</h3><br>");
+                                    out.println("<font  size ='2' face='verdana' color='black'>"+ OP.insitutoCur(curWS.getNombre()) +"</font><br><br>");
+                                    out.println("</div></div>");
+                                    out.println("<div class='d-lg-block m-b-25 podcast-entry bg-white'>");
+                                    out.println("<a style='color:cornflowerblue' href='curos.html' class='h10'>"+curWS.getURL()+"<br><br></a>");
+                                    out.println("<h3 class='font-weight-light'>");
+                                    out.println(curWS.getDescripcion());
+                                    out.println("</h3>");
+                                    out.println("</div>");
+                                }else
+                                    out.println("<p>Curso no encontrado</p>");
                                 
                             }
                         %>
@@ -96,40 +99,40 @@
                                 
                                 List<servidor.EdicionCurso> ListecWS = OP.buscarEdicionesWS("");
                                 if(ListecWS!=null){
-                                servidor.EdicionCurso ec = null;
-                                Iterator itEC = ListecWS.iterator();
-                                
-                                while(itEC.hasNext()){
-                                    
-                                    ec = (servidor.EdicionCurso)itEC.next();
-                                    if(curWS.getId() == ec.getCurso().getId()){ 
-                                        
-                                        //CODIFICO EL NOMBRE DE LA EDICION DE CURSO PARA ENVIARLO POR URL
-                                        String url = ec.getNombre();
-                                        String encodedurl = URLEncoder.encode(url,"UTF-8"); 
-                                        
-                                        if(user != null && tipo != null){
-                                            
-                                            if(tipo.equals("1")) //si el tipo es profesor
-                                                out.println("<a style='color:black' href=EdicionCurso.jsp?EdCur="+encodedurl+">");
-                                            else
+                                    servidor.EdicionCurso ec = null;
+                                    Iterator itEC = ListecWS.iterator();
+
+                                    while(itEC.hasNext()){
+
+                                        ec = (servidor.EdicionCurso)itEC.next();
+                                        if(curWS.getId() == ec.getCurso().getId()){ 
+
+                                            //CODIFICO EL NOMBRE DE LA EDICION DE CURSO PARA ENVIARLO POR URL
+                                            String url = ec.getNombre();
+                                            String encodedurl = URLEncoder.encode(url,"UTF-8"); 
+
+                                            if(user != null && tipo != null){
+
+                                                if(tipo.equals("1")) //si el tipo es profesor
+                                                    out.println("<a style='color:black' href=EdicionCurso.jsp?EdCur="+encodedurl+">");
+                                                else
+                                                    out.println("<a style='color:black' href=EdiciondeCurso.jsp?edicion="+encodedurl+">");
+                                            }else
                                                 out.println("<a style='color:black' href=EdiciondeCurso.jsp?edicion="+encodedurl+">");
-                                        }else
-                                            out.println("<a style='color:black' href=EdiciondeCurso.jsp?edicion="+encodedurl+">");
-                                        
-                                        out.println("<div class='d-block m-b-25 d-md-flex podcast-entry2 bg-white' data-aos='fade-up'>");
-                                        out.println("<div class='image' style='background-image: url('images/img-02.jpg');'></div>");
-                                        out.println("<div class='text'>");
-                                        out.println("<h3 class='font-weight-light'>"+ec.getNombre()+"<br></h3>");
-                                        out.println("</div></div></a>");
+
+                                            out.println("<div class='d-block m-b-25 d-md-flex podcast-entry2 bg-white' data-aos='fade-up'>");
+                                            out.println("<div class='image' style='background-image: url('images/img-02.jpg');'></div>");
+                                            out.println("<div class='text'>");
+                                            out.println("<h3 class='font-weight-light'>"+ec.getNombre()+"<br></h3>");
+                                            out.println("</div></div></a>");
+                                        }
                                     }
-                                }
-                            }
+                                }else
+                                    out.println("<p>Sin Ediciones del curso</p>");
                             }
                         %>
                   
-
-                        <h3 class="font-weight-light">Programas de formación</h3>
+                        <h3 style="color: black">Programas de formación</h3>
                         <div class="d-block m-b-25 d-md-flex podcast-entry2 bg-white" data-aos="fade-up">
                             <div class="image" style="background-image: url('images/img-04.png');"></div>
                             <div class="text">

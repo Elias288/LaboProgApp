@@ -23,65 +23,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="dataCursos">
-<xs:sequence>
-<xs:element name="id" type="xs:long"/>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
-<xs:element name="URL" type="xs:string" minOccurs="0"/>
-<xs:element name="duracion" type="xs:int"/>
-<xs:element name="cantHoras" type="xs:int"/>
-<xs:element name="fecha" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="Creditos" type="xs:int"/>
-<xs:element name="cat" type="tns:categoria" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="Previas" type="tns:curso" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="doc" type="tns:docente" minOccurs="0"/>
-<xs:element name="instituto" type="tns:instituto" minOccurs="0"/>
-<xs:element name="cursos" type="tns:curso" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="categoria">
-<xs:sequence>
-<xs:element name="id" type="xs:long"/>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="curso">
-<xs:sequence>
-<xs:element name="id" type="xs:long"/>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
-<xs:element name="URL" type="xs:string" minOccurs="0"/>
-<xs:element name="duracion" type="xs:int"/>
-<xs:element name="cantHoras" type="xs:int"/>
-<xs:element name="fecha" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="Creditos" type="xs:int"/>
-<xs:element name="cat" type="tns:categoria" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="Previas" type="tns:curso" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-<xs:element name="doc" type="tns:docente" minOccurs="0"/>
-<xs:element name="instituto" type="tns:instituto" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="docente">
-<xs:complexContent>
-<xs:extension base="tns:usuario">
-<xs:sequence>
-<xs:element name="instituto" type="tns:instituto" minOccurs="0"/>
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="instituto">
-<xs:sequence>
-<xs:element name="id" type="xs:long"/>
-<xs:element name="Facultad" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="inscripcion">
 <xs:sequence>
 <xs:element name="id" type="xs:long"/>
@@ -116,6 +57,65 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="curso">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="URL" type="xs:string" minOccurs="0"/>
+<xs:element name="duracion" type="xs:int"/>
+<xs:element name="cantHoras" type="xs:int"/>
+<xs:element name="fecha" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="Creditos" type="xs:int"/>
+<xs:element name="cat" type="tns:categoria" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="Previas" type="tns:curso" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="doc" type="tns:docente" minOccurs="0"/>
+<xs:element name="instituto" type="tns:instituto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="categoria">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="docente">
+<xs:complexContent>
+<xs:extension base="tns:usuario">
+<xs:sequence>
+<xs:element name="instituto" type="tns:instituto" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="instituto">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="Facultad" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataCursos">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="URL" type="xs:string" minOccurs="0"/>
+<xs:element name="duracion" type="xs:int"/>
+<xs:element name="cantHoras" type="xs:int"/>
+<xs:element name="fecha" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="Creditos" type="xs:int"/>
+<xs:element name="cat" type="tns:categoria" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="Previas" type="tns:curso" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="doc" type="tns:docente" minOccurs="0"/>
+<xs:element name="instituto" type="tns:instituto" minOccurs="0"/>
+<xs:element name="cursos" type="tns:curso" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="dataInscripcion">
 <xs:sequence>
 <xs:element name="id" type="xs:long"/>
@@ -124,6 +124,14 @@
 <xs:element name="EdicionCurso" type="tns:edicionCurso" minOccurs="0"/>
 <xs:element name="Fecha" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="inscripciones" type="tns:inscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataCategoria">
+<xs:sequence>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="categorias" type="tns:categoria" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -137,14 +145,6 @@
 <xs:element name="nombre" type="xs:string" minOccurs="0"/>
 <xs:element name="pfin" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="pinicio" type="xs:dateTime" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataCategoria">
-<xs:sequence>
-<xs:element name="id" type="xs:long"/>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="categorias" type="tns:categoria" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
